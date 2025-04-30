@@ -1,0 +1,21 @@
+.swiper-button-next-partners {
+    position: absolute;
+    z-index: 10;
+    top: unset !important;
+    bottom: 20px !important;
+    color: white;
+}
+
+.swiper-button-prev-partners {
+    position: absolute;
+    z-index: 10;
+    top: unset !important;
+    bottom: 20px !important;
+    color: white;
+}
+
+@media (max-width: 991px) {
+    .swiper-button-next-partners, .swiper-button-prev-partners {
+        display: none;
+    }
+}

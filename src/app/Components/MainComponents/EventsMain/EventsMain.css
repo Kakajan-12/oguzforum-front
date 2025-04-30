@@ -1,0 +1,97 @@
+.event-slider .swiper-button-next-second {
+    position: absolute;
+    z-index: 10;
+    top: unset !important;
+    bottom: 20px !important;
+    width: 50px;
+    height: 50px;
+}
+
+.event-slider .swiper-button-prev-second {
+    position: absolute;
+    z-index: 10;
+    top: unset !important;
+    bottom: 20px !important;
+    width: 50px;
+    height: 50px;
+}
+
+.swiper-button-prev-second svg{
+    height: 100px;
+    width: 80px;
+    stroke: #002A5F;
+}
+
+.swiper-button-next-second svg {
+    height: 100px;
+    width: 80px;
+    stroke: #002A5F;
+}
+
+
+.active-slide {
+    margin: 0 30px; /* Увеличенный отступ для активного слайда */
+}
+
+.swiper-button-prev-second, .swiper-button-next-second {
+    z-index: 1;
+    top: -25px !important;
+}
+
+.swiper-button-prev-second::after {
+    display: none !important;
+}
+
+.swiper-button-next-second::after {
+    display: none !important;
+}
+
+
+
+.event-slider .swiper-slide-active {
+    z-index: 1;
+}
+
+.event-slider .swiper-pagination-bullet {
+    opacity: 1 !important;
+    background-color: #002A5F !important;
+}
+
+.event-slider .swiper-pagination-bullet-active {
+    width: 20px !important;
+    border-radius: 10px !important;
+    transition: width 250ms ease-in-out, transform 250ms ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .event-slider .active-slide {
+     margin: unset;
+    }
+}
+
+/*.swiper-button-prev-second {*/
+/*    right: 0 !important;*/
+/*}*/
+
+/*.swiper-button-next-second {*/
+/*    left: 0 !important;*/
+/*}*/
+
+.swiper-custom-pagination {
+    width: 60px !important;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .swiper-slide {
+        margin-right: 5px; /* Меньший отступ на маленьких экранах */
+    }
+
+    .swiper-slide-active {
+        margin-right: 15px;
+    }
+
+    .swiper-wrapper {
+        margin-left: -5px;
+    }
+}

@@ -1,0 +1,11 @@
+.swiper-button-next-projects {
+    display: block;
+}
+
+.swiper-button-prev-projects {
+    display: block;
+}
+
+@media (max-width: 991px) {
+    display: none;
+}

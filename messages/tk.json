@@ -1,0 +1,98 @@
+{
+  "Header": {
+    "home": "Baş sahypa",
+    "aboutus": "Biz barada",
+    "services": "Hyzmatlar",
+    "projects": "Taslamalar",
+    "news": "Täzelikler",
+    "contacts": "Habarlaşmak",
+    "weare": "Biz kim",
+    "upcoming": "Geljegiň çäreleri",
+    "career": "Karýera"
+  },
+  "Footer": {
+    "footerfresh": "Täze habarlardan habarly boluň",
+    "footeremail": "E-poçtaňyzy giriziň",
+    "footersubscribe": "Agza bol",
+    "footercontact": "Biz bilen habarlaşyň",
+    "footerlocation": "Türkmenistan, Aşgabat, 15-nji etrap, Şypaly",
+    "footerweare": [
+      "Biz Kim",
+      "Karýera",
+      "Metbugat",
+      "Gizlinlik syýasaty",
+      "Kukiler düzgünleri",
+      "Sorag-jogap (FAQ)"
+    ]
+  },
+  "BackText": {
+    "mainBack": "Gaçyrmaly bolmadyk korporatiw çäreleri gurnaýjy we öndüriji",
+    "career": "Karýera",
+    "weare": "Biz kim",
+    "upcoming": "Geljegiň çäreleri",
+    "services": "Hyzmatlar",
+    "projects": "Taslamalar",
+    "news": "Täzelikler",
+    "contacts": "Habarlaşmak",
+    "cookie": "Cookie şertleri",
+    "given": "Türkmenistanda 2025-nji ýylda LTE+ ulgamy işe giriziler"
+  },
+  "WhyWe": {
+    "whyabout": "Biz Barada",
+    "whymain": "NÄME ÜÇIN BIZ?",
+    "whybottom": "Işewürlik alyp barmak maksady bilen, biz önümleri we hyzmatlary görkezmek, täzelikleri paýlaşmak we hyzmatdaşlygy höweslendirmek üçin pudak boýunça gyzyklanýan taraplary, hünärmenleri we karar kabul edijileri jemleýän çäreleri gurnaýarys.  Çärelerimiziň guramaçylaryň, spikerleriň, hemaýatkärleriň, sergi gatnaşyjylarynyň, wekilleriň we myhmanlaryň işewürlik we hyzmatdaşlyk zerurlyklaryna laýyk gelmegini üpjün etmek üçin biz hökümetler, milli kärhanalar, söwda-senagat palatalary, halkara söwda guramalary we hususy sektor bilen ýakyn hyzmatdaşlyk edýäris.      Biz sergileriň köplenç daşary ýurt maýadarynyň ýurda ilkinji saparyny alamatlandyrýandygyny we gowy täsir galdyrmagyň çäräniň hiline baglydygyny bilýäris.  Çärelerimiziň daşky gurşawa täsirini azaltmak we ýerli tejribäni ulanmak maksady bilen, biz jemgyýetçilik jogapkärçiligimizi kabul edýäris.  Türkmenistandaky merkezimizden dünýäniň dürli künjeklerinde iş alyp barýarys.",
+    "whyright": "Oguz Forum – 2007-nji ýylda döredilen we Türkmenistanda söwda-senagat konferensiýalaryny we sergileri gurnamak boýunça ýöriteleşen hünärmen çäre guramaçysydyr.      Biz daşary ýurt maýa goýumlaryny höweslendirmek we ýurduň hem-de dünýäniň işewürlik jemgyýetiniň arasyndaky söwda gatnaşyklaryny ösdürmek maksady bilen, her ýyl sebitleýin we milli derejede pudaklaýyn çäreleri, ‘road show’ görnüşindäki söwda missiýalaryny we ýörite aýratyn çäreleri gurnaýarys."
+  },
+  "OurServices": {
+    "ourmain": "Hyzmatlarymyz",
+    "ouroffering": "Nämä hödürleýäris",
+    "ourdigital": [
+      "ÇÄRELERI GURAMAK",
+      "IŞ BILIMI WE KONSELITIRLIK",
+      "SANLY MARKETING",
+      "IŞ BILIMINI ÖSDÜRMEK"
+    ],
+    "ourtext": "Oguz Forum – energiýa senagatyna degişli halkara derejesinde çäreleri gurnamakda öňdebaryjy guramaçydyr. Biz öňdebaryjy energiýa kompaniýalary bilen hyzmatdaşlyk edýäris, olara strategik çäreleriň dolandyrylyşyny we gurnalmagyny berjaý etmäge kömek edýäris. Bizim täjirçilik toparymyz, müşderilerimiziň çäresiniň hilini ýokarlandyrmak, wagyz etmek we täze maýa goýumlaryny çekmek üçin täze döredilen düşünjelerden başlap, taslama dolandyryşy, marketing, aragatnaşyk, satuwlar, programma ösdürmek we spikerler bilen işleşmäge çenli ähli hyzmatlary hödürlemäge taýýar."
+  },
+  "News": {
+    "newsmain": "TÄZELIKLER"
+  },
+  "OurProjects": {
+    "ourmain": "BIZIŇ TASLAMALARYMYZ"
+  },
+  "OurPartners": {
+    "ourmain": "HYZMATDAŞLARYMYZ"
+  },
+  "CareersPage": {
+    "careermain": "KARÝERA",
+    "careerknob": ["Iş orunlary", "Işe ýüz tutmak"]
+  },
+  "UpComingPage": {
+    "upmain": "GELEJEKDÄKi ÇÄRELER"
+  },
+  "ServicesPage": {
+    "servicesmain": "HYZMATLAR"
+  },
+  "ProjectsPage": {
+    "projectsmain": "PROÝEKTLER"
+  },
+  "NewsPage": {
+    "newsmain": "HABARLAR"
+  },
+  "ForInputFiltr": {
+    "filtr": ["Sözbaşy", "Ýurt", "Sene", "Gözlemek"]
+  },
+  "ContactPage": {
+    "contactmains": ["BIZIŇ OFISIMIZ", "SIZIŇ HABARYŇYZ"],
+    "messageinputs": [
+      "Adyňyz",
+      "Familiýa",
+      "E-poçta",
+      "Tema",
+      "Habaryňyz",
+      "Suratda ýazylan teksti giriziň",
+      "Uwratmak"
+    ],
+    "Officeknobs": ["Aşgabat", "Mary", "Balkan"]
+  }
+}
