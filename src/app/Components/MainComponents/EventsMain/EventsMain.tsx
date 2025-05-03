@@ -43,7 +43,7 @@ const MainEvents = () => {
                         centeredSlides={true}
                         slidesPerView={5}
                         loop={true}
-                        spaceBetween={5}
+                        spaceBetween={4}
                         pagination={{
                             clickable: true,
                             renderBullet: (index, className) => {
@@ -55,11 +55,13 @@ const MainEvents = () => {
                             nextEl: '.swiper-button-next-second',
                         }}
                         breakpoints={{
-                            // Параметры для разных экранов
                             320: {
+                                slidesPerView: 1, // Для экранов меньше 640px
+                            },
+                            500: {
                                 slidesPerView: 3, // Для экранов меньше 640px
                             },
-                            1510: {
+                            1300: {
                                 slidesPerView: 5, // Для экранов 1280px и шире
                             },
                         }}
@@ -74,7 +76,7 @@ const MainEvents = () => {
                                         {({ isActive }) => (
                                            <Link href={`/upcoming/${slide.id}`}>
                                              <div className={`relative rounded-3xl overflow-hidden transition-all duration-300 h-96  top-20
-                            ${isActive ? 'scale-125  active-slide shadow-2xl w-96 relative right-20 xl:w-auto xl:right-0 opacity-100 !z-10' : 'opacity-50'}`}
+                            ${isActive ? 'scale-125 relative right-20 active-slide shadow-2xl xl:w-auto xl:right-0 opacity-100 !z-10' : 'opacity-50'}`}
                                             >
                                                 <Image
                                                     width={120}

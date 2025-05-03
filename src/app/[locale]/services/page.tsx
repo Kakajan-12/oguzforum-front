@@ -16,7 +16,6 @@ const page = () => {
       <BackgroundUi src="Services.png" name="services" />
       <ServicesName />
       <ServicesCardProps event={data} />
-      <ServicesPagination />
     </div>
   );
 };
