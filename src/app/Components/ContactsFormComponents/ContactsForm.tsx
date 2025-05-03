@@ -30,8 +30,8 @@ const ContactsForm = () => {
                     <h2 className="lg:text-4xl md:text-3xl  text-xl text-center md:text-start text-mainBlue font-extrabold">{tittle[0]}</h2>
                     <div className="flex flex-col justify-between gap-7 h-full">
                         <div className="mt-5 space-y-2">
-                            <div className="lg:text-xl md:text-[16px] text-sm text-mainBlue ">
-                                <span className="font-extrabold">Ashgabat:</span><RichText
+                            <div className="lg:text-xl md:text-[16px] text-sm text-mainBlue flex">
+                                <span className="font-extrabold mr-5">Ashgabat:</span><RichText
                                 htmlContent={address}/>
                             </div>
                         </div>

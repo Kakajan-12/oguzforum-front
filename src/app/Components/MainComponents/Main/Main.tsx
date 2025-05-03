@@ -43,7 +43,7 @@ const Main = () => {
               <Image
                   src={items.image.startsWith('http') ? items.image : `${BASE_API_URL.slice(0, -3)}${items.image}`}
                 alt={items.image}
-                width={800}
+                width={1200}
                 height={800}
                 objectFit="cover"
                 className="w-full h-full"

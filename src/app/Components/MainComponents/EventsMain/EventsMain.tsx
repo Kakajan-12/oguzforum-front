@@ -79,8 +79,8 @@ const MainEvents = () => {
                             ${isActive ? 'scale-125 relative right-20 active-slide shadow-2xl xl:w-auto xl:right-0 opacity-100 !z-10' : 'opacity-50'}`}
                                             >
                                                 <Image
-                                                    width={120}
-                                                    height={300}
+                                                    width={600}
+                                                    height={800}
                                                     src={fixImageUrl(slide.image.replace(/\\/g, '/'))}
                                                     alt={`Slide ${text}`}
                                                     className="w-full h-full object-cover scale-125"
