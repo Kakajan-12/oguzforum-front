@@ -1,7 +1,4 @@
-import useAppLocale from "@/app/Hooks/GetLocale";
-import RichText from "@/app/Hooks/Richtext";
-import { Projects, UpcomingEvent } from "@/app/Intarfaces/intarfaces";
-import { InsideNews } from "@/app/Intarfaces/SinglePageInterface";
+
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
@@ -18,7 +15,7 @@ const BackgroundUi: React.FC<Props> = ({ src, name }) => {
       <Image
         src={`/${src}`}
         alt={`${src}`}
-        width={800}
+        width={1200}
         height={800}
         objectFit="cover"
         className="w-full h-full object-cover"
