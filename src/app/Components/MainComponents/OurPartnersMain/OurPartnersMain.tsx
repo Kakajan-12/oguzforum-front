@@ -47,7 +47,7 @@ export default function OurPartnersMain() {
                         spaceBetween={20}
                         loop={true}
                         breakpoints={{
-                            550: {
+                            320: {
                                 slidesPerView: 2,
                                 spaceBetween: 25,
                             },
@@ -77,7 +77,7 @@ export default function OurPartnersMain() {
                             return (
                                 <SwiperSlide key={items.id} className="rounded-2xl">
                                     <div
-                                        className="bg-white rounded-2xl md:px-7 px-3 py-5 sm:px-5 sm:py-5 md:py-10 h-44 flex items-center justify-center">
+                                        className="h-36 flex items-center justify-center">
                                         <Image width={800} height={800}
                                                src={fixImageUrl(items.logo.replace(/\\/g, '/'))} alt={`${items.logo}`}/>
                                     </div>
@@ -88,11 +88,27 @@ export default function OurPartnersMain() {
                 </div>
 
                 <div
-                    className="absolute lg:bottom-[108px] md:bottom-24  bottom-[70px] z-10 w-full flex items-center justify-center bg-red-400 gap-4">
-                    <div className="w-full flex  justify-center items-center  bg-red-300">
-                        <button className="swiper-button-prev swiper-button-prev-partners text-white ">
+                    className="relative lg:bottom-[108px] md:bottom-24  bottom-[70px] z-10 w-full flex items-center justify-center bg-red-400 gap-4">
+                    <div className="w-full flex justify-center items-center absolute h-10">
+                        <button className="swiper-button-prev-partners w-10">
+                            <Image src="/UpKnob.png" alt="prev"
+                                   width={50}
+                                   height={50}
+                            style={{
+                                width: "50px",
+                                height: "20px",
+                                transform: "rotate(270deg)",
+                            }}/>
                         </button>
-                        <button className="swiper-button-next swiper-button-next-partners text-white w-56 h-96">
+                        <button className="swiper-button-next-partners w-10">
+                            <Image src="/UpKnob.png" alt="next"
+                                   width={50}
+                                   height={50}
+                                   style={{
+                                       width: "50px",
+                                       height: "20px",
+                                       transform: "rotate(90deg)",
+                                   }}/>
                         </button>
                     </div>
                 </div>

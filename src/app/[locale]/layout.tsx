@@ -12,8 +12,8 @@ const mont = Montserrat({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title: "Oguzforum",
-  description: "Oguzforum",
+  title: "Oguz Forum",
+  description: "Oguz Forum",
 };
 
 export default async function RootLayout({

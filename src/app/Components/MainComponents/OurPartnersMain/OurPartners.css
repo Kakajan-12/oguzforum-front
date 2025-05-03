@@ -4,6 +4,7 @@
     top: unset !important;
     bottom: 20px !important;
     color: white;
+    right: 0;
 }
 
 .swiper-button-prev-partners {
@@ -12,6 +13,7 @@
     top: unset !important;
     bottom: 20px !important;
     color: white;
+    left: 0;
 }
 
 @media (max-width: 991px) {

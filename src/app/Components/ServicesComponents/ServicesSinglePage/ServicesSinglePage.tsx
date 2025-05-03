@@ -1,9 +1,9 @@
-import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
 import NavigationBackKnob from "../../ForBackKnob/NavigationBackKnob";
-import { Projects, Services } from "@/app/Intarfaces/intarfaces";
+import {Services } from "@/app/Intarfaces/intarfaces";
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
+
 interface Props {
   event: Services;
 }

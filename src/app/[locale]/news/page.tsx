@@ -3,8 +3,6 @@ import React from "react";
 import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
 import NewsFiltr from "../../Components/NewsComponents/NewsFiltr";
 import NewsCardProps from "../../Components/NewsComponents/NewsCardProps";
-import { productsArray } from "../../Components/UpComingComponents/productsProjects";
-import NewsPagination from "../../Components/NewsComponents/NewsPagination";
 import { useGetNewsQuery } from "@/app/Apis/api";
 
 const page = () => {
@@ -18,7 +16,6 @@ const page = () => {
       <BackgroundUi src="News.png" name="news" />
       <NewsFiltr />
       <NewsCardProps event={data} />
-      <NewsPagination />
     </div>
   );
 };

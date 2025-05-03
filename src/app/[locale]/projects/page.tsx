@@ -18,7 +18,6 @@ const page = () => {
       <BackgroundUi src="News.png" name="projects" />
       <ProjectsFiltr />
       <ProjectsCardProps event={data} />
-      <ProjectsPagination  />
     </div>
   );
 };

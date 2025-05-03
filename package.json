@@ -18,6 +18,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "dompurify": "^3.2.5",
     "i18n": "^0.15.1",
+    "isomorphic-dompurify": "^2.24.0",
     "lucide-react": "^0.485.0",
     "motion": "^12.6.2",
     "next": "15.2.4",
