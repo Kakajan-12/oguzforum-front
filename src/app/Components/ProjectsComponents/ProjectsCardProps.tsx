@@ -1,3 +1,5 @@
+'use client'
+
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { Projects } from "@/app/Intarfaces/intarfaces";
@@ -5,7 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BASE_API_URL } from "@/constant";
-import Pagination from "@mui/material/Pagination"; // Импортируем Pagination
+import Pagination from "@mui/material/Pagination";
+import LocationPinIcon from "@mui/icons-material/LocationPin"; // Импортируем Pagination
 
 interface Props {
     event: Projects[];
@@ -52,7 +55,14 @@ const ProjectsCardProps: React.FC<Props> = ({  event, itemsPerPage = 6 }) => {
                                         className="rounded-xl"
                                     />
                                     <div
-                                        className="absolute bottom-0 right-0 left-0 bg-white rounded-xl px-6 py-4 h-32">
+                                        className="absolute bottom-0 right-0 left-0 bg-white rounded-xl px-6 py-4 h-32 space-y-2">
+                                        <div className="flex items-center divide-x-2 space-x-2">
+                                            <div className="card-details">
+                                                {items.date ? new Date(items.date).toISOString().split("T")[0] : ""}
+                                            </div>
+                                            <div className="pl-2 card-details"><LocationPinIcon className="text-gray-500 mr-2 mb-1 card-details"
+                                                                                   style={{width: "15px", height: "15px"}}/>{items[`location_${locale}`]}</div>
+                                        </div>
                                         <div className="md:text-2xl text-lg">
                                             <RichText htmlContent={tittle}/>
                                         </div>

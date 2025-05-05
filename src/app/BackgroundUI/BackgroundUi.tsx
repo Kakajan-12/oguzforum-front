@@ -22,7 +22,7 @@ interface Props {
 const BackgroundUi: React.FC<Props> = ({ event }) => {
     const t = useTranslations("BackText");
     const locale = useAppLocale();
-    const tittle = event?.data?.[locale] ?? ''; // Получаем заголовок с учётом локали
+    const title = event?.data?.[locale] ?? ''; // Получаем заголовок с учётом локали
 
     const fixImageUrl = (url: string): string => {
         if (!url) return "/default-image.png"; // Возвращаем изображение по умолчанию, если URL пустой
@@ -53,7 +53,7 @@ const BackgroundUi: React.FC<Props> = ({ event }) => {
 
             <div className="flex justify-center items-center h-full w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div className="text-white text-center text-3xl md:text-6xl font-bold md:max-w-[900px] px-5">
-                    <RichText htmlContent={tittle} /> {/* Отображаем заголовок с использованием RichText */}
+                    <RichText htmlContent={title} /> {/* Отображаем заголовок с использованием RichText */}
                 </div>
             </div>
         </div>

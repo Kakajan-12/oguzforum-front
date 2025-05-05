@@ -47,7 +47,7 @@ const NewsCardProps: React.FC<Props> = ({ event, itemsPerPage = 6 }) => {
           const text = items[`text_${locale}`];
           const cat = items[`cat_${locale}`];
           return (
-              <Link href={`/news/${items.id}`}>
+              <Link href={`/news/${items.id}`} key={items.id}>
                 <div
                     className=" shadow-sm w-full border flex  p-3 max-h-32 min-h-fit sm:max-h-fit sm:p-4 sm:pr-10   md:p-5 md:pr-14  justify-between lg:gap-10 gap-5 rounded-2xl  shadow-slate-400">
                   <div className="md:w-1/3 w-1/2  max-h-32 sm:max-h-[410px]  ">
