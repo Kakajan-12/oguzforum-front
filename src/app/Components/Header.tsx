@@ -58,35 +58,52 @@ export default function Header() {
                         <nav className="text-white text-lg font-normal lg:text-xl">
                             <ul className="flex items-center space-x-5">
                                 <li><Link href="/">{t('home')}</Link></li>
-                                <li>
-                                    <div ref={aboutDropdownRef} onClick={toggleAboutMenu} className="cursor-pointer relative">
+                                <li className="relative">
+                                    <button
+                                        onClick={toggleAboutMenu}
+                                        className="cursor-pointer relative text-white"
+                                    >
                                         {t('aboutus')}
-                                    </div>
+                                    </button>
                                     {isAboutDropdownOpen && (
-                                        <div className="rounded-xl bg-gradient-to-b from-slate-700 to-slate-800 shadow-lg px-4 py-2 mt-2 -ml-12 absolute flex flex-col items-center">
-                                            <Link href="/weare" onClick={() => setAboutDropdownOpen(false)}>{t('weare')}</Link>
-                                            <div className="bg-white h-[1px] my-[5px] w-full" />
-                                            <Link href="/upcoming" onClick={() => setAboutDropdownOpen(false)}>{t('upcoming')}</Link>
-                                            <div className="bg-white h-[1px] my-[5px] w-full" />
-                                            <Link href="/career" onClick={() => setAboutDropdownOpen(false)}>{t('career')}</Link>
+                                        <div
+                                            className="-left-14 absolute mt-2 bg-slate-800 z-50 rounded-xl shadow-lg px-4 py-2 flex flex-col space-y-2 w-max divide-y-2 divide-white divide-opacity-40">
+                                            <Link href="/weare" onClick={() => setAboutDropdownOpen(false)}
+                                                  className="text-white text-center">
+                                                {t('weare')}
+                                            </Link>
+                                            <Link href="/upcoming" onClick={() => setAboutDropdownOpen(false)}
+                                                  className="text-white text-center">
+                                                {t('upcoming')}
+                                            </Link>
+                                            <Link href="/career" onClick={() => setAboutDropdownOpen(false)}
+                                                  className="text-white text-center">
+                                                {t('career')}
+                                            </Link>
                                         </div>
                                     )}
                                 </li>
+
                                 <li><Link href="/services">{t('services')}</Link></li>
                                 <li><Link href="/projects">{t('projects')}</Link></li>
                                 <li><Link href="/news">{t('news')}</Link></li>
                                 <li><Link href="/contacts">{t('contacts')}</Link></li>
                                 <li className="flex items-center relative cursor-pointer" onClick={toggleLang}>
                                     <div>{locale.toUpperCase()}</div>
-                                    <svg className="-mt-1 ml-1 lang-drop" width="12" height="9" viewBox="0 0 12 9" fill="none">
-                                        <path d="M5.17 8.4L1.12 2.61C0.47 1.69 1.13 0.41 2.27 0.41h7.45c1.13 0 1.79 1.27 1.14 2.2L6.81 8.4a0.74 0.74 0 0 1-1.64 0z" fill="white" />
+                                    <svg className="-mt-1 ml-1 lang-drop" width="12" height="9" viewBox="0 0 12 9"
+                                         fill="none">
+                                        <path
+                                            d="M5.17 8.4L1.12 2.61C0.47 1.69 1.13 0.41 2.27 0.41h7.45c1.13 0 1.79 1.27 1.14 2.2L6.81 8.4a0.74 0.74 0 0 1-1.64 0z"
+                                            fill="white"/>
                                     </svg>
                                     {isLangOpen && (
-                                        <div className="animation-lang rounded-xl bg-gradient-to-b from-slate-700 to-slate-800 shadow-lg px-4 py-2 -ml-2 mt-32 absolute">
+                                        <div
+                                            className="animation-lang rounded-xl bg-gradient-to-b from-slate-700 to-slate-800 shadow-lg px-4 py-2 -ml-2 mt-32 absolute">
                                             {filteredlanguages.map((l, i) => (
                                                 <div onClick={() => switchLanguage(l)} key={l}>
                                                     {l.toUpperCase()}
-                                                    <div className={`bg-white h-[1px] my-[5px] ${i === 1 ? 'hidden' : 'block'}`} />
+                                                    <div
+                                                        className={`bg-white h-[1px] my-[5px] ${i === 1 ? 'hidden' : 'block'}`}/>
                                                 </div>
                                             ))}
                                         </div>
@@ -97,14 +114,16 @@ export default function Header() {
                     </div>
                     <button className="lg:hidden text-white" onClick={toggleMobileMenu}>
                         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                  d="M4 6h16M4 12h16m-7 6h7"/>
                         </svg>
                     </button>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <nav className="lg:hidden text-white backdrop-blur-lg absolute z-10 top-0 right-0 w-2/3 h-screen rounded-tl-3xl rounded-bl-3xl flex justify-end">
+                    <nav
+                        className="lg:hidden text-white backdrop-blur-lg absolute z-10 top-0 right-0 w-2/3 h-screen rounded-tl-3xl rounded-bl-3xl flex justify-end">
                         <button className="absolute top-6 right-2 sm:top-7 sm:right-7 text-white" onClick={toggleMobileMenu}>
                             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -134,6 +153,7 @@ export default function Header() {
                                             <Link href="/career" onClick={() => {
                                                 console.log('Clicked on Career'); // Лог должен появиться
                                                 setAboutDropdownOpen(false);
+                                                setMobileMenuOpen(false);
                                             }}>{t('career')}</Link>
 
                                         </div>

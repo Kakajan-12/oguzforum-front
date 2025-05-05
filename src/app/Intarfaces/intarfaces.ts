@@ -30,6 +30,7 @@ export type Projects = {
   text_tk: string;
   text_en: string;
   text_ru: string;
+  date: string;
   location_tk: string;
   location_en: string;
   location_ru: string;

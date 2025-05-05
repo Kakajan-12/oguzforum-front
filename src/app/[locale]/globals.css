@@ -9,3 +9,11 @@
 .blue-border{
     color:#002A5F;
 }
+
+.card-details{
+    color: #b3c0cf;
+}
+
+.react-datepicker__close-icon::after {
+    background-color: #002A5F !important;
+}
