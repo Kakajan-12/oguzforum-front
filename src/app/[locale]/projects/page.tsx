@@ -30,7 +30,7 @@ const Page = () => {
 
     return (
         <div>
-            <BackgroundUi src="News.png" name="projects" />
+            <BackgroundUi src="Projects.png" name="projects" />
             <ProjectsFiltr onFilterChange={setFilters} />
             <ProjectsCardProps event={filteredProjects} />
         </div>

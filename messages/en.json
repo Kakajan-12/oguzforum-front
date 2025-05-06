@@ -15,7 +15,6 @@
     "footeremail": "Enter email here ",
     "footersubscribe": "Subscribe",
     "footercontact": "Contact Us",
-    "footerlocation": "Turkmenistan, Ashgabat, 15district, Shyphaly",
     "footerweare": [
       "Who We Are",
       "Career",
@@ -23,7 +22,8 @@
       "Privacy Policy",
       "Cookie Terms",
       "FAQ"
-    ]
+    ],
+    "copyright":"All rights Reserved - Connect to HebentTech"
   },
   "BackText": {
     "mainBack": "A manufacture and organizer of unmissable corporate events",
@@ -35,15 +35,16 @@
     "news": "News",
     "contacts": "Contacts",
     "cookie": "Cookie Terms",
-    "privacy": "Privacy Policy",
-    "projectSingle": "Turkmen TEL 2024",
-    "given": "Turkmenistan is given  LTE+ network in 2025"
+    "privacy": "Privacy Policy"
   },
   "WhyWe": {
     "whyabout": "ABOUT Us",
     "whymain": "WHY YOU SHOULD CHOOSE US",
-    "whybottom": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration. To make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.  We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality. In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility. From our base in the Turkmenistan, we conduct business abroad.",
-    "whyright": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments. To encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events."
+    "whyright": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments. To encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
+    "whybottom": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration. To make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.  We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality. In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility. From our base in the Turkmenistan, we conduct business abroad."
+  },
+  "upcomingEvents": {
+    "UPCOMING EVENTS": "UPCOMING EVENTS"
   },
   "OurServices": {
     "ourmain": "OUR SERVICES",
@@ -57,13 +58,25 @@
     "ourtext": "Oguz Forum is a leading international event organizer focused on the Energy Industry. We work with leading energy companies to assist them in implementing strategic event management and organization. Our passionate team of experts is ready to provide full range of services from concept development, project management, marketing & communications, sales, speaker and programme development through creative fresh ideas to raise our client’s event profile, build awareness and attract new investments."
   },
   "News": {
-    "newsmain": "NEWS"
+    "newsmain": "NEWS",
+    "moreNews": "More news"
   },
   "OurProjects": {
     "ourmain": "OUR PROJECTS"
   },
   "OurPartners": {
     "ourmain": "OUR PARTNERS"
+  },
+  "whoWeAre": {
+    "text1": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments.\n\nTo encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
+    "text2": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration.\n\nTo make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.\u2028\u2028We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality.\n\u2028In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility.\n\u2028From our base in the Turkmenistan, we conduct business abroad."
+  },
+  "ourPhilopsophy": {
+    "text1": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments.\n\nTo encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
+    "text2": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration.\n\nTo make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.\u2028\u2028We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality.\n\u2028In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility.\n\u2028From our base in the Turkmenistan, we conduct business abroad."
+  },
+  "Gallery": {
+    "gallery": "Gallery"
   },
   "CareersPage": {
     "careermain": "CAREER",

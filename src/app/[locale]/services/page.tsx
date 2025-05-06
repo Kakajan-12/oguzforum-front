@@ -3,7 +3,6 @@ import React from "react";
 import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
 import ServicesName from "../../Components/ServicesComponents/ServicesName";
 import ServicesCardProps from "../../Components/ServicesComponents/ServicesCardProps";
-import ServicesPagination from "../../Components/ServicesComponents/ServicesPagination";
 import { useGetServicesQuery } from "@/app/Apis/api";
 
 const page = () => {

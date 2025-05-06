@@ -1,14 +1,16 @@
-import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
 import NavigationBackKnob from "../ForBackKnob/NavigationBackKnob";
+import {useTranslations} from "next-intl";
+
 
 const PrivacyPolicy = () => {
+  const t = useTranslations('ContactPage')
   return (
     <div className="container mx-auto ">
       <div className="py-12 md:py-32    px-5">
         <h2 className="md:text-4xl flex items-center text-xl font-bold text-mainBlue">
           <NavigationBackKnob />
-          Turkmen TEL 2025
+          {t('privacy')}
         </h2>
 
         <div className=" mt-5  ">

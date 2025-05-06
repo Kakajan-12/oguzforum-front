@@ -17,7 +17,7 @@ import RichText from "@/app/Hooks/Richtext";
 const whoWeAre = [
     {
         id: 1,
-        name: "Who We Are ", href: "/whoweare"
+        name: "Who We Are ", href: "/weare"
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const whoWeAre = [
     },
     {
         id: 3,
-        name: "Press", href: "/press"
+        name: "Press", href: "/news"
     },
     {
         id: 4,
