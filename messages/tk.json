@@ -5,9 +5,9 @@
     "services": "Hyzmatlar",
     "projects": "Taslamalar",
     "news": "Täzelikler",
-    "contacts": "Habarlaşmak",
+    "contacts": "Kontaklar",
     "weare": "Biz kim",
-    "upcoming": "Geljegiň çäreleri",
+    "upcoming": "Gelejekdäki çäreleri",
     "career": "Karýera"
   },
   "Footer": {
@@ -15,33 +15,35 @@
     "footeremail": "E-poçtaňyzy giriziň",
     "footersubscribe": "Agza bol",
     "footercontact": "Biz bilen habarlaşyň",
-    "footerlocation": "Türkmenistan, Aşgabat, 15-nji etrap, Şypaly",
     "footerweare": [
       "Biz Kim",
       "Karýera",
       "Metbugat",
       "Gizlinlik syýasaty",
       "Kukiler düzgünleri",
-      "Sorag-jogap (FAQ)"
-    ]
+      "Köp soralýan soraglar (FAQ)"
+    ],
+    "copyright":"Ähli hukuklar goralandyr - HebentTech goşulyň"
   },
   "BackText": {
-    "mainBack": "Gaçyrmaly bolmadyk korporatiw çäreleri gurnaýjy we öndüriji",
     "career": "Karýera",
     "weare": "Biz kim",
-    "upcoming": "Geljegiň çäreleri",
+    "upcoming": "Gelejekdäki çäreler",
     "services": "Hyzmatlar",
     "projects": "Taslamalar",
     "news": "Täzelikler",
     "contacts": "Habarlaşmak",
     "cookie": "Cookie şertleri",
-    "given": "Türkmenistanda 2025-nji ýylda LTE+ ulgamy işe giriziler"
+    "privacy": "Gizlinlik syýasaty"
   },
   "WhyWe": {
-    "whyabout": "Biz Barada",
-    "whymain": "NÄME ÜÇIN BIZ?",
+    "whyabout": "Biz barada",
+    "whymain": "NÄME ÜÇIN BIZ",
     "whybottom": "Işewürlik alyp barmak maksady bilen, biz önümleri we hyzmatlary görkezmek, täzelikleri paýlaşmak we hyzmatdaşlygy höweslendirmek üçin pudak boýunça gyzyklanýan taraplary, hünärmenleri we karar kabul edijileri jemleýän çäreleri gurnaýarys.  Çärelerimiziň guramaçylaryň, spikerleriň, hemaýatkärleriň, sergi gatnaşyjylarynyň, wekilleriň we myhmanlaryň işewürlik we hyzmatdaşlyk zerurlyklaryna laýyk gelmegini üpjün etmek üçin biz hökümetler, milli kärhanalar, söwda-senagat palatalary, halkara söwda guramalary we hususy sektor bilen ýakyn hyzmatdaşlyk edýäris.      Biz sergileriň köplenç daşary ýurt maýadarynyň ýurda ilkinji saparyny alamatlandyrýandygyny we gowy täsir galdyrmagyň çäräniň hiline baglydygyny bilýäris.  Çärelerimiziň daşky gurşawa täsirini azaltmak we ýerli tejribäni ulanmak maksady bilen, biz jemgyýetçilik jogapkärçiligimizi kabul edýäris.  Türkmenistandaky merkezimizden dünýäniň dürli künjeklerinde iş alyp barýarys.",
     "whyright": "Oguz Forum – 2007-nji ýylda döredilen we Türkmenistanda söwda-senagat konferensiýalaryny we sergileri gurnamak boýunça ýöriteleşen hünärmen çäre guramaçysydyr.      Biz daşary ýurt maýa goýumlaryny höweslendirmek we ýurduň hem-de dünýäniň işewürlik jemgyýetiniň arasyndaky söwda gatnaşyklaryny ösdürmek maksady bilen, her ýyl sebitleýin we milli derejede pudaklaýyn çäreleri, ‘road show’ görnüşindäki söwda missiýalaryny we ýörite aýratyn çäreleri gurnaýarys."
+  },
+  "upcomingEvents": {
+    "upcomingEvents": "GELEJEKDÄKI ÇÄRELER"
   },
   "OurServices": {
     "ourmain": "Hyzmatlarymyz",
@@ -55,13 +57,25 @@
     "ourtext": "Oguz Forum – energiýa senagatyna degişli halkara derejesinde çäreleri gurnamakda öňdebaryjy guramaçydyr. Biz öňdebaryjy energiýa kompaniýalary bilen hyzmatdaşlyk edýäris, olara strategik çäreleriň dolandyrylyşyny we gurnalmagyny berjaý etmäge kömek edýäris. Bizim täjirçilik toparymyz, müşderilerimiziň çäresiniň hilini ýokarlandyrmak, wagyz etmek we täze maýa goýumlaryny çekmek üçin täze döredilen düşünjelerden başlap, taslama dolandyryşy, marketing, aragatnaşyk, satuwlar, programma ösdürmek we spikerler bilen işleşmäge çenli ähli hyzmatlary hödürlemäge taýýar."
   },
   "News": {
-    "newsmain": "TÄZELIKLER"
+    "newsmain": "TÄZELIKLER",
+    "moreNews": "Ähli täzelikler"
   },
   "OurProjects": {
     "ourmain": "BIZIŇ TASLAMALARYMYZ"
   },
   "OurPartners": {
     "ourmain": "HYZMATDAŞLARYMYZ"
+  },
+  "whoWeAre": {
+    "text1": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments.\n\nTo encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
+    "text2": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration.\n\nTo make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.\u2028\u2028We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality.\n\u2028In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility.\n\u2028From our base in the Turkmenistan, we conduct business abroad."
+  },
+  "ourPhilopsophy": {
+    "text1": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments.\n\nTo encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
+    "text2": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration.\n\nTo make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.\u2028\u2028We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality.\n\u2028In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility.\n\u2028From our base in the Turkmenistan, we conduct business abroad."
+  },
+  "Gallery": {
+    "gallery": "Galereýa"
   },
   "CareersPage": {
     "careermain": "KARÝERA",
@@ -80,7 +94,7 @@
     "newsmain": "HABARLAR"
   },
   "ForInputFiltr": {
-    "filtr": ["Sözbaşy", "Ýurt", "Sene", "Gözlemek"]
+    "filtr": ["Sözbaşy", "Sene"]
   },
   "ContactPage": {
     "contactmains": ["BIZIŇ OFISIMIZ", "SIZIŇ HABARYŇYZ"],
@@ -88,10 +102,10 @@
       "Adyňyz",
       "Familiýa",
       "E-poçta",
-      "Tema",
+      "Mowzuk",
       "Habaryňyz",
       "Suratda ýazylan teksti giriziň",
-      "Uwratmak"
+      "Ugratmak"
     ],
     "Officeknobs": ["Aşgabat"]
   }
