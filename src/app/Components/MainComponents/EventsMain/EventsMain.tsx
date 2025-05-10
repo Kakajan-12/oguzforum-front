@@ -55,7 +55,7 @@ const MainEvents = () => {
                             nextEl: '.swiper-button-next-second',
                         }}
                         breakpoints={{
-                            320: {
+                            0: {
                                 slidesPerView: 1, // Для экранов меньше 640px
                             },
                             500: {

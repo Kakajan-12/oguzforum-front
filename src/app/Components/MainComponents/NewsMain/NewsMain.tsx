@@ -33,13 +33,13 @@ const NewsMain = () => {
           </div>
           <Link
               href={`/${locale}/news`}
-              className="bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-xl inline-block text-center"
+              className="invisible md:visible bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-xl inline-block text-center"
           >
-            More news
+            {t('moreNews')}
           </Link>
 
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-10 md:pt-20">
           {data?.map((items) => {
             const texts = items[locale];
 
@@ -68,6 +68,12 @@ const NewsMain = () => {
             );
           })}
         </div>
+        <Link
+            href={`/${locale}/news`}
+            className="bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-lg inline-block md:invisible text-center w-full mt-10"
+        >
+          {t('moreNews')}
+        </Link>
       </div>
     </div>
   );

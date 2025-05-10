@@ -40,15 +40,15 @@ const Main = () => {
           const selected = items[locale];
           return (
             <SwiperSlide className="relative">
-                <div className="relative inset-0 bg-gradient-to-b from-black/60 to-transparent">
+                <div className="relative h-full w-full">
                     <Image
                         src={items.image.startsWith('http') ? items.image : `${BASE_API_URL.slice(0, -3)}${items.image}`}
                         alt={items.image}
                         width={1200}
                         height={800}
-                        objectFit="cover"
-                        className="w-full h-full absolute inset-0"
+                        className="w-full h-full absolute inset-0 object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
                 </div>
 
               <div className="flex justify-center items-center h-full w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
