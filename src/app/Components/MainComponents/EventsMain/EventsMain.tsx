@@ -86,13 +86,15 @@ const MainEvents = () => {
                                                     className="w-full h-full object-cover scale-125"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                                <div className={`absolute bottom-2 left-2 right-2 p-4 text-white backdrop-blur-md
+                                                <div className={`absolute bottom-2 left-2 right-2 p-1 sm:p-2 md:p-3 text-white backdrop-blur-md
                               ${isActive ? 'bg-white/30' : 'opacity-50'}`} style={{ borderRadius: "15px" }}>
-                                                    <div className="flex items-center justify-center gap-1">
-                                                        <span className="font-semibold text-lg"> <RichText htmlContent={location}/></span>
-                                                        <span className="opacity-90 text-md"><RichText htmlContent={text}/></span>
+                                                    <div className="text-center">
+                                                        <span className="opacity-90 text-sm md:text-md"><RichText
+                                                            htmlContent={text}/></span>
+                                                        <span className="font-semibold text-sm md:text-md"> <RichText
+                                                            htmlContent={location}/></span>
                                                     </div>
-                                                    <div className="text-sm opacity-75 text-center">{slide.date}</div>
+                                                    <div className="text-xs md:text-sm opacity-75 text-center">{slide.date}</div>
                                                 </div>
                                             </div>
                                            </Link>

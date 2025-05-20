@@ -79,9 +79,12 @@ export default function OurProjects() {
                       />
 
                       {/* Название проекта */}
-                      <div className="absolute bottom-0 left-0 top-0 w-full bg-black bg-opacity-60 text-white text-center py-3 translate-y-0 translate-y-0 md:group-hover:translate-y-0 transition-transform duration-500 flex justify-center items-center">
-                        <RichText htmlContent={texts} />
+                      <div className="absolute inset-0 w-full bg-black bg-opacity-60 text-white text-center py-3
+                translate-y-0 md:translate-y-full md:group-hover:translate-y-0
+                transition-transform duration-500 flex justify-center items-center">
+                        <RichText htmlContent={texts}/>
                       </div>
+
                     </div>
                   </Link>
                 </SwiperSlide>

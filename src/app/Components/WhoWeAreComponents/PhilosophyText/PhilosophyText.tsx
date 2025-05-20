@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 const PhilosophyText = () => {
+  const t = useTranslations("ourPhilopsophy");
   return (
     <div className="container mx-auto px-2">
       <div className=" py-12 md:py-32 flex flex-col sm:gap-14 gap-5">
-        <h2 className="sm:text-4xl text-xl ml-8 sm:ml-0  font-extrabold text-mainBlue">Our Philoshophy</h2>
+        <h2 className="sm:text-4xl text-xl ml-8 sm:ml-0  font-extrabold text-mainBlue">{t('title')}</h2>
         <span className=" sm:text-xl text-xs font-normal leading-5 px-5 sm:px-0">
           Oguz Forum is a professional event organizer that was founded in 2007
           and specializes in Turkmenistan, industry-focused trade conferences

@@ -130,7 +130,7 @@ export default function Header() {
                             </svg>
                         </button>
                         <ul className="flex flex-col space-y-2 p-4 mt-20 w-2/3">
-                            <li><Link href="/">{t('home')}</Link></li>
+                            <li><Link href="/" onClick={() => setMobileMenuOpen(false)}>{t('home')}</Link></li>
                             <li>
                                 <div onClick={toggleAboutMenu}>{t('aboutus')}</div>
                                 {isAboutDropdownOpen && (
@@ -160,10 +160,10 @@ export default function Header() {
                                     </div>
                                 )}
                             </li>
-                            <li><Link href="/services">{t('services')}</Link></li>
-                            <li><Link href="/projects">{t('projects')}</Link></li>
-                            <li><Link href="/news">{t('news')}</Link></li>
-                            <li><Link href="/contacts">{t('contacts')}</Link></li>
+                            <li><Link href="/services" onClick={() => setMobileMenuOpen(false)}>{t('services')}</Link></li>
+                            <li><Link href="/projects" onClick={() => setMobileMenuOpen(false)}>{t('projects')}</Link></li>
+                            <li><Link href="/news" onClick={() => setMobileMenuOpen(false)}>{t('news')}</Link></li>
+                            <li><Link href="/contacts" onClick={() => setMobileMenuOpen(false)}>{t('contacts')}</Link></li>
                             <li className="absolute left-10">
                                 <div className="flex items-center" onClick={toggleLang}>
                                     <div>{locale.toUpperCase()}</div>
