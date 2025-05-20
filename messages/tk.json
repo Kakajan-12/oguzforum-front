@@ -16,7 +16,7 @@
     "footersubscribe": "Agza bol",
     "footercontact": "Biz bilen habarlaşyň",
     "footerweare": [
-      "Biz Kim",
+      "Biz kim",
       "Karýera",
       "Metbugat",
       "Gizlinlik syýasaty",
@@ -71,6 +71,7 @@
     "text2": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration.\n\nTo make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.\u2028\u2028We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality.\n\u2028In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility.\n\u2028From our base in the Turkmenistan, we conduct business abroad."
   },
   "ourPhilopsophy": {
+    "title": "Biziň filosofiýamyz",
     "text1": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments.\n\nTo encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
     "text2": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration.\n\nTo make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.\u2028\u2028We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality.\n\u2028In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility.\n\u2028From our base in the Turkmenistan, we conduct business abroad."
   },
@@ -108,5 +109,33 @@
       "Ugratmak"
     ],
     "Officeknobs": ["Aşgabat"]
+  },
+  "explore": {
+    "name": "Giňişleýin"
+  },
+  "searchPanel": {
+    "search": "Gözleg",
+    "selectDate": "Sene saýlamak"
+  },
+  "careers": {
+    "title": "karýera",
+    "vacancies": "Iş orunlary",
+    "apply": "Iş üçin",
+    "personal": "Şahsy maglumatlar",
+    "clear": "Arassala",
+    "fname": "Adyň",
+    "lname": "Familiýaň",
+    "email": "Poçta",
+    "phone": "Telefon",
+    "uploadPhoto": "Surat",
+    "uploadText": "Faýlyňyzy ýükläň ýa-da şu ýere çekiň",
+    "profile": "Profil",
+    "education": "Bilimiňiz (hökmany däl)",
+    "experience": "Tejribe (hökmany däl)",
+    "uploadCV": "Rezýume ýükläň",
+    "send": "Ugratmak"
+  },
+  "select": {
+    "select": "Saýla"
   }
 }

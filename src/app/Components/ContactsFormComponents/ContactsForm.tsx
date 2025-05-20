@@ -1,8 +1,8 @@
 "use client";
 import {useLocale, useTranslations} from "next-intl";
 import React, {useState} from "react";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
 import {useGetContactsQuery} from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
 import useAppLocale from "@/app/Hooks/GetLocale";
@@ -20,6 +20,8 @@ const ContactsForm = () => {
     const locales: 'ru' | 'en' | 'tk' = useAppLocale();
     const {data, error, isLoading} = useGetContactsQuery();
     const address = data?.[0]?.[locales] ?? "";
+
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     return (
         <div className="container mx-auto py-12 px-2  lg:px-10 md:py-32">
@@ -86,20 +88,10 @@ const ContactsForm = () => {
                         placeholder={`${input[2]} *`}
                     />
                     <PhoneInput
-                        inputStyle={{
-                            width: "100%",
-                            borderColor: "#002A5F66",
-                            borderRadius: "10px",
-                        }}
-                        buttonStyle={{
-                            borderRadius: "10px 0px 0px 10px",
-                            backgroundColor: " transparent",
-                        }}
-                        country={"tm"} // Kod strany (Turkmenistan)
-                        onlyCountries={["tm", "ru", "us", "de", "turk"]} // Dobavit' tol'ko nuzhnye strany
-                        enableSearch={true} // Vklyuchit' poisk
-                        inputClass="w-full h-12 px-4 border border-gray-300 rounded-md"
-                        dropdownClass="custom-dropdown"
+                        defaultCountry="tm"
+                        value={phoneNumber}
+                        onChange={(phone) => setPhoneNumber(phone)}
+                        inputClassName="border border-[#002A5F] text-xs md:text-lg lg:py-3 md:py-2.5 py-2 px-4 rounded-[10px] w-full"
                     />
                     <input
                         className="border md:text-sm text-xs  py-2 px-3 border-[#002A5F66] rounded-[10px]"

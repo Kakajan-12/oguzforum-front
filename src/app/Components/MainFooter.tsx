@@ -10,7 +10,6 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import {useTranslations} from "next-intl";
 import {useGetContactsQuery} from "@/app/Apis/api";
-import {BASE_API_URL} from "@/constant";
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 
@@ -71,7 +70,7 @@ const MainFooter = () => {
                                         className="bg-transparent w-full outline-none blue-text"
                                     />
                                     <button
-                                        className="blue-text font-bold text-xl"
+                                        className="blue-text font-bold text-xl text-nowrap"
                                     >
                                         {t("footersubscribe")}
                                     </button>

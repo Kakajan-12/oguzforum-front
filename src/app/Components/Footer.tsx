@@ -6,7 +6,7 @@ import DefaultFooter from "./DefaultFooter";
 const Footer = () => {
     const pathname = usePathname();
 
-    const isMainPage = pathname === "/" || pathname === "/en" || pathname === "/ru"; // локализованные пути
+    const isMainPage = pathname === "/" || pathname === "/en" || pathname === "/ru" || pathname === "/tk"; // локализованные пути
 
     return isMainPage ? <MainFooter /> : <DefaultFooter />;
 };

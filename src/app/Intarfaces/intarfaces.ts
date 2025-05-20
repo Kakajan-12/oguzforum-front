@@ -34,6 +34,7 @@ export type Projects = {
   location_tk: string;
   location_en: string;
   location_ru: string;
+  link: string;
 };
 
 export type UpcomingEvent = {

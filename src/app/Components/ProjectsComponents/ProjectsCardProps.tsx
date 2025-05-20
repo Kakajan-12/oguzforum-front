@@ -2,11 +2,11 @@
 
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
-import { Projects } from "@/app/Intarfaces/intarfaces";
+import {Projects} from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { BASE_API_URL } from "@/constant";
+import React, {useState} from "react";
+import {BASE_API_URL} from "@/constant";
 import Pagination from "@mui/material/Pagination";
 import LocationPinIcon from "@mui/icons-material/LocationPin"; // Импортируем Pagination
 
@@ -24,7 +24,7 @@ const fixImageUrl = (url: string): string => {
     return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`;
 };
 
-const ProjectsCardProps: React.FC<Props> = ({  event, itemsPerPage = 6 }) => {
+const ProjectsCardProps: React.FC<Props> = ({event, itemsPerPage = 6}) => {
     const locale = useAppLocale();
     const [page, setPage] = useState(1); // Состояние для текущей страницы
     const totalPages = Math.ceil(event.length / itemsPerPage); // Рассчитываем общее количество страниц
@@ -60,8 +60,10 @@ const ProjectsCardProps: React.FC<Props> = ({  event, itemsPerPage = 6 }) => {
                                             <div className="card-details">
                                                 {items.date ? new Date(items.date).toISOString().split("T")[0] : ""}
                                             </div>
-                                            <div className="pl-2 card-details"><LocationPinIcon className="text-gray-500 mr-2 mb-1 card-details"
-                                                                                   style={{width: "15px", height: "15px"}}/>{items[`location_${locale}`]}</div>
+                                            <div className="pl-2 card-details"><LocationPinIcon
+                                                className="text-gray-500 mr-2 mb-1 card-details"
+                                                style={{width: "15px", height: "15px"}}/>{items[`location_${locale}`]}
+                                            </div>
                                         </div>
                                         <div className="md:text-2xl text-lg">
                                             <RichText htmlContent={tittle}/>

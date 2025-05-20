@@ -1,17 +1,16 @@
 'use client'
-
 import ProjectsFiltr from "../../Components/ProjectsComponents/ProjectsFilter";
 import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
 import ProjectsCardProps from "../../Components/ProjectsComponents/ProjectsCardProps";
-import { useGetProjectsQuery } from "@/app/Apis/api";
+import {useGetProjectsQuery} from "@/app/Apis/api";
 import React, {useState} from "react";
 import useAppLocale from "@/app/Hooks/GetLocale";
 
 const Page = () => {
-    const { data, error, isLoading } = useGetProjectsQuery();
+    const {data, error, isLoading} = useGetProjectsQuery();
     const locale = useAppLocale(); // ✅ всегда вызывается
 
-    const [filters, setFilters] = useState({ title: "", date: "" }); // ✅ тоже всегда
+    const [filters, setFilters] = useState({title: "", date: ""}); // ✅ тоже всегда
 
     if (isLoading) return <p>loading...</p>;
     if (error) return <p>error</p>;
@@ -30,9 +29,9 @@ const Page = () => {
 
     return (
         <div>
-            <BackgroundUi src="Projects.png" name="projects" />
-            <ProjectsFiltr onFilterChange={setFilters} />
-            <ProjectsCardProps event={filteredProjects} />
+            <BackgroundUi src="Projects.png" name="projects"/>
+            <ProjectsFiltr onFilterChange={setFilters}/>
+            <ProjectsCardProps event={filteredProjects}/>
         </div>
     );
 };

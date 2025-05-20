@@ -16,7 +16,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
   return (
     <div className="container mx-auto ">
       <div className="py-12 md:py-32    px-5">
-        <div className="md:text-4xl flex items-center text-xl font-bold text-mainBlue">
+        <div className="lg:text-4xl md:text-3xl flex items-center text-2xl font-bold text-mainBlue">
           <NavigationBackKnob />
           <RichText htmlContent={tittle} />
         </div>
