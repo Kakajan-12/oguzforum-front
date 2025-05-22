@@ -23,3 +23,17 @@
     --tw-gradient-to: rgb(0 0 0 / 0);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+
+.react-international-phone-country-selector-button{
+    border: 1px solid #002A5F !important;
+    padding: 20px !important;
+    border-bottom-left-radius: 10px !important;
+    border-top-left-radius: 10px !important;
+}
+.react-international-phone-input-container .react-international-phone-input{
+    border: 1px solid #002A5F !important;
+    width: 100%;
+    padding: 20px !important;
+    border-bottom-right-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}

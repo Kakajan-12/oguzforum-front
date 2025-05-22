@@ -7,7 +7,7 @@ import {useTranslations} from "next-intl";
 
 interface Props {
   event: Career[];
-  onSelect?: (vacancyId: number) => void; // <--- добавляем
+  onSelect?: (vacancyId: number) => void;
 }
 
 
