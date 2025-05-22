@@ -127,6 +127,7 @@
     "lname": "Last name",
     "email": "Email",
     "phone": "Phone",
+    "address": "Address",
     "uploadPhoto": "Photo",
     "uploadText": "Upload a file or drag and drop here",
     "profile": "Profile",
