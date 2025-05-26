@@ -23,8 +23,8 @@ export type News = {
 
 export type Projects = {
   id: number;
-  image: string; // пример: "uploads\\1744473848568.png"
-  tk: string; // HTML в виде строки, например: "<p>1</p>"
+  image: string;
+  tk: string;
   en: string;
   ru: string;
   text_tk: string;
