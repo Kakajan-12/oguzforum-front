@@ -106,19 +106,19 @@ const DefaultFooter = () => {
                                 <div className="flex items-center mb-5">
                                     <LocationPinIcon className="text-white mr-2"
                                                      style={{width: "30px", height: "30px"}}/>
-                                    <div className="text-white text-lg lg:text-xl font-bolder"><RichText
+                                    <div className="text-white text-md lg:text-xl font-bolder"><RichText
                                         htmlContent={address}/>
                                     </div>
                                 </div>
                                 <div className="flex items-center mb-5">
                                     <PhoneEnabledIcon className="text-white mr-2"
                                                       style={{width: "30px", height: "30px"}}/>
-                                    <div className="text-white text-lg lg:text-xl font-bolder">{phoneNumber}</div>
+                                    <div className="text-white text-md lg:text-xl font-bolder">{phoneNumber}</div>
                                 </div>
                                 <div className="flex items-center mb-5">
                                     <MailOutlineIcon className="text-white mr-2"
                                                      style={{width: "30px", height: "30px"}}/>
-                                    <div className="text-white text-lg lg:text-xl font-bolder">{email}</div>
+                                    <div className="text-white text-md lg:text-xl font-bolder">{email}</div>
                                 </div>
                             </div>
                             <div className="w-full flex lg:hidden gap-3 justify-center ">

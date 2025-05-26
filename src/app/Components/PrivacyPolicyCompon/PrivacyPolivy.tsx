@@ -4,7 +4,7 @@ import {useTranslations} from "next-intl";
 
 
 const PrivacyPolicy = () => {
-  const t = useTranslations('ContactPage')
+  const t = useTranslations('BackText')
   return (
     <div className="container mx-auto ">
       <div className="py-12 md:py-32    px-5">
@@ -12,12 +12,6 @@ const PrivacyPolicy = () => {
           <NavigationBackKnob />
           {t('privacy')}
         </h2>
-
-        <div className=" mt-5  ">
-          <p className="text-mainBlue opacity-35 md:text-xl text-sm font-semibold">
-            20.20.24 | Technology Academy
-          </p>
-        </div>
 
         <div className="mt-5 leading-6 md:leading-8 text-sm md:text-xl text-mainBlue">
           <p>

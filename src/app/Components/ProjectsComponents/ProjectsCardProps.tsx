@@ -8,7 +8,7 @@ import Link from "next/link";
 import React, {useState} from "react";
 import {BASE_API_URL} from "@/constant";
 import Pagination from "@mui/material/Pagination";
-import LocationPinIcon from "@mui/icons-material/LocationPin"; // Импортируем Pagination
+import LocationPinIcon from "@mui/icons-material/LocationPin";
 
 interface Props {
     event: Projects[];
@@ -26,47 +26,45 @@ const fixImageUrl = (url: string): string => {
 
 const ProjectsCardProps: React.FC<Props> = ({event, itemsPerPage = 6}) => {
     const locale = useAppLocale();
-    const [page, setPage] = useState(1); // Состояние для текущей страницы
-    const totalPages = Math.ceil(event.length / itemsPerPage); // Рассчитываем общее количество страниц
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(event.length / itemsPerPage);
 
-    // Обработчик изменения страницы
     const handleChange = (_: any, value: number) => {
         setPage(value);
     };
 
-    // Получаем проекты только для текущей страницы
     const currentData = event.slice((page - 1) * itemsPerPage, page * itemsPerPage);
     return (
         <div className="container mx-auto px-2">
             <div className="pb-10 md:pb-10">
-                <div className="grid grid-cols-1 gap-7 min-[500px]:grid-cols-2 lg:grid-cols-3 md:gap-x-14 md:gap-y-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {currentData.map((items) => {
                         const tittle = items[locale];
                         return (
                             <Link href={`/projects/${items.id}`} key={items.id}>
-                                <div className="relative shadow-2xl h-80 rounded-xl">
+                                <div className="relative shadow-2xl h-80 md:h-96 rounded-xl">
                                     <Image
                                         src={fixImageUrl(items.image)}
                                         alt={`${items.image}`}
-                                        width={800} // Задайте подходящее разрешение
-                                        height={600} // Задайте подходящее разрешение
-                                        layout="responsive" // Делаем изображение адаптивным
-                                        quality={90} // Устанавливаем качество изображения
-                                        className="rounded-xl"
+                                        width={800}
+                                        height={600}
+                                        quality={90}
+                                        className="rounded-xl object-center object-cover h-full"
                                     />
                                     <div
-                                        className="absolute bottom-0 right-0 left-0 bg-white rounded-xl px-6 py-4 h-32 space-y-2">
+                                        className="absolute bottom-0 right-0 left-0 bg-white rounded-xl p-4 h-40 space-y-2">
                                         <div className="flex items-center divide-x-2 space-x-2">
-                                            <div className="card-details">
+                                            <div className="card-details text-xs">
                                                 {items.date ? new Date(items.date).toISOString().split("T")[0] : ""}
                                             </div>
-                                            <div className="pl-2 card-details"><LocationPinIcon
+                                            <div className="pl-2 card-details text-xs"><LocationPinIcon
                                                 className="text-gray-500 mr-2 mb-1 card-details"
                                                 style={{width: "15px", height: "15px"}}/>{items[`location_${locale}`]}
                                             </div>
                                         </div>
-                                        <div className="md:text-2xl text-lg">
-                                            <RichText htmlContent={tittle}/>
+                                        <div className="md:text-lg text-md text-mainBlue font-semibold">
+                                            <RichText
+                                                htmlContent={tittle.length > 100 ? tittle.slice(0, 100) + '...' : tittle}/>
                                         </div>
                                     </div>
                                 </div>

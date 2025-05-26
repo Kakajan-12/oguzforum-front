@@ -48,23 +48,23 @@ const ServicesCardProps: React.FC<Props> = ({ event, itemsPerPage = 6 }) => {
           const text = items[`text_${locale}`];
           return (
               <Link key={items.id} href={`/services/${items.id}`}>
-                <div className="shadow-sm w-full border flex py-3 px-3 sm:p-5 md:py-8 md:pl-8 md:pr-10 justify-between gap-5 rounded-2xl shadow-slate-400">
-                  <div className="md:w-1/3 w-1/2">
+                <div className="shadow-sm w-full border flex flex-col sm:flex-row p-3 sm:gap-4 rounded-md shadow-slate-400">
+                  <div className="w-full sm:w-2/3">
                     <Image
-                        className="w-full h-full rounded-2xl object-cover"
+                        className="w-full h-full rounded-md object-cover"
                         alt={items.image}
                         src={fixImageUrl(items.image)}
                         width={800}
                         height={800}
                     />
                   </div>
-                  <div className="w-2/3 flex flex-col gap-3">
-                    <h3 className="lg:text-3xl text-lg leading-5 text-mainBlue font-extrabold">
+                  <div className="w-full pt-5 sm:pt-0">
+                    <h3 className="text-md sm:text-lg xl:text-2xl text-mainBlue font-bold leading-1">
                       <RichText htmlContent={tittle} />
                     </h3>
-                    <p className="hidden sm:block text-xs md:text-sm mt-4 font-medium line-clamp-2 text-mainBlue">
+                    <div className="hidden sm:block text-xs md:text-lg mt-4 font-medium line-clamp-2 text-mainBlue">
                       <RichText htmlContent={truncateText(text, 300)} />
-                    </p>
+                    </div>
                   </div>
                 </div>
               </Link>

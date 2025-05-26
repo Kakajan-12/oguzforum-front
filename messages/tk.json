@@ -34,7 +34,8 @@
     "news": "Täzelikler",
     "contacts": "Habarlaşmak",
     "cookie": "Cookie şertleri",
-    "privacy": "Gizlinlik syýasaty"
+    "privacy": "Gizlinlik syýasaty",
+    "faq": "Köp soralýan soraglar"
   },
   "WhyWe": {
     "whyabout": "Biz barada",
@@ -101,11 +102,11 @@
     "contactmains": ["BIZIŇ OFISIMIZ", "SIZIŇ HABARYŇYZ"],
     "messageinputs": [
       "Adyňyz",
-      "Familiýa",
-      "E-poçta",
+      "Familiýaňyz",
+      "Poçta",
       "Mowzuk",
-      "Habaryňyz",
-      "Suratda ýazylan teksti giriziň",
+      "Hatyňyz ...",
+      "Suratda ýazylan haty giriziň",
       "Ugratmak"
     ],
     "Officeknobs": ["Aşgabat"]

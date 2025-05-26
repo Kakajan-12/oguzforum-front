@@ -8,7 +8,7 @@ import useAppLocale from "@/app/Hooks/GetLocale";
 
 const Page = () => {
     const {data, error, isLoading} = useGetProjectsQuery();
-    const locale = useAppLocale(); // ✅ всегда вызывается
+    const locale = useAppLocale();
 
     const [filters, setFilters] = useState({title: "", date: ""}); // ✅ тоже всегда
 

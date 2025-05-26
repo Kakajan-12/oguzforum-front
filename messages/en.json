@@ -34,7 +34,8 @@
     "news": "News",
     "contacts": "Contacts",
     "cookie": "Cookie Terms",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "faq": "FAQ"
   },
   "WhyWe": {
     "whyabout": "About Us",
@@ -104,7 +105,7 @@
       "Surname",
       "Email",
       "Subject",
-      "Your message",
+      "Your message ...",
       "Enter text in the picture",
       "Send"
     ],

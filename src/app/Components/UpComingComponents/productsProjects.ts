@@ -1,4 +1,3 @@
-import { Terminal } from "lucide-react";
 import img from "../../../../public/UpImages/Rectangle 26.png";
 import icon from "../../../../public/UpImages/Subtract (1).png";
 

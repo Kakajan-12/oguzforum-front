@@ -18,7 +18,7 @@ const ContactsForm = () => {
     const knobs = t.raw('Officeknobs')
     const locale = useLocale()
     const locales: 'ru' | 'en' | 'tk' = useAppLocale();
-    const {data, error, isLoading} = useGetContactsQuery();
+    const {data} = useGetContactsQuery();
     const address = data?.[0]?.[locales] ?? "";
 
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -33,7 +33,7 @@ const ContactsForm = () => {
                     <div className="flex flex-col justify-between gap-7 h-full">
                         <div className="mt-5 space-y-2">
                             <div className="lg:text-xl md:text-[16px] text-sm text-mainBlue flex">
-                                <span className="font-extrabold mr-5">Ashgabat:</span><RichText
+                                <span className="font-bold mr-5">Ashgabat:</span><RichText
                                 htmlContent={address}/>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ const ContactsForm = () => {
                             className="border  justify-self-end flex  w-full justify-between   border-slate-300 rounded-2xl ">
                             {knobs.map((items: any, index: any) => {
                                 return (
-                                    <button key={items.index}
+                                    <button key={items.id}
                                         className={`  md:py-3 p-2 w-full text-[11px] lg:text-sm rounded-lg 
                              font-semibold ${
                                             activeIndex === index
@@ -67,23 +67,23 @@ const ContactsForm = () => {
                 </div>
 
                 {/* RIGHT */}
-                <div className="flex flex-col justify-between  gap-5">
+                <div className="flex flex-col justify-between space-y-2">
                     <h2 className="lg:text-4xl md:text-3xl text-center md:text-start  whitespace-nowrap text-xl text-mainBlue font-extrabold ">
                         {tittle[1]}
                     </h2>
 
                     <input
-                        className="border sm:mt-3 w md:text-sm text-xs border-[#002A5F66] py-2 px-3 rounded-[10px]"
+                        className="border sm:mt-3 w md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
                         type="text"
                         placeholder={`${input[0]} *`}
                     />
                     <input
-                        className="border md:text-sm text-xs border-[#002A5F66] py-2 px-3 rounded-[10px]"
+                        className="border md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
                         type="text"
                         placeholder={`${input[1]} *`}
                     />
                     <input
-                        className="border md:text-sm text-xs border-[#002A5F66] py-2 px-3 rounded-[10px]"
+                        className="border md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
                         type="email"
                         placeholder={`${input[2]} *`}
                     />
@@ -91,15 +91,15 @@ const ContactsForm = () => {
                         defaultCountry="tm"
                         value={phoneNumber}
                         onChange={(phone) => setPhoneNumber(phone)}
-                        inputClassName="border border-[#002A5F] text-xs md:text-lg lg:py-3 md:py-2.5 py-2 px-4 rounded-[10px] w-full"
+                        inputClassName="border !border-[#002A5F66] text-xs md:text-lg lg:py-3 md:py-2.5 py-2 px-4 w-full"
                     />
                     <input
-                        className="border md:text-sm text-xs  py-2 px-3 border-[#002A5F66] rounded-[10px]"
+                        className="border md:text-sm text-xs py-2 px-3 border-[#002A5F] rounded-md"
                         type="text"
                         placeholder={`${input[3]} *`}
                     />
                     <textarea
-                        className="border resize-none max-h-32 min-h-[123px] md:text-sm text-xs py-2  px-3   border-[#002A5F66] rounded-[10px]"
+                        className="border resize-none max-h-32 min-h-[123px] md:text-sm text-xs py-2 px-3 border-[#002A5F] rounded-md"
                         name=""
                         placeholder={`${input[4]} *`}
                         id=""
@@ -110,11 +110,11 @@ const ContactsForm = () => {
                         <label htmlFor="" className="flex justify-between">
                             <input
                                 placeholder={`${input[5]} *`}
-                                className="border w-full min-w-[140px] md:text-sm text-xs  py-2 px-3 border-[#002A5F66] rounded-[10px]"
+                                className="border w-full min-w-[140px] md:text-sm text-xs  py-2 px-3 border-[#002A5F] rounded-md"
                                 type="text"
                             />
                             <button
-                                className={`bg-mainBlue text-white w-full min-w-[50px]  max-w-[129px]  font-semibold md:text-sm text-xs md:px-12 ml-3 py-1 text-center rounded-xl ${locale !== 'en' ? 'md:px-5' : 'md:px-12'}`}>
+                                className={`bg-mainBlue text-white w-full min-w-[50px] max-w-[129px] font-semibold md:text-sm text-xs md:px-12 ml-3 py-1 text-center rounded-md ${locale !== 'en' ? 'md:px-5' : 'md:px-12'}`}>
                                 {input[6]}
                             </button>
                         </label>
