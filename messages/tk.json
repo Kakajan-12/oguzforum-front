@@ -99,7 +99,7 @@
     "filtr": ["Sözbaşy", "Sene"]
   },
   "ContactPage": {
-    "contactmains": ["BIZIŇ OFISIMIZ", "SIZIŇ HABARYŇYZ"],
+    "contactmains": ["BIZIŇ OFISIMIZ", "SIZIŇ HATYŇYZ"],
     "messageinputs": [
       "Adyňyz",
       "Familiýaňyz",
@@ -139,5 +139,11 @@
   },
   "select": {
     "select": "Saýla"
+  },
+  "toast": {
+    "successful": "Arza üstünlikli iberildi!",
+    "error": "Ibermeklikde ýalňyşlyk ýüze çykdy ❌",
+    "successfulSubscribe": "Abuna ýazylmak üstünlikli tamamlandy!",
+    "errorSubscribe": "Abuna ýazylmady. Gaýtadan synanyşyň."
   }
 }

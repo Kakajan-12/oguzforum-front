@@ -139,5 +139,11 @@
   },
   "select": {
     "select": "Select"
+  },
+  "toast": {
+    "successful": "Application sent successfully!",
+    "error": "There was an error sending ❌",
+    "successfulSubscribe": "Successfully subscribed!",
+    "errorSubscribe": "Subscription failed. Please try again."
   }
 }

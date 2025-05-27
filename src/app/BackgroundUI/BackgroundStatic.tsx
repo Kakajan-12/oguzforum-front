@@ -15,8 +15,9 @@ const BackgroundUi: React.FC<Props> = ({ src, name }) => {
       <Image
         src={`/${src}`}
         alt={`${src}`}
-        width={1200}
-        height={800}
+        width={1920}
+        height={1080}
+        quality={90}
         objectFit="cover"
         className="w-full h-full object-cover"
       />

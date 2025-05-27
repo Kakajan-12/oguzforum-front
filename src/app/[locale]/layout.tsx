@@ -11,30 +11,31 @@ import ReduxProvider from "../ProviderRedux";
 const mont = Montserrat({
   subsets: ["latin"],
 });
+
 export const metadata: Metadata = {
   title: "Oguz Forum",
   description: "Oguz Forum",
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<{
+export default function RootLayout({
+                                     children,
+                                     params,
+                                   }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
   return (
-    <html lang="daw">
+      <html lang={params.locale}>
       <body className={`${mont.className} antialiased`}>
-        <ReduxProvider>
-          <NextIntlClientProvider  locale={params.locale}>
-            <Header />
-            <ForBackKnob />
-            {children}
-            <Footer />
-          </NextIntlClientProvider>
-        </ReduxProvider>
+      <ReduxProvider>
+        <NextIntlClientProvider locale={params.locale}>
+          <Header />
+          <ForBackKnob />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
+      </ReduxProvider>
       </body>
-    </html>
+      </html>
   );
 }
