@@ -1,5 +1,7 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
+import { toast, ToastContainer  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import Link from "next/link";
 import TelegramIcon from '@mui/icons-material/Telegram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -42,12 +44,46 @@ const whoWeAre = [
 
 const MainFooter = () => {
     const t = useTranslations("Footer");
+    const s = useTranslations("toast")
     const { data, error, isLoading } = useGetContactsQuery();
     const locale = useAppLocale();
     const footerweAre = t.raw("footerweare");
     const address = data?.[0]?.[locale] ?? "";
     const phoneNumber = data?.[0]?.number ?? "";
     const email = data?.[0]?.mail ?? "";
+    const [subscriberEmail, setSubscriberEmail] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const onSubscribe = async () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(subscriberEmail)) {
+            toast.error("Please enter a valid email.");
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const response = await fetch("https://api.oguzforum.com/api/subscribes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ mails: subscriberEmail }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to subscribe");
+            }
+
+            toast.success(s("successfulSubscribe"));
+            setSubscriberEmail("");
+        } catch (err) {
+            toast.error(s("errorSubscribe"));
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <>
@@ -68,11 +104,16 @@ const MainFooter = () => {
                                         type="text"
                                         placeholder={t("footeremail")}
                                         className="bg-transparent w-full outline-none blue-text"
+                                        value={subscriberEmail}
+                                        onChange={(e) => setSubscriberEmail(e.target.value)}
                                     />
                                     <button
+                                        type="button"
                                         className="blue-text font-bold text-xl text-nowrap"
+                                        onClick={onSubscribe}
+                                        disabled={loading}
                                     >
-                                        {t("footersubscribe")}
+                                        {loading ? "Loading..." : t("footersubscribe")}
                                     </button>
                                 </label>
                             </div>
@@ -165,8 +206,8 @@ const MainFooter = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
-
     );
 };
 

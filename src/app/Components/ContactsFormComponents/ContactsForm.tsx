@@ -1,7 +1,7 @@
 "use client";
 import {useLocale, useTranslations} from "next-intl";
 import React, {useState} from "react";
-import { PhoneInput } from 'react-international-phone';
+import {PhoneInput} from 'react-international-phone';
 import 'react-international-phone/style.css';
 import {useGetContactsQuery} from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
@@ -38,25 +38,29 @@ const ContactsForm = () => {
                             </div>
                         </div>
 
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.899206892656!2d90.39828201445564!3d23.8103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c77c44ffedab%3A0x2a72459e2a507d72!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1675457625614!5m2!1sen!2sus"
-                            className=" w-full h-full rounded-xl"
-                            style={{border: 0, maxHeight: '300px', minHeight: '250px'}}
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
+                        <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.2423926177944!2d58.33467548260529!3d37.901208476027946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f700248d6328d29%3A0x864c9131f49fa568!2sW82M%2B8WC%2C%20Ashgabat%2C%20Turkmenistan!5e1!3m2!1sen!2sru!4v1748298132108!5m2!1sen!2sru"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="Google Map"></iframe>
+                        </div>
                         <div
                             className="border  justify-self-end flex  w-full justify-between   border-slate-300 rounded-2xl ">
                             {knobs.map((items: any, index: any) => {
                                 return (
                                     <button key={items.id}
-                                        className={`  md:py-3 p-2 w-full text-[11px] lg:text-sm rounded-lg 
+                                            className={`  md:py-3 p-2 w-full text-[11px] lg:text-sm rounded-lg 
                              font-semibold ${
-                                            activeIndex === index
-                                                ? "bg-mainBlue  text-white"
-                                                : "text-mainBlue text-opacity-30"
-                                        }`}
-                                        onClick={() => setActiveIndex(index)}
+                                                activeIndex === index
+                                                    ? "bg-mainBlue  text-white"
+                                                    : "text-mainBlue text-opacity-30"
+                                            }`}
+                                            onClick={() => setActiveIndex(index)}
                                     >
                                         {items}
                                     </button>

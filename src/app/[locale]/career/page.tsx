@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function CareerRedirectPage() {
     const t = useTranslations("careers");
+    const s = useTranslations("toast");
     const {data, error, isLoading} = useGetCareerQuery();
     const [createProfile] = useApplyJobMutation();
 
@@ -67,6 +68,7 @@ export default function CareerRedirectPage() {
         setName("");
         setSurname("");
         setEmail("");
+        setAddress("")
         setNumber("");
         setPhoto(null);
         setPhotoPreview(null);
@@ -127,12 +129,12 @@ export default function CareerRedirectPage() {
                 throw new Error(result.error || 'Ошибка при отправке');
             }
 
-            toast.success("Заявка успешно отправлена!");
+            toast.success(s('successful'));
             clearPersonal();
             clearProfile();
         } catch (error) {
             console.error('Ошибка отправки:', error);
-            toast.error("Произошла ошибка при отправке ❌");
+            toast.error(s('error'));
         }
     };
 
