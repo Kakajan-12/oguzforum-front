@@ -1,4 +1,4 @@
-'use client'; // Добавлено для клиентского рендеринга
+'use client';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Pagination} from 'swiper/modules';
 import 'swiper/css';
@@ -7,32 +7,34 @@ import 'swiper/css/pagination';
 import {ChevronLeft, ChevronRight} from 'lucide-react';
 import Image from "next/image";
 import './EventsMain.css';
-import { useTranslations } from 'next-intl';
-import { useGetUpcomingQuery } from '@/app/Apis/api';
+import {useTranslations} from 'next-intl';
+import {useGetProjectsQuery} from '@/app/Apis/api';
 import useAppLocale from '@/app/Hooks/GetLocale';
 import RichText from '@/app/Hooks/Richtext';
 import Link from 'next/link';
 import {BASE_API_URL} from "@/constant";
 
 const MainEvents = () => {
-    const {data, error, isLoading}   = useGetUpcomingQuery()
-    const locale =  useAppLocale()
-    
+    const {data, error, isLoading} = useGetProjectsQuery()
+    const locale = useAppLocale()
+
     const t = useTranslations("UpComingPage")
+
     function fixImageUrl(url: string): string {
-        if (!url) return "/default-image.png"; // если нет картинки, отдать заглушку
+        if (!url) return "/default-image.png";
         const normalizedUrl = url.replace(/\\/g, '/');
 
         if (normalizedUrl.startsWith('http')) {
-            return normalizedUrl; // уже нормальный внешний URL
+            return normalizedUrl;
         }
 
         if (normalizedUrl.startsWith('/')) {
-            return normalizedUrl; // локальный путь
+            return normalizedUrl;
         }
 
-        return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`; // если просто uploads/....
+        return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`;
     }
+
     return (
         <div className="container mx-auto px-2">
             <div className="flex flex-col items-center justify-center py-40">
@@ -66,42 +68,48 @@ const MainEvents = () => {
                             },
                         }}
                         className="py-8"
-                        style={{ height: "600px" }}
+                        style={{height: "600px"}}
                     >
-                        {data?.map((slide) => {
-                            const location = slide[`location_${locale}`]
-                            const text = slide[locale]
-                            return(
+                        {data
+                            ?.filter(slide => new Date(slide.end_date) > new Date())
+                            .map((slide) => {
+
+                                const location = slide[`location_${locale}`]
+                                const text = slide[locale]
+                                return (
                                     <SwiperSlide key={slide.id}>
-                                        {({ isActive }) => (
-                                           <Link href={`/upcoming/${slide.id}`}>
-                                             <div className={`relative rounded-3xl overflow-hidden transition-all duration-300 h-96  top-20
+                                        {({isActive}) => (
+                                            <Link href={`/upcoming/${slide.id}`}>
+                                                <div className={`relative rounded-3xl overflow-hidden transition-all duration-300 h-96  top-20
                             ${isActive ? 'scale-125 relative right-20 active-slide shadow-2xl xl:w-auto xl:right-0 opacity-100 !z-10' : 'opacity-50'}`}
-                                            >
-                                                <Image
-                                                    width={600}
-                                                    height={800}
-                                                    src={fixImageUrl(slide.image.replace(/\\/g, '/'))}
-                                                    alt={`Slide ${text}`}
-                                                    className="w-full h-full object-cover scale-125"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                                <div className={`absolute bottom-2 left-2 right-2 p-1 sm:p-2 md:p-3 text-white backdrop-blur-md
-                              ${isActive ? 'bg-white/30' : 'opacity-50'}`} style={{ borderRadius: "15px" }}>
-                                                    <div className="text-center">
+                                                >
+                                                    <Image
+                                                        width={900}
+                                                        height={900}
+                                                        src={fixImageUrl(slide.image.replace(/\\/g, '/'))}
+                                                        alt={`Slide ${text}`}
+                                                        className="w-full h-full object-cover scale-125"
+                                                    />
+                                                    <div
+                                                        className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"/>
+                                                    <div className={`absolute bottom-2 left-2 right-2 p-1 sm:p-2 md:p-3 text-white backdrop-blur-md
+                              ${isActive ? 'bg-white/30' : 'opacity-50'}`} style={{borderRadius: "15px"}}>
+                                                        <div className="text-center">
                                                         <span className="opacity-90 text-sm md:text-md"><RichText
                                                             htmlContent={text}/></span>
-                                                        <span className="font-semibold text-sm md:text-md"> <RichText
-                                                            htmlContent={location}/></span>
+                                                            <span
+                                                                className="font-semibold text-sm md:text-md"> <RichText
+                                                                htmlContent={location}/></span>
+                                                        </div>
+                                                        <div
+                                                            className="text-xs md:text-sm opacity-75 text-center">{new Date(slide.date).toLocaleDateString("tm-TM")}</div>
                                                     </div>
-                                                    <div className="text-xs md:text-sm opacity-75 text-center">{slide.date}</div>
                                                 </div>
-                                            </div>
-                                           </Link>
+                                            </Link>
                                         )}
                                     </SwiperSlide>
-                            )
-                        })}
+                                )
+                            })}
                     </Swiper>
 
                     <div className="relative w-full flex items-center justify-center gap-4">
@@ -109,7 +117,8 @@ const MainEvents = () => {
                             <button className="swiper-button-prev swiper-button-prev-second p-2 text-blue-600">
                                 <ChevronLeft size={44}/>
                             </button>
-                            <button className="swiper-button-next swiper-button-next-second p-2 text-blue-600 w-56 h-96">
+                            <button
+                                className="swiper-button-next swiper-button-next-second p-2 text-blue-600 w-56 h-96">
                                 <ChevronRight size={44}/>
                             </button>
                         </div>

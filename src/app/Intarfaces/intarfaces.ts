@@ -31,26 +31,11 @@ export type Projects = {
   text_en: string;
   text_ru: string;
   date: string;
+  end_date: string;
+  link: string;
   location_tk: string;
   location_en: string;
   location_ru: string;
-  link: string;
-};
-
-export type UpcomingEvent = {
-  id: number;
-  date: string;
-  en: string;
-  ru: string;
-  tk: string;
-  image: string;
-  link: string;
-  location_en: string;
-  location_ru: string;
-  location_tk: string;
-  text_en: string;
-  text_ru: string;
-  text_tk: string;
 };
 
 export type Partners = {
@@ -60,11 +45,25 @@ export type Partners = {
 
 export type Contacts = {
   id: number;
-  en: string;
-  tk: string;
-  ru: string;
   number: string;
   mail: string;
+};
+
+export type ContactsAddress = {
+  id: number;
+  en: string;
+  ru: string;
+  tk: string;
+  location_en: string;
+  location_tk: string;
+  location_ru: string;
+  iframe_code: string;
+};
+
+export type Links = {
+  id: number;
+  icon: string;
+  url: string;
 };
 
 export type Gallery = {
@@ -102,6 +101,19 @@ export type Services = {
   text_tk: string;
 };
 
+export type Privacy = {
+  id: number;
+  en: string;
+  ru: string;
+  tk: string;
+};
+
+export type Cookie = {
+  id: number;
+  en: string;
+  ru: string;
+  tk: string;
+};
 
 //////---------------------------------------//////////////////////////////-----------------------------///////////////
 

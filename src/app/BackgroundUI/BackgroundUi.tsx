@@ -2,7 +2,7 @@
 
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
-import { Projects, Services, UpcomingEvent } from "@/app/Intarfaces/intarfaces";
+import { Projects, Services } from "@/app/Intarfaces/intarfaces";
 import { InsideNews } from "@/app/Intarfaces/SinglePageInterface";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -11,7 +11,6 @@ import { BASE_API_URL } from "@/constant";
 
 type BackgroundEvent =
     | { type: "news"; data: InsideNews }
-    | { type: "upcoming"; data: UpcomingEvent }
     | { type: "projects"; data: Projects }
     | { type: "services"; data: Services };
 

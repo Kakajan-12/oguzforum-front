@@ -14,7 +14,7 @@ interface Props {
   itemsPerPage?: number; // добавим настраиваемость
 }
 
-const ServicesCardProps: React.FC<Props> = ({ event, itemsPerPage = 6 }) => {
+const ServicesCardProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(event.length / itemsPerPage);
 
@@ -49,9 +49,9 @@ const ServicesCardProps: React.FC<Props> = ({ event, itemsPerPage = 6 }) => {
           return (
               <Link key={items.id} href={`/services/${items.id}`}>
                 <div className="shadow-sm w-full border flex flex-col sm:flex-row p-3 sm:gap-4 rounded-md shadow-slate-400">
-                  <div className="w-full sm:w-2/3">
+                  <div className="w-1/3 sm:w-2/3">
                     <Image
-                        className="w-full h-full rounded-md object-cover"
+                        className="w-2/3 h-full rounded-md object-cover"
                         alt={items.image}
                         src={fixImageUrl(items.image)}
                         width={800}

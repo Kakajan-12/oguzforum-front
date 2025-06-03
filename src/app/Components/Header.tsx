@@ -12,7 +12,6 @@ export default function Header() {
     const router = useRouter();
     const currentlocale = location.split('/')[1];
 
-    // Определяем, десктоп это или мобильная версия (примерно по ширине окна)
     const [isDesktopView, setIsDesktopView] = useState(false);
 
     useEffect(() => {
@@ -57,7 +56,6 @@ export default function Header() {
         };
     }, []);
 
-    // Для десктопа открываем сразу, для мобильного — по клику
     const openAboutMenu = () => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
@@ -78,8 +76,27 @@ export default function Header() {
         }
     };
 
+    const openLang = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+        }
+        setLangOpen(true);
+    };
+
+    const closeLang = () => {
+        timeoutRef.current = setTimeout(() => {
+            setLangOpen(false);
+        }, 200);
+    };
+
+    const toggleLang = () => {
+        if (!isDesktopView) {
+            setLangOpen(!isDesktopView);
+        }
+    };
+
     const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
-    const toggleLang = () => setLangOpen(!isLangOpen);
     const t = useTranslations('Header');
 
     return (
@@ -168,7 +185,8 @@ export default function Header() {
                                 </li>
                                 <li
                                     className="flex items-center relative cursor-pointer"
-                                    onClick={toggleLang}
+                                    onMouseEnter={() => isDesktopView && openLang()}
+                                    onMouseLeave={() => isDesktopView && closeLang()}
                                 >
                                     <div>{locale.toUpperCase()}</div>
                                     <svg

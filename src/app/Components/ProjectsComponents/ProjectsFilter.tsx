@@ -1,31 +1,27 @@
-'use client'
+'use client';
 import NavigationBackKnob from "@/app/Components/ForBackKnob/NavigationBackKnob";
 import { useEffect, useState } from "react";
-import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
 
 interface Props {
-  onFilterChange: (filters: { title: string; date: string }) => void;
+  onFilterChange: (f: { title: string; date: string }) => void;
 }
 
 const ProjectsFiltr: React.FC<Props> = ({ onFilterChange }) => {
-  const t = useTranslations("Header")
+  const t = useTranslations("Header");
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState<Date | null>(null);
+  const [date,  setDate]  = useState<Date | null>(null);
 
+  /* debounce 400 мс */
   useEffect(() => {
-    const debounce = setTimeout(() => {
-      const formattedDate = date ? date.toLocaleDateString("sv-SE") : "";
-      onFilterChange({ title, date: formattedDate });
+    const id = setTimeout(() => {
+      const formatted = date ? date.toLocaleDateString("sv-SE") : "";
+      onFilterChange({ title, date: formatted });
     }, 400);
-    return () => clearTimeout(debounce);
+    return () => clearTimeout(id);
   }, [title, date]);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    e.preventDefault();
-  };
 
   return (
       <div className="container mx-auto">
@@ -34,25 +30,24 @@ const ProjectsFiltr: React.FC<Props> = ({ onFilterChange }) => {
             <NavigationBackKnob /> {t("projects")}
           </h2>
 
-          <div className="flex flex-col md:flex-row justify-end gap-y-5 gap-x-5 mt-5 md:mt-10 md:px-0 w-full">
+          <div className="flex flex-col md:flex-row justify-end gap-5 mt-5 md:mt-10">
             <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="border outline-none focus:border-mainBlue col-span-full md:col-span-1 border-slate-400 rounded-lg w-full py-2 px-4 md:w-2/3 lg:w-1/3"
+                className="border focus:border-mainBlue border-slate-400 rounded-lg w-full py-2 px-4 md:w-2/3 lg:w-1/3"
                 type="text"
                 placeholder="Search"
             />
-            <div className="col-span-full md:col-span-1">
-              <DatePicker
-                  selected={date}
-                  onChange={(date: Date | null) => setDate(date)}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="Select a date"
-                  className="border outline-none focus:border-mainBlue w-full border-slate-400 rounded-lg py-2 px-4"
-                  isClearable
-                  onKeyDown={handleKeyDown} // Блокирует ввод с клавиатуры
-              />
-            </div>
+
+            <DatePicker
+                selected={date}
+                onChange={(d) => setDate(d)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Select a date"
+                className="border focus:border-mainBlue w-full border-slate-400 rounded-lg py-2 px-4"
+                isClearable
+                onKeyDown={(e) => e.preventDefault()} /* блокируем ввод вручную */
+            />
           </div>
         </div>
       </div>

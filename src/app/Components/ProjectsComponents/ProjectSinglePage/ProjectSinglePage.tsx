@@ -23,7 +23,7 @@ const ProjectSinglePage: React.FC<Props> = ({ event }) => {
 
         <div className="flex items-center divide-x-2 space-x-2 pt-10">
           <div className="card-details">
-            {date ? new Date(date).toISOString().split("T")[0] : ""}
+            {new Date(date).toLocaleDateString("tm-TM")}
           </div>
           <div className="pl-2 card-details"><LocationPinIcon className="text-gray-500 mr-2 mb-1 card-details"
                                                               style={{

@@ -61,7 +61,7 @@ const NewsMain = () => {
                                     />
                                     <div
                                         className="absolute bottom-0 right-0 left-0 bg-white rounded-xl px-6 py-4 h-32">
-                                        <div className="text-sm font-thin">{items.date}</div>
+                                        <div className="text-sm font-thin"> {new Date(items.date).toLocaleDateString("tm-TM")}</div>
                                         <div className="md:text-lg text-md text-mainBlue font-semibold">
                                             <RichText
                                                 htmlContent={title.length > 100 ? title.slice(0, 80) + '...' : title}/>

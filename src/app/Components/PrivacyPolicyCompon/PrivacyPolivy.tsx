@@ -1,70 +1,35 @@
+"use client"
 import React from "react";
 import NavigationBackKnob from "../ForBackKnob/NavigationBackKnob";
-import {useTranslations} from "next-intl";
-
+import { useTranslations } from "next-intl";
+import { useGetPrivacyQuery } from '@/app/Apis/api';
+import useAppLocale from '@/app/Hooks/GetLocale';
+import RichText from "@/app/Hooks/Richtext";
 
 const PrivacyPolicy = () => {
-  const t = useTranslations('BackText')
-  return (
-    <div className="container mx-auto ">
-      <div className="py-12 md:py-32    px-5">
-        <h2 className="md:text-4xl flex items-center text-xl font-bold text-mainBlue">
-          <NavigationBackKnob />
-          {t('privacy')}
-        </h2>
+  const t = useTranslations('BackText');
+  const { data, error, isLoading } = useGetPrivacyQuery();
+  const locale = useAppLocale();
 
-        <div className="mt-5 leading-6 md:leading-8 text-sm md:text-xl text-mainBlue">
-          <p>
-            Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu
-            sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend
-            magna. Nam metus lacus, porttitor eu mauris blandit, ultrices nibh.
-            Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius
-            volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend.
-            Sed nec ante dictum sem, condimentum ullamcorper quis venenatis
-            nisi. Proin vitae facilisis nisi, ac posuere leo. Nam pulvinar
-            blandit velit, condimentum mauris faucibus at. Aliquam lacus nisl,
-            sollicitudin at nisi nec, fermentum congue felis. Quisque mauris
-            dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae
-          </p>
-          <p>
-            Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu
-            sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend
-            magna. Nam metus lacus, porttitor eu mauris blandit, ultrices nibh.
-            Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius
-            volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend.
-            Sed nec ante dictum sem, condimentum ullamcorper quis venenatis
-            nisi. Proin vitae facilisis nisi, ac posuere leo. Nam pulvinar
-            blandit velit, condimentum mauris faucibus at. Aliquam lacus nisl,
-            sollicitudin at nisi nec, fermentum congue felis. Quisque mauris
-            dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae
-          </p>
-          <p>
-            Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu
-            sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend
-            magna. Nam metus lacus, porttitor eu mauris blandit, ultrices nibh.
-            Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius
-            volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend.
-            Sed nec ante dictum sem, condimentum ullamcorper quis venenatis
-            nisi. Proin vitae facilisis nisi, ac posuere leo. Nam pulvinar
-            blandit velit, condimentum mauris faucibus at. Aliquam lacus nisl,
-            sollicitudin at nisi nec, fermentum congue felis. Quisque mauris
-            dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae
-          </p>
-          <p>
-            Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu
-            sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend
-            magna. Nam metus lacus, porttitor eu mauris blandit, ultrices nibh.
-            Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius
-            volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend.
-            Sed nec ante dictum sem, condimentum ullamcorper quis venenatis
-            nisi. Proin vitae facilisis nisi, ac posuere leo. Nam pulvinar
-            blandit velit, condimentum mauris faucibus at. Aliquam lacus nisl,
-            sollicitudin at nisi nec, fermentum congue felis. Quisque mauris
-            dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae
-          </p>
+  const policyData = data && data.length > 0 ? data[0] : null;
+
+  return (
+      <div className="container mx-auto">
+        <div className="py-12 md:py-32 px-5">
+          <h2 className="md:text-4xl flex items-center text-xl font-bold text-mainBlue">
+            <NavigationBackKnob />
+            {t('privacy')}
+          </h2>
+
+          <div className="mt-5 leading-6 md:leading-8 text-sm md:text-xl text-mainBlue">
+            {policyData ? (
+                <RichText htmlContent={policyData[locale]} />
+            ) : (
+                <p>{isLoading ? "Loading..." : "No data available."}</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
