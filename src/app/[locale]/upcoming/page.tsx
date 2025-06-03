@@ -3,11 +3,11 @@ import React, {useState} from "react";
 import UpEvents from "../../Components/UpComingComponents/UpEventsFiltr";
 import UpCardsWithProps from "../../Components/UpComingComponents/UpCardsWithProps";
 import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
-import {useGetUpcomingQuery} from "@/app/Apis/api";
+import {useGetProjectsQuery} from "@/app/Apis/api";
 import useAppLocale from "@/app/Hooks/GetLocale";
 
 const page = () => {
-    const {data, error, isLoading} = useGetUpcomingQuery();
+    const {data, error, isLoading} = useGetProjectsQuery();
     const locale = useAppLocale();
 
     const [filters, setFilters] = useState({title: "", date: ""});

@@ -21,7 +21,7 @@ const NewsSinglePageText: React.FC<Props> = ({ event }) => {
 
         <div className=" mt-5  ">
           <p className="text-mainBlue opacity-35 md:text-xl text-sm font-semibold">
-            {event.date}
+            {new Date(event.date).toLocaleDateString("tm-TM")}
           </p>
         </div>
 

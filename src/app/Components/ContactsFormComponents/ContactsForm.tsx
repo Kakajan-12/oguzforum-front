@@ -1,129 +1,251 @@
 "use client";
-import {useLocale, useTranslations} from "next-intl";
-import React, {useState} from "react";
-import {PhoneInput} from 'react-international-phone';
-import 'react-international-phone/style.css';
-import {useGetContactsQuery} from "@/app/Apis/api";
+import { useLocale, useTranslations } from "next-intl";
+import React, { useEffect, useState } from "react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import { useGetContactsQuery, useGetContactsAddressQuery } from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
 import useAppLocale from "@/app/Hooks/GetLocale";
+import { BASE_API_URL } from "@/constant";
 
 const ContactsForm = () => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(0);
-    const ForToggle = (index: number) => {
-        setActiveIndex(activeIndex === index ? null : index);
-    };
-    const t = useTranslations('ContactPage')
-    const tittle = t.raw('contactmains')
-    const input = t.raw('messageinputs')
-    const knobs = t.raw('Officeknobs')
-    const locale = useLocale()
-    const locales: 'ru' | 'en' | 'tk' = useAppLocale();
-    const {data} = useGetContactsQuery();
-    const address = data?.[0]?.[locales] ?? "";
+    const t = useTranslations("ContactPage");
+    const tittle = t.raw("contactmains");
+    const input = t.raw("messageinputs");
+    const knobs = t.raw("Officeknobs");
+
+    const locale = useLocale();
+    const locales: "ru" | "en" | "tk" = useAppLocale();
+    const { data: offices } = useGetContactsAddressQuery();
+
+    const [formData, setFormData] = useState({
+        name: "",
+        surname: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        captchaText: "",
+    });
 
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [captchaImage, setCaptchaImage] = useState("");
+    const [sending, setSending] = useState(false);
+    const [success, setSuccess] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    const loadCaptcha = async () => {
+        const res = await fetch(`${BASE_API_URL}/captcha`, {
+            method: 'GET',
+            credentials: 'include',
+        });
+        const svg = await res.text();
+        setCaptchaImage(svg);
+    };
+
+    useEffect(() => {
+        loadCaptcha();
+    }, []);
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSending(true);
+        setError(null);
+        setSuccess(null);
+
+        try {
+            const res = await fetch(`${BASE_API_URL}/send-email`, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ...formData, phone: phoneNumber }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error || "Failed to send");
+                loadCaptcha();
+            } else {
+                setSuccess("Message sent successfully!");
+                setFormData({
+                    name: "",
+                    surname: "",
+                    email: "",
+                    phone: "",
+                    subject: "",
+                    message: "",
+                    captchaText: "",
+                });
+                setPhoneNumber("");
+                loadCaptcha();
+            }
+        } catch (err) {
+            setError("Server error");
+        } finally {
+            setSending(false);
+        }
+    };
+
+    const currentOffice = offices?.[activeIndex];
 
     return (
-        <div className="container mx-auto py-12 px-2  lg:px-10 md:py-32">
-            <div
-                className="w-full flex gap-y-10 sm:flex-row flex-col-reverse justify-between md:justify-between lg:justify-center lg:space-x-24">
+        <div className="container mx-auto py-12 px-2 lg:px-10 md:py-32">
+            <div className="w-full flex gap-y-10 lg:flex-row flex-col-reverse justify-between items-center lg:gap-10">
                 {/* LEFT */}
                 <div className="flex flex-col md:gap-2 w-full">
-                    <h2 className="lg:text-4xl md:text-3xl  text-xl text-center md:text-start text-mainBlue font-extrabold">{tittle[0]}</h2>
-                    <div className="flex flex-col justify-between gap-7 h-full">
-                        <div className="mt-5 space-y-2">
-                            <div className="lg:text-xl md:text-[16px] text-sm text-mainBlue flex">
-                                <span className="font-bold mr-5">Ashgabat:</span><RichText
-                                htmlContent={address}/>
-                            </div>
-                        </div>
+                    <h2 className="lg:text-4xl md:text-3xl text-xl text-center md:text-start text-mainBlue font-extrabold">
+                        {tittle[0]}
+                    </h2>
 
-                        <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.2423926177944!2d58.33467548260529!3d37.901208476027946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f700248d6328d29%3A0x864c9131f49fa568!2sW82M%2B8WC%2C%20Ashgabat%2C%20Turkmenistan!5e1!3m2!1sen!2sru!4v1748298132108!5m2!1sen!2sru"
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0 }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                title="Google Map"></iframe>
-                        </div>
+                    <div className="flex flex-col justify-between gap-7 h-full mt-5">
+                        {/* Address */}
+                        {currentOffice && (
+                            <div className="space-y-2">
+                                <div className="lg:text-xl md:text-[16px] text-sm text-mainBlue flex">
+                                    <span className="font-bold mr-5">
+                                        {currentOffice.tk || "Office"}:
+                                    </span>
+                                    <RichText htmlContent={currentOffice[`location_${locales}`]}/>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Map */}
+                        {currentOffice?.iframe_code && (
+                            <div
+                                className="w-full h-fit rounded-lg overflow-hidden shadow-lg"
+                                dangerouslySetInnerHTML={{__html: currentOffice.iframe_code}}
+                            />
+                        )}
+
+                        {/* Office Buttons */}
                         <div
-                            className="border  justify-self-end flex  w-full justify-between   border-slate-300 rounded-2xl ">
-                            {knobs.map((items: any, index: any) => {
+                            className="border justify-self-end flex w-full justify-between border-slate-300 rounded-md divide-x-2">
+                            {offices?.map((office: any, index: number) => {
+                                const title =
+                                    office[`${locales}`] || knobs?.[index] || `Office ${index + 1}`;
+
                                 return (
-                                    <button key={items.id}
-                                            className={`  md:py-3 p-2 w-full text-[11px] lg:text-sm rounded-lg 
-                             font-semibold ${
-                                                activeIndex === index
-                                                    ? "bg-mainBlue  text-white"
-                                                    : "text-mainBlue text-opacity-30"
-                                            }`}
-                                            onClick={() => setActiveIndex(index)}
+                                    <button
+                                        key={index}
+                                        className={`md:py-3 p-2 w-full text-[11px] lg:text-sm rounded-lg font-semibold ${
+                                            activeIndex === index
+                                                ? "bg-mainBlue text-white"
+                                                : "text-mainBlue text-opacity-30"
+                                        }`}
+                                        onClick={() => setActiveIndex(index)}
                                     >
-                                        {items}
+                                        {title}
                                     </button>
                                 );
                             })}
                         </div>
+
                     </div>
                 </div>
 
                 {/* RIGHT */}
-                <div className="flex flex-col justify-between space-y-2">
-                    <h2 className="lg:text-4xl md:text-3xl text-center md:text-start  whitespace-nowrap text-xl text-mainBlue font-extrabold ">
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col justify-between space-y-2 w-full lg:max-w-lg"
+                >
+                    <h2 className="lg:text-4xl md:text-3xl text-center md:text-start whitespace-nowrap text-xl text-mainBlue font-extrabold">
                         {tittle[1]}
                     </h2>
 
                     <input
-                        className="border sm:mt-3 w md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="border md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
                         type="text"
                         placeholder={`${input[0]} *`}
+                        required
                     />
                     <input
+                        name="surname"
+                        value={formData.surname}
+                        onChange={handleChange}
                         className="border md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
                         type="text"
                         placeholder={`${input[1]} *`}
+                        required
                     />
                     <input
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         className="border md:text-sm text-xs border-[#002A5F] py-2 px-3 rounded-md"
                         type="email"
                         placeholder={`${input[2]} *`}
+                        required
                     />
                     <PhoneInput
                         defaultCountry="tm"
                         value={phoneNumber}
-                        onChange={(phone) => setPhoneNumber(phone)}
+                        onChange={setPhoneNumber}
                         inputClassName="border !border-[#002A5F66] text-xs md:text-lg lg:py-3 md:py-2.5 py-2 px-4 w-full"
                     />
                     <input
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
                         className="border md:text-sm text-xs py-2 px-3 border-[#002A5F] rounded-md"
                         type="text"
                         placeholder={`${input[3]} *`}
+                        required
                     />
                     <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
                         className="border resize-none max-h-32 min-h-[123px] md:text-sm text-xs py-2 px-3 border-[#002A5F] rounded-md"
-                        name=""
                         placeholder={`${input[4]} *`}
-                        id=""
+                        required
                     ></textarea>
 
-                    <div className="flex  flex-col gap-1.5 flex-wrap">
-                        <span className="font-serif  md:text-xl text-sm">Anti spam</span>
-                        <label htmlFor="" className="flex justify-between">
-                            <input
-                                placeholder={`${input[5]} *`}
-                                className="border w-full min-w-[140px] md:text-sm text-xs  py-2 px-3 border-[#002A5F] rounded-md"
-                                type="text"
-                            />
+                    {/* CAPTCHA */}
+                    <div className="flex flex-col gap-1.5">
+                        <div className="flex items-center gap-2">
+                            <div dangerouslySetInnerHTML={{ __html: captchaImage }} />
                             <button
-                                className={`bg-mainBlue text-white w-full min-w-[50px] max-w-[129px] font-semibold md:text-sm text-xs md:px-12 ml-3 py-1 text-center rounded-md ${locale !== 'en' ? 'md:px-5' : 'md:px-12'}`}>
-                                {input[6]}
+                                type="button"
+                                onClick={loadCaptcha}
+                                className="text-sm text-blue-600 underline"
+                            >
+                                Refresh
                             </button>
-                        </label>
+                        </div>
+                        <input
+                            name="captchaText"
+                            value={formData.captchaText}
+                            onChange={handleChange}
+                            placeholder={`${input[5]} *`}
+                            className="border md:text-sm text-xs py-2 px-3 border-[#002A5F] rounded-md"
+                            required
+                        />
                     </div>
-                </div>
+
+                    <button
+                        type="submit"
+                        disabled={sending}
+                        className="bg-mainBlue text-white font-semibold px-6 py-2 mt-4 rounded-md"
+                    >
+                        {sending ? "Sending..." : input[6]}
+                    </button>
+
+                    {success && <p className="text-green-600 mt-2">{success}</p>}
+                    {error && <p className="text-red-600 mt-2">{error}</p>}
+                </form>
             </div>
         </div>
     );

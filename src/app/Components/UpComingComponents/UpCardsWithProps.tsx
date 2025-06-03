@@ -31,7 +31,6 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
     const slice = SliceText();
     const locale = useAppLocale();
     const [page, setPage] = useState(1);
-    const totalPages = Math.ceil(event.length / itemsPerPage);
     const [isMobile, setIsMobile] = useState(false);
     const router = useRouter();
 
@@ -44,7 +43,12 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
         }
     }, []);
 
-    const currentData = event.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+    // ✅ Фильтрация проектов, у которых end_date > текущей даты
+    const now = new Date();
+    const futureEvents = event.filter(item => new Date(item.end_date) > now);
+
+    const totalPages = Math.ceil(futureEvents.length / itemsPerPage);
+    const currentData = futureEvents.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
     return (
         <div className="container mx-auto md:px-7 flex flex-col md:gap-10 gap-5 pb-7 md:pb-10 px-2">
@@ -57,11 +61,7 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
                 return (
                     <div
                         key={items.id}
-                        onClick={() => {
-                            if (isMobile) {
-                                router.push(cardHref);
-                            }
-                        }}
+                        onClick={() => isMobile && router.push(cardHref)}
                         className="cursor-pointer shadow-sm w-full border p-3 justify-between lg:gap-10 gap-5 rounded-md shadow-slate-400 flex flex-col md:flex-row hover:bg-gray-50 transition"
                     >
                         <div className="w-full md:w-1/3">
@@ -82,7 +82,7 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
                                 </h3>
 
                                 <div className="hidden md:flex mt-2 items-center text-sm xl:text-lg font-semibold text-mainBlue opacity-40">
-                                    {items.date} | <IoLocationSharp /> {location}
+                                    {new Date(items.date).toLocaleDateString("tm-TM")} | <IoLocationSharp /> {location}
                                 </div>
 
                                 <div className="hidden md:block text-lg mt-4 font-medium text-mainBlue">
@@ -92,11 +92,10 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
 
                             <div className="flex justify-between items-end gap-x-3">
                                 <p className="text-mainBlue opacity-40 font-semibold md:text-sm flex flex-col">
-                                    <span className="md:hidden text-sm">{items.date}</span>
+                                    <span className="md:hidden text-sm">{new Date(items.date).toLocaleDateString("tm-TM")}</span>
                                     <span className="text-xs md:text-lg">{items.link}</span>
                                 </p>
 
-                                {/* Только десктоп: кнопка "Подробнее" */}
                                 <Link
                                     href={cardHref}
                                     className="bg-mainBlue hidden md:block py-3 px-6 text-white text-sm font-semibold rounded-xl"
@@ -105,9 +104,9 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
                                 </Link>
 
                                 <span className="flex items-center md:hidden text-xs sm:text-md text-start font-semibold text-mainBlue opacity-40">
-                  <IoLocationSharp className="text-3xl" />
+                                    <IoLocationSharp className="text-3xl" />
                                     {location}
-                </span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -116,5 +115,4 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
         </div>
     );
 };
-
 export default UpCardsWithProps;

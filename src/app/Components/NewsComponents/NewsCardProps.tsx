@@ -13,7 +13,7 @@ interface Props {
     itemsPerPage?: number;
 }
 
-const NewsCardProps: React.FC<Props> = ({event, itemsPerPage = 6}) => {
+const NewsCardProps: React.FC<Props> = ({event, itemsPerPage = 10}) => {
     const t = useTranslations("explore")
     const [page, setPage] = useState(1);
     const totalPages = Math.ceil(event.length / itemsPerPage);

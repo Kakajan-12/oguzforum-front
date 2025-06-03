@@ -11,6 +11,7 @@ import {AnimatePresence, motion} from "motion/react";
 import NavigationBackKnob from "@/app/Components/ForBackKnob/NavigationBackKnob";
 import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
 import {useTranslations} from "next-intl";
+import {BASE_API_URL} from "@/constant";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -112,13 +113,10 @@ export default function CareerRedirectPage() {
 
         if (experience) {
             formData.append('experience', experience);
-        } else {
-            const emptyFile = new Blob([""], {type: "text/plain"});
-            formData.append('experience', emptyFile, "empty.txt");
         }
 
         try {
-            const res = await fetch('https://api.oguzforum.com/api/apply-job', {
+            const res = await fetch(`${BASE_API_URL}/apply-job`, {
                 method: 'POST',
                 body: formData,
             });

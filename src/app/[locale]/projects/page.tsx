@@ -1,40 +1,37 @@
-'use client'
+'use client';
 import ProjectsFiltr from "../../Components/ProjectsComponents/ProjectsFilter";
 import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
 import ProjectsCardProps from "../../Components/ProjectsComponents/ProjectsCardProps";
-import {useGetProjectsQuery} from "@/app/Apis/api";
-import React, {useState} from "react";
+import { useGetProjectsQuery } from "@/app/Apis/api";
+import React, { useState } from "react";
 import useAppLocale from "@/app/Hooks/GetLocale";
 
 const Page = () => {
-    const {data, error, isLoading} = useGetProjectsQuery();
+    const { data, error, isLoading } = useGetProjectsQuery();
     const locale = useAppLocale();
 
-    const [filters, setFilters] = useState({title: "", date: ""}); // ✅ тоже всегда
+    const [filters, setFilters] = useState({ title: "", date: "" });
 
-    if (isLoading) return <p>loading...</p>;
-    if (error) return <p>error</p>;
-    if (!data) return <p>not found</p>;
+    const handleFilterChange = (f: { title: string; date: string }) => setFilters(f);
 
-    const filteredProjects = data.filter((project) => {
-        const title = project?.[locale]?.toLowerCase() || "";
-        const date = project?.date || "";
+    if (isLoading) return <p>Loading…</p>;
+    if (error)    return <p>Error loading data</p>;
+    if (!data)    return <p>Not found</p>;
 
-        const matchesTitle = title.includes(filters.title.toLowerCase());
-        const matchesDate = date.includes(filters.date); // дата уже строка!
-
-        return matchesTitle && matchesDate;
+    /** ── фильтрация ────────────────────────── */
+    const filtered = data.filter((pr) => {
+        const title = (pr?.[locale] ?? "").toLowerCase();
+        const date  = pr?.date ?? "";
+        return title.includes(filters.title.toLowerCase()) && date.includes(filters.date);
     });
-
 
     return (
         <div>
-            <BackgroundUi src="Projects.png" name="projects"/>
-            <ProjectsFiltr onFilterChange={setFilters}/>
-            <ProjectsCardProps event={filteredProjects}/>
+            <BackgroundUi src="Projects.png" name="projects" />
+            <ProjectsFiltr onFilterChange={handleFilterChange} />
+            <ProjectsCardProps event={filtered} itemsPerPage={9} />
         </div>
     );
 };
-
 
 export default Page;
