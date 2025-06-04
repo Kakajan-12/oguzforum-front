@@ -1,6 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { useGetContactsQuery, useGetContactsAddressQuery } from "@/app/Apis/api";
@@ -96,6 +96,15 @@ const ContactsForm = () => {
     };
 
     const currentOffice = offices?.[activeIndex];
+    const iframeElement = useMemo(() => {
+        if (!currentOffice?.iframe_code) return null;
+        return (
+            <div
+                className="w-full h-fit rounded-lg overflow-hidden shadow-lg"
+                dangerouslySetInnerHTML={{ __html: currentOffice.iframe_code }}
+            />
+        );
+    }, [currentOffice?.iframe_code]);
 
     return (
         <div className="container mx-auto py-12 px-2 lg:px-10 md:py-32">
@@ -120,12 +129,7 @@ const ContactsForm = () => {
                         )}
 
                         {/* Map */}
-                        {currentOffice?.iframe_code && (
-                            <div
-                                className="w-full h-fit rounded-lg overflow-hidden shadow-lg"
-                                dangerouslySetInnerHTML={{__html: currentOffice.iframe_code}}
-                            />
-                        )}
+                        {iframeElement}
 
                         {/* Office Buttons */}
                         <div
