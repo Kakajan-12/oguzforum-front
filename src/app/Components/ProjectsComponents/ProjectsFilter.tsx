@@ -46,7 +46,7 @@ const ProjectsFiltr: React.FC<Props> = ({ onFilterChange }) => {
                 placeholderText="Select a date"
                 className="border focus:border-mainBlue w-full border-slate-400 rounded-lg py-2 px-4"
                 isClearable
-                onKeyDown={(e) => e.preventDefault()} /* блокируем ввод вручную */
+                onKeyDown={(e) => e.preventDefault()}
             />
           </div>
         </div>

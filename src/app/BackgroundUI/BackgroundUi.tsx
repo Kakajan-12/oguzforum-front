@@ -15,13 +15,13 @@ type BackgroundEvent =
     | { type: "services"; data: Services };
 
 interface Props {
-    event?: BackgroundEvent; // Ставим "?" чтобы event может быть undefined
+    event?: BackgroundEvent;
 }
 
 const BackgroundUi: React.FC<Props> = ({ event }) => {
     const t = useTranslations("BackText");
     const locale = useAppLocale();
-    const title = event?.data?.[locale] ?? ''; // Получаем заголовок с учётом локали
+    const title = event?.data?.[locale] ?? '';
 
     const fixImageUrl = (url: string): string => {
         if (!url) return "/default-image.png"; // Возвращаем изображение по умолчанию, если URL пустой
