@@ -62,7 +62,7 @@ const ContactsForm = () => {
         setSuccess(null);
 
         try {
-            const res = await fetch(`${BASE_API_URL}/send`, {
+            const res = await fetch(`${BASE_API_URL}/send-mail`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
