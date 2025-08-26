@@ -1,19 +1,17 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
-
-import "./Main.css";
 import { useTranslations } from "next-intl";
 import { useGetSlidersQuery } from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
 import useAppLocale from "@/app/Hooks/GetLocale";
 import {BASE_API_URL} from "@/constant";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./Main.css";
+
 
 const Main = () => {
   const t = useTranslations("BackText");
