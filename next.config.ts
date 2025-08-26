@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 'api.oguzforum.com',
+                port: '',
                 pathname: '/uploads/**',
             },
         ],
