@@ -3,7 +3,7 @@ import { useLocale, useTranslations } from "next-intl";
 import React, {useEffect, useMemo, useState} from "react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
-import { useGetContactsQuery, useGetContactsAddressQuery } from "@/app/Apis/api";
+import { useGetContactsAddressQuery } from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
 import useAppLocale from "@/app/Hooks/GetLocale";
 import { BASE_API_URL } from "@/constant";
