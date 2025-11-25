@@ -1,23 +1,18 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import React, {useEffect, useMemo, useState} from "react";
-import { PhoneInput } from "react-international-phone";
+import {PhoneInput} from "react-international-phone";
 import "react-international-phone/style.css";
-import { useGetContactsAddressQuery } from "@/app/Apis/api";
-import RichText from "@/app/Hooks/Richtext";
+import {useGetContactsAddressQuery} from "@/app/Apis/api";
 import useAppLocale from "@/app/Hooks/GetLocale";
-import { BASE_API_URL } from "@/constant";
+import {BASE_API_URL} from "@/constant";
 
 const ContactsForm = () => {
     const t = useTranslations("ContactPage");
-    const tittle = t.raw("contactmains");
+    const title = t.raw("contactmains");
     const input = t.raw("messageinputs");
-    const knobs = t.raw("Officeknobs");
 
-    const locale = useLocale();
     const locales: "ru" | "en" | "tk" = useAppLocale();
-    const { data: offices } = useGetContactsAddressQuery();
-
     const [formData, setFormData] = useState({
         name: "",
         surname: "",
@@ -34,6 +29,9 @@ const ContactsForm = () => {
     const [success, setSuccess] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    const {data: offices} = useGetContactsAddressQuery();
+    const [mails, setMails] = useState<any[]>([]);
+    const [numbers, setNumbers] = useState<any[]>([]);
 
     const loadCaptcha = async () => {
         const res = await fetch(`${BASE_API_URL}/captcha`, {
@@ -48,11 +46,28 @@ const ContactsForm = () => {
         loadCaptcha();
     }, []);
 
+    useEffect(() => {
+        fetch(`${BASE_API_URL}/contact-mails`)
+            .then(res => res.json())
+            .then(data => setMails(data))
+            .catch(err => console.error(err));
+    }, []);
+
+    useEffect(() => {
+        fetch(`${BASE_API_URL}/contact-numbers`)
+            .then(res => res.json())
+            .then(data => setNumbers(data))
+            .catch(err => console.error(err));
+    }, []);
+    const currentOffice = offices?.[activeIndex];
+    const currentOfficeMails = mails.filter(mail => mail.location_id === currentOffice?.id);
+    const currentOfficeNumbers = numbers.filter(number => number.location_id === currentOffice?.id);
+
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData((prev) => ({...prev, [name]: value}));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -65,8 +80,8 @@ const ContactsForm = () => {
             const res = await fetch(`${BASE_API_URL}/send-mail`, {
                 method: "POST",
                 credentials: "include",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, phone: phoneNumber }),
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({...formData, phone: phoneNumber}),
             });
 
             const data = await res.json();
@@ -95,13 +110,12 @@ const ContactsForm = () => {
         }
     };
 
-    const currentOffice = offices?.[activeIndex];
     const iframeElement = useMemo(() => {
         if (!currentOffice?.iframe_code) return null;
         return (
             <div
                 className="w-full h-fit rounded-lg overflow-hidden shadow-lg"
-                dangerouslySetInnerHTML={{ __html: currentOffice.iframe_code }}
+                dangerouslySetInnerHTML={{__html: currentOffice.iframe_code}}
             />
         );
     }, [currentOffice?.iframe_code]);
@@ -109,34 +123,52 @@ const ContactsForm = () => {
     return (
         <div className="container mx-auto py-12 px-2 lg:px-10 md:py-32">
             <div className="w-full flex gap-y-10 lg:flex-row flex-col-reverse justify-between items-center lg:gap-10">
-                {/* LEFT */}
                 <div className="flex flex-col md:gap-2 w-full">
-                    <h2 className="lg:text-4xl md:text-3xl text-xl text-center md:text-start text-mainBlue font-extrabold">
-                        {tittle[0]}
+                    <h2 className="text-xl md:text-3xl lg:text-4xl text-center md:text-start text-mainBlue font-extrabold">
+                        {title[0]}
                     </h2>
 
-                    <div className="flex flex-col justify-between gap-7 h-full mt-5">
-                        {/* Address */}
+                    <div className="flex flex-col justify-between gap-4 h-full mt-5">
                         {currentOffice && (
                             <div className="space-y-2">
-                                <div className="lg:text-xl md:text-[16px] text-sm text-mainBlue flex">
-                                    <span className="font-bold mr-5">
-                                        {currentOffice.tk || "Office"}:
-                                    </span>
-                                    <RichText htmlContent={currentOffice[`location_${locales}`]}/>
+                                <div className="flex items-center space-x-2 text-mainBlue">
+                                    <div className="text-sm md:text-base lg:text-lg font-bold">
+                                        {currentOffice[`location_${locales}`]?.replace(/<[^>]*>?/gm, '') || `Office ${activeIndex + 1}`}:
+                                    </div>
+                                    <div>
+                                        {currentOffice[`address_${locales}`] || "No address provided"}
+                                    </div>
                                 </div>
+
+                                {currentOfficeMails.length > 0 && (
+                                    <div className="flex space-x-2 blue-text">
+                                        <span className="text-sm md:text-md lg:text-lg font-bold">Email:</span>
+                                        <ul>
+                                            {currentOfficeMails.map(mail => (
+                                                <div className="text-sm md:text-base" key={mail.id}>{mail.mail}</div>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                                {currentOfficeNumbers.length > 0 && (
+                                    <div className="flex space-x-2 blue-text">
+                                        <span className="text-sm md:text-md lg:text-lg font-bold">Numbers:</span>
+                                        <ul>
+                                            {currentOfficeNumbers.map(number => (
+                                                <div className="text-sm md:text-base" key={number.id}>{number.number}</div>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                         )}
 
-                        {/* Map */}
-                        {iframeElement}
 
-                        {/* Office Buttons */}
-                        <div
-                            className="border justify-self-end flex w-full justify-between border-slate-300 rounded-md divide-x-2">
+                        <div className="border justify-self-end flex w-full justify-between border-slate-300 rounded-md divide-x-2">
                             {offices?.map((office: any, index: number) => {
-                                const title =
-                                    office[`${locales}`] || knobs?.[index] || `Office ${index + 1}`;
+                                const title = office[`location_${locales}`]
+                                    ? office[`location_${locales}`].replace(/<[^>]*>?/gm, '')
+                                    : `Office ${index + 1}`;
 
                                 return (
                                     <button
@@ -157,13 +189,12 @@ const ContactsForm = () => {
                     </div>
                 </div>
 
-                {/* RIGHT */}
                 <form
                     onSubmit={handleSubmit}
                     className="flex flex-col justify-between space-y-2 w-full lg:max-w-lg"
                 >
                     <h2 className="lg:text-4xl md:text-3xl text-center md:text-start whitespace-nowrap text-xl text-mainBlue font-extrabold">
-                        {tittle[1]}
+                        {title[1]}
                     </h2>
 
                     <input
@@ -217,10 +248,9 @@ const ContactsForm = () => {
                         required
                     ></textarea>
 
-                    {/* CAPTCHA */}
                     <div className="flex flex-col gap-1.5">
                         <div className="flex items-center gap-2">
-                            <div dangerouslySetInnerHTML={{ __html: captchaImage }} />
+                            <div dangerouslySetInnerHTML={{__html: captchaImage}}/>
                             <button
                                 type="button"
                                 onClick={loadCaptcha}

@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.blue-text{
-    color:#002A5F;
+.blue-text {
+    color: #002A5F;
 }
 
-.blue-border{
-    color:#002A5F;
-}
-
-.card-details{
+.card-details {
     color: #b3c0cf;
+}
+
+.main-background-color {
+    background: #002A5F;
+}
+
+.text-color {
+    color: #6A6A6A;
 }
 
 .react-datepicker__close-icon::after {
@@ -24,16 +28,23 @@
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.react-international-phone-country-selector-button{
-    border: 1px solid #002A5F !important;
-    padding: 20px !important;
-    border-bottom-left-radius: 10px !important;
-    border-top-left-radius: 10px !important;
+.react-international-phone-country-selector-button {
+    padding: 10px !important;
+    height: 100% !important;
 }
-.react-international-phone-input-container .react-international-phone-input{
-    border: 1px solid #002A5F !important;
+
+.react-international-phone-input-container .react-international-phone-input {
     width: 100%;
-    padding: 20px !important;
-    border-bottom-right-radius: 10px !important;
-    border-top-right-radius: 10px !important;
+    height: 100% !important;
+    padding: 14px !important;
+}
+
+.row-item {
+    border-left: 2px solid #002A5F;
+    padding-left: 12px;
+}
+
+.my-container{
+    max-width: 1920px;
+    margin: 0 auto;
 }

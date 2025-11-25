@@ -16,6 +16,7 @@
     "@mui/material": "^7.0.1",
     "@mui/styled-engine-sc": "^7.0.1",
     "@reduxjs/toolkit": "^2.6.1",
+    "axios": "^1.13.2",
     "dompurify": "^3.2.5",
     "i18n": "^0.15.1",
     "isomorphic-dompurify": "^2.24.0",

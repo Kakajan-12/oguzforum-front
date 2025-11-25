@@ -9,14 +9,14 @@ import OurProjects from "../Components/MainComponents/ProjectsMain/Projects";
 
 export default function Home() {
     return (
-    <div>
-      <Main />
-      <AboutMain />
-      <EventsMain />
-      <ServicesMain />
-      <NewsMain />
-      <OurProjects/>
-      <OurPartnersMain />
-    </div>
-  );
+        <div>
+            <Main/>
+            <AboutMain/>
+            <EventsMain/>
+            <ServicesMain/>
+            <OurProjects/>
+            <NewsMain/>
+            <OurPartnersMain/>
+        </div>
+    );
 }

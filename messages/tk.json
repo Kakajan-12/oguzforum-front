@@ -1,14 +1,18 @@
 {
   "Header": {
     "home": "Baş sahypa",
-    "aboutus": "Biz barada",
-    "services": "Hyzmatlar",
-    "projects": "Taslamalar",
-    "news": "Täzelikler",
-    "contacts": "Kontaklar",
+    "company": "Kompaniýanyň profili",
     "weare": "Biz kim",
-    "upcoming": "Gelejekdäki çäreleri",
-    "career": "Karýera"
+    "upcoming": "Çäreleriň senenamasy",
+    "references":"Salgylanmalar",
+    "career": "Karýera",
+    "projects": "Taslamalar",
+    "newsroom": "Habarlar otagy",
+    "news": "Täzelikler",
+    "media": "Media merkezi",
+    "press": "Metbugat beýanaty",
+    "contacts": "Kontaklar"
+
   },
   "Footer": {
     "footerfresh": "Täze habarlardan habarly boluň",
@@ -29,40 +33,48 @@
     "career": "Karýera",
     "weare": "Biz kim",
     "upcoming": "Gelejekdäki çäreler",
-    "services": "Hyzmatlar",
+    "references": "Salgylanma haty",
     "projects": "Taslamalar",
     "news": "Täzelikler",
     "contacts": "Habarlaşmak",
     "cookie": "Cookie şertleri",
     "privacy": "Gizlinlik syýasaty",
-    "faq": "Köp soralýan soraglar"
+    "faq": "Köp soralýan soraglar",
+    "press": "Metbugat"
   },
   "WhyWe": {
     "whyabout": "Biz barada",
     "whymain": "NÄME ÜÇIN BIZ",
     "whybottom": "Işewürlik alyp barmak maksady bilen, biz önümleri we hyzmatlary görkezmek, täzelikleri paýlaşmak we hyzmatdaşlygy höweslendirmek üçin pudak boýunça gyzyklanýan taraplary, hünärmenleri we karar kabul edijileri jemleýän çäreleri gurnaýarys.  Çärelerimiziň guramaçylaryň, spikerleriň, hemaýatkärleriň, sergi gatnaşyjylarynyň, wekilleriň we myhmanlaryň işewürlik we hyzmatdaşlyk zerurlyklaryna laýyk gelmegini üpjün etmek üçin biz hökümetler, milli kärhanalar, söwda-senagat palatalary, halkara söwda guramalary we hususy sektor bilen ýakyn hyzmatdaşlyk edýäris.      Biz sergileriň köplenç daşary ýurt maýadarynyň ýurda ilkinji saparyny alamatlandyrýandygyny we gowy täsir galdyrmagyň çäräniň hiline baglydygyny bilýäris.  Çärelerimiziň daşky gurşawa täsirini azaltmak we ýerli tejribäni ulanmak maksady bilen, biz jemgyýetçilik jogapkärçiligimizi kabul edýäris.  Türkmenistandaky merkezimizden dünýäniň dürli künjeklerinde iş alyp barýarys.",
-    "whyright": "Oguz Forum – 2007-nji ýylda döredilen we Türkmenistanda söwda-senagat konferensiýalaryny we sergileri gurnamak boýunça ýöriteleşen hünärmen çäre guramaçysydyr.      Biz daşary ýurt maýa goýumlaryny höweslendirmek we ýurduň hem-de dünýäniň işewürlik jemgyýetiniň arasyndaky söwda gatnaşyklaryny ösdürmek maksady bilen, her ýyl sebitleýin we milli derejede pudaklaýyn çäreleri, ‘road show’ görnüşindäki söwda missiýalaryny we ýörite aýratyn çäreleri gurnaýarys."
+    "whyright": "Oguz Forum – 2007-nji ýylda döredilen we Türkmenistanda söwda-senagat konferensiýalaryny we sergileri gurnamak boýunça ýöriteleşen hünärmen çäre guramaçysydyr.      Biz daşary ýurt maýa goýumlaryny höweslendirmek we ýurduň hem-de dünýäniň işewürlik jemgyýetiniň arasyndaky söwda gatnaşyklaryny ösdürmek maksady bilen, her ýyl sebitleýin we milli derejede pudaklaýyn çäreleri, ‘road show’ görnüşindäki söwda missiýalaryny we ýörite aýratyn çäreleri gurnaýarys.",
+    "events": "Çäreler",
+    "partners": "Hyzmatdaş ýurtlar",
+    "exhibitors": "Sergi gatnaşyjylary",
+    "delegates": "Delegatlar"
   },
-  "upcomingEvents": {
-    "upcomingEvents": "GELEJEKDÄKI ÇÄRELER"
+  "upcoming": {
+    "upcoming-events": "Çäreleriň senenamasy",
+    "more": "Giňişleýin",
+    "read": "Giňişleýin"
+
   },
   "OurServices": {
     "ourmain": "Hyzmatlarymyz",
     "ouroffering": "Nämä hödürleýäris",
-    "ourdigital": [
-      "ÇÄRELERI GURAMAK",
-      "IŞ KONSALTING",
-      "SANLY MARKETING",
-      "BIZNES ÖSÜŞI"
-    ],
-    "ourtext": "Oguz Forum – energiýa senagatyna degişli halkara derejesinde çäreleri gurnamakda öňdebaryjy guramaçydyr. Biz öňdebaryjy energiýa kompaniýalary bilen hyzmatdaşlyk edýäris, olara strategik çäreleriň dolandyrylyşyny we gurnalmagyny berjaý etmäge kömek edýäris. Bizim täjirçilik toparymyz, müşderilerimiziň çäresiniň hilini ýokarlandyrmak, wagyz etmek we täze maýa goýumlaryny çekmek üçin täze döredilen düşünjelerden başlap, taslama dolandyryşy, marketing, aragatnaşyk, satuwlar, programma ösdürmek we spikerler bilen işleşmäge çenli ähli hyzmatlary hödürlemäge taýýar."
+    "ourtext": "Oguz Forum – energiýa senagatyna degişli halkara derejesinde çäreleri gurnamakda öňdebaryjy guramaçydyr. Biz öňdebaryjy energiýa kompaniýalary bilen hyzmatdaşlyk edýäris, olara strategik çäreleriň dolandyrylyşyny we gurnalmagyny berjaý etmäge kömek edýäris. Bizim täjirçilik toparymyz, müşderilerimiziň çäresiniň hilini ýokarlandyrmak, wagyz etmek we täze maýa goýumlaryny çekmek üçin täze döredilen düşünjelerden başlap, taslama dolandyryşy, marketing, aragatnaşyk, satuwlar, programma ösdürmek we spikerler bilen işleşmäge çenli ähli hyzmatlary hödürlemäge taýýar.",
+    "service-1": "ÇÄRELERI GURAMAK",
+    "service-2": "IŞ KONSALTING",
+    "service-3": "SANLY MARKETING",
+    "service-4": "BIZNES ÖSÜŞI"
   },
   "News": {
     "newsmain": "TÄZELIKLER",
     "moreNews": "Ähli täzelikler"
   },
   "OurProjects": {
-    "ourmain": "BIZIŇ TASLAMALARYMYZ"
+    "ourmain": "BIZIŇ TASLAMALARYMYZ",
+    "organizers": "Guraýjylar:",
+    "explore": "Giňişleýin"
   },
   "OurPartners": {
     "ourmain": "HYZMATDAŞLARYMYZ"
@@ -83,20 +95,18 @@
     "careermain": "KARÝERA",
     "careerknob": ["Iş orunlary", "Işe ýüz tutmak"]
   },
-  "UpComingPage": {
-    "upmain": "GELEJEKDÄKi ÇÄRELER"
-  },
-  "ServicesPage": {
-    "servicesmain": "HYZMATLAR"
-  },
   "ProjectsPage": {
     "projectsmain": "PROÝEKTLER"
   },
   "NewsPage": {
     "newsmain": "HABARLAR"
   },
-  "ForInputFiltr": {
-    "filtr": ["Sözbaşy", "Sene"]
+  "Filter": {
+    "default": "Sortlama ýok",
+    "date-desc": "Sene boýunça (täze → köne)",
+    "date-asc": "Sene boýunça (köne → täze)",
+    "title-asc": "Ady bilen (A → Z)",
+    "title-desc": ""
   },
   "ContactPage": {
     "contactmains": ["BIZIŇ OFISIMIZ", "SIZIŇ HATYŇYZ"],
@@ -108,11 +118,7 @@
       "Hatyňyz ...",
       "Suratda ýazylan haty giriziň",
       "Ugratmak"
-    ],
-    "Officeknobs": ["Aşgabat"]
-  },
-  "explore": {
-    "name": "Giňişleýin"
+    ]
   },
   "searchPanel": {
     "search": "Gözleg",
@@ -123,18 +129,14 @@
     "vacancies": "Iş orunlary",
     "apply": "Iş üçin",
     "personal": "Şahsy maglumatlar",
-    "clear": "Arassala",
     "fname": "Adyň",
     "lname": "Familiýaň",
     "email": "Poçta",
     "phone": "Telefon",
-    "address": "Salgy",
-    "uploadPhoto": "Surat",
-    "uploadText": "Faýlyňyzy ýükläň ýa-da şu ýere çekiň",
-    "profile": "Profil",
-    "education": "Bilimiňiz (hökmany däl)",
-    "experience": "Tejribe (hökmany däl)",
-    "uploadCV": "Rezýume ýükläň",
+    "upload-file": "Faýllaryňyzy şu ýere goşuň ýa-da geçiriň",
+    "profile": "Portfolio",
+    "upload-portfolio": "Portfolio (pdf)",
+    "upload-cv": "Şahsy maglumat (pdf)",
     "send": "Ugratmak"
   },
   "select": {
@@ -142,8 +144,18 @@
   },
   "toast": {
     "successful": "Arza üstünlikli iberildi!",
-    "error": "Ibermeklikde ýalňyşlyk ýüze çykdy ❌",
+    "error": "Ibermeklikde ýalňyşlyk ýüze çykdy",
     "successfulSubscribe": "Abuna ýazylmak üstünlikli tamamlandy!",
     "errorSubscribe": "Abuna ýazylmady. Gaýtadan synanyşyň."
+  },
+  "event": {
+    "speakers": "Spikerler",
+    "delegates": "Delegatlar",
+    "countries": "Ýurtlar",
+    "companies": "Kompaniýalar",
+    "media": "Media",
+    "date": "Sene",
+    "location": "Lokasiýa",
+    "organizers": "Guramaçylar"
   }
 }

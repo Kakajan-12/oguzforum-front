@@ -2,19 +2,25 @@ import React from "react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "../Components/Header";
+import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer";
 import ForBackKnob from "../Components/ForBackKnob/ForBackKnob";
 import { NextIntlClientProvider } from "next-intl";
 import ReduxProvider from "../ProviderRedux";
 
-const mont = Montserrat({
+const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Oguz Forum",
-  description: "Oguz Forum",
+  title: "Oguz Forum & Expo",
+  description: "Oguz Forum & Expo",
+    icons: {
+        icon: [
+            { url: "/favicon.ico" },
+            { url: "/ico.svg", type: "image/svg+xml" },
+        ],
+    }
 };
 
 export default function RootLayout({
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
       <html lang={params.locale}>
-      <body className={`${mont.className} antialiased`}>
+      <body className={`${montserrat.className}`}>
       <ReduxProvider>
         <NextIntlClientProvider locale={params.locale}>
           <Header />

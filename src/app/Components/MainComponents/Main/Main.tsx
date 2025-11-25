@@ -2,7 +2,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { useGetSlidersQuery } from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
 import useAppLocale from "@/app/Hooks/GetLocale";
@@ -14,7 +13,6 @@ import "./Main.css";
 
 
 const Main = () => {
-  const t = useTranslations("BackText");
   const { data, error, isLoading } = useGetSlidersQuery();
   const locale = useAppLocale();
 
@@ -42,15 +40,15 @@ const Main = () => {
                     <Image
                         src={items.image.startsWith('http') ? items.image : `${BASE_API_URL.slice(0, -3)}${items.image}`}
                         alt={items.image}
-                        width={1200}
-                        height={800}
+                        width={1920}
+                        height={1020}
                         className="w-full h-full absolute inset-0 object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
                 </div>
 
               <div className="flex justify-center items-center h-full w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="text-white text-center text-3xl md:text-6xl md:max-w-[900px] px-5">
+                <div className="text-white text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl md:max-w-[900px] px-5">
                   <RichText htmlContent={selected} />
                 </div>
               </div>
