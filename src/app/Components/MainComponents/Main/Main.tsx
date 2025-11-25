@@ -42,7 +42,7 @@ const Main = () => {
                         alt={items.image}
                         width={1920}
                         height={1020}
-                        className="w-full h-full absolute inset-0 object-cover"
+                        className="w-full h-full absolute inset-0 object-contain md:object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
                 </div>
