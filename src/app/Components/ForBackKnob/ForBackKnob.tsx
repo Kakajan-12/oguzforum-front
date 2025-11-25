@@ -1,8 +1,8 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import UpKnob from "../../../../public/UpKnob.png";
+import React, { useEffect, useState } from "react";
+import { IoIosArrowUp } from "react-icons/io";
+
 const ForBackKnob = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -33,9 +33,9 @@ const ForBackKnob = () => {
             duration: 0.5, 
             ease: "easeInOut",
           }}
-          className="fixed  sm:block bottom-20 md:bottom-32  md:right-10 right-10 z-50 rounded-full bg-mainBlue border-[1px] border-white text-white p-4 md:p-4"
+          className="fixed bottom-10 right-10 z-50 rounded-full bg-mainBlue border-[1px] border-white text-white p-4"
         >
-          <Image className="md:w-2.5 w-3" alt="up" src={UpKnob} />
+          <IoIosArrowUp />
         </motion.button>
       )}
     </AnimatePresence>

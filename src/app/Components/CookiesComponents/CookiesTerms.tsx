@@ -14,14 +14,14 @@ const CookiesTerms = () => {
   const cookieData = data && data.length > 0 ? data[0] : null;
 
   return (
-    <div className="container mx-auto ">
-      <div className="py-12 md:py-32 px-5">
-        <h2 className="md:text-4xl flex items-center text-xl font-bold text-mainBlue">
+    <div className="container mx-auto px-4">
+      <div className="py-6">
+        <h2 className="md:text-4xl text-xl font-bold text-mainBlue flex items-center">
           <NavigationBackKnob/>
           {t("cookie")}
         </h2>
 
-        <div className="mt-5 leading-6  md:leading-8 text-sm md:text-xl text-mainBlue">
+        <div className="mt-5 leading-6 md:leading-8 text-sm md:text-text-base lg:text-lg text-mainBlue">
           {cookieData ? (
               <RichText htmlContent={cookieData[locale]} />
           ) : (

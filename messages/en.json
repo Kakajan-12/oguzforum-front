@@ -1,14 +1,18 @@
 {
   "Header": {
     "home": "Home",
-    "aboutus": "About us",
-    "services": "Services",
-    "projects": "Projects",
-    "news": "News",
-    "contacts": "Contacts",
+    "company": "Company profile",
     "weare": "Who we are",
-    "upcoming": "Upcoming events",
-    "career": "Career"
+    "upcoming": "Events Calendar",
+    "references":"References",
+    "career": "Career",
+    "projects": "Projects",
+    "newsroom": "Newsroom",
+    "news": "News",
+    "media": "Media Center",
+    "press": "Press Release",
+    "contacts": "Contacts"
+
   },
   "Footer": {
     "footerfresh": "Get the freshest news",
@@ -29,40 +33,47 @@
     "career": "Career",
     "weare": "Who We Are",
     "upcoming": "Upcoming events",
-    "services": "Services",
+    "references": "References Letter",
     "projects": "Projects",
     "news": "News",
     "contacts": "Contacts",
     "cookie": "Cookie Terms",
     "privacy": "Privacy Policy",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "press": "Press"
   },
   "WhyWe": {
     "whyabout": "About Us",
     "whymain": "WHY YOU SHOULD CHOOSE US",
     "whyright": "Oguz Forum is a professional event organizer that was founded in 2007 and specializes in Turkmenistan, industry-focused trade conferences and exhibits for businesses and governments. To encourage and enable direct foreign investment in and commerce between the host nation and the global business community, we organize yearly, regionally and nationally focused industry events, road show trade missions, and one-time special events.",
-    "whybottom": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration. To make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.  We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality. In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility. From our base in the Turkmenistan, we conduct business abroad."
+    "whybottom": "With the ultimate goal of conducting business, we create events that bring together stakeholders, experts, and decision makers in the industry to exhibit products and services, foster networking, and inspire collaboration. To make sure that our events meet the networking and business development needs of our hosts, presenters, sponsors, exhibitors, delegates, and guests, we collaborate closely with governments, national businesses, chambers of commerce, international trade groups, and the private sector.  We are aware that trade exhibitions frequently serve as a foreign investor's first visit to your nation, and that making a good first impression depends heavily on the event's quality. In order to minimize the environmental impact of our events and to use local expertise in their development, we embrace our social responsibility. From our base in the Turkmenistan, we conduct business abroad.",
+    "events": "Events",
+    "partners": "Partner countries",
+    "exhibitors": "Exhibitors",
+    "delegates": "Delegates"
   },
-  "upcomingEvents": {
-    "upcomingEvents": "UPCOMING EVENTS"
+  "upcoming": {
+    "upcoming-events": "Events calendar",
+    "more": "More",
+    "read": "Read more"
   },
   "OurServices": {
     "ourmain": "OUR SERVICES",
     "ouroffering": "WHAT WE’RE OFFERING",
-    "ourdigital": [
-      "EVENT ORGANIZATION",
-      "BUSINESS CONSULTING",
-      "DIGITAL MARKETING",
-      "BUSINESS GROWTH"
-    ],
-    "ourtext": "Oguz Forum is a leading international event organizer focused on the Energy Industry. We work with leading energy companies to assist them in implementing strategic event management and organization. Our passionate team of experts is ready to provide full range of services from concept development, project management, marketing & communications, sales, speaker and programme development through creative fresh ideas to raise our client’s event profile, build awareness and attract new investments."
+    "ourtext": "Oguz Forum is a leading international event organizer focused on the Energy Industry. We work with leading energy companies to assist them in implementing strategic event management and organization. Our passionate team of experts is ready to provide full range of services from concept development, project management, marketing & communications, sales, speaker and programme development through creative fresh ideas to raise our client’s event profile, build awareness and attract new investments.",
+    "service-1": "EVENT ORGANIZATION",
+    "service-2": "BUSINESS CONSULTING",
+    "service-3": "DIGITAL MARKETING",
+    "service-4": "BUSINESS GROWTH"
   },
   "News": {
     "newsmain": "NEWS",
     "moreNews": "More news"
   },
   "OurProjects": {
-    "ourmain": "OUR PROJECTS"
+    "ourmain": "OUR PROJECTS",
+    "organizers": "Organizers:",
+    "explore": "Explore"
   },
   "OurPartners": {
     "ourmain": "OUR PARTNERS"
@@ -86,17 +97,18 @@
   "UpComingPage": {
     "upmain": "UPCOMING EVENTS"
   },
-  "ServicesPage": {
-    "servicesmain": "SERIVICES"
-  },
   "ProjectsPage": {
     "projectsmain": "PROJECTS"
   },
   "NewsPage": {
     "newsmain": "NEWS"
   },
-  "ForInputFiltr": {
-    "filtr": ["Title", "Date"]
+  "Filter": {
+    "default": "Default",
+    "date-desc": "By date (new → old)",
+    "date-asc": "By date (old → new)",
+    "title-asc": "By name (A → Z)",
+    "title-desc": "By name (Z → A)"
   },
   "ContactPage": {
     "contactmains": ["OUR OFFICE", "YOUR MESSAGE"],
@@ -111,9 +123,6 @@
     ],
     "Officeknobs": ["Ashgabat"]
   },
-  "explore": {
-    "name": "Explore"
-  },
   "searchPanel": {
     "search": "Search",
     "selectDate": "Select date"
@@ -123,18 +132,14 @@
     "vacancies": "Vacancies",
     "apply": "Apply for job",
     "personal": "Personal information",
-    "clear": "Clear",
     "fname": "First name",
     "lname": "Last name",
     "email": "Email",
     "phone": "Phone",
-    "address": "Address",
-    "uploadPhoto": "Photo",
-    "uploadText": "Upload a file or drag and drop here",
-    "profile": "Profile",
-    "education": "Education (optional)",
-    "experience": "Experience (optional)",
-    "uploadCV": "Upload CV",
+    "upload-file": "Add or drop your files here",
+    "profile": "Portfolio",
+    "upload-portfolio": "Upload portfolio (pdf)",
+    "upload-cv": "Upload CV (pdf)",
     "send": "Send"
   },
   "select": {
@@ -142,8 +147,18 @@
   },
   "toast": {
     "successful": "Application sent successfully!",
-    "error": "There was an error sending ❌",
+    "error": "There was an error sending...",
     "successfulSubscribe": "Successfully subscribed!",
     "errorSubscribe": "Subscription failed. Please try again."
+  },
+  "event": {
+    "speakers": "Speakers",
+    "delegates": "Delegates",
+    "countries": "Countries",
+    "companies": "Companies",
+    "media": "Media",
+    "date": "Date",
+    "location": "Location",
+    "organizers": "Organizers"
   }
 }

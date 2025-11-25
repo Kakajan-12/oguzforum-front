@@ -2,15 +2,17 @@ import {BASE_API_URL} from "@/constant";
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
     Career,
-    Contacts,
+    ContactsMail,
+    ContactsNumber,
     ContactsAddress,
     Links,
     Faq,
     Gallery,
     News,
+    Press,
     Partners,
     Projects,
-    Services,
+    References,
     Slider,
     Privacy,
     Cookie
@@ -33,27 +35,27 @@ export const oguzform = createApi({
         return {
             getSliders: createGetQuery<Slider>("sliders"),
             getNews: createGetQuery<News>("news"),
+            getPress: createGetQuery<Press>("press"),
             getProjects: createGetQuery<Projects>("projects"),
             getPartners: createGetQuery<Partners>("partners"),
-            getContacts: createGetQuery<Contacts>("contacts"),
+            getContactsMail: createGetQuery<ContactsMail>("contact-mails"),
+            getContactsNumber: createGetQuery<ContactsNumber>("contact-numbers"),
             getContactsAddress: createGetQuery<ContactsAddress>("contact-address"),
             getLinks: createGetQuery<Links>("links"),
             getGallery: createGetQuery<Gallery>("gallery"),
             getCareer: createGetQuery<Career>("career"),
             getFaq: createGetQuery<Faq>("faq"),
-            getServices: createGetQuery<Services>("services"),
+            getReferences: createGetQuery<References>("references"),
             getPrivacy: createGetQuery<Privacy>("privacy"),
             getCookie: createGetQuery<Cookie>("cookie"),
-            /////------------------------------------------/////////////////////-------------------------------------------------
 
             getNewsById: getElementByIds<InsideNews>(),
             getProjectsById: getElementByIds<Projects>(),
-            getServicesById: getElementByIds<Services[]>(),
-            /////------------------------------------------/////////////////////-------------------------------------------------
+            getReferencesById: getElementByIds<References[]>(),
 
             applyJob: builder.mutation<any, any>({
                 query: (formData) => ({
-                    url: '/apply-job', // правильный эндпоинт
+                    url: '/apply-job',
                     method: 'POST',
                     body: formData,
                 }),
@@ -65,21 +67,23 @@ export const oguzform = createApi({
 export const {
     useGetSlidersQuery,
     useGetCareerQuery,
-    useGetContactsQuery,
+    useGetContactsMailQuery,
+    useGetContactsNumberQuery,
     useGetContactsAddressQuery,
     useGetLinksQuery,
     useGetFaqQuery,
     useGetGalleryQuery,
     useGetNewsQuery,
+    useGetPressQuery,
     useGetPartnersQuery,
     useGetProjectsQuery,
-    useGetServicesQuery,
+    useGetReferencesQuery,
     useGetPrivacyQuery,
     useGetCookieQuery,
-    /////------------------------------------------/////////////////////-------------------------------------------------
+
     useGetNewsByIdQuery,
     useGetProjectsByIdQuery,
-    useGetServicesByIdQuery,
-    /////------------------------------------------/////////////////////-------------------------------------------------
+    useGetReferencesByIdQuery,
+
     useApplyJobMutation,
 } = oguzform;

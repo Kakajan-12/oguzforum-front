@@ -5,32 +5,34 @@ import {useTranslations} from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import {BASE_API_URL} from "@/constant";
+import {MdArrowForwardIos} from "react-icons/md";
 
 const NewsMain = () => {
     const t = useTranslations("News");
+    const e = useTranslations("upcoming");
     const {data, error, isLoading} = useGetNewsQuery();
     const locale = useAppLocale();
 
     function fixImageUrl(url: string): string {
-        if (!url) return "/default-image.png"; // если нет картинки, отдать заглушку
+        if (!url) return "/default-image.png";
         const normalizedUrl = url.replace(/\\/g, '/');
 
         if (normalizedUrl.startsWith('http')) {
-            return normalizedUrl; // уже нормальный внешний URL
+            return normalizedUrl;
         }
 
         if (normalizedUrl.startsWith('/')) {
-            return normalizedUrl; // локальный путь
+            return normalizedUrl;
         }
 
-        return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`; // если просто uploads/....
+        return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`;
     }
 
     return (
         <div className="container mx-auto px-2">
-            <div className="py-12 md:py-56">
+            <div className="py-10">
                 <div className="flex justify-between">
-                    <div className="font-bold text-2xl md:text-5xl max-w-1/3">
+                    <div className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-1/3">
                         {t("newsmain")}
                     </div>
                     <Link
@@ -41,40 +43,61 @@ const NewsMain = () => {
                     </Link>
 
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-10 md:pt-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:pt-10">
                     {data?.map((items) => {
                         const title = items[locale];
+                        const cat = items[`cat_${locale}`];
 
                         return (
-                            <Link href={`/news/${items.id}`} key={items.id}>
-                                <div className="relative shadow-2xl h-80 rounded-xl">
-                                    <Image
-                                        src={fixImageUrl(items.image.replace(/\\/g, '/'))}
-                                        alt={items.image.replace(/\\/g, '/')}
-                                        width={800}
-                                        height={600}
-                                        style={{
-                                            width: "100%",
-                                            height: "100%",
-                                        }}
-                                        className="rounded-xl object-center object-cover"
-                                    />
-                                    <div
-                                        className="absolute bottom-0 right-0 left-0 bg-white rounded-xl px-6 py-4 h-32">
-                                        <div className="text-sm font-thin"> {new Date(items.date).toLocaleDateString("tm-TM")}</div>
-                                        <div className="md:text-lg text-md text-mainBlue font-semibold">
+                            <div
+                                key={items.id}
+                                className="border-2 p-2 shadow-xl rounded-xl h-full flex flex-col"
+                            >
+                                <Image
+                                    src={fixImageUrl(items.image.replace(/\\/g, "/"))}
+                                    alt={title}
+                                    width={800}
+                                    height={600}
+                                    className="rounded-xl object-center object-fill h-56"
+                                />
+
+                                <div className="flex flex-col justify-between flex-grow mt-2">
+                                    <div className="pt-2">
+                                        <div className="flex justify-between">
+                                            <p className="text-color text-md">{cat}</p>
+                                            <div className="text-md blue-text">
+                                                {new Date(items.date).toLocaleDateString("tm-TM")}
+                                            </div>
+                                        </div>
+
+                                        <div className="text-md md:text-lg blue-text font-semibold">
                                             <RichText
-                                                htmlContent={title.length > 100 ? title.slice(0, 80) + '...' : title}/>
+                                                htmlContent={
+                                                    title.length > 100 ? title.slice(0, 120) + "..." : title
+                                                }
+                                            />
                                         </div>
                                     </div>
+
+                                    <div className="flex justify-end mt-4">
+                                        <Link href={`/news/${items.id}`}>
+                                            <div className="flex items-center space-x-2">
+                                                <div className="main-background-color p-2 rounded-full text-white">
+                                                    <MdArrowForwardIos />
+                                                </div>
+                                                <div className="text-sm">{e("more")}</div>
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </Link>
+                            </div>
                         );
                     })}
+
                 </div>
                 <Link
                     href={`/${locale}/news`}
-                    className="bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-lg inline-block md:invisible text-center w-full mt-10"
+                    className="bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-lg inline-block md:hidden text-center w-full mt-10"
                 >
                     {t('moreNews')}
                 </Link>

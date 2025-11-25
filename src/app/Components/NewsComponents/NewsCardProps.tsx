@@ -2,30 +2,26 @@ import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import {News} from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
-import Link from "next/link";
 import React, {useState} from "react";
 import {BASE_API_URL} from "@/constant";
 import Pagination from "@mui/material/Pagination";
 import {useTranslations} from "next-intl";
+import Link from "next/link";
 
 interface Props {
-    event: News[];
+    news: News[];
     itemsPerPage?: number;
+    type: "news" | "press";
 }
 
-const NewsCardProps: React.FC<Props> = ({event, itemsPerPage = 10}) => {
-    const t = useTranslations("explore")
+const NewsCardProps: React.FC<Props> = ({news, itemsPerPage = 10, type}) => {
+    const t = useTranslations("upcoming")
     const [page, setPage] = useState(1);
-    const totalPages = Math.ceil(event.length / itemsPerPage);
+    const totalPages = Math.ceil(news.length / itemsPerPage);
 
     const handleChange = (_: any, value: number) => {
         setPage(value);
     };
-
-    const currentData = event.slice(
-        (page - 1) * itemsPerPage,
-        page * itemsPerPage
-    );
 
     const truncateText = (text: string, limit: number) => {
         return text.length > limit ? text.slice(0, limit) + "..." : text;
@@ -42,17 +38,17 @@ const NewsCardProps: React.FC<Props> = ({event, itemsPerPage = 10}) => {
 
 
     return (
-        <div className="container mx-auto md:px-7  flex flex-col md:gap-10 gap-5  pb-7 md:pb-10 px-2">
-            {event.map((items) => {
-                const locale = useAppLocale();
-                const tittle = items[locale];
-                const text = items[`text_${locale}`];
-                const cat = items[`cat_${locale}`];
-                return (
-                    <Link href={`/news/${items.id}`} key={items.id}>
-                        <div
-                            className="shadow-sm w-full border flex flex-col md:flex-row p-3 justify-between rounded-md shadow-slate-400">
-                            <div className="md:w-1/3">
+        <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                {news.map((items) => {
+                    const locale = useAppLocale();
+                    const title = items[locale];
+                    const text = items[`text_${locale}`];
+                    const cat = items[`cat_${locale}`];
+                    return (
+                        <div key={items.id}
+                             className="shadow-sm w-full border flex flex-col p-2 rounded-md shadow-slate-400">
+                            <div className="w-full">
                                 <Image
                                     width={800}
                                     height={800}
@@ -62,41 +58,41 @@ const NewsCardProps: React.FC<Props> = ({event, itemsPerPage = 10}) => {
                                 />
                             </div>
 
-                            <div className="w-full pt-5 md:pt-0 md:pl-3 flex flex-col justify-between">
-                                <div>
-                                    <h3 className="text-mainBlue font-bold text-sm md:text-lg lg:text-xl">
-                                        <RichText htmlContent={tittle}/>
-                                    </h3>
-                                    <div className="flex flex-col-reverse">
-                                        <div
-                                            className="hidden sm:block mt-4 font-medium text-mainBlue text-xs md:text-sm lg:text-md">
-                                            <RichText htmlContent={truncateText(text, 300)}/>
-                                        </div>
-                                        <div
-                                            className="flex justify-between pt-5 md:justify-start md:space-x-2 md:divide-x-2 divide-mainBlue divide-opacity-40">
-                                            <div
-                                                className="text-xs font-semibold text-mainBlue opacity-40">
-                                                {items.date}
-                                            </div>
-                                            <div
-                                                className="text-xs font-semibold text-mainBlue opacity-40 pl-2">{cat}</div>
-                                        </div>
+                            <div className="w-full h-full flex flex-col">
+                                <div className="flex justify-between pt-4">
+                                    <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
+                                        {cat}
                                     </div>
-
+                                    <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
+                                        {new Date(items.date).toLocaleDateString("tm-TM")}
+                                    </div>
                                 </div>
 
-                                <div className="pt-5 flex justify-end">
-                                    <button
-                                        className="bg-mainBlue hidden md:block py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded-md">
-                                        {t("name")}
-                                    </button>
+                                <h3 className="text-mainBlue font-bold text-sm md:text-md lg:text-lg xl:text-xl">
+                                    <RichText htmlContent={title}/>
+                                </h3>
+
+                                <div className="mt-2 font-medium text-mainBlue text-xs md:text-sm lg:text-md">
+                                    <RichText htmlContent={truncateText(text, 300)}/>
                                 </div>
+
+                                <div className="pt-5 mt-auto flex justify-end">
+                                    <Link
+                                        href={`/${locale}/${type}/${items.id}`}
+                                        className="bg-mainBlue py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded-md"
+                                    >
+                                        {t("read")}
+                                    </Link>
+                                </div>
+
                             </div>
+
                         </div>
-                    </Link>
-                );
-            })}
-            <div className="flex justify-center pt-4">
+                    );
+                })}
+            </div>
+
+            <div className="flex justify-center py-8">
                 <Pagination
                     count={totalPages}
                     page={page}
