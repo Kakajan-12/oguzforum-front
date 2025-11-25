@@ -29,10 +29,10 @@ const AboutMain = () => {
                     <div
                         className="main-background-color rounded-md flex md:flex-col md:space-y-2 justify-between items-center px-2 py-3">
                         <div className="w-full">
-                            <p className="w-fit text-white border-b font-semibold text-md md:text-lg lg:text-xl xl:text-2xl md:text-left">{t('events')}</p>
+                            <p className="w-fit text-white border-b font-semibold text-md md:text-lg lg:text-xl xl:text-2xl md:text-left">{t('projects')}</p>
                         </div>
                         <div className="w-full">
-                            <p className="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-5xl text-right">100</p></div>
+                            <p className="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-5xl text-right">23</p></div>
                     </div>
                     <div className="main-background-color rounded-md flex md:flex-col md:space-y-2 justify-between items-center px-2 py-3">
                         <div className="w-full">
@@ -47,13 +47,13 @@ const AboutMain = () => {
                         <div className="w-full">
                             <p className="w-fit text-white border-b font-semibold text-md md:text-lg lg:text-xl xl:text-2xl md:text-left">{t('exhibitors')}</p></div>
                         <div className="w-full">
-                            <p className="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-5xl text-right">12</p></div>
+                            <p className="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-5xl text-right">13 500+</p></div>
                     </div>
                     <div className="main-background-color rounded-md flex md:flex-col md:space-y-2 justify-between items-center px-2 py-3">
                         <div className="w-full">
                             <p className="w-fit text-white border-b font-semibold text-md md:text-lg lg:text-xl xl:text-2xl md:text-left">{t('delegates')}</p></div>
                         <div className="w-full">
-                            <p className="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-5xl text-right">25+</p></div>
+                            <p className="text-white font-bold text-lg md:text-xl lg:text-3xl xl:text-5xl text-right">7 000+</p></div>
                     </div>
 
                 </div>
