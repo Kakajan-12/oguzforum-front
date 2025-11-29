@@ -33,7 +33,7 @@ const ForBackKnob = () => {
             duration: 0.5, 
             ease: "easeInOut",
           }}
-          className="fixed bottom-10 right-10 z-50 rounded-full bg-mainBlue border-[1px] border-white text-white p-4"
+          className="fixed bottom-28 right-4 z-50 rounded-full bg-mainBlue border-[1px] border-white text-white p-4"
         >
           <IoIosArrowUp />
         </motion.button>

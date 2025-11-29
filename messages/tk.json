@@ -157,5 +157,20 @@
     "date": "Sene",
     "location": "Lokasiýa",
     "organizers": "Guramaçylar"
+  },
+  "chat": {
+    "type-here": "Hat ýazyň...",
+    "modal-title": "Habar iberildi",
+    "modal-text": "Hatyňyz üstünlikli iberildi! Biz iş wagtynda jogap bereris.",
+    "okay": "Düşnükli",
+    "not-working-time": "Iş wagty däl",
+    "not-working-time-text": "Häzir iş wagty däl",
+    "online-time": "Biz sagat 10:00-dan 19:00-a çenli (UTC+5) onlaýn işleýäris",
+    "your-mail": "Mail poçtaňyz",
+    "your-message": "Siziň hatyňyz *",
+    "describe-question": "Soragyňyzy düşündiriň...",
+    "sending": "Ugradylýar...",
+    "sent": "Haty ugrat",
+    "note": "Biz size iş wagtynda e-poçta arkaly jogap bereris."
   }
 }
