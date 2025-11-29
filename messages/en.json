@@ -160,5 +160,20 @@
     "date": "Date",
     "location": "Location",
     "organizers": "Organizers"
+  },
+  "chat": {
+    "type-here": "Write a message...",
+    "modal-title": "Message sent",
+    "modal-text": "Your message has been sent successfully! We will respond during business hours.",
+    "okay": "Okay",
+    "not-working-time": "Not working time",
+    "not-working-time-text": "It's not working hours now",
+    "online-time": "We are online from 10:00 to 19:00 (UTC+5)",
+    "your-mail": "Your Email *",
+    "your-message": "Your message *",
+    "describe-question": "Describe your question...",
+    "sending": "Sending...",
+    "sent": "Send a message",
+    "note": "We will reply to you by email during business hours."
   }
 }

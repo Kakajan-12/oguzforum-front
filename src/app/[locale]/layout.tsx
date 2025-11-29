@@ -7,6 +7,7 @@ import Footer from "../Components/Footer";
 import ForBackKnob from "../Components/ForBackKnob/ForBackKnob";
 import { NextIntlClientProvider } from "next-intl";
 import ReduxProvider from "../ProviderRedux";
+import ChatWidget from "@/app/chat/ChatWidget";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -34,12 +35,15 @@ export default function RootLayout({
       <html lang={params.locale}>
       <body className={`${montserrat.className}`}>
       <ReduxProvider>
-        <NextIntlClientProvider locale={params.locale}>
-          <Header />
-          <ForBackKnob />
-          {children}
-          <Footer />
-        </NextIntlClientProvider>
+          <NextIntlClientProvider locale={params.locale}>
+              <Header/>
+              <ForBackKnob/>
+              {children}
+              <Footer/>
+              <div className="fixed bottom-5 right-5 z-50">
+                  <ChatWidget/>
+              </div>
+          </NextIntlClientProvider>
       </ReduxProvider>
       </body>
       </html>
