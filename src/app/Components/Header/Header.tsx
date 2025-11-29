@@ -72,8 +72,8 @@ export default function Header() {
         <header className={`fixed w-full z-20 transition-all duration-300 ${isScrolled ? 'main-background-color' : 'bg-gradient'}`}>
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
-                    <a href={`/${locale}`} aria-label="Home" className="flex items-center">
-                        <Image src="/icon.svg" width={120} height={40} alt="Logo" />
+                    <a href={`/${locale}`} aria-label="Home" className="flex items-center w-fit">
+                        <Image src="/icon.svg" width={220} height={240} alt="Logo" className="w-full"/>
                     </a>
 
                     {isDesktopView === null ? null : isDesktopView ? (
