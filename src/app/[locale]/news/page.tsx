@@ -13,7 +13,7 @@ const Page = () => {
     const [filters, setFilters] = useState({
         title: "",
         date: "",
-        sort: "default",
+        sort: "date_desc",
     });
 
     const filteredNews = useMemo(() => {
@@ -32,20 +32,7 @@ const Page = () => {
             list = list.filter((item) => item.date?.includes(filters.date));
         }
 
-        switch (filters.sort) {
-            case "date_desc":
-                list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-                break;
-            case "date_asc":
-                list.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-                break;
-            case "title_asc":
-                list.sort((a, b) => (a?.[locale] || "").localeCompare(b?.[locale] || ""));
-                break;
-            case "title_desc":
-                list.sort((a, b) => (b?.[locale] || "").localeCompare(a?.[locale] || ""));
-                break;
-        }
+        list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
         return list;
     }, [data, filters, locale]);

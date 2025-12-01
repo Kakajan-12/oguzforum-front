@@ -28,6 +28,12 @@ const NewsMain = () => {
         return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`;
     }
 
+    const sortedNews = data ? [...data]
+        .sort((a, b) => {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+        })
+        .slice(0, 8) : [];
+
     return (
         <div className="container mx-auto px-2">
             <div className="py-10">
@@ -41,10 +47,9 @@ const NewsMain = () => {
                     >
                         {t('moreNews')}
                     </Link>
-
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:pt-10">
-                    {data?.map((items) => {
+                    {sortedNews.map((items) => {
                         const title = items[locale];
                         const cat = items[`cat_${locale}`];
 
@@ -93,7 +98,6 @@ const NewsMain = () => {
                             </div>
                         );
                     })}
-
                 </div>
                 <Link
                     href={`/${locale}/news`}
