@@ -191,7 +191,14 @@ const DefaultFooter = () => {
                                        width={30}
                                        height={30}
                                        className="w-5"/>
-                                <div className="text-sm md:text-base text-white">Hebent Tech</div>
+                                <Link
+                                    href="https://hebent.tech"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm md:text-base text-white"
+                                >
+                                    Hebent Tech
+                                </Link>
                             </div>
 
                         </div>
