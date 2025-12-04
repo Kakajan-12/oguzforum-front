@@ -38,11 +38,39 @@ const UpcomingSinglePage: React.FC<Props> = ({event}) => {
 
         const normalized = url.replace(/\\/g, "/");
 
-        if (normalized.startsWith("http")) return normalized;
+        console.log('Original URL:', url); // Для отладки
+        console.log('Normalized URL:', normalized); // Для отладки
 
-        const base = process.env.NEXT_PUBLIC_API_URL?.replace("/api", "");
+        if (normalized.startsWith("https://api.oguzforum.com/")) {
+            return normalized;
+        }
 
-        return `${base}/${normalized}`;
+        if (normalized.startsWith(".oguzforum.com")) {
+            return `https://api${normalized}`;
+        }
+
+        if (normalized.startsWith("http://.oguzforum.com") || normalized.startsWith("https://.oguzforum.com")) {
+            return normalized.replace("http://.", "https://api.")
+                .replace("https://.", "https://api.");
+        }
+
+        if (normalized.startsWith("http://") || normalized.startsWith("https://")) {
+            if (normalized.includes("uploads/")) {
+                const path = normalized.split("uploads/")[1];
+                return `https://api.oguzforum.com/uploads/${path}`;
+            }
+            return normalized;
+        }
+
+        if (normalized.startsWith("uploads/")) {
+            return `https://api.oguzforum.com/${normalized}`;
+        }
+
+        if (normalized.startsWith("/uploads")) {
+            return `https://api.oguzforum.com${normalized}`;
+        }
+
+        return `https://api.oguzforum.com/uploads/${normalized}`;
     };
 
 
@@ -144,13 +172,16 @@ const UpcomingSinglePage: React.FC<Props> = ({event}) => {
 
                                             return (
                                                 <div key={org.id} className="flex items-center space-x-2">
-                                                    <Image
-                                                        src={logoUrl}
-                                                        alt={org[`organizer_${locale}`] || "Organizer logo"}
-                                                        width={50}
-                                                        height={50}
-                                                        className="object-contain rounded"
-                                                    />
+                                                    <div className="max-w-[100px]">
+                                                        <Image
+                                                            src={logoUrl}
+                                                            alt={org[`organizer_${locale}`] || "Organizer logo"}
+                                                            width={50}
+                                                            height={50}
+                                                            className="object-contain rounded w-full"
+                                                        />
+                                                    </div>
+
 
                                                     <p className="text-sm md:text-md lg:text-lg font-medium">
                                                         {org[`organizer_${locale}`]}
