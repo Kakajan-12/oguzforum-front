@@ -8,6 +8,7 @@ import ForBackKnob from "../Components/ForBackKnob/ForBackKnob";
 import { NextIntlClientProvider } from "next-intl";
 import ReduxProvider from "../ProviderRedux";
 import ChatWidget from "@/app/chat/ChatWidget";
+import SnowEffect from "@/app/Components/Snowfall/Snowfall";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={`${montserrat.className}`}>
       <ReduxProvider>
           <NextIntlClientProvider locale={params.locale}>
+              <SnowEffect/>
               <Header/>
               <ForBackKnob/>
               {children}
