@@ -1,0 +1,20 @@
+'use client';
+
+import Snowfall from 'react-snowfall';
+
+export default function SnowEffect() {
+  return (
+    <Snowfall
+      color="#dee4fd"
+      snowflakeCount={150}
+      style={{
+        position: 'fixed',
+        width: '100vw',
+        height: '100vh',
+        zIndex: 1000,
+        pointerEvents: 'none'
+      }}
+    />
+  );
+}
+
