@@ -2,7 +2,7 @@
 
 import {useEffect, useRef, useState} from "react";
 import chatStore from "@/lib/chat/chat.store";
-import {initWS, onWSMessage, wsSend} from "@/lib/chat/ws"; // ← ДОБАВИЛИ wsSend
+import {initWS, onWSMessage, wsSend} from "@/lib/chat/ws";
 import {initChat, sendMessage} from "@/lib/chat/chat.service";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
