@@ -5,16 +5,23 @@ import Image from "next/image";
 import { useGetSlidersQuery } from "@/app/Apis/api";
 import RichText from "@/app/Hooks/Richtext";
 import useAppLocale from "@/app/Hooks/GetLocale";
-import {BASE_API_URL} from "@/constant";
+import { resolveMediaUrl } from "@/constant";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Main.css";
-
+import Spinner from "../../UI/Spinner";
+import ErrorMessage from "../../UI/ErrorMessage";
+import DataMessage from "../../UI/DataMessage";
 
 const Main = () => {
   const { data, error, isLoading } = useGetSlidersQuery();
   const locale = useAppLocale();
+  console.log(data); //для отладки
+
+  if (isLoading) return <Spinner />;
+  if (error) return <ErrorMessage />;
+  if (!data) return <DataMessage />;
 
   return (
     <div className="md:h-screen  w-full">
@@ -36,16 +43,16 @@ const Main = () => {
           const selected = items[locale];
           return (
             <SwiperSlide className="relative">
-                <div className="relative h-full w-full">
-                    <Image
-                        src={items.image.startsWith('http') ? items.image : `${BASE_API_URL.slice(0, -3)}${items.image}`}
-                        alt={items.image}
-                        width={1920}
-                        height={1020}
-                        className="w-full h-full absolute inset-0 object-contain md:object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
-                </div>
+              <div className="relative h-full w-full">
+                <Image
+                  src={resolveMediaUrl(items.image)}
+                  alt={items.image}
+                  width={1920}
+                  height={1020}
+                  className="w-full h-full absolute inset-0 object-contain md:object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
+              </div>
 
               <div className="flex justify-center items-center h-full w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div className="text-white text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl md:max-w-[900px] px-5">
