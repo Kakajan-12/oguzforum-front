@@ -4,7 +4,7 @@
     "company": "Company profile",
     "weare": "Who we are",
     "upcoming": "Events Calendar",
-    "references":"References",
+    "references": "References",
     "career": "Career",
     "projects": "Projects",
     "newsroom": "Newsroom",
@@ -12,7 +12,6 @@
     "media": "Media Center",
     "press": "Press Release",
     "contacts": "Contacts"
-
   },
   "Footer": {
     "footerfresh": "Get the freshest news",
@@ -27,7 +26,7 @@
       "Cookie Terms",
       "FAQ"
     ],
-    "copyright":"All rights Reserved - Connect to HebentTech"
+    "copyright": "All rights Reserved - Connect to HebentTech"
   },
   "BackText": {
     "career": "Career",
@@ -74,7 +73,7 @@
   },
   "OurProjects": {
     "ourmain": "OUR PROJECTS",
-    "organizers": "Organizers:",
+    "organizers": "Organizers",
     "explore": "Explore"
   },
   "OurPartners": {

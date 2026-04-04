@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,10 +9,41 @@ import { useGetPartnersQuery } from "@/app/Apis/api";
 import { resolveMediaUrl } from "@/constant";
 import { useTranslations } from "next-intl";
 import "./OurPartners.css";
+import Spinner from "../../UI/Spinner";
+import ErrorMessage from "../../UI/ErrorMessage";
+import DataMessage from "../../UI/DataMessage";
 
 export default function OurPartnersMain() {
   const t = useTranslations("OurPartners");
   const { data, error, isLoading } = useGetPartnersQuery();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const groupRef = useRef<HTMLDivElement>(null);
+  const [copyCount, setCopyCount] = useState(2);
+
+  useLayoutEffect(() => {
+    if (!data?.length) return;
+    const container = containerRef.current;
+    const group = groupRef.current;
+    if (!container || !group) return;
+
+    const update = () => {
+      const cw = container.clientWidth;
+      const gw = group.getBoundingClientRect().width;
+      if (cw <= 0 || gw <= 0) return;
+      const n = Math.max(2, Math.ceil(cw / gw) + 1);
+      setCopyCount((prev) => (prev === n ? prev : n));
+    };
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(container);
+    ro.observe(group);
+    return () => ro.disconnect();
+  }, [data]);
+
+  if (isLoading) return <Spinner />;
+  if (error) return <ErrorMessage />;
+  if (!data) return <DataMessage />;
 
   return (
     <div className="container mx-auto px-2">
@@ -23,24 +54,41 @@ export default function OurPartnersMain() {
           </h5>
           <div className="w-full border-b-2 border-[#002A5F]"></div>
         </div>
-        <div className="overflow-hidden w-full">
-          <div className="marquee-track items-center">
-            {[0, 1].map((copy) =>
-              data?.map((partner) => (
-                <div
-                  key={`${copy}-${partner.id}`}
-                  className="shrink-0 h-14 flex items-center px-8"
-                >
-                  <Image
-                    src={resolveMediaUrl(partner.logo)}
-                    alt={`Partner ${partner.id}`}
-                    width={1800}
-                    height={1800}
-                    className="h-full w-auto object-contain"
-                  />
-                </div>
-              )),
-            )}
+        <div ref={containerRef} className="overflow-hidden w-full">
+          <div
+            className="marquee-track"
+            style={
+              { "--marquee-copies": copyCount } as React.CSSProperties
+            }
+          >
+            {Array.from({ length: copyCount }, (_, copyIndex) => (
+              <div
+                key={copyIndex}
+                ref={copyIndex === 0 ? groupRef : undefined}
+                className="marquee-group"
+                aria-hidden={copyIndex > 0 || undefined}
+              >
+                {data.map((partner) => (
+                  <div
+                    key={`${copyIndex}-${partner.id}`}
+                    className="shrink-0 h-14 flex items-center justify-center px-8"
+                  >
+                    <Image
+                      src={resolveMediaUrl(partner.logo)}
+                      alt={
+                        copyIndex === 0
+                          ? `Partner ${partner.id}`
+                          : ""
+                      }
+                      width={1800}
+                      height={1800}
+                      sizes="(max-width: 768px) 112px, 160px"
+                      className="h-full w-auto max-h-14 object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
         {/* <div className="w-full">
