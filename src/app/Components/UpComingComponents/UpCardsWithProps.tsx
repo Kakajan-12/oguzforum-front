@@ -4,62 +4,26 @@ import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { Projects } from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { resolveMediaUrl } from "@/constant";
 import { IoLocationSharp } from "react-icons/io5";
 import { SliceText } from "@/app/Hooks/SliceTexts";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PiCalendarBlankDuotone } from "react-icons/pi";
-import UpPagination from "./UpPagination";
 
 interface Props {
   event: Projects[];
-  itemsPerPage?: number;
 }
 
-const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
+const UpCardsWithProps: React.FC<Props> = ({ event }) => {
   const t = useTranslations("OurProjects");
   const slice = SliceText();
   const locale = useAppLocale();
-  const [page, setPage] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
-  const cardsTopRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const checkMobile = () => setIsMobile(window.innerWidth < 768);
-      checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
-    }
-  }, []);
-
-  const now = new Date();
-  const futureEvents = event.filter((item) => new Date(item.end_date) > now);
-  const totalPages = Math.ceil(futureEvents.length / itemsPerPage);
-  const currentData = [...futureEvents]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice((page - 1) * itemsPerPage, page * itemsPerPage);
-
-  const prevPageRef = useRef(page);
-
-  useEffect(() => {
-    if (prevPageRef.current !== page) {
-      if (cardsTopRef.current) {
-        const element = cardsTopRef.current.getBoundingClientRect();
-        const offset = window.scrollY + element.top - 250;
-        window.scrollTo({ top: offset, behavior: "smooth" });
-      }
-    }
-    prevPageRef.current = page;
-  }, [page]);
 
   return (
-    <div
-      ref={cardsTopRef}
-      className="container mx-auto md:px-7 flex flex-col md:gap-10 gap-5 pb-7 md:pb-10 px-2"
-    >
-      {currentData.map((items) => {
+    <div className="container mx-auto md:px-7 flex flex-col md:gap-10 gap-5 pb-7 md:pb-10 px-2">
+      {event.map((items) => {
         const title = items[locale];
         const location = items[`location_${locale}`];
         const type = items[`type_${locale}`];
@@ -151,11 +115,6 @@ const UpCardsWithProps: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
           </div>
         );
       })}
-      <UpPagination
-        totalPages={totalPages}
-        currentPage={page}
-        onChange={(event, value) => setPage(value)}
-      />
     </div>
   );
 };
