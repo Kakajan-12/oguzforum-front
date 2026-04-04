@@ -4,7 +4,7 @@
     "company": "Kompaniýanyň profili",
     "weare": "Biz kim",
     "upcoming": "Çäreleriň senenamasy",
-    "references":"Salgylanmalar",
+    "references": "Salgylanmalar",
     "career": "Karýera",
     "projects": "Taslamalar",
     "newsroom": "Habarlar otagy",
@@ -12,7 +12,6 @@
     "media": "Media merkezi",
     "press": "Metbugat beýanaty",
     "contacts": "Kontaklar"
-
   },
   "Footer": {
     "footerfresh": "Täze habarlardan habarly boluň",
@@ -27,7 +26,7 @@
       "Cookie düzgünleri",
       "Köp soralýan soraglar (FAQ)"
     ],
-    "copyright":"Ähli hukuklar goralandyr - HebentTech goşulyň"
+    "copyright": "Ähli hukuklar goralandyr - HebentTech goşulyň"
   },
   "BackText": {
     "career": "Karýera",
@@ -58,7 +57,6 @@
     "upcoming-events": "Çäreleriň senenamasy",
     "more": "Giňişleýin",
     "read": "Giňişleýin"
-
   },
   "OurServices": {
     "ourmain": "Hyzmatlarymyz",
@@ -75,7 +73,7 @@
   },
   "OurProjects": {
     "ourmain": "BIZIŇ TASLAMALARYMYZ",
-    "organizers": "Guraýjylar:",
+    "organizers": "Guraýjylar",
     "explore": "Giňişleýin"
   },
   "OurPartners": {
