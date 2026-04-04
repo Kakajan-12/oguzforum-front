@@ -2,7 +2,7 @@ import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { News, Press } from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { resolveMediaUrl } from "@/constant";
 import Pagination from "@mui/material/Pagination";
 import { useTranslations } from "next-intl";
@@ -19,7 +19,7 @@ interface Props {
 
 const NewsCardProps: React.FC<Props> = ({
   news,
-  itemsPerPage = 6,
+  itemsPerPage = 12,
   type,
   paginatedByParent = false,
 }) => {
@@ -27,10 +27,22 @@ const NewsCardProps: React.FC<Props> = ({
   const locale = useAppLocale();
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(news.length / itemsPerPage);
+  const cardsTopRef = useRef<HTMLDivElement | null>(null);
+  const prevPageRef = useRef(page);
 
   useEffect(() => {
     if (!paginatedByParent) setPage(1);
   }, [news, paginatedByParent]);
+
+  useEffect(() => {
+    if (paginatedByParent) return;
+    if (prevPageRef.current !== page && cardsTopRef.current) {
+      const top = cardsTopRef.current.getBoundingClientRect().top;
+      const offset = window.scrollY + top - 250;
+      window.scrollTo({ top: Math.max(0, offset), behavior: "smooth" });
+    }
+    prevPageRef.current = page;
+  }, [page, paginatedByParent]);
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -46,7 +58,10 @@ const NewsCardProps: React.FC<Props> = ({
 
   return (
     <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+      <div
+        ref={cardsTopRef}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
+      >
         {displayNews.map((items) => {
           const title = items[locale];
           const text = items[`text_${locale}`];
