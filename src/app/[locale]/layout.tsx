@@ -8,6 +8,7 @@ import ForBackKnob from "../Components/ForBackKnob/ForBackKnob";
 import { NextIntlClientProvider } from "next-intl";
 import ReduxProvider from "../ProviderRedux";
 import ChatWidget from "@/app/chat/ChatWidget";
+import NavigationLoader from "@/app/Components/UI/NavigationLoader";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -16,36 +17,35 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Oguz Forum & Expo",
   description: "Oguz Forum & Expo",
-    icons: {
-        icon: [
-            { url: "/favicon.ico" },
-            { url: "/ico.svg", type: "image/svg+xml" },
-        ],
-    }
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/ico.svg", type: "image/svg+xml" }],
+  },
 };
 
-export default function RootLayout({
-                                     children,
-                                     params,
-                                   }: Readonly<{
+export default async function RootLayout({
+  children,
+  params,
+}: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
   return (
-      <html lang={params.locale}>
+    <html lang={locale}>
       <body className={`${montserrat.className}`}>
-      <ReduxProvider>
-          <NextIntlClientProvider locale={params.locale}>
-              <Header/>
-              <ForBackKnob/>
-              {children}
-              <Footer/>
-              <div className="fixed bottom-5 right-5 z-50">
-                  <ChatWidget/>
-              </div>
+        <ReduxProvider>
+          <NextIntlClientProvider locale={locale}>
+            <Header />
+            <NavigationLoader />
+            <ForBackKnob />
+            {children}
+            <Footer />
+            <div className="fixed bottom-5 right-5 z-50">
+              <ChatWidget />
+            </div>
           </NextIntlClientProvider>
-      </ReduxProvider>
+        </ReduxProvider>
       </body>
-      </html>
+    </html>
   );
 }

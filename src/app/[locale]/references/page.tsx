@@ -5,58 +5,64 @@ import { useGetReferencesQuery } from "@/app/Apis/api";
 import useAppLocale from "@/app/Hooks/GetLocale";
 import ReferencesFilter from "@/app/Components/References/ReferncesFilter";
 import ReferencesCard from "@/app/Components/References/ReferencesCard";
+import Spinner from "@/app/Components/UI/Spinner";
+import ErrorMessage from "@/app/Components/UI/ErrorMessage";
+import DataMessage from "@/app/Components/UI/DataMessage";
 
-const References = ()=>{
-    const { data, error, isLoading } = useGetReferencesQuery();
-    const locale = useAppLocale();
-    const [filters, setFilters] = useState({ name: "", sort: "default" });
+const References = () => {
+  const { data, error, isLoading } = useGetReferencesQuery();
+  const locale = useAppLocale();
+  const [filters, setFilters] = useState({ name: "", sort: "default" });
 
-    const filteredReferences = useMemo(() => {
-        if (!data) return [];
+  const filteredReferences = useMemo(() => {
+    if (!data) return [];
 
-        let list = [...data];
+    let list = [...data];
 
-        if (filters.name) {
-            list = list.filter((references) => {
-                const name = references[`name_${locale}`]?.toLowerCase() || "";
-                return name.includes(filters.name.toLowerCase());
-            });
-        }
+    if (filters.name) {
+      list = list.filter((references) => {
+        const name = references[`name_${locale}`]?.toLowerCase() || "";
+        return name.includes(filters.name.toLowerCase());
+      });
+    }
 
-        switch (filters.sort) {
-            case "date_desc":
-                list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-                break;
-            case "date_asc":
-                list.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-                break;
-            case "title_asc":
-                list.sort((a, b) =>
-                    (a[`name_${locale}`] || "").localeCompare(b[`name_${locale}`] || "")
-                );
-                break;
-            case "title_desc":
-                list.sort((a, b) =>
-                    (b[`name_${locale}`] || "").localeCompare(a[`name_${locale}`] || "")
-                );
-                break;
-        }
+    switch (filters.sort) {
+      case "date_desc":
+        list.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        );
+        break;
+      case "date_asc":
+        list.sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+        );
+        break;
+      case "title_asc":
+        list.sort((a, b) =>
+          (a[`name_${locale}`] || "").localeCompare(b[`name_${locale}`] || ""),
+        );
+        break;
+      case "title_desc":
+        list.sort((a, b) =>
+          (b[`name_${locale}`] || "").localeCompare(a[`name_${locale}`] || ""),
+        );
+        break;
+    }
 
-        return list;
-    }, [data, filters, locale]);
+    return list;
+  }, [data, filters, locale]);
 
+  if (isLoading) return <Spinner />;
+  if (error) return <ErrorMessage />;
+  if (!data) return <DataMessage />;
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading data</div>;
-    if (!data) return <div>No event found</div>;
-
-    return (
-        <div>
-            <BackgroundUi src="News.png" name="references" />
-            <ReferencesFilter onFilterChange={setFilters} />
-            <ReferencesCard event={filteredReferences} />
-        </div>
-    );
+  return (
+    <div>
+      <BackgroundUi src="News.png" name="references" />
+      <ReferencesFilter onFilterChange={setFilters} />
+      <ReferencesCard event={filteredReferences} />
+    </div>
+  );
 };
 
 export default References;

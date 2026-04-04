@@ -4,7 +4,7 @@
     "company": "Профиль компании",
     "weare": "Кто мы",
     "upcoming": "Календарь событий",
-    "references":"Ссылки",
+    "references": "Ссылки",
     "career": "Карьера",
     "projects": "Проекты",
     "newsroom": "Отдел новостей",
@@ -12,7 +12,6 @@
     "media": "Медиацентр",
     "press": "Пресс-релиз",
     "contacts": "Контакты"
-
   },
   "Footer": {
     "footerfresh": "Получайте самые свежие новости",
@@ -27,7 +26,7 @@
       "Условия использования файлов cookie",
       "Часто задаваемые вопросы (FAQ)"
     ],
-    "copyright":"Все права защищены - Присоединиться к HebentTech"
+    "copyright": "Все права защищены - Присоединиться к HebentTech"
   },
   "BackText": {
     "career": "Карьера",
@@ -58,7 +57,6 @@
     "upcoming-events": "Календарь событий",
     "more": "Больше",
     "read": "Читать далее"
-
   },
   "OurServices": {
     "ourmain": "НАШИ УСЛУГИ",
@@ -75,7 +73,7 @@
   },
   "OurProjects": {
     "ourmain": "НАШИ ПРОЕКТЫ",
-    "organizers": "Организаторы:",
+    "organizers": "Организаторы",
     "explore": "Подробнее"
   },
   "OurPartners": {

@@ -1,123 +1,159 @@
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
-import {News} from "@/app/Intarfaces/intarfaces";
+import { News, Press } from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
-import React, {useState} from "react";
-import {BASE_API_URL} from "@/constant";
+import React, { useEffect, useRef, useState } from "react";
+import { resolveMediaUrl } from "@/constant";
 import Pagination from "@mui/material/Pagination";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 interface Props {
-    news: News[];
-    itemsPerPage?: number;
-    type: "news" | "press";
+  news: News[] | Press[];
+  itemsPerPage?: number;
+  type: "news" | "press";
+  isLoading?: boolean;
+  /** Слайс и пагинация на стороне страницы (projects/events-паттерн) */
+  paginatedByParent?: boolean;
 }
 
-const NewsCardProps: React.FC<Props> = ({news, itemsPerPage = 10, type}) => {
-    const t = useTranslations("upcoming")
-    const [page, setPage] = useState(1);
-    const totalPages = Math.ceil(news.length / itemsPerPage);
+const NewsCardProps: React.FC<Props> = ({
+  news,
+  itemsPerPage = 12,
+  type,
+  paginatedByParent = false,
+}) => {
+  const t = useTranslations("upcoming");
+  const locale = useAppLocale();
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(news.length / itemsPerPage);
+  const cardsTopRef = useRef<HTMLDivElement | null>(null);
+  const prevPageRef = useRef(page);
 
-    const handleChange = (_: any, value: number) => {
-        setPage(value);
-    };
+  useEffect(() => {
+    if (!paginatedByParent) setPage(1);
+  }, [news, paginatedByParent]);
 
-    const truncateText = (text: string, limit: number) => {
-        return text.length > limit ? text.slice(0, limit) + "..." : text;
-    };
+  useEffect(() => {
+    if (paginatedByParent) return;
+    if (prevPageRef.current !== page && cardsTopRef.current) {
+      const top = cardsTopRef.current.getBoundingClientRect().top;
+      const offset = window.scrollY + top - 250;
+      window.scrollTo({ top: Math.max(0, offset), behavior: "smooth" });
+    }
+    prevPageRef.current = page;
+  }, [page, paginatedByParent]);
 
-    const fixImageUrl = (url: string): string => {
-        if (!url) return "/default-image.png";
-        const normalizedUrl = url.replace(/\\/g, '/');
-        if (normalizedUrl.startsWith('http') || normalizedUrl.startsWith('/')) {
-            return normalizedUrl;
-        }
-        return `${BASE_API_URL.slice(0, -3)}${normalizedUrl}`;
-    };
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
+  const displayNews = paginatedByParent
+    ? news
+    : news.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
-    return (
-        <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                {news.map((items) => {
-                    const locale = useAppLocale();
-                    const title = items[locale];
-                    const text = items[`text_${locale}`];
-                    const cat = items[`cat_${locale}`];
-                    return (
-                        <div key={items.id}
-                             className="shadow-sm w-full border flex flex-col p-2 rounded-md shadow-slate-400">
-                            <div className="w-full">
-                                <Image
-                                    width={800}
-                                    height={800}
-                                    className="w-full h-full rounded-md object-cover"
-                                    alt={`${items.image}`}
-                                    src={fixImageUrl(items.image)}
-                                />
-                            </div>
+  //   const truncateText = (text: string, limit: number) => {
+  //     return text.length > limit ? text.slice(0, limit) + "..." : text;
+  //   };
 
-                            <div className="w-full h-full flex flex-col">
-                                <div className="flex justify-between pt-4">
-                                    <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
-                                        {cat}
-                                    </div>
-                                    <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
-                                        {new Date(items.date).toLocaleDateString("tm-TM")}
-                                    </div>
-                                </div>
-
-                                <h3 className="text-mainBlue font-bold text-sm md:text-md lg:text-lg xl:text-xl">
-                                    <RichText htmlContent={title}/>
-                                </h3>
-
-                                <div className="mt-2 font-medium text-mainBlue text-xs md:text-sm lg:text-md">
-                                    <RichText htmlContent={truncateText(text, 300)}/>
-                                </div>
-
-                                <div className="pt-5 mt-auto flex justify-end">
-                                    <Link
-                                        href={`/${locale}/${type}/${items.id}`}
-                                        className="bg-mainBlue py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded-md"
-                                    >
-                                        {t("read")}
-                                    </Link>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    );
-                })}
-            </div>
-
-            <div className="flex justify-center py-8">
-                <Pagination
-                    count={totalPages}
-                    page={page}
-                    onChange={handleChange}
-                    variant="outlined"
-                    shape="rounded"
-                    siblingCount={1}
-                    size="medium"
-                    sx={{
-                        "& .MuiPaginationItem-root.Mui-selected": {
-                            backgroundColor: "#002A5F",
-                            color: "white",
-                            scale: "1.1",
-                        },
-                        "& .MuiPaginationItem-root": {
-                            color: "white",
-                            backgroundColor: "#002A5F66",
-                            padding: "8px",
-                            margin: "2px",
-                        },
-                    }}
+  return (
+    <div className="container mx-auto px-4">
+      <div
+        ref={cardsTopRef}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
+      >
+        {displayNews.map((items) => {
+          const title = items[locale];
+          const text = items[`text_${locale}`];
+          const cat = items[`cat_${locale}`];
+          return (
+            <div
+              key={items.id}
+              className="shadow-sm w-full border flex flex-col p-4 rounded-md shadow-slate-400"
+            >
+              <div className="w-full h-56 relative">
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="w-full h-56 rounded-md object-contain"
+                  alt={`${items.image}`}
+                  src={resolveMediaUrl(items.image)}
                 />
+                {/* <Image
+                  //   width={300}
+                  //   height={300}
+                  fill
+                  className="rounded-md object-cover"
+                  alt={`${items.image}`}
+                  src={resolveMediaUrl(items.image)}
+                /> */}
+              </div>
+
+              <div className="w-full h-full flex flex-col">
+                <div className="flex justify-between pt-4">
+                  <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
+                    {cat &&
+                    !["press en1", "press ru1", "press tk1"].includes(cat)
+                      ? cat
+                      : ""}
+                  </div>
+                  <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
+                    {new Date(items.date).toLocaleDateString("tm-TM")}
+                  </div>
+                </div>
+
+                <h3 className="text-mainBlue font-semibold text-sm md:text-md lg:text-lg">
+                  <RichText htmlContent={title} className="line-clamp-2" />
+                </h3>
+
+                <div className="mt-2 font-medium text-mainBlue text-xs md:text-sm lg:text-md">
+                  <RichText htmlContent={text} className="line-clamp-3" />
+                </div>
+
+                <div className="pt-5 mt-auto flex justify-end">
+                  <Link
+                    href={`/${locale}/${type}/${items.id}`}
+                    className="bg-mainBlue py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded-md"
+                  >
+                    {t("read")}
+                  </Link>
+                </div>
+              </div>
             </div>
+          );
+        })}
+      </div>
+
+      {!paginatedByParent && totalPages > 1 ? (
+        <div className="flex justify-center py-8 ">
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handleChange}
+            variant="outlined"
+            shape="rounded"
+            boundaryCount={1}
+            siblingCount={1}
+            size="medium"
+            sx={{
+              "& .MuiPaginationItem-root.Mui-selected": {
+                backgroundColor: "#002A5F",
+                color: "white",
+                scale: "1.1",
+              },
+              "& .MuiPaginationItem-root": {
+                color: "white",
+                backgroundColor: "#002A5F66",
+                padding: "8px",
+                margin: "2px",
+              },
+            }}
+          />
         </div>
-    );
+      ) : null}
+    </div>
+  );
 };
 
 export default NewsCardProps;

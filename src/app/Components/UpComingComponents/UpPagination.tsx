@@ -8,10 +8,14 @@ interface UpPaginationProps {
 }
 
 const UpPagination: React.FC<UpPaginationProps> = ({
-                                                     totalPages,
-                                                     currentPage,
-                                                     onChange,
-                                                   }) => {
+  totalPages,
+  currentPage,
+  onChange,
+}) => {
+  if (totalPages <= 1) {
+    return null;
+  }
+
   return (
       <div className="w-full py-5">
           <div className="container mx-auto flex justify-center items-center">

@@ -1,19 +1,26 @@
-'use client';
+"use client";
 
-import DOMPurify from 'isomorphic-dompurify';
+import DOMPurify from "dompurify";
+import { useMemo } from "react";
+import { rewriteRichTextImgSrc } from "@/constant";
 
 interface Props {
-    htmlContent: string;
+  htmlContent: string;
+  className?: string;
 }
 
-export default function RichText({ htmlContent }: Props) {
-    const sanitizedHtml = DOMPurify.sanitize(htmlContent);
+export default function RichText({ htmlContent, className }: Props) {
+  const sanitizedHtml = useMemo(
+    () => rewriteRichTextImgSrc(DOMPurify.sanitize(htmlContent)),
+    [htmlContent],
+  );
 
-    return (
-        <div
-            dangerouslySetInnerHTML={{
-                __html: sanitizedHtml,
-            }}
-        />
-    );
+  return (
+    <div
+      className={`rich-text${className ? ` ${className}` : ""}`}
+      dangerouslySetInnerHTML={{
+        __html: sanitizedHtml,
+      }}
+    />
+  );
 }
