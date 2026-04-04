@@ -1,23 +1,43 @@
 .swiper-button-next-partners {
-    position: absolute;
-    z-index: 10;
-    top: unset !important;
-    bottom: 20px !important;
-    color: white;
-    right: 0;
+  position: absolute;
+  z-index: 10;
+  top: unset !important;
+  bottom: 20px !important;
+  color: white;
+  right: 0;
 }
 
 .swiper-button-prev-partners {
-    position: absolute;
-    z-index: 10;
-    top: unset !important;
-    bottom: 20px !important;
-    color: white;
-    left: 0;
+  position: absolute;
+  z-index: 10;
+  top: unset !important;
+  bottom: 20px !important;
+  color: white;
+  left: 0;
 }
 
 @media (max-width: 991px) {
-    .swiper-button-next-partners, .swiper-button-prev-partners {
-        display: none;
-    }
+  .swiper-button-next-partners,
+  .swiper-button-prev-partners {
+    display: none;
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
