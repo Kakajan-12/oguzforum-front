@@ -65,7 +65,7 @@ export type Projects = {
 
 export type Organizer ={
   id?: number;
-  organizer_logo: string | null;
+  organizer_logo: string | Record<string, unknown> | null;
   organizer_tk: string;
   organizer_en: string;
   organizer_ru: string;
