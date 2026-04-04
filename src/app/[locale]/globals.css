@@ -48,3 +48,27 @@
     max-width: 1920px;
     margin: 0 auto;
 }
+
+.rich-text * {
+    font-family: inherit !important;
+}
+
+.rich-text.line-clamp-2,
+.rich-text.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rich-text.line-clamp-2 {
+    -webkit-line-clamp: 2;
+}
+
+.rich-text.line-clamp-3 {
+    -webkit-line-clamp: 3;
+}
+
+.rich-text.line-clamp-2 *,
+.rich-text.line-clamp-3 * {
+    display: inline;
+}
