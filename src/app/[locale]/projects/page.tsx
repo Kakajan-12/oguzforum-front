@@ -6,6 +6,8 @@ import ProjectsPagination from "@/app/Components/ProjectsComponents/ProjectsPagi
 import ProjectsCardProps from "../../Components/ProjectsComponents/ProjectsCardProps";
 import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
 import { useGetProjectsQuery } from "@/app/Apis/api";
+import Spinner from "@/app/Components/UI/Spinner";
+import ErrorMessage from "@/app/Components/UI/ErrorMessage";
 import useAppLocale from "@/app/Hooks/GetLocale";
 
 const parseDate = (d: string | null | undefined) => {
@@ -72,8 +74,8 @@ const Page = () => {
 
 
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading data</div>;
+    if (isLoading) return <Spinner />;
+    if (error) return <ErrorMessage />;
     if (!data || data.length === 0) return <div>No projects found</div>;
 
     return (
