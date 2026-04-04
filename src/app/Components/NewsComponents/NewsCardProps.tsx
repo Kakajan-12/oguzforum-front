@@ -16,7 +16,7 @@ interface Props {
 }
 
 const NewsCardProps: React.FC<Props> = ({ news, itemsPerPage = 6, type }) => {
-  console.log("news", news);
+  console.log("news", news); //для проверки данных
   const t = useTranslations("upcoming");
   const locale = useAppLocale();
   const [page, setPage] = useState(1);
