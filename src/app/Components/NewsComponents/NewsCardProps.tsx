@@ -1,6 +1,6 @@
 import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
-import { News } from "@/app/Intarfaces/intarfaces";
+import { News, Press } from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { resolveMediaUrl } from "@/constant";
@@ -9,31 +9,36 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 interface Props {
-  news: News[];
+  news: News[] | Press[];
   itemsPerPage?: number;
   type: "news" | "press";
   isLoading?: boolean;
+  /** Слайс и пагинация на стороне страницы (projects/events-паттерн) */
+  paginatedByParent?: boolean;
 }
 
-const NewsCardProps: React.FC<Props> = ({ news, itemsPerPage = 6, type }) => {
-  console.log("news", news); //для проверки данных
+const NewsCardProps: React.FC<Props> = ({
+  news,
+  itemsPerPage = 6,
+  type,
+  paginatedByParent = false,
+}) => {
   const t = useTranslations("upcoming");
   const locale = useAppLocale();
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(news.length / itemsPerPage);
 
   useEffect(() => {
-    setPage(1);
-  }, [news]);
+    if (!paginatedByParent) setPage(1);
+  }, [news, paginatedByParent]);
 
-  const handleChange = (_: any, value: number) => {
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 
-  const paginatedNews = news.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage,
-  );
+  const displayNews = paginatedByParent
+    ? news
+    : news.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
   //   const truncateText = (text: string, limit: number) => {
   //     return text.length > limit ? text.slice(0, limit) + "..." : text;
@@ -41,8 +46,8 @@ const NewsCardProps: React.FC<Props> = ({ news, itemsPerPage = 6, type }) => {
 
   return (
     <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {paginatedNews.map((items) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        {displayNews.map((items) => {
           const title = items[locale];
           const text = items[`text_${locale}`];
           const cat = items[`cat_${locale}`];
@@ -105,31 +110,33 @@ const NewsCardProps: React.FC<Props> = ({ news, itemsPerPage = 6, type }) => {
         })}
       </div>
 
-      <div className="flex justify-center py-8 ">
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handleChange}
-          variant="outlined"
-          shape="rounded"
-          boundaryCount={1}
-          siblingCount={1}
-          size="medium"
-          sx={{
-            "& .MuiPaginationItem-root.Mui-selected": {
-              backgroundColor: "#002A5F",
-              color: "white",
-              scale: "1.1",
-            },
-            "& .MuiPaginationItem-root": {
-              color: "white",
-              backgroundColor: "#002A5F66",
-              padding: "8px",
-              margin: "2px",
-            },
-          }}
-        />
-      </div>
+      {!paginatedByParent && totalPages > 1 ? (
+        <div className="flex justify-center py-8 ">
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handleChange}
+            variant="outlined"
+            shape="rounded"
+            boundaryCount={1}
+            siblingCount={1}
+            size="medium"
+            sx={{
+              "& .MuiPaginationItem-root.Mui-selected": {
+                backgroundColor: "#002A5F",
+                color: "white",
+                scale: "1.1",
+              },
+              "& .MuiPaginationItem-root": {
+                color: "white",
+                backgroundColor: "#002A5F66",
+                padding: "8px",
+                margin: "2px",
+              },
+            }}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
