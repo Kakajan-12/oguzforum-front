@@ -99,6 +99,8 @@ const Page = () => {
   if (error) return <ErrorMessage />;
   if (!data || data.length === 0) return <div>No projects found</div>;
 
+  // console.log("currentData", currentData);
+
   return (
     <div>
       <BackgroundUi src="Projects.png" name="projects" />

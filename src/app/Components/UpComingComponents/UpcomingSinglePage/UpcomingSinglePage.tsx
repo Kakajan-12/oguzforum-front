@@ -65,7 +65,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
     fetchData();
   }, [event.id]);
 
-  console.log(event); //для отладки
+  // console.log(event); //для отладки
   return (
     <div className="container mx-auto px-4">
       <div className="py-12">
