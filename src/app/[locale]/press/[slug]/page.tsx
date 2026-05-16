@@ -18,7 +18,7 @@ const page = () => {
   if (error) return <ErrorMessage />;
   if (!data) return <DataMessage />;
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="">

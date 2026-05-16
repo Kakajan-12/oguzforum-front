@@ -17,7 +17,7 @@ import DataMessage from "../../UI/DataMessage";
 const Main = () => {
   const { data, error, isLoading } = useGetSlidersQuery();
   const locale = useAppLocale();
-  console.log(data); //для отладки
+  // console.log(data); //для отладки
 
   if (isLoading) return <Spinner />;
   if (error) return <ErrorMessage />;
