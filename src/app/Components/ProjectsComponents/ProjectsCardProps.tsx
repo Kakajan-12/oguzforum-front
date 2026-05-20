@@ -15,6 +15,11 @@ interface Props {
   event: Projects[];
 }
 
+const normalizeUrl = (url?: string) => {
+  if (!url) return "";
+  return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+};
+
 const ProjectsCardProps: React.FC<Props> = ({ event }) => {
   const t = useTranslations("OurProjects");
   const slice = SliceText();
@@ -93,12 +98,14 @@ const ProjectsCardProps: React.FC<Props> = ({ event }) => {
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full">
-                  <Link
-                    href={items.link}
+                  <a
+                    href={normalizeUrl(items.link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="main-background-color py-2 px-4 text-white rounded-full w-full text-center"
                   >
                     {items.link}
-                  </Link>
+                  </a>
                   <Link
                     href={`/projects/${items.id}`}
                     className="main-background-color py-2 px-4 text-white rounded-full w-full text-center"

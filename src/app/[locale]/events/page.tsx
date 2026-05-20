@@ -18,7 +18,7 @@ const parseDate = (d: string | null | undefined) => {
 
 const Page = () => {
   const { data, error, isLoading } = useGetProjectsQuery();
-  console.log("data events", data); //для проверки данных
+  // console.log("data events", data); //для проверки данных
   const locale = useAppLocale();
   const [filters, setFilters] = useState({
     title: "",
