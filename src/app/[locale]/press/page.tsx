@@ -98,7 +98,7 @@ const Press = () => {
 
   return (
     <div>
-      <BackgroundUi src="News.png" name="press" />
+      <BackgroundUi src="News.webp" name="press" />
       <NewsFiltr onFilterChange={setFilters} type="press" />
       <div ref={cardsTopRef}>
         <NewsCardProps

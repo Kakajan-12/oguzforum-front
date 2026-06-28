@@ -130,7 +130,7 @@ export default function CareerRedirectPage() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} />
-      <BackgroundUi src="Career.png" name="career" />
+      <BackgroundUi src="Career.webp" name="career" />
       <div className="container mx-auto px-4">
         <div className="py-3 md:py-4 flex items-center justify-between w-full">
           <div className="flex items-center">

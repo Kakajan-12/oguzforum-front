@@ -69,7 +69,7 @@ const Page = () => {
 
   return (
     <div>
-      <BackgroundUi src="News.png" name="news" />
+      <BackgroundUi src="News.webp" name="news" />
       <NewsFiltr onFilterChange={setFilters} type="news" />
       <NewsCardProps news={filteredNews} type="news" isLoading={isLoading} />
     </div>

@@ -106,7 +106,7 @@ const Page = () => {
 
   return (
     <div>
-      <BackgroundUi src="UpBack.png" name="upcoming" />
+      <BackgroundUi src="UpBack.webp" name="upcoming" />
       <UpEvents onFilterChange={setFilters} />
       <div ref={cardsTopRef}>
         <UpCardsWithProps event={currentData} />

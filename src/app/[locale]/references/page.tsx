@@ -58,7 +58,7 @@ const References = () => {
 
   return (
     <div>
-      <BackgroundUi src="News.png" name="references" />
+      <BackgroundUi src="News.webp" name="references" />
       <ReferencesFilter onFilterChange={setFilters} />
       <ReferencesCard event={filteredReferences} />
     </div>

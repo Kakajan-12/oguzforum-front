@@ -6,7 +6,7 @@ import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
 const page = () => {
     return (
         <div>
-            <BackgroundUi src="Weare.png" name="weare"/>
+            <BackgroundUi src="Weare.webp" name="weare"/>
             <WhoText/>
             <PhilosophyText/>
         </div>

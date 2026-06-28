@@ -5,7 +5,7 @@ import CookiesTerms from '../../Components/CookiesComponents/CookiesTerms'
 const page = () => {
   return (
     <div>
-        <BackgroundUi src="News.png" name="cookie"/>
+        <BackgroundUi src="News.webp" name="cookie"/>
         <CookiesTerms/>
     </div>
   )

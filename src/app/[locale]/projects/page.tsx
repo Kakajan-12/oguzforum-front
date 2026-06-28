@@ -103,7 +103,7 @@ const Page = () => {
 
   return (
     <div>
-      <BackgroundUi src="Projects.png" name="projects" />
+      <BackgroundUi src="Projects.webp" name="projects" />
       <ProjectsFiltr onFilterChange={setFilters} />
       <div ref={cardsTopRef}>
         <ProjectsCardProps event={currentData} />

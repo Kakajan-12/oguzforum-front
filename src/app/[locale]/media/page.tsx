@@ -5,7 +5,7 @@ const Media = () => {
     return (
         <div className="relative w-full h-screen">
             <Image
-                src="/Career.png"
+                src="/Career.webp"
                 alt={"background"}
                 width={1920}
                 height={1080}

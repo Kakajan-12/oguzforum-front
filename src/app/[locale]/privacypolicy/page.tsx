@@ -5,7 +5,7 @@ import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
 const page = () => {
     return (
         <div>
-            <BackgroundUi src="News.png" name="privacy"/>
+            <BackgroundUi src="News.webp" name="privacy"/>
             <PrivacyPolicy/>
         </div>
     );

@@ -13,7 +13,7 @@ const ForFaq: React.FC<ForFaqProps> = () => {
   return (
       <div className="w-full h-screen relative">
         <Image
-            src="/News.png"
+            src="/News.webp"
             alt="background"
             width={800}
             height={800}
