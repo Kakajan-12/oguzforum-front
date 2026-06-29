@@ -1,133 +1,205 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { AiOutlineClose } from "react-icons/ai";
-import type { NavItem } from "./navItems";
-import LanguageSwitcher from "./LanguageSwitcher";
-import { BiSolidDownArrow } from "react-icons/bi";
+import Image from "next/image";
+import { IconType } from "react-icons";
+import { FiX, FiChevronLeft } from "react-icons/fi";
+import {
+  FaInstagram,
+  FaTelegramPlane,
+  FaLinkedinIn,
+  FaWhatsapp,
+  FaYoutube,
+  FaFacebookF,
+} from "react-icons/fa";
+import {
+  useGetContactsMailQuery,
+  useGetContactsNumberQuery,
+  useGetLinksQuery,
+} from "@/app/Apis/api";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  MEGA_GROUPS,
+  type Edition,
+  type MegaGroup,
+} from "./navItems";
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  navItems: NavItem[];
+  editions: Edition[];
   pathname: string;
-  t: (k: string) => string;
-  locale: string;
-  switchLanguage: (l: string) => void;
+};
+
+const SOCIAL_ICONS: Record<string, IconType> = {
+  instagram: FaInstagram,
+  telegram: FaTelegramPlane,
+  linkedin: FaLinkedinIn,
+  whatsapp: FaWhatsapp,
+  youtube: FaYoutube,
+  facebook: FaFacebookF,
 };
 
 export default function MobileMenu({
   open,
   onClose,
-  navItems,
+  editions,
   pathname,
-  t,
-  locale,
-  switchLanguage,
 }: Props) {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const groups = MEGA_GROUPS;
+  const [activeGroup, setActiveGroup] = useState<MegaGroup | null>(null);
 
-  const isActive = (href: string) => {
-    if (href === `/${locale}`) return pathname === `/${locale}`;
-    return pathname === href || pathname.startsWith(href + "/");
-  };
+  const { data: mailData } = useGetContactsMailQuery();
+  const { data: numberData } = useGetContactsNumberQuery();
+  const { data: links } = useGetLinksQuery();
 
-  const isDropdownActive = (items: { href: string }[]) =>
-    items.some((i) => pathname === i.href || pathname.startsWith(i.href + "/"));
+  const phone = numberData?.[0]?.number ?? CONTACT_PHONE;
+  const email = mailData?.[0]?.mail ?? CONTACT_EMAIL;
+  const socials = (links ?? [])
+    .map((l) => ({ ...l, Icon: SOCIAL_ICONS[l.icon?.toLowerCase()] }))
+    .filter((l) => l.Icon && l.url);
 
-  if (!open) return null;
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/");
+
+  // Lock body scroll while open; reset drill-down level when closed.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) setActiveGroup(null);
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <div className="fixed inset-0 z-50 flex">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-
-      <aside
-        className={`relative ml-auto h-full w-2/3 transform transition-transform duration-300 ease-in-out 
-                    ${open ? "translate-x-0" : "translate-x-full"} 
-                    backdrop-blur-[67.5px] shadow-[0_0_16px_1px_rgba(0,0,0,0.25)] bg-white/10 
-                    p-6 overflow-auto`}
-      >
-        <div className="flex justify-end">
+    <div
+      className={`fixed inset-0 z-50 bg-[#06306A] lg:hidden flex flex-col transition-transform duration-300 ${
+        open ? "translate-x-0" : "translate-x-full pointer-events-none"
+      }`}
+    >
+      {/* Top bar: logo (or back arrow when drilled in) + close */}
+      <div className="flex items-center justify-between px-5 h-20 shrink-0">
+        {activeGroup ? (
           <button
-            onClick={onClose}
-            aria-label="Close menu"
-            className="mb-6 text-white flex items-center gap-2"
+            onClick={() => setActiveGroup(null)}
+            aria-label="Back"
+            className="text-white -ml-1"
           >
-            <AiOutlineClose size={22} />
+            <FiChevronLeft size={26} />
           </button>
-        </div>
+        ) : (
+          <Link href={`/`} onClick={onClose} aria-label="Home" className="flex items-center">
+            <Image src="/oguz white.png" width={267} height={100} alt="Oguz Forum & Expo" className="h-10 w-auto" priority />
+          </Link>
+        )}
+        <button onClick={onClose} aria-label="Close menu" className="text-white">
+          <FiX size={26} />
+        </button>
+      </div>
 
-        <ul className="space-y-4">
-          {navItems.map((item) => {
-            if (item.type === "link") {
-              return (
-                <li
-                  key={item.href}
-                  className={`px-2 text-white ${isActive(item.href) ? "bg-white/10 rounded-md" : ""}`}
-                >
+      <div className="flex-1 overflow-auto px-5 pb-10">
+        {activeGroup ? (
+          /* ---- Level 2: drilled-in group ---- */
+          <div>
+            <p className="text-2xl font-medium text-white">{activeGroup.title}</p>
+            <ul className="mt-6">
+              {activeGroup.links.map((link) => (
+                <li key={link.label + link.href}>
                   <Link
-                    href={item.href}
+                    href={link.href}
                     onClick={onClose}
                     prefetch={false}
-                    className="block py-3"
+                    className="block py-3.5 text-lg text-white/90 hover:text-white"
                   >
-                    {t(item.labelKey)}
+                    {link.label}
                   </Link>
                 </li>
-              );
-            } else {
-              const key = item.labelKey;
-              const isOpen = openDropdown === key;
-              return (
-                <li key={key} className="text-white">
-                  <button
-                    onClick={() => setOpenDropdown(isOpen ? null : key)}
-                    className={`w-full text-left py-3 px-2 flex justify-between items-center ${
-                      isDropdownActive(item.items)
-                        ? "bg-white/10 rounded-md"
-                        : ""
+              ))}
+            </ul>
+          </div>
+        ) : (
+          /* ---- Level 1: top-level ---- */
+          <div>
+            {/* Editions */}
+            <ul className="pt-2">
+              {editions.map((e) => (
+                <li key={e.href}>
+                  <Link
+                    href={e.href}
+                    onClick={onClose}
+                    prefetch={false}
+                    className={`block py-3 text-base ${
+                      isActive(e.href) ? "text-white font-medium" : "text-white/90"
                     }`}
                   >
-                    {t(item.labelKey)}
-                    <BiSolidDownArrow
-                      size={15}
-                      className={`transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
+                    {e.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Groups (drill-down) */}
+            <ul className="mt-3 border-t border-white/15 pt-3">
+              {groups.map((group) => (
+                <li key={group.title}>
+                  <button
+                    onClick={() => setActiveGroup(group)}
+                    className="flex w-full items-center justify-between py-3.5 text-left text-base text-white"
+                  >
+                    {group.title}
+                    <Image
+                      src="/assets/link.svg"
+                      width={14}
+                      height={14}
+                      alt=""
+                      aria-hidden
+                      className="h-3.5 w-3.5"
                     />
                   </button>
-                  {isOpen && (
-                    <div className="pl-4">
-                      {item.items.map((i) => (
-                        <Link
-                          key={i.href}
-                          href={i.href}
-                          onClick={() => {
-                            onClose();
-                            setOpenDropdown(null);
-                          }}
-                          className="block py-2"
-                        >
-                          {t(i.labelKey)}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </li>
-              );
-            }
-          })}
-        </ul>
+              ))}
+            </ul>
 
-        <div className="mt-8">
-          <LanguageSwitcher
-            locale={locale}
-            variant="mobile"
-            onSelect={(l) => {
-              switchLanguage(l);
-              //   onClose();
-            }}
-          />
-        </div>
-      </aside>
+            {/* Contacts */}
+            <div className="mt-4 border-t border-white/15 pt-6">
+              <p className="text-lg font-medium text-white">Contacts</p>
+              <a
+                href={`tel:${phone.replace(/\s/g, "")}`}
+                className="mt-4 block text-sm text-white/80 hover:text-white"
+              >
+                {phone}
+              </a>
+              <a
+                href={`mailto:${email}`}
+                className="mt-3 block text-sm text-white/80 hover:text-white"
+              >
+                {email}
+              </a>
+            </div>
+
+            {/* Social media */}
+            {socials.length > 0 && (
+              <div className="mt-7">
+                <p className="text-lg font-medium text-white">Social media</p>
+                <div className="mt-4 flex items-center gap-3">
+                  {socials.map(({ id, url, Icon }) => (
+                    <a
+                      key={id}
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#002A5F] hover:bg-white/90 transition"
+                    >
+                      <Icon size={18} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

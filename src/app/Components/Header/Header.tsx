@@ -1,157 +1,122 @@
 "use client";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-// import { usePathname, useRouter } from "next/navigation";
-import { usePathname, useRouter } from "@/i18n/navigation";
-
-import { useLocale, useTranslations } from "next-intl";
-import DesktopMenu from "./DesktopMenu";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FiMenu } from "react-icons/fi";
+import { EDITIONS } from "./navItems";
+import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
-import { makeNavItems } from "./navItems";
-import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Header() {
   const pathname = usePathname() ?? "/";
-  const locale = useLocale() ?? "en";
-  const router = useRouter();
-  const t = useTranslations("Header");
 
-  const navItems = makeNavItems(locale, t);
-
-  const [isDesktopView, setIsDesktopView] = useState<boolean | null>(null);
-  useEffect(() => {
-    const checkScreen = () => setIsDesktopView(window.innerWidth >= 1280);
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 0);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const isFirstRender = useRef(true);
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, [pathname]);
+  const editions = EDITIONS;
 
   const [isMobileOpen, setMobileOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+  const companyTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const [dropdownState, setDropdownState] = useState({
-    company: false,
-    newsroom: false,
-    lang: false,
-  });
+  const openCompany = () => {
+    if (companyTimeout.current) clearTimeout(companyTimeout.current);
+    setCompanyOpen(true);
+  };
+  const closeCompany = (delay = 150) => {
+    if (companyTimeout.current) clearTimeout(companyTimeout.current);
+    companyTimeout.current = setTimeout(() => setCompanyOpen(false), delay);
+  };
 
-  const timeouts = useRef<{ [k: string]: NodeJS.Timeout | null }>({
-    company: null,
-    newsroom: null,
-    lang: null,
-  });
-  // Saving scroll position
+  // Restore scroll position / mobile menu after a navigation
   useEffect(() => {
     const saved = sessionStorage.getItem("_scrollY");
     if (saved !== null) {
       sessionStorage.removeItem("_scrollY");
-      window.scrollTo({ top: parseInt(saved), behavior: "auto" }); //или smooth
+      window.scrollTo({ top: parseInt(saved), behavior: "auto" });
     }
-    // Mobile menu state
     const menuWasOpen = sessionStorage.getItem("_mobileMenuOpen");
     if (menuWasOpen) {
       sessionStorage.removeItem("_mobileMenuOpen");
       setMobileOpen(true);
     }
   }, []);
-  //---------------------------------------------------------
 
-  const openDropdown = (key: keyof typeof dropdownState) => {
-    if (timeouts.current[key]) {
-      clearTimeout(timeouts.current[key]!);
-      timeouts.current[key] = null;
-    }
-    setDropdownState((prev) => ({ ...prev, [key]: true }));
-  };
-  const closeDropdown = (key: keyof typeof dropdownState, delay = 150) => {
-    if (timeouts.current[key]) clearTimeout(timeouts.current[key]!);
-    timeouts.current[key] = setTimeout(() => {
-      setDropdownState((prev) => ({ ...prev, [key]: false }));
-      timeouts.current[key] = null;
-    }, delay);
-  };
-
-  const switchLanguage = (newLocale: string) => {
-    // const currentLocale = pathname.split("/")[1] || locale;
-    // const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
-    // router.push(newPath);
-    sessionStorage.setItem("_scrollY", String(window.scrollY));
-    sessionStorage.setItem("_mobileMenuOpen", "true");
-    router.push(pathname, { locale: newLocale });
-  };
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header
-      className={`fixed w-full z-20 transition-all duration-300 ${isScrolled || isLoading ? "main-background-color" : "bg-gradient"}`}
-    >
+    <header className="fixed inset-x-0 top-0 z-30 main-background-color">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <a
-            href={`/${locale}`}
-            aria-label="Home"
-            className="flex items-center w-fit"
-          >
-            <Image
-              src="/icon.svg"
-              width={220}
-              height={240}
-              alt="Logo"
-              className="w-full"
-            />
-          </a>
+        <div className="relative flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href={`/`} aria-label="Home" className="flex items-center">
+            <Image src="/oguz white.png" width={267} height={100} alt="Oguz Forum & Expo" className="h-11 w-auto" priority />
+          </Link>
 
-          {isDesktopView === null ? null : isDesktopView ? (
-            <DesktopMenu
-              navItems={navItems}
-              pathname={pathname}
-              dropdownState={dropdownState}
-              openDropdown={openDropdown}
-              closeDropdown={closeDropdown}
-              t={t}
-              switchLanguage={switchLanguage}
-              locale={locale}
-            />
-          ) : (
-            <>
-              <button
-                aria-label="Open menu"
-                className="xl:hidden text-white"
-                onClick={() => setMobileOpen(true)}
+          {/* Centre editions (desktop) */}
+          <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+            {editions.map((e) => (
+              <Link
+                key={e.href}
+                href={e.href}
+                prefetch={false}
+                className={`text-white text-base whitespace-nowrap pb-1 transition-colors hover:text-white ${
+                  isActive(e.href) ? "border-b-2 border-white" : "text-white/90"
+                }`}
               >
-                <RxHamburgerMenu size={24} />
-              </button>
-              <MobileMenu
-                open={isMobileOpen}
-                onClose={() => setMobileOpen(false)}
-                navItems={navItems}
-                pathname={pathname}
-                t={t}
-                locale={locale}
-                switchLanguage={switchLanguage}
+                {e.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right: Company profile trigger (desktop) */}
+          <div
+            className="hidden lg:block"
+            onMouseEnter={openCompany}
+            onMouseLeave={() => closeCompany()}
+          >
+            <button
+              className="flex items-center gap-2 text-white text-base"
+              onClick={() => setCompanyOpen((v) => !v)}
+              aria-expanded={companyOpen}
+            >
+              Company profile
+              <Image
+                src="/assets/link.svg"
+                width={12}
+                height={12}
+                alt=""
+                aria-hidden
+                className={`h-3 w-3 transition-transform duration-200 ${companyOpen ? "rotate-90" : ""}`}
               />
-            </>
-          )}
+            </button>
+          </div>
+
+          {/* Right: hamburger (mobile) */}
+          <button
+            aria-label="Open menu"
+            className="lg:hidden text-white"
+            onClick={() => setMobileOpen(true)}
+          >
+            <FiMenu size={26} />
+          </button>
         </div>
       </div>
+
+      {/* Desktop mega-menu */}
+      <MegaMenu
+        isOpen={companyOpen}
+        onOpen={openCompany}
+        onClose={() => closeCompany()}
+        onNavigate={() => setCompanyOpen(false)}
+      />
+
+      {/* Mobile drawer */}
+      <MobileMenu
+        open={isMobileOpen}
+        onClose={() => setMobileOpen(false)}
+        editions={editions}
+        pathname={pathname}
+      />
     </header>
   );
 }

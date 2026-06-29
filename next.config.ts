@@ -1,5 +1,4 @@
 import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   // Потом можно удалить этот блок, если не нужно будет проксировать запросы на api.oguzforum.com
@@ -34,5 +33,4 @@ const nextConfig: NextConfig = {
   // },
 };
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+export default nextConfig;

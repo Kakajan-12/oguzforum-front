@@ -1,72 +1,94 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useGetSlidersQuery } from "@/app/Apis/api";
-import RichText from "@/app/Hooks/Richtext";
-import useAppLocale from "@/app/Hooks/GetLocale";
+import { useTranslations } from "next-intl";
 import { resolveMediaUrl } from "@/constant";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import "./Main.css";
 import Spinner from "../../UI/Spinner";
 import ErrorMessage from "../../UI/ErrorMessage";
-import DataMessage from "../../UI/DataMessage";
+
+type HeroStat = { value: string; label: string };
+
+const isVideo = (path?: string) => !!path && /\.(mp4|webm)$/i.test(path);
 
 const Main = () => {
   const { data, error, isLoading } = useGetSlidersQuery();
-  const locale = useAppLocale();
-  // console.log(data); //для отладки
+  const t = useTranslations("MainHero");
+  const title = t("title");
+  const stats = (t.raw("stats") as HeroStat[]) ?? [];
 
   if (isLoading) return <Spinner />;
   if (error) return <ErrorMessage />;
-  if (!data) return <DataMessage />;
+
+  // The hero now shows a single looping background video (managed via the
+  // admin slider). Prefer the first video entry; fall back to the first row.
+  const slide = data?.find((d) => isVideo(d.image)) ?? data?.[0];
+  const mediaUrl = slide ? resolveMediaUrl(slide.image) : "";
 
   return (
-    <div className="md:h-screen  w-full">
-      <Swiper
-        slidesPerView={1}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        spaceBetween={0}
-        navigation={{
-          prevEl: ".swiper-button-prev-first",
-          nextEl: ".swiper-button-next-first",
-        }}
-        modules={[Pagination, Navigation]}
-        className="mySwiper h-screen"
-      >
-        {data?.map((items) => {
-          const selected = items[locale];
-          return (
-            <SwiperSlide className="relative">
-              <div className="relative h-full w-full">
-                <Image
-                  src={resolveMediaUrl(items.image)}
-                  alt={items.image}
-                  width={1920}
-                  height={1020}
-                  className="w-full h-full absolute inset-0 object-contain md:object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
-              </div>
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Background video */}
+      {mediaUrl &&
+        (isVideo(slide?.image) ? (
+          <video
+            src={mediaUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <Image
+            src={mediaUrl}
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        ))}
 
-              <div className="flex justify-center items-center h-full w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="text-white text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl md:max-w-[900px] px-5">
-                  <RichText htmlContent={selected} />
-                </div>
-              </div>
-            </SwiperSlide>
-          );
-        })}
+      {/* Navy gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#002A5F]/95 via-[#002A5F]/70 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#002A5F]/80 via-transparent to-[#002A5F]/30" />
 
-        <div className="swiper-button-prev swiper-button-prev-first"></div>
-        <div className="swiper-button-next swiper-button-next-first"></div>
-      </Swiper>
-    </div>
+      {/* Foreground content */}
+      <div className="pointer-events-none absolute inset-0 flex items-center">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl">
+            <h1 className="text-white font-bold leading-[1.05] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+              {title}
+            </h1>
+
+            {stats.length > 0 && (
+              <ul className="mt-10 space-y-5 sm:space-y-6">
+                {stats.map((s, i) => (
+                  <li key={i} className="flex items-center gap-4 text-white">
+                    <Image
+                      src="/logo.svg"
+                      width={40}
+                      height={40}
+                      alt=""
+                      aria-hidden
+                      className="h-9 w-9 shrink-0"
+                    />
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-bold leading-none tracking-tight">
+                        {s.value}
+                      </div>
+                      <div className="mt-1 text-sm sm:text-base text-white/80">
+                        {s.label}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
