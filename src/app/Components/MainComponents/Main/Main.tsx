@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useGetSlidersQuery } from "@/app/Apis/api";
-import { useTranslations } from "next-intl";
+
 import { resolveMediaUrl } from "@/constant";
 import "./Main.css";
 import Spinner from "../../UI/Spinner";
@@ -13,9 +13,9 @@ const isVideo = (path?: string) => !!path && /\.(mp4|webm)$/i.test(path);
 
 const Main = () => {
   const { data, error, isLoading } = useGetSlidersQuery();
-  const t = useTranslations("MainHero");
-  const title = t("title");
-  const stats = (t.raw("stats") as HeroStat[]) ?? [];
+
+  const title = "Oguz Forum & Expo";
+  const stats: HeroStat[] = [];
 
   if (isLoading) return <Spinner />;
   if (error) return <ErrorMessage />;

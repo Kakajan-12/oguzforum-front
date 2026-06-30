@@ -1,6 +1,6 @@
 import React from 'react'
-import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
-import CookiesTerms from '../../Components/CookiesComponents/CookiesTerms'
+import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
+import CookiesTerms from '@/app/Components/CookiesComponents/CookiesTerms'
 
 const page = () => {
   return (

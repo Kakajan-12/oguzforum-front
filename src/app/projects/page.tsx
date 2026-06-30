@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import ProjectsFiltr from "../../Components/ProjectsComponents/ProjectsFilter";
+import ProjectsFiltr from "@/app/Components/ProjectsComponents/ProjectsFilter";
 import ProjectsPagination from "@/app/Components/ProjectsComponents/ProjectsPagination";
-import ProjectsCardProps from "../../Components/ProjectsComponents/ProjectsCardProps";
-import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
+import ProjectsCardProps from "@/app/Components/ProjectsComponents/ProjectsCardProps";
+import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
 import { useGetProjectsQuery } from "@/app/Apis/api";
 import Spinner from "@/app/Components/UI/Spinner";
 import ErrorMessage from "@/app/Components/UI/ErrorMessage";
-import useAppLocale from "@/app/Hooks/GetLocale";
 
 const parseDate = (d: string | null | undefined) => {
   const t = new Date(d || 0);
@@ -17,7 +16,7 @@ const parseDate = (d: string | null | undefined) => {
 
 const Page = () => {
   const { data, error, isLoading } = useGetProjectsQuery();
-  const locale = useAppLocale();
+
   const [filters, setFilters] = useState({
     title: "",
     date: "",
@@ -33,7 +32,7 @@ const Page = () => {
 
     if (filters.title) {
       list = list.filter((project) => {
-        const title = project?.[locale]?.toLowerCase() || "";
+        const title = project?.en?.toLowerCase() || "";
         return title.includes(filters.title.toLowerCase());
       });
     }
@@ -55,12 +54,12 @@ const Page = () => {
         break;
       case "title_asc":
         list.sort((a, b) =>
-          (a?.[locale] || "").localeCompare(b?.[locale] || ""),
+          (a?.en || "").localeCompare(b?.en || ""),
         );
         break;
       case "title_desc":
         list.sort((a, b) =>
-          (b?.[locale] || "").localeCompare(a?.[locale] || ""),
+          (b?.en || "").localeCompare(a?.en || ""),
         );
         break;
       default:
@@ -69,7 +68,7 @@ const Page = () => {
     }
 
     return list;
-  }, [data, filters, locale]);
+  }, [data, filters]);
 
   const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
   const currentData = filteredProjects.slice(

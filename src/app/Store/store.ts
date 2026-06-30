@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { oguzform } from "../Apis/api";
+import { oguzform } from "@/app/Apis/api";
 
 export const store = configureStore({
   reducer: {

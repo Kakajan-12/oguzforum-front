@@ -1,16 +1,15 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
-import NewsFiltr from "../../Components/NewsComponents/NewsFiltr";
-import NewsCardProps from "../../Components/NewsComponents/NewsCardProps";
+import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
+import NewsFiltr from "@/app/Components/NewsComponents/NewsFiltr";
+import NewsCardProps from "@/app/Components/NewsComponents/NewsCardProps";
 import { useGetNewsQuery } from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
+
 import Spinner from "@/app/Components/UI/Spinner";
 import ErrorMessage from "@/app/Components/UI/ErrorMessage";
 
 const Page = () => {
   const { data, error, isLoading } = useGetNewsQuery();
-  const locale = useAppLocale();
 
   const [filters, setFilters] = useState({
     title: "",
@@ -25,7 +24,7 @@ const Page = () => {
 
     if (filters.title) {
       list = list.filter((item) => {
-        const title = item?.[locale]?.toLowerCase() || "";
+        const title = item?.en?.toLowerCase() || "";
         return title.includes(filters.title.toLowerCase());
       });
     }
@@ -47,12 +46,12 @@ const Page = () => {
         break;
       case "title_asc":
         list.sort((a, b) =>
-          (a?.[locale] || "").localeCompare(b?.[locale] || ""),
+          (a?.en || "").localeCompare(b?.en || ""),
         );
         break;
       case "title_desc":
         list.sort((a, b) =>
-          (b?.[locale] || "").localeCompare(a?.[locale] || ""),
+          (b?.en || "").localeCompare(a?.en || ""),
         );
         break;
       default:
@@ -62,7 +61,7 @@ const Page = () => {
     }
 
     return list;
-  }, [data, filters, locale]);
+  }, [data, filters]);
 
   if (isLoading) return <Spinner />;
   if (error) return <ErrorMessage />;

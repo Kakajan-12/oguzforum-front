@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import UpEvents from "../../Components/UpComingComponents/UpEventsFilter";
-import UpCardsWithProps from "../../Components/UpComingComponents/UpCardsWithProps";
-import UpPagination from "../../Components/UpComingComponents/UpPagination";
-import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
+import UpEvents from "@/app/Components/UpComingComponents/UpEventsFilter";
+import UpCardsWithProps from "@/app/Components/UpComingComponents/UpCardsWithProps";
+import UpPagination from "@/app/Components/UpComingComponents/UpPagination";
+import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
 import { useGetProjectsQuery } from "@/app/Apis/api";
 import Spinner from "@/app/Components/UI/Spinner";
 import ErrorMessage from "@/app/Components/UI/ErrorMessage";
-import useAppLocale from "@/app/Hooks/GetLocale";
+
 import DataMessage from "@/app/Components/UI/DataMessage";
 
 const parseDate = (d: string | null | undefined) => {
@@ -19,7 +19,7 @@ const parseDate = (d: string | null | undefined) => {
 const Page = () => {
   const { data, error, isLoading } = useGetProjectsQuery();
   // console.log("data events", data); //для проверки данных
-  const locale = useAppLocale();
+
   const [filters, setFilters] = useState({
     title: "",
     date: "",
@@ -36,7 +36,7 @@ const Page = () => {
 
     if (filters.title) {
       list = list.filter((project) => {
-        const title = project?.[locale]?.toLowerCase() || "";
+        const title = project?.en?.toLowerCase() || "";
         return title.includes(filters.title.toLowerCase());
       });
     }
@@ -60,12 +60,12 @@ const Page = () => {
         break;
       case "title_asc":
         list.sort((a, b) =>
-          (a?.[locale] || "").localeCompare(b?.[locale] || ""),
+          (a?.en || "").localeCompare(b?.en || ""),
         );
         break;
       case "title_desc":
         list.sort((a, b) =>
-          (b?.[locale] || "").localeCompare(a?.[locale] || ""),
+          (b?.en || "").localeCompare(a?.en || ""),
         );
         break;
       default:
@@ -74,7 +74,7 @@ const Page = () => {
     }
 
     return list;
-  }, [data, filters, locale]);
+  }, [data, filters]);
 
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
   const currentData = filteredEvents.slice(

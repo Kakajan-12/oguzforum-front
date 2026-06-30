@@ -14,8 +14,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Oguz Forum & Expo",
-  description: "Oguz Forum & Expo",
+  title: "Oguz Forum | Expo",
+  description: "Oguz Forum | Expo",
   icons: {
     icon: [{ url: "/favicon.ico" }, { url: "/ico.svg", type: "image/svg+xml" }],
   },

@@ -1,5 +1,5 @@
 import React from "react";
-import PrivacyPolicy from "../../Components/PrivacyPolicyCompon/PrivacyPolivy";
+import PrivacyPolicy from "@/app/Components/PrivacyPolicyCompon/PrivacyPolivy";
 import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
 
 const page = () => {

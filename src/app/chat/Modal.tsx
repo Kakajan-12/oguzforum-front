@@ -3,7 +3,7 @@
 import {FaCheck} from "react-icons/fa6";
 import {MdOutlineClose} from "react-icons/md";
 import {BsInfoCircle} from "react-icons/bs";
-import {useTranslations} from "next-intl";
+
 
 interface ModalProps {
     isOpen: boolean;
@@ -15,8 +15,6 @@ interface ModalProps {
 
 export default function Modal({ isOpen, onClose, title, children, type = "info" }: ModalProps) {
     if (!isOpen) return null;
-    const t = useTranslations('chat')
-
     const getIcon = () => {
         switch (type) {
             case "success":
@@ -51,7 +49,7 @@ export default function Modal({ isOpen, onClose, title, children, type = "info" 
                         onClick={onClose}
                         className="px-6 py-2 bg-mainBlue text-white rounded-md hover:bg-blue-600 transition-colors"
                     >
-                        {t('okay')}
+                        {"Okay"}
                     </button>
                 </div>
             </div>

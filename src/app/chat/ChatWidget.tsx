@@ -9,7 +9,7 @@ import MessageInput from "./MessageInput";
 import WorkingHours from "./WorkingHours";
 import Modal from "./Modal";
 import {MdClose, MdOutlineChatBubbleOutline} from "react-icons/md";
-import {useTranslations} from "next-intl";
+
 
 export default function ChatWidget() {
     const messages = chatStore((s) => s.messages);
@@ -21,8 +21,6 @@ export default function ChatWidget() {
     const [isWorkingHours, setIsWorkingHours] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({title: "", message: ""});
-
-    const t = useTranslations("chat");
     const showModal = (title: string, message: string) => {
         setModalContent({title, message});
         setModalOpen(true);
@@ -66,8 +64,8 @@ export default function ChatWidget() {
                 });
             } else if (data.type === "offline_message_sent") {
                 showModal(
-                    `${t('modal-title')}`,
-                    `${t('modal-text')}`,
+                    `${"Message sent"}`,
+                    `${"Your message has been sent successfully! We will respond during business hours."}`,
                 );
             }
         });
@@ -133,7 +131,7 @@ export default function ChatWidget() {
                     <div>
                         <span className="font-semibold">Online Chat</span>
                         {!isWorkingHours && (
-                            <span className="ml-2 text-xs bg-yellow-500 px-2 py-1 rounded">{t('not-working-time')}</span>
+                            <span className="ml-2 text-xs bg-yellow-500 px-2 py-1 rounded">{"Not working time"}</span>
                         )}
                     </div>
                     <button

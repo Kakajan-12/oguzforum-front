@@ -1,13 +1,11 @@
 import React from "react";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { InsideNews } from "@/app/Intarfaces/SinglePageInterface";
 interface Props {
   news: InsideNews;
 }
 const NewsSinglePageText: React.FC<Props> = ({ news }) => {
-  const locale = useAppLocale();
-  const text = news[`text_${locale}`];
+  const text = news.text_en;
 
   return (
     <div className="container mx-auto px-4">

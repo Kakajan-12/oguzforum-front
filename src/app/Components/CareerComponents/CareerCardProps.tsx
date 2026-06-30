@@ -1,9 +1,8 @@
 "use client";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import {Career} from "@/app/Intarfaces/intarfaces";
 import {AnimatePresence, motion} from "motion/react";
 import React, {useState} from "react";
-import {useTranslations} from "next-intl";
+
 
 interface Props {
     event: Career[];
@@ -17,12 +16,10 @@ const CareerCardProps: React.FC<Props> = ({event, onSelect}) => {
     const ForToggle = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
-    const t = useTranslations("select");
     return (
         <div className="container mx-auto px-4 space-y-2 mb-4">
             {event.map((items, index) => {
-                const locale = useAppLocale()
-                const title = items[locale]
+                const title = items.en
                 return (
                     <div key={items.id} onClick={() => ForToggle(index)} className="
           cursor-pointer shadow-sm w-full border flex flex-col p-2
@@ -51,7 +48,7 @@ const CareerCardProps: React.FC<Props> = ({event, onSelect}) => {
                                                 onSelect?.(items.id);
                                             }}
                                         >
-                                            {t('select')}
+                                            {"Select"}
                                         </button>
 
                                     </div>

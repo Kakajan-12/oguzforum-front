@@ -1,6 +1,4 @@
 "use client";
-
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { Projects, Services } from "@/app/Intarfaces/intarfaces";
 import { InsideNews } from "@/app/Intarfaces/SinglePageInterface";
@@ -18,8 +16,7 @@ interface Props {
 }
 
 const BackgroundUi: React.FC<Props> = ({ event }) => {
-  const locale = useAppLocale();
-  const title = event?.data?.[locale] ?? "";
+  const title = event?.data?.en ?? "";
 
   const imageUrl = event?.data?.image ? event.data.image : "/default-image.jpg";
   return (

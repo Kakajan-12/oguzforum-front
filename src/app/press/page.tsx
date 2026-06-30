@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetPressQuery } from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
+
 import Spinner from "@/app/Components/UI/Spinner";
 import ErrorMessage from "@/app/Components/UI/ErrorMessage";
 import React, { useMemo, useState, useEffect, useRef } from "react";
@@ -12,7 +12,6 @@ import ProjectsPagination from "@/app/Components/ProjectsComponents/ProjectsPagi
 
 const Press = () => {
   const { data, error, isLoading } = useGetPressQuery();
-  const locale = useAppLocale();
 
   const [filters, setFilters] = useState({
     title: "",
@@ -29,7 +28,7 @@ const Press = () => {
 
     if (filters.title) {
       list = list.filter((item) => {
-        const title = item?.[locale]?.toLowerCase() || "";
+        const title = item?.en?.toLowerCase() || "";
         return title.includes(filters.title.toLowerCase());
       });
     }
@@ -51,12 +50,12 @@ const Press = () => {
         break;
       case "title_asc":
         list.sort((a, b) =>
-          (a?.[locale] || "").localeCompare(b?.[locale] || ""),
+          (a?.en || "").localeCompare(b?.en || ""),
         );
         break;
       case "title_desc":
         list.sort((a, b) =>
-          (b?.[locale] || "").localeCompare(a?.[locale] || ""),
+          (b?.en || "").localeCompare(a?.en || ""),
         );
         break;
       default:
@@ -67,7 +66,7 @@ const Press = () => {
     }
 
     return list;
-  }, [data, filters, locale]);
+  }, [data, filters]);
 
   const totalPages = Math.ceil(filteredPress.length / itemsPerPage);
   const currentData = filteredPress.slice(

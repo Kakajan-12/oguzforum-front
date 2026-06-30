@@ -1,12 +1,12 @@
 "use client";
-import CareerCardProps from "../../Components/CareerComponents/CareerCardProps";
+import CareerCardProps from "@/app/Components/CareerComponents/CareerCardProps";
 import { useApplyJobMutation, useGetCareerQuery } from "@/app/Apis/api";
 import React, { useState, useRef } from "react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import NavigationBackKnob from "@/app/Components/ForBackKnob/NavigationBackKnob";
 import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
-import { useTranslations } from "next-intl";
+
 import { BASE_API_URL } from "@/constant";
 import { ToastContainer, toast } from "react-toastify";
 import Spinner from "@/app/Components/UI/Spinner";
@@ -15,8 +15,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { TbPaperclip, TbTrash } from "react-icons/tb";
 
 export default function CareerRedirectPage() {
-  const t = useTranslations("careers");
-  const s = useTranslations("toast");
+
+
   const { data, error, isLoading } = useGetCareerQuery();
   const [createProfile] = useApplyJobMutation();
   const [active, setActive] = useState<string | null>(null);
@@ -97,11 +97,11 @@ export default function CareerRedirectPage() {
         throw new Error(result.error || "Ошибка при отправке");
       }
 
-      toast.success(s("successful"));
+      toast.success("Application sent successfully!");
       resetForm();
     } catch (error) {
       console.error("Ошибка отправки:", error);
-      toast.error(s("error"));
+      toast.error("There was an error sending...");
     }
   };
 
@@ -136,7 +136,7 @@ export default function CareerRedirectPage() {
           <div className="flex items-center">
             <NavigationBackKnob />
             <div className="uppercase text-xl md:text-4xl font-extrabold text-mainBlue">
-              {t("title")}
+              {"careers"}
             </div>
           </div>
           <div className="flex min-[340px]:flex-row border-[1px] border-slate-400 rounded-lg">
@@ -148,7 +148,7 @@ export default function CareerRedirectPage() {
                   : "text-mainBlue text-opacity-30"
               }`}
             >
-              {t("vacancies")}
+              {"Vacancies"}
             </button>
             <button
               onClick={() => {
@@ -161,7 +161,7 @@ export default function CareerRedirectPage() {
                   : "text-mainBlue text-opacity-30"
               }`}
             >
-              {t("apply")}
+              {"Apply for job"}
             </button>
           </div>
         </div>
@@ -177,14 +177,14 @@ export default function CareerRedirectPage() {
             <div className="flex flex-col space-y-4">
               <div className="w-full">
                 <h3 className="text-lg md:text-3xl lg:text-4xl font-bold text-center">
-                  {t("personal")}
+                  {"Personal information"}
                 </h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
                 <div>
                   <label className="text-sm md:text-md lg:text-lg">
-                    {t("fname")}
+                    {"First name"}
                   </label>
                   <input
                     value={name}
@@ -196,7 +196,7 @@ export default function CareerRedirectPage() {
 
                 <div>
                   <label className="text-sm md:text-md lg:text-lg">
-                    {t("lname")}
+                    {"Last name"}
                   </label>
                   <input
                     value={surname}
@@ -208,7 +208,7 @@ export default function CareerRedirectPage() {
 
                 <div>
                   <label className="text-sm md:text-md lg:text-lg">
-                    {t("email")}
+                    {"Email"}
                   </label>
                   <input
                     value={email}
@@ -220,7 +220,7 @@ export default function CareerRedirectPage() {
 
                 <div>
                   <label className="text-sm md:text-md lg:text-lg">
-                    {t("phone")}
+                    {"Phone"}
                   </label>
                   <PhoneInput
                     defaultCountry="tm"
@@ -232,15 +232,15 @@ export default function CareerRedirectPage() {
 
               <div className="pt-2">
                 <h3 className="text-lg md:text-3xl lg:text-4xl font-bold text-center">
-                  {t("profile")}
+                  {"Portfolio"}
                 </h3>
                 <div className="pt-2 space-y-3">
                   <div className="text-xs sm:text-sm md:text-md lg:text-lg">
-                    {t("upload-file")}
+                    {"Add or drop your files here"}
                   </div>
                   {!portfolioFile ? (
                     <label className="w-full flex items-center justify-between border border-slate-300 p-2 rounded-md bg-gray-100 cursor-pointer">
-                      {t("upload-portfolio") || "Прикрепить PDF (портфолио)"}
+                      {"Upload portfolio (pdf)"}
 
                       <TbPaperclip size={22} className="text-gray-600" />
 
@@ -266,7 +266,7 @@ export default function CareerRedirectPage() {
                   )}
                   {!cvFile ? (
                     <label className="w-full flex items-center justify-between border border-slate-300 p-2 rounded-md bg-gray-100 cursor-pointer">
-                      {t("upload-cv") || "Прикрепить PDF (cv)"}
+                      {"Upload CV (pdf)"}
 
                       <TbPaperclip size={22} className="text-gray-600" />
 
@@ -298,7 +298,7 @@ export default function CareerRedirectPage() {
               type="submit"
               className="bg-mainBlue md:w-44 w-32 rounded-md text-sm sm:text-sm md:text-md lg:text-lg font-bold py-2 md:py-3 self-center text-white my-2 md:my-4"
             >
-              {t("send")}
+              {"Send"}
             </button>
           </form>
         </div>

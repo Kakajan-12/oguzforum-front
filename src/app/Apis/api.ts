@@ -16,8 +16,8 @@ import {
     Slider,
     Privacy,
     Cookie
-} from "../Intarfaces/intarfaces";
-import {InsideNews} from "../Intarfaces/SinglePageInterface";
+} from "@/app/Intarfaces/intarfaces";
+import {InsideNews} from "@/app/Intarfaces/SinglePageInterface";
 
 export const oguzform = createApi({
     reducerPath: "oguzform",

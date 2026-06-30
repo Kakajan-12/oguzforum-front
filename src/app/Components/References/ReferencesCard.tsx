@@ -1,6 +1,4 @@
 "use client";
-
-import useAppLocale from "@/app/Hooks/GetLocale";
 import { References } from "@/app/Intarfaces/intarfaces";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -14,7 +12,6 @@ interface Props {
 }
 
 const ReferencesCard: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
-  const locale = useAppLocale();
   const [page, setPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
@@ -52,7 +49,7 @@ const ReferencesCard: React.FC<Props> = ({ event, itemsPerPage = 10 }) => {
     <div ref={cardsTopRef} className="container mx-auto px-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentData.map((items) => {
-          const name = (items as any)[`name_${locale}`] || "";
+          const name = (items as any).name_en || "";
 
           return (
             <div

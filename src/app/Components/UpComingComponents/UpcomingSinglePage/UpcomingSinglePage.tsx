@@ -2,9 +2,8 @@
 import React, { useEffect, useState } from "react";
 import NavigationBackKnob from "../../ForBackKnob/NavigationBackKnob";
 import { Projects } from "@/app/Intarfaces/intarfaces";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
-import { useTranslations } from "next-intl";
+
 import Image from "next/image";
 import { resolveMediaUrl } from "@/constant";
 import axios from "axios";
@@ -26,14 +25,11 @@ interface ImageItem {
 }
 
 const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
-  const locale = useAppLocale();
-  const t = useTranslations("event");
   const location =
-    event?.[`location_${locale}`] ||
     event?.location_en ||
     "Location not available";
   const text =
-    event?.[`text_${locale}`] || event?.text_en || "<p>Text not available</p>";
+    event?.text_en || "<p>Text not available</p>";
   const date = event?.date
     ? new Date(event.date).toLocaleDateString("tm-TM")
     : "—";
@@ -75,11 +71,11 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
             <div className="flex flex-col divide-y-2 divide-[#002A5F] sm:divide-y-0">
               <div className="flex flex-wrap sm:justify-center flex-col sm:flex-row sm:space-y-4">
                 {[
-                  { label: t("speakers"), value: event.speakers },
-                  { label: t("delegates"), value: event.delegates },
-                  { label: t("countries"), value: event.countries },
-                  { label: t("companies"), value: event.companies },
-                  { label: t("media"), value: event.media },
+                  { label: "Speakers", value: event.speakers },
+                  { label: "Delegates", value: event.delegates },
+                  { label: "Countries", value: event.countries },
+                  { label: "Companies", value: event.companies },
+                  { label: "Media", value: event.media },
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -113,7 +109,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
                 <div className="flex flex-col space-y-2">
                   <div className="flex space-x-2">
                     <p className="text-sm md:text-md lg:text-lg font-bold">
-                      {t("date")}
+                      {"Date"}
                     </p>
                     <p className="text-sm md:text-md lg:text-lg font-medium sm:ml-2">
                       {" "}
@@ -122,7 +118,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
                   </div>
                   <div className="flex flex-col sm:flex-row sm:space-x-2">
                     <p className="text-sm md:text-md lg:text-lg font-bold">
-                      {t("location")}
+                      {"Location"}
                     </p>
                     <p className="text-sm md:text-md lg:text-lg font-medium sm:ml-2">
                       {location}
@@ -131,7 +127,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
                 </div>
                 <div>
                   <p className="text-sm md:text-md lg:text-lg font-bold">
-                    {t("organizers")}
+                    {"Organizers"}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mt-2">
@@ -147,7 +143,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
                             <Image
                               src={logoUrl}
                               alt={
-                                org[`organizer_${locale}`] || "Organizer logo"
+                                org.organizer_en || "Organizer logo"
                               }
                               width={50}
                               height={50}
@@ -156,7 +152,7 @@ const UpcomingSinglePage: React.FC<Props> = ({ event }) => {
                           </div>
 
                           <p className="text-sm md:text-md lg:text-lg font-medium">
-                            {org[`organizer_${locale}`]}
+                            {org.organizer_en}
                           </p>
                         </div>
                       );

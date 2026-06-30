@@ -57,8 +57,8 @@ export default function MobileMenu({
   const phone = numberData?.[0]?.number ?? CONTACT_PHONE;
   const email = mailData?.[0]?.mail ?? CONTACT_EMAIL;
   const socials = (links ?? [])
-    .map((l) => ({ ...l, Icon: SOCIAL_ICONS[l.icon?.toLowerCase()] }))
-    .filter((l) => l.Icon && l.url);
+    .map((l) => ({ ...l, Icon: SOCIAL_ICONS[l.icon?.toLowerCase() ?? ""] as IconType | undefined }))
+    .filter((l): l is typeof l & { Icon: IconType } => Boolean(l.Icon) && Boolean(l.url));
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");

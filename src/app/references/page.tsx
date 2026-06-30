@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useMemo } from "react";
-import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
+import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
 import { useGetReferencesQuery } from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
+
 import ReferencesFilter from "@/app/Components/References/ReferncesFilter";
 import ReferencesCard from "@/app/Components/References/ReferencesCard";
 import Spinner from "@/app/Components/UI/Spinner";
@@ -11,7 +11,7 @@ import DataMessage from "@/app/Components/UI/DataMessage";
 
 const References = () => {
   const { data, error, isLoading } = useGetReferencesQuery();
-  const locale = useAppLocale();
+
   const [filters, setFilters] = useState({ name: "", sort: "default" });
 
   const filteredReferences = useMemo(() => {
@@ -21,7 +21,7 @@ const References = () => {
 
     if (filters.name) {
       list = list.filter((references) => {
-        const name = references[`name_${locale}`]?.toLowerCase() || "";
+        const name = references.name_en?.toLowerCase() || "";
         return name.includes(filters.name.toLowerCase());
       });
     }
@@ -39,18 +39,18 @@ const References = () => {
         break;
       case "title_asc":
         list.sort((a, b) =>
-          (a[`name_${locale}`] || "").localeCompare(b[`name_${locale}`] || ""),
+          (a.name_en || "").localeCompare(b.name_en || ""),
         );
         break;
       case "title_desc":
         list.sort((a, b) =>
-          (b[`name_${locale}`] || "").localeCompare(a[`name_${locale}`] || ""),
+          (b.name_en || "").localeCompare(a.name_en || ""),
         );
         break;
     }
 
     return list;
-  }, [data, filters, locale]);
+  }, [data, filters]);
 
   if (isLoading) return <Spinner />;
   if (error) return <ErrorMessage />;

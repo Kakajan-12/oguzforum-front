@@ -1,7 +1,6 @@
 import { useGetNewsQuery } from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
-import { useTranslations } from "next-intl";
+
 import Image from "next/image";
 import Link from "next/link";
 import { resolveMediaUrl } from "@/constant";
@@ -10,11 +9,7 @@ import Spinner from "../../UI/Spinner";
 import ErrorMessage from "../../UI/ErrorMessage";
 
 const NewsMain = () => {
-  const t = useTranslations("News");
-  const e = useTranslations("upcoming");
   const { data, error, isLoading } = useGetNewsQuery();
-  const locale = useAppLocale();
-
   const sortedNews = data
     ? [...data]
         .sort((a, b) => {
@@ -31,19 +26,19 @@ const NewsMain = () => {
       <div className="py-10">
         <div className="flex justify-between">
           <div className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-1/3">
-            {t("newsmain")}
+            {"NEWS"}
           </div>
           <Link
-            href={`/${locale}/news`}
+            href={`/news`}
             className="invisible md:visible bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-xl inline-block text-center"
           >
-            {t("moreNews")}
+            {"More news"}
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:pt-10">
           {sortedNews.map((items) => {
-            const title = items[locale];
-            const cat = items[`cat_${locale}`];
+            const title = items.en;
+            const cat = items.cat_en;
 
             return (
               <div
@@ -78,7 +73,7 @@ const NewsMain = () => {
                         <div className="main-background-color p-2 rounded-full text-white">
                           <MdArrowForwardIos />
                         </div>
-                        <div className="text-sm">{e("more")}</div>
+                        <div className="text-sm">{"More"}</div>
                       </div>
                     </Link>
                   </div>
@@ -88,10 +83,10 @@ const NewsMain = () => {
           })}
         </div>
         <Link
-          href={`/${locale}/news`}
+          href={`/news`}
           className="bg-mainBlue text-white px-8 py-2 rounded-md shadow-2xl text-lg inline-block md:hidden text-center w-full mt-10"
         >
-          {t("moreNews")}
+          {"More news"}
         </Link>
       </div>
     </div>

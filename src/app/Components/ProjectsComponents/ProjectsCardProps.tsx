@@ -1,6 +1,4 @@
 "use client";
-
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { Projects } from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
@@ -9,7 +7,7 @@ import { resolveMediaUrl } from "@/constant";
 import { IoLocationSharp } from "react-icons/io5";
 import { SliceText } from "@/app/Hooks/SliceTexts";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+
 import { PiCalendarBlankDuotone } from "react-icons/pi";
 interface Props {
   event: Projects[];
@@ -21,16 +19,13 @@ const normalizeUrl = (url?: string) => {
 };
 
 const ProjectsCardProps: React.FC<Props> = ({ event }) => {
-  const t = useTranslations("OurProjects");
   const slice = SliceText();
-  const locale = useAppLocale();
-
   return (
     <div className="container mx-auto md:px-7 flex flex-col md:gap-10 gap-5 pb-7 md:pb-10 px-2">
       {event.map((items) => {
-        const title = items[locale];
-        const location = items[`location_${locale}`];
-        const type = items[`type_${locale}`];
+        const title = items.en;
+        const location = items.location_en;
+        const type = items.type_en;
 
         return (
           <div
@@ -63,7 +58,7 @@ const ProjectsCardProps: React.FC<Props> = ({ event }) => {
               {items.organizers && items.organizers.length > 0 && (
                 <div>
                   <div className="font-semibold text-sm mb-1">
-                    {t("organizers")}:
+                    {"Organizers"}:
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
                     {items.organizers.map((org, index) => (
@@ -71,14 +66,14 @@ const ProjectsCardProps: React.FC<Props> = ({ event }) => {
                         {org.organizer_logo && (
                           <Image
                             src={resolveMediaUrl(org.organizer_logo)}
-                            alt={org[`organizer_${locale}`] || "Organizer"}
+                            alt={org.organizer_en || "Organizer"}
                             width={50}
                             height={50}
                             className="object-cover w-14"
                           />
                         )}
                         <span className="text-sm font-medium">
-                          {org[`organizer_${locale}`]}
+                          {org.organizer_en}
                         </span>
                       </div>
                     ))}
@@ -110,7 +105,7 @@ const ProjectsCardProps: React.FC<Props> = ({ event }) => {
                     href={`/projects/${items.id}`}
                     className="main-background-color py-2 px-4 text-white rounded-full w-full text-center"
                   >
-                    {t("explore")}
+                    {"Explore"}
                   </Link>
                 </div>
               </div>

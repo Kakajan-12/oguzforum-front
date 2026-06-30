@@ -10,19 +10,15 @@ import { useGetProjectsQuery } from "@/app/Apis/api";
 import { resolveMediaUrl } from "@/constant";
 import Link from "next/link";
 import RichText from "@/app/Hooks/Richtext";
-import useAppLocale from "@/app/Hooks/GetLocale";
-import { useTranslations } from "next-intl";
+
 import "./Projects.css";
 
 export default function OurProjects() {
-  const t = useTranslations("OurProjects");
   const { data, error, isLoading } = useGetProjectsQuery();
-  const locale = useAppLocale();
-
   return (
     <div className="container mx-auto py-2 md:py-4 lg:py-12 flex flex-col gap-10 px-2">
       <h5 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-1/3">
-        {t("ourmain")}
+        {"OUR PROJECTS"}
       </h5>
       <div className="w-full ">
         <Swiper
@@ -52,7 +48,7 @@ export default function OurProjects() {
           }}
         >
           {data?.map((items, i) => {
-            const texts = items[locale];
+            const texts = items.en;
             return (
               <SwiperSlide key={items.id}>
                 <Link href={`/projects/${items.id}`}>

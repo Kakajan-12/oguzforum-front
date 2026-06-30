@@ -1,13 +1,11 @@
 "use client";
-
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { Faq } from "@/app/Intarfaces/intarfaces";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import NavigationBackKnob from "../ForBackKnob/NavigationBackKnob";
-import { useTranslations } from "next-intl";
+
 import searchIcon from "../../../../public/Search_alt_light (1).png";
 
 interface Props {
@@ -16,10 +14,6 @@ interface Props {
 }
 
 const QuesTionsAndAnswers: React.FC<Props> = ({ event, activeId }) => {
-    const t = useTranslations("BackText");
-    const s = useTranslations("searchPanel");
-    const locale = useAppLocale();
-
     const [visible, setVisible] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [text, setText] = useState("");
@@ -60,7 +54,7 @@ const QuesTionsAndAnswers: React.FC<Props> = ({ event, activeId }) => {
 
         if (value.trim().length > 0) {
             const filtered = event.filter((item) =>
-                item[locale]?.toLowerCase().includes(value.toLowerCase())
+                item.en?.toLowerCase().includes(value.toLowerCase())
             );
             setFilteredFaq(filtered);
             setVisible(true);
@@ -101,7 +95,7 @@ const QuesTionsAndAnswers: React.FC<Props> = ({ event, activeId }) => {
         <div className="container mx-auto px-4">
             <div className="py-6 flex items-center">
                 <NavigationBackKnob />
-                <h2 className="md:text-4xl text-xl font-extrabold text-mainBlue">{t("faq")}</h2>
+                <h2 className="md:text-4xl text-xl font-extrabold text-mainBlue">{"FAQ"}</h2>
             </div>
 
             <div ref={containerRef} className="relative border border-[#002A5F] rounded-md">
@@ -109,7 +103,7 @@ const QuesTionsAndAnswers: React.FC<Props> = ({ event, activeId }) => {
                     onChange={handleChange}
                     value={text}
                     type="text"
-                    placeholder={`${s("search")}...`}
+                    placeholder={`${"Search"}...`}
                     className={`text-[#002A5F] text-xl py-3 pl-10 pr-4 outline-none border-none bg-transparent w-full`}
                     onClick={() => setVisible(true)}
                 />
@@ -131,7 +125,7 @@ const QuesTionsAndAnswers: React.FC<Props> = ({ event, activeId }) => {
                                     className="px-5 py-3 text-white hover:bg-white hover:text-[#002A5F] cursor-pointer"
                                     onClick={() => handleSuggestionClick(item.id)}
                                 >
-                                    {highlightText(item[locale] || "", text)}
+                                    {highlightText(item.en || "", text)}
                                 </div>
                             ))}
                         </motion.div>
@@ -141,8 +135,8 @@ const QuesTionsAndAnswers: React.FC<Props> = ({ event, activeId }) => {
 
             <div className="flex flex-col gap-4 py-8 space-y-2">
                 {event.map((item, index) => {
-                    const title = item[locale];
-                    const content = item[`text_${locale}`];
+                    const title = item.en;
+                    const content = item.text_en;
 
                     return (
                         <div

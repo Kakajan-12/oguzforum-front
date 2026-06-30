@@ -1,6 +1,6 @@
 import React from 'react'
-import BackgroundUi from "../../BackgroundUI/BackgroundStatic";
-import ContactsForm from '../../Components/ContactsFormComponents/ContactsForm'
+import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
+import ContactsForm from '@/app/Components/ContactsFormComponents/ContactsForm'
 
 const page = () => {
   return (

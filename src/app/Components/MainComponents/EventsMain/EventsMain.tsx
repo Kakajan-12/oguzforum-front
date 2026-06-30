@@ -6,9 +6,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+
 import { useGetProjectsQuery } from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import Link from "next/link";
 import { resolveMediaUrl } from "@/constant";
@@ -17,10 +16,6 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 const MainEvents = () => {
   const { data, error, isLoading } = useGetProjectsQuery();
-  const locale = useAppLocale();
-
-  const t = useTranslations("upcoming");
-
   function formatDateRange(start: string, end: string) {
     if (!start) return "";
     const s = new Date(start);
@@ -53,13 +48,13 @@ const MainEvents = () => {
       <div className="flex flex-col items-center justify-center py-14 lg:py-24">
         <div className="w-full flex justify-between items-center mb-8">
           <div className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-            {t("upcoming-events")}
+            {"Events calendar"}
           </div>
           <Link
             href="/events"
             className="hidden sm:block main-background-color px-8 py-1 text-white rounded-md sm:text-md md:text-lg"
           >
-            {t("more")}
+            {"More"}
           </Link>
         </div>
         <div className="w-full mx-auto event-slider ">
@@ -95,7 +90,7 @@ const MainEvents = () => {
             {data
               ?.filter((slide) => new Date(slide.end_date) > new Date())
               .map((slide) => {
-                const title = slide[locale];
+                const title = slide.en;
                 return (
                   <SwiperSlide key={slide.id}>
                     <div className="shadow-xl border-2 rounded-xl bg-white p-2 ">
@@ -137,7 +132,7 @@ const MainEvents = () => {
                               <div className="main-background-color p-2 rounded-full text-white">
                                 <MdArrowForwardIos />
                               </div>
-                              <div className="text-sm">{t("read")}</div>
+                              <div className="text-sm">{"Read more"}</div>
                             </div>
                           </Link>
                         </div>

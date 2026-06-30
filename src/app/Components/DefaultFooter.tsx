@@ -10,14 +10,12 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { useTranslations } from "next-intl";
 import {
   useGetContactsMailQuery,
   useGetContactsNumberQuery,
   useGetContactsAddressQuery,
   useGetLinksQuery,
 } from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import { BASE_API_URL } from "@/constant";
 import Image from "next/image";
@@ -32,17 +30,12 @@ const whoWeAre = [
 ];
 
 const DefaultFooter = () => {
-  const t = useTranslations("Footer");
-  const s = useTranslations("toast");
   const { data: mailData } = useGetContactsMailQuery();
   const { data: numberData } = useGetContactsNumberQuery();
   const { data: addressData } = useGetContactsAddressQuery();
   const { data: messengers } = useGetLinksQuery();
-  const locale = useAppLocale();
-  const footerweAre = t.raw("footerweare");
   const email = mailData?.[0]?.mail ?? "";
   const phoneNumber = numberData?.[0]?.number ?? "";
-  const address = addressData?.[0]?.[`location_${locale}`] ?? "";
   const [subscriberEmail, setSubscriberEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -66,10 +59,10 @@ const DefaultFooter = () => {
 
       if (!response.ok) throw new Error("Failed to subscribe");
 
-      toast.success(s("successfulSubscribe"));
+      toast.success("Successfully subscribed!");
       setSubscriberEmail("");
     } catch (err) {
-      toast.error(s("errorSubscribe"));
+      toast.error("Subscription failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -117,14 +110,14 @@ const DefaultFooter = () => {
           <div className="flex justify-between flex-col lg:flex-row py-5">
             <div className="flex lg:w-2/5 flex-col gap-4">
               <p className="text-base md:text-lg lg:text-3xl text-white font-bolder">
-                {t("footerfresh")}
+                Get the freshest news
               </p>
               <div style={{ borderBottom: "2px solid white" }}>
                 <label htmlFor="email" className="flex px-1">
                   <input
                     id="email"
                     type="text"
-                    placeholder={t("footeremail")}
+                    placeholder="Enter email here "
                     className="bg-transparent w-full outline-none text-white text-sm md:text-base lg:text-lg"
                     value={subscriberEmail}
                     onChange={(e) => setSubscriberEmail(e.target.value)}
@@ -135,7 +128,7 @@ const DefaultFooter = () => {
                     onClick={onSubscribe}
                     disabled={loading}
                   >
-                    {loading ? "Loading..." : t("footersubscribe")}
+                    {loading ? "Loading..." : "Subscribe"}
                   </button>
                 </label>
               </div>
@@ -147,7 +140,7 @@ const DefaultFooter = () => {
 
             <div className="flex lg:w-2/5 flex-col items-center lg:items-start pt-10 lg:pt-0">
               <p className="text-lg md:text-2xl lg:text-3xl mb-10 text-center lg:text-start text-white font-semibold">
-                {t("footercontact")}
+                Contact Us
               </p>
               <div className="w-full flex flex-col items-start space-y-4">
                 {addressData?.[0] && (
@@ -158,7 +151,7 @@ const DefaultFooter = () => {
                     />
                     <div className="text-white text-md lg:text-xl font-bolder flex space-x-2">
                       <RichText
-                        htmlContent={addressData[0][`address_${locale}`]}
+                        htmlContent={addressData[0].address_en}
                       />
                     </div>
                   </div>
@@ -197,7 +190,7 @@ const DefaultFooter = () => {
                     className="text-slate-400 mb-4 lg:mb-0 text-[10px] md:text-sm mr-3"
                     href={item.href}
                   >
-                    {footerweAre[i]}
+                    {item.name}
                   </Link>
                 </div>
               ))}

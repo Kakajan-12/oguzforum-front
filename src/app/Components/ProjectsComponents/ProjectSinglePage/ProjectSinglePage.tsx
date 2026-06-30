@@ -1,17 +1,15 @@
 import React from "react";
 import NavigationBackKnob from "../../ForBackKnob/NavigationBackKnob";
 import { Projects } from "@/app/Intarfaces/intarfaces";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import RichText from "@/app/Hooks/Richtext";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 interface Props {
   event: Projects;
 }
 const ProjectSinglePage: React.FC<Props> = ({ event }) => {
-  const locale = useAppLocale();
-  const title = event[locale];
-  const location = event[`location_${locale}`];
-  const text = event[`text_${locale}`];
+  const title = event.en;
+  const location = event.location_en;
+  const text = event.text_en;
   const date = event.date;
   return (
     <div className="container mx-auto ">

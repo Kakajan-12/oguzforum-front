@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from "react";
-import {useTranslations} from "next-intl";
+
 import {FaArrowRight} from "react-icons/fa6";
 
 interface MessageInputProps {
@@ -11,8 +11,6 @@ interface MessageInputProps {
 export default function MessageInput({ onSend }: MessageInputProps) {
     const [message, setMessage] = useState("");
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const t = useTranslations("chat")
-
     useEffect(() => {
         if (textareaRef.current) {
             textareaRef.current.style.height = "auto";
@@ -47,7 +45,7 @@ export default function MessageInput({ onSend }: MessageInputProps) {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder={t('type-here')}
+                    placeholder={"Write a message..."}
                     className="flex-1 border rounded-lg px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 max-h-32"
                     rows={1}
                     style={{ minHeight: "40px" }}

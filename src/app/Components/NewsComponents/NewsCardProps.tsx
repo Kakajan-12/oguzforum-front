@@ -1,11 +1,11 @@
-import useAppLocale from "@/app/Hooks/GetLocale";
+
 import RichText from "@/app/Hooks/Richtext";
 import { News, Press } from "@/app/Intarfaces/intarfaces";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { resolveMediaUrl } from "@/constant";
 import Pagination from "@mui/material/Pagination";
-import { useTranslations } from "next-intl";
+
 import Link from "next/link";
 
 interface Props {
@@ -23,8 +23,6 @@ const NewsCardProps: React.FC<Props> = ({
   type,
   paginatedByParent = false,
 }) => {
-  const t = useTranslations("upcoming");
-  const locale = useAppLocale();
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(news.length / itemsPerPage);
   const cardsTopRef = useRef<HTMLDivElement | null>(null);
@@ -63,9 +61,9 @@ const NewsCardProps: React.FC<Props> = ({
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
       >
         {displayNews.map((items) => {
-          const title = items[locale];
-          const text = items[`text_${locale}`];
-          const cat = items[`cat_${locale}`];
+          const title = items.en;
+          const text = items.text_en;
+          const cat = items.cat_en;
           return (
             <div
               key={items.id}
@@ -113,10 +111,10 @@ const NewsCardProps: React.FC<Props> = ({
 
                 <div className="pt-5 mt-auto flex justify-end">
                   <Link
-                    href={`/${locale}/${type}/${items.id}`}
+                    href={`/${type}/${items.id}`}
                     className="bg-mainBlue py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded-md"
                   >
-                    {t("read")}
+                    {"Read more"}
                   </Link>
                 </div>
               </div>

@@ -1,9 +1,9 @@
 "use client";
-import Main from "../Components/MainComponents/Main/Main";
+import Main from "@/app/Components/MainComponents/Main/Main";
 import EventsMain from "@/app/Components/MainComponents/EventsMain/EventsMain";
 import NewsMain from "@/app/Components/MainComponents/NewsMain/NewsMain";
-import OurPartnersMain from "../Components/MainComponents/OurPartnersMain/OurPartnersMain";
-import OurProjects from "../Components/MainComponents/ProjectsMain/Projects";
+import OurPartnersMain from "@/app/Components/MainComponents/OurPartnersMain/OurPartnersMain";
+import OurProjects from "@/app/Components/MainComponents/ProjectsMain/Projects";
 
 export default function Home() {
     return (

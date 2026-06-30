@@ -1,18 +1,15 @@
 "use client";
-import {useLocale, useTranslations} from "next-intl";
+
 import React, {useEffect, useMemo, useState} from "react";
 import {PhoneInput} from "react-international-phone";
 import "react-international-phone/style.css";
 import {useGetContactsAddressQuery} from "@/app/Apis/api";
-import useAppLocale from "@/app/Hooks/GetLocale";
 import {BASE_API_URL} from "@/constant";
 
 const ContactsForm = () => {
-    const t = useTranslations("ContactPage");
-    const title = t.raw("contactmains");
-    const input = t.raw("messageinputs");
+    const title = ["OUR OFFICE","YOUR MESSAGE"];
+    const input = ["Name","Surname","Email","Subject","Your message ...","Enter text in the picture","Send"];
 
-    const locales: "ru" | "en" | "tk" = useAppLocale();
     const [formData, setFormData] = useState({
         name: "",
         surname: "",
@@ -133,10 +130,10 @@ const ContactsForm = () => {
                             <div className="space-y-2">
                                 <div className="flex items-center space-x-2 text-mainBlue">
                                     <div className="text-sm md:text-base lg:text-lg font-bold">
-                                        {currentOffice[`location_${locales}`]?.replace(/<[^>]*>?/gm, '') || `Office ${activeIndex + 1}`}:
+                                        {currentOffice.location_en?.replace(/<[^>]*>?/gm, '') || `Office ${activeIndex + 1}`}:
                                     </div>
                                     <div>
-                                        {currentOffice[`address_${locales}`] || "No address provided"}
+                                        {currentOffice.address_en || "No address provided"}
                                     </div>
                                 </div>
 
@@ -166,8 +163,8 @@ const ContactsForm = () => {
 
                         <div className="border justify-self-end flex w-full justify-between border-slate-300 rounded-md divide-x-2">
                             {offices?.map((office: any, index: number) => {
-                                const title = office[`location_${locales}`]
-                                    ? office[`location_${locales}`].replace(/<[^>]*>?/gm, '')
+                                const title = office.location_en
+                                    ? office.location_en.replace(/<[^>]*>?/gm, '')
                                     : `Office ${index + 1}`;
 
                                 return (

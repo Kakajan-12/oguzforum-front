@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import ForFaq from "../../Components/ForFaqSearch/ForBackFaq";
-import QuesTionsAndAnswers from "../../Components/ForFaqSearch/QuesTionsAndAnswers";
+import ForFaq from "@/app/Components/ForFaqSearch/ForBackFaq";
+import QuesTionsAndAnswers from "@/app/Components/ForFaqSearch/QuesTionsAndAnswers";
 import { useGetFaqQuery } from "@/app/Apis/api";
 import Spinner from "@/app/Components/UI/Spinner";
 import ErrorMessage from "@/app/Components/UI/ErrorMessage";
