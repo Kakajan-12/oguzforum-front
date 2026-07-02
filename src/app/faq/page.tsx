@@ -1,29 +1,103 @@
 "use client";
-import React, { useRef, useState } from "react";
-import ForFaq from "@/app/Components/ForFaqSearch/ForBackFaq";
-import QuesTionsAndAnswers from "@/app/Components/ForFaqSearch/QuesTionsAndAnswers";
-import { useGetFaqQuery } from "@/app/Apis/api";
-import Spinner from "@/app/Components/UI/Spinner";
-import ErrorMessage from "@/app/Components/UI/ErrorMessage";
+import { useMemo, useState } from "react";
+import Image from "next/image";
+import { FiSearch } from "react-icons/fi";
 
-const Page = () => {
-    const { data, error, isLoading } = useGetFaqQuery();
-    const [activeId, setActiveId] = useState<number | null>(null);
+import { useGetFaqQuery } from "@/lib/api";
+import { stripHtml } from "@/lib/utils/cardHelpers";
+import PageHero from "@/components/ui/PageHero";
+import RichText from "@/components/ui/RichText";
+import Spinner from "@/components/ui/Spinner";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
-    if (isLoading) return <Spinner />;
-    if (error) return <ErrorMessage />;
-    if (!data) return <p>Not found</p>;
+export default function FaqPage() {
+  const { data, error, isLoading } = useGetFaqQuery();
+  const [search, setSearch] = useState("");
+  const [openId, setOpenId] = useState<number | null>(null);
 
-    const handleQuestionClick = (id: number) => {
-        setActiveId(id);
-    };
+  const filtered = useMemo(() => {
+    const list = data ?? [];
+    if (!search.trim()) return list;
+    const q = search.toLowerCase();
+    return list.filter((f) => stripHtml(f.en).toLowerCase().includes(q));
+  }, [data, search]);
 
-    return (
-        <div>
-            <ForFaq faqData={data} onQuestionClick={handleQuestionClick} />
-            <QuesTionsAndAnswers event={data} activeId={activeId} />
+  return (
+    <>
+      <PageHero
+        title="FAQ"
+        subtitle="Find answers to the most frequently asked questions."
+        image="/header-bg.jpg"
+      />
+
+      <section className="bg-white">
+        <div className="container mx-auto px-4 py-14 lg:py-20">
+          <div className="mx-auto max-w-3xl">
+            {/* Search */}
+            <div className="relative mb-8">
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search questions"
+                className="w-full rounded-md border border-gray-200 py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
+              />
+              <FiSearch
+                className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                size={20}
+              />
+            </div>
+
+            {isLoading ? (
+              <Spinner />
+            ) : error ? (
+              <ErrorMessage />
+            ) : filtered.length === 0 ? (
+              <p className="text-gray-500">No questions found.</p>
+            ) : (
+              <div className="space-y-4">
+                {filtered.map((item) => {
+                  const open = openId === item.id;
+                  return (
+                    <div
+                      key={item.id}
+                      className="overflow-hidden rounded-lg border border-gray-200 transition-colors"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setOpenId(open ? null : item.id)}
+                        aria-expanded={open}
+                        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                      >
+                        <span className="text-base font-semibold text-gray-900 sm:text-lg">
+                          {stripHtml(item.en)}
+                        </span>
+                        <Image
+                          src="/assets/link.svg"
+                          width={16}
+                          height={16}
+                          alt=""
+                          className={`shrink-0 [filter:brightness(0)] transition-transform duration-300 ${
+                            open ? "rotate-90" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {open && (
+                        <div className="px-6 pb-6">
+                          <RichText
+                            htmlContent={item.text_en}
+                            className="text-[0.95rem] leading-relaxed text-gray-500"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
-    );
-};
-
-export default Page;
+      </section>
+    </>
+  );
+}

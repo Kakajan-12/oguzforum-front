@@ -1,9 +1,9 @@
 "use client";
-import Main from "@/app/Components/MainComponents/Main/Main";
-import EventsMain from "@/app/Components/MainComponents/EventsMain/EventsMain";
-import NewsMain from "@/app/Components/MainComponents/NewsMain/NewsMain";
-import OurPartnersMain from "@/app/Components/MainComponents/OurPartnersMain/OurPartnersMain";
-import OurProjects from "@/app/Components/MainComponents/ProjectsMain/Projects";
+import Main from "@/components/home/Hero/Hero";
+import EventsMain from "@/components/home/Events/Events";
+import NewsMain from "@/components/home/News/News";
+import OurPartnersMain from "@/components/home/Partners/Partners";
+import OurProjects from "@/components/home/Projects/Projects";
 
 export default function Home() {
     return (

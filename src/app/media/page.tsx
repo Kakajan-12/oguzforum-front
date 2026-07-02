@@ -1,31 +1,36 @@
+import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 
-const Media = () => {
-    return (
-        <div className="relative w-full h-screen">
-            <Image
-                src="/Career.webp"
-                alt={"background"}
-                width={1920}
-                height={1080}
-                priority
-                className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
+export const metadata = {
+  title: "Media Center — Coming soon | Oguz Forum",
+};
 
+export default function MediaComingSoon() {
+  return (
+    <section className="flex min-h-[70vh] items-center justify-center bg-white px-4 pt-24 pb-16">
+      <div className="max-w-xl text-center">
 
-            <div
-                className="flex justify-center items-center h-full w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="text-white text-center text-3xl md:text-6xl font-bold md:max-w-[900px] px-5">
-                    <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">
-                        Coming soon
-                    </p>
+        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#1268B3]">
+          Media Center
+        </p>
 
-                </div>
-            </div>
-        </div>
-    )
+        <h1 className="mt-3 text-4xl font-bold text-gray-900 sm:text-5xl">
+          Coming soon
+        </h1>
+
+        <p className="mt-4 text-[0.95rem] leading-relaxed text-gray-500">
+          We&apos;re putting together our Media Center — photos, videos, and
+          press materials from OGUZ Forum events. Check back soon.
+        </p>
+
+        <Link
+          href="/"
+          className="mt-8 inline-flex items-center gap-2 rounded-md bg-[#1268B3] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694]"
+        >
+          Back to Home
+          <Image src="/assets/link.svg" width={12} height={12} alt="" />
+        </Link>
+      </div>
+    </section>
+  );
 }
-
-export default Media

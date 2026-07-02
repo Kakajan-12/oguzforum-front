@@ -1,0 +1,119 @@
+.ev-section {
+  background: linear-gradient(180deg, #103c85 0%, #164094 45%, #0565af 100%);
+}
+
+.ev-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  padding-bottom: 3px;
+  transition: opacity 0.2s ease;
+}
+.ev-all:hover {
+  opacity: 0.8;
+}
+
+.ev-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #9aa0a6;
+}
+
+.ev-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0) 45%
+  );
+  transition: background 0.35s ease;
+  z-index: 1;
+}
+
+.ev-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 22px;
+  color: #fff;
+  z-index: 2;
+}
+
+.ev-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ev-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+.ev-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.ev-meta-row svg {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.ev-arrow {
+  position: absolute;
+  right: 22px;
+  bottom: 24px;
+  z-index: 3;
+}
+
+/* Desktop: details collapsed until hover; title lifts as they expand */
+@media (min-width: 768px) {
+  .ev-meta {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition:
+      opacity 0.35s ease,
+      max-height 0.35s ease,
+      margin-top 0.35s ease;
+  }
+  .ev-arrow {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+  }
+  .ev-tile:hover .ev-meta {
+    opacity: 1;
+    max-height: 110px;
+    margin-top: 12px;
+  }
+  .ev-tile:hover .ev-arrow {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .ev-tile:hover .ev-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.18) 75%
+    );
+  }
+}

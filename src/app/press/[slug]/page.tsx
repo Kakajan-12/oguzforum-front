@@ -1,12 +1,12 @@
 "use client";
-import BackgroundUi from "@/app/BackgroundUI/BackgroundUi";
-import { useGetNewsByIdQuery } from "@/app/Apis/api";
-import NewsSinglePageText from "@/app/Components/NewsComponents/NewSinglePageText/NewsSinglePageText";
+import BackgroundUi from "@/components/ui/PageBanner/PageBanner";
+import { useGetNewsByIdQuery } from "@/lib/api";
+import NewsSinglePageText from "@/components/news/NewsSinglePageText";
 import { useParams } from "next/navigation";
 import React from "react";
-import Spinner from "@/app/Components/UI/Spinner";
-import ErrorMessage from "@/app/Components/UI/ErrorMessage";
-import DataMessage from "@/app/Components/UI/DataMessage";
+import Spinner from "@/components/ui/Spinner";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import DataMessage from "@/components/ui/DataMessage";
 
 const page = () => {
   const { slug } = useParams<{ slug: string }>();

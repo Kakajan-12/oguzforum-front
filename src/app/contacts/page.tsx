@@ -1,14 +1,17 @@
-import React from 'react'
-import BackgroundUi from "@/app/BackgroundUI/BackgroundStatic";
-import ContactsForm from '@/app/Components/ContactsFormComponents/ContactsForm'
+import PageHero from "@/components/ui/PageHero";
+import ContactsForm from "@/components/contacts/ContactsForm";
 
-const page = () => {
+const Page = () => {
   return (
-    <div>
-        <BackgroundUi src="Contacts.webp" name="contacts" />
-        <ContactsForm/>
-    </div>
-  )
-}
+    <>
+      <PageHero
+        title="Contacts"
+        subtitle="Connect with our team for inquiries and collaboration."
+        image="/header-bg.jpg"
+      />
+      <ContactsForm />
+    </>
+  );
+};
 
-export default page
+export default Page;
