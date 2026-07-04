@@ -16,9 +16,13 @@ export const metadata: Metadata = {
   title: "Oguz Forum | Expo",
   description: "Oguz Forum | Expo",
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/logo.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
   },
 };
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />;
 
 export default function RootLayout({
   children,

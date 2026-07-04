@@ -13,7 +13,7 @@ const INFORMATION = [
   { name: "Events", href: "/events" },
   { name: "Projects", href: "/projects" },
   { name: "Newsroom", href: "/news" },
-  { name: "Company profile", href: "/about"},
+  { name: "Company profile", href: "/about" },
   { name: "FAQ", href: "/faq" },
 ];
 
@@ -45,9 +45,6 @@ const DefaultFooter = () => {
   const { data: mailData } = useGetContactsMailQuery();
   const { data: numberData } = useGetContactsNumberQuery();
   const { data: links } = useGetLinksQuery();
-
-  const email = mailData?.[0]?.mail ?? "info@oguzforum.com";
-  const phoneNumber = numberData?.[0]?.number ?? "+99361 480 080";
 
   const socials =
     links && links.length > 0
@@ -123,13 +120,15 @@ const DefaultFooter = () => {
         <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-[1.5fr_1fr_1fr_1.1fr] py-6">
           {/* Brand */}
           <div className="mb-6 md:mb-0">
-            <Image
-              src="/oguz white.png"
-              width={400}
-              height={200}
-              alt="Oguz Forum & Expo"
-              className="h-20 w-auto"
-            />
+            <div className="shrink-0">
+              <Image
+                src="/oguz white.png"
+                width={182}
+                height={68}
+                alt="Oguz Forum & Expo"
+                className="h-auto w-auto"
+              />
+            </div>
             <p className="mt-5 text-xl text-white">Through connections</p>
           </div>
 
@@ -147,7 +146,11 @@ const DefaultFooter = () => {
           </Section>
 
           {/* Social Media — on mobile it goes after Contact (per mobile design) */}
-          <Section id="social" title="Social Media" className="order-last md:order-none">
+          <Section
+            id="social"
+            title="Social Media"
+            className="order-last md:order-none"
+          >
             {socials.map((s) => (
               <a
                 key={s.id}
@@ -163,20 +166,30 @@ const DefaultFooter = () => {
 
           {/* Contact */}
           <Section id="contact" title="Contact">
-            <a
-              href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
-              className="flex items-center gap-3 text-[0.95rem] text-white transition-colors hover:text-white/85"
-            >
-              <FiPhone className="shrink-0" size={17} />
-              {phoneNumber}
-            </a>
-            <a
-              href={`mailto:${email}`}
-              className="flex items-center gap-3 text-[0.95rem] text-white transition-colors hover:text-white/85"
-            >
-              <FiMail className="shrink-0" size={17} />
-              {email}
-            </a>
+            {numberData &&
+              numberData.length > 0 &&
+              numberData.map((item) => (
+                <a
+                  key={item.id ?? item.number}
+                  href={`tel:${item.number.replace(/\s+/g, "")}`}
+                  className="flex items-center gap-3 text-[0.95rem] text-white transition-colors hover:text-white/85"
+                >
+                  <FiPhone className="shrink-0" size={17} />
+                  {item.number}
+                </a>
+              ))}
+            {mailData &&
+              mailData.length > 0 &&
+              mailData.map((item) => (
+                <a
+                  key={item.id ?? item.mail}
+                  href={`mailto:${item.mail}`}
+                  className="flex items-center gap-3 text-[0.95rem] text-white transition-colors hover:text-white/85"
+                >
+                  <FiMail className="shrink-0" size={17} />
+                  {item.mail}
+                </a>
+              ))}
           </Section>
         </div>
 
@@ -202,7 +215,13 @@ const DefaultFooter = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 font-medium text-white/90 transition-opacity hover:opacity-80"
             >
-              <Image src="/hebent-logo.png" alt="" width={200} height={200} className="w-full" />
+              <Image
+                src="/hebent-logo.png"
+                alt=""
+                width={200}
+                height={200}
+                className="w-full"
+              />
             </a>
           </div>
         </div>
