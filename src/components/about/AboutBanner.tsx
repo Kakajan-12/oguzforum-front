@@ -15,10 +15,10 @@ export default function AboutBanner() {
         <div className="absolute inset-0 flex items-center pt-16">
           <div className="container mx-auto px-4">
             <div className="border-l-[3px] border-[#34C3F0] pl-5">
-              <h1 className="text-white font-bold text-3xl sm:text-4xl lg:text-5xl">
+              <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl">
                 About us
               </h1>
-              <p className="mt-3 max-w-xl text-sm text-white/85 sm:text-base">
+              <p className="mt-3 max-w-xl text-sm text-white sm:text-base">
                 Dedicated to fostering dialogue, collaboration, and meaningful
                 connections.
               </p>

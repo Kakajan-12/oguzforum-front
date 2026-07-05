@@ -58,12 +58,22 @@ export default function Header() {
     pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header className="fixed inset-x-0 top-0 main-background-color" style={{zIndex: 500}}>
+    <header
+      className="fixed inset-x-0 top-0 bg-[#06306A]"
+      style={{ zIndex: 500 }}
+    >
       <div className="container mx-auto px-4">
         <div className="relative flex items-center justify-between h-20">
           {/* Logo */}
           <Link href={`/`} aria-label="Home" className="flex items-center">
-            <Image src="/oguz white.png" width={267} height={100} alt="Oguz Forum & Expo" className="h-11 w-auto" priority />
+            <Image
+              src="/oguzWhite.svg"
+              width={267}
+              height={100}
+              alt="Oguz Forum & Expo"
+              className="h-11 w-auto"
+              priority
+            />
           </Link>
 
           {/* Centre editions (desktop) */}

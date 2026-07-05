@@ -98,7 +98,7 @@
 }
 .pr-meta-row svg {
   flex-shrink: 0;
-  opacity: 0.9;
+  /* opacity: 0.9; */
 }
 
 /* overlay (light text) vs below-image (dark text) meta colours */
@@ -107,7 +107,7 @@
   -webkit-line-clamp: 2;
 }
 .pr-overlay-content .pr-meta {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .pr-below {
@@ -118,10 +118,10 @@
   font-size: 1.15rem;
 }
 .pr-below .pr-desc {
-  color: #6a6a6a;
+  color: #424a4e;
   font-size: 0.9rem;
   -webkit-line-clamp: 3;
 }
 .pr-below .pr-meta {
-  color: #1f2a44;
+  color: #849299;
 }

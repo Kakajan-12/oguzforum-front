@@ -18,16 +18,16 @@ const PILLARS = [
 export default function OurMission() {
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-14 lg:py-20">
-        <h2 className="mb-8 font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900">
+      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+        <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl text-gray-900">
           Our Mission
         </h2>
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 items-center">
           {/* left: image */}
           <div className="relative aspect-[4/3] overflow-hidden rounded">
             <Image
-              src="/about/about-3.jpg"
+              src="/about/about-3.webp"
               alt="Our mission"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -37,7 +37,7 @@ export default function OurMission() {
 
           {/* right: text + pillars */}
           <div>
-            <p className="text-[0.95rem] leading-relaxed text-gray-600">
+            <p className="text-base leading-relaxed">
               Our mission is to foster dialogue, collaboration, and meaningful
               connections that drive real progress. We design and deliver events
               that bring people and institutions together around shared
@@ -49,18 +49,16 @@ export default function OurMission() {
               {PILLARS.map((p) => (
                 <div key={p.title} className="flex items-start gap-4">
                   <Image
-                    src="/logo.svg"
-                    width={28}
-                    height={28}
+                    src="/logoOguzBlue.svg"
+                    width={36}
+                    height={36}
                     alt=""
                     aria-hidden
-                    className="mt-1 h-6 w-6 shrink-0 [filter:brightness(0)]"
+                    className="mt-1 h-9 w-9 shrink-0"
                   />
                   <div>
-                    <h3 className="font-semibold text-gray-900">{p.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-gray-500">
-                      {p.text}
-                    </p>
+                    <h3 className="text-base">{p.title}</h3>
+                    <p className="text-sm leading-relaxed">{p.text}</p>
                   </div>
                 </div>
               ))}

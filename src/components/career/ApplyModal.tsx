@@ -84,18 +84,18 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/50 p-4 py-10"
+      className="fixed top-20 inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/50 p-4 py-10"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl sm:p-8"
+        className="relative w-full max-w-2xl rounded-xl bg-white p-4 shadow-xl sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-5 top-5 z-10 text-gray-500 transition-colors hover:text-gray-800"
+          className="absolute right-4 top-4 sm:top-5 z-10 text-gray-500 transition-colors hover:text-gray-800"
         >
           <FiX size={22} />
         </button>
@@ -106,8 +106,8 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
           className="text-xl font-semibold text-gray-900"
         />
         <p className="mt-2 text-sm text-gray-500">
-          Please complete the form below and upload your CV. Our team will review
-          your application and contact shortlisted candidates.
+          Please complete the form below and upload your CV. Our team will
+          review your application and contact shortlisted candidates.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
@@ -121,7 +121,7 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Your full name"
-                className="w-full rounded-md bg-gray-100 px-4 py-2.5 text-sm outline-none ring-1 ring-transparent focus:ring-[#1268B3]"
+                className="w-full rounded bg-gray-100 px-4 py-2.5 text-sm outline-none ring-1 ring-transparent focus:ring-[#1268B3]"
               />
             </div>
             <div>
@@ -133,7 +133,7 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Example@gmail.com"
-                className="w-full rounded-md bg-gray-100 px-4 py-2.5 text-sm outline-none ring-1 ring-transparent focus:ring-[#1268B3]"
+                className="w-full rounded bg-gray-100 px-4 py-2.5 text-sm outline-none ring-1 ring-transparent focus:ring-[#1268B3]"
               />
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
                   e.preventDefault();
                   pickFile(e.dataTransfer.files?.[0]);
                 }}
-                className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed border-gray-300 bg-gray-50 px-4 py-8 text-center transition-colors hover:border-[#1268B3]"
+                className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded border-2 border-dashed border-gray-300 bg-gray-50 px-4 py-8 text-center transition-colors hover:border-[#1268B3]"
               >
                 <FiUploadCloud size={30} className="text-gray-400" />
                 <span className="text-sm text-gray-700">
@@ -179,7 +179,7 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
                 />
               </label>
             ) : (
-              <div className="flex items-center justify-between rounded-md border border-gray-300 bg-gray-50 px-4 py-3">
+              <div className="flex items-center justify-between rounded border border-gray-300 bg-gray-50 px-4 py-3">
                 <span className="truncate text-sm text-gray-700">
                   {cvFile.name}
                 </span>
@@ -216,7 +216,7 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
             <button
               type="submit"
               disabled={submitting}
-              className="flex items-center gap-2 rounded-md bg-[#1268B3] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694] disabled:opacity-60"
+              className="flex items-center gap-2 rounded bg-[#1268B3] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694] disabled:opacity-60"
             >
               {submitting ? (
                 "Sending..."

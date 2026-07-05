@@ -6,22 +6,18 @@ import { IconType } from "react-icons";
 import { FiX, FiChevronLeft } from "react-icons/fi";
 import {
   FaInstagram,
-  FaTelegramPlane,
-  FaLinkedinIn,
   FaWhatsapp,
   FaYoutube,
   FaFacebookF,
 } from "react-icons/fa";
+import { PiTelegramLogo } from "react-icons/pi";
+import { SlSocialLinkedin } from "react-icons/sl";
 import {
   useGetContactsMailQuery,
   useGetContactsNumberQuery,
   useGetLinksQuery,
 } from "@/lib/api";
-import {
-  MEGA_GROUPS,
-  type Edition,
-  type MegaGroup,
-} from "./navItems";
+import { MEGA_GROUPS, type Edition, type MegaGroup } from "./navItems";
 
 type Props = {
   open: boolean;
@@ -32,8 +28,8 @@ type Props = {
 
 const SOCIAL_ICONS: Record<string, IconType> = {
   instagram: FaInstagram,
-  telegram: FaTelegramPlane,
-  linkedin: FaLinkedinIn,
+  telegram: PiTelegramLogo,
+  linkedin: SlSocialLinkedin,
   whatsapp: FaWhatsapp,
   youtube: FaYoutube,
   facebook: FaFacebookF,
@@ -55,8 +51,14 @@ export default function MobileMenu({
   const phones = numberData?.map((n) => n.number) ?? [];
   const emails = mailData?.map((m) => m.mail) ?? [];
   const socials = (links ?? [])
-    .map((l) => ({ ...l, Icon: SOCIAL_ICONS[l.icon?.toLowerCase() ?? ""] as IconType | undefined }))
-    .filter((l): l is typeof l & { Icon: IconType } => Boolean(l.Icon) && Boolean(l.url));
+    .map((l) => ({
+      ...l,
+      Icon: SOCIAL_ICONS[l.icon?.toLowerCase() ?? ""] as IconType | undefined,
+    }))
+    .filter(
+      (l): l is typeof l & { Icon: IconType } =>
+        Boolean(l.Icon) && Boolean(l.url),
+    );
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
@@ -87,11 +89,27 @@ export default function MobileMenu({
             <FiChevronLeft size={26} />
           </button>
         ) : (
-          <Link href={`/`} onClick={onClose} aria-label="Home" className="flex items-center">
-            <Image src="/oguz white.png" width={267} height={100} alt="Oguz Forum & Expo" className="h-10 w-auto" priority />
+          <Link
+            href={`/`}
+            onClick={onClose}
+            aria-label="Home"
+            className="flex items-center"
+          >
+            <Image
+              src="/oguzWhite.svg"
+              width={267}
+              height={100}
+              alt="Oguz Forum & Expo"
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
         )}
-        <button onClick={onClose} aria-label="Close menu" className="text-white">
+        <button
+          onClick={onClose}
+          aria-label="Close menu"
+          className="text-white"
+        >
           <FiX size={26} />
         </button>
       </div>
@@ -100,15 +118,17 @@ export default function MobileMenu({
         {activeGroup ? (
           /* ---- Level 2: drilled-in group ---- */
           <div>
-            <p className="text-2xl font-medium text-white">{activeGroup.title}</p>
-            <ul className="mt-6">
+            <p className="text-lg font-capitana-medium text-white">
+              {activeGroup.title}
+            </p>
+            <ul className="mt-6 flex flex-col gap-5 ">
               {activeGroup.links.map((link) => (
                 <li key={link.label + link.href}>
                   <Link
                     href={link.href}
                     onClick={onClose}
                     prefetch={false}
-                    className="block py-3.5 text-lg text-white/90 hover:text-white"
+                    className="block text-base text-white hover:text-white/80"
                   >
                     {link.label}
                   </Link>
@@ -128,7 +148,9 @@ export default function MobileMenu({
                     onClick={onClose}
                     prefetch={false}
                     className={`block py-3 text-base ${
-                      isActive(e.href) ? "text-white font-medium" : "text-white/90"
+                      isActive(e.href)
+                        ? "text-white font-medium"
+                        : "text-white/90"
                     }`}
                   >
                     {e.label}
@@ -138,12 +160,12 @@ export default function MobileMenu({
             </ul>
 
             {/* Groups (drill-down) */}
-            <ul className="mt-3 border-t border-white/15 pt-3">
+            <ul className="mt-3 border-t-[0.5px] border-white/60 pt-3">
               {groups.map((group) => (
                 <li key={group.title}>
                   <button
                     onClick={() => setActiveGroup(group)}
-                    className="flex w-full items-center justify-between py-3.5 text-left text-base text-white"
+                    className="flex w-full items-center justify-between py-3.5 text-left font-capitana-medium  text-base text-white"
                   >
                     {group.title}
                     <Image
@@ -161,13 +183,15 @@ export default function MobileMenu({
 
             {/* Contacts */}
             {(phones.length > 0 || emails.length > 0) && (
-              <div className="mt-4 border-t border-white/15 pt-6">
-                <p className="text-lg font-medium text-white">Contacts</p>
+              <div className="mt-4 border-t-[0.5px] border-white/60 pt-6">
+                <p className="text-base font-capitana-medium text-white">
+                  Contacts
+                </p>
                 {phones.map((p, i) => (
                   <a
                     key={`phone-${i}`}
                     href={`tel:${p.replace(/\s/g, "")}`}
-                    className={`block text-sm text-white/80 hover:text-white ${i === 0 ? "mt-4" : "mt-2"}`}
+                    className={`block text-base text-white hover:text-white/80 ${i === 0 ? "mt-4" : "mt-2"}`}
                   >
                     {p}
                   </a>
@@ -176,7 +200,7 @@ export default function MobileMenu({
                   <a
                     key={`mail-${i}`}
                     href={`mailto:${m}`}
-                    className="mt-2 block text-sm text-white/80 hover:text-white"
+                    className="mt-2 block text-base text-white hover:text-white/80"
                   >
                     {m}
                   </a>
@@ -187,7 +211,9 @@ export default function MobileMenu({
             {/* Social media */}
             {socials.length > 0 && (
               <div className="mt-7">
-                <p className="text-lg font-medium text-white">Social media</p>
+                <p className="text-base font-capitana-medium text-white">
+                  Social media
+                </p>
                 <div className="mt-4 flex items-center gap-3">
                   {socials.map(({ id, url, Icon }) => (
                     <a
@@ -195,9 +221,9 @@ export default function MobileMenu({
                       href={url}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#002A5F] hover:bg-white/90 transition"
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#002A5F] hover:bg-white/90 transition"
                     >
-                      <Icon size={18} />
+                      <Icon size={23} />
                     </a>
                   ))}
                 </div>

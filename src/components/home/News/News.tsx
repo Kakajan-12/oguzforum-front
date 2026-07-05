@@ -10,6 +10,8 @@ import {
   readingTime,
 } from "@/lib/utils/cardHelpers";
 import type { News } from "@/types";
+import SectionHeader from "@/components/layout/SectionHeader";
+import { useTranslations } from "next-intl";
 
 function Category({ cat }: { cat?: string }) {
   const c = stripHtml(cat);
@@ -29,7 +31,7 @@ function MetaLine({ n }: { n: News }) {
 
 const NewsMain = () => {
   const { data } = useGetNewsQuery();
-
+  const t = useTranslations("News");
   const sorted = data
     ? [...data]
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -46,27 +48,14 @@ const NewsMain = () => {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-14 lg:py-20">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl text-gray-900">
-            News
-          </h2>
-          <Link
-            href="/news"
-            className="inline-flex items-center gap-2 text-gray-900 text-sm border-b border-gray-900/50 pb-[3px] transition-opacity hover:opacity-70"
-          >
-            All news
-            <Image
-              src="/assets/link.svg"
-              width={12}
-              height={12}
-              alt=""
-              className="[filter:brightness(0)]"
-            />
-          </Link>
-        </div>
+      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+        <SectionHeader
+          title={t("title")}
+          link={{ href: "/news", label: t("all") }}
+          theme="light"
+        />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-4">
           {/* Featured */}
           <Link href={`/news/${featured.id}`} className="group block">
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded">
@@ -78,13 +67,13 @@ const NewsMain = () => {
                 className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
-            <div className="pt-4">
+            <div className="pt-2 md:pt-4">
               <Category cat={featured.cat_en} />
-              <h3 className="mt-2 text-xl sm:text-2xl font-semibold leading-snug text-gray-900 line-clamp-2">
+              <h3 className="mt-1 md:mt-2 text-base sm:text-2xl font-capitana-medium leading-snug text-gray-900 line-clamp-2">
                 {featTitle}
               </h3>
               {featDesc && (
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-gray-500 line-clamp-3">
+                <p className="mt-3 text-base leading-relaxed text-gray-500 line-clamp-3">
                   {featDesc}
                 </p>
               )}
@@ -95,7 +84,7 @@ const NewsMain = () => {
           </Link>
 
           {/* List */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col justify-between gap-4">
             {list.map((n) => {
               const title = stripHtml(n.en) || "News";
               return (
@@ -104,18 +93,18 @@ const NewsMain = () => {
                   href={`/news/${n.id}`}
                   className="group flex flex-col gap-4 md:flex-row"
                 >
-                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded md:aspect-[4/3] md:w-44">
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded md:aspect-[4/3] md:w-[12rem]">
                     <Image
                       src={resolveMediaUrl(n.image)}
                       alt={title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 11rem"
+                      sizes="(max-width: 768px) 100vw, 15rem"
                       className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   </div>
                   <div className="flex flex-col">
                     <Category cat={n.cat_en} />
-                    <h3 className="mt-1 text-base sm:text-lg font-semibold leading-snug text-gray-900 line-clamp-2">
+                    <h3 className="mt-1 text-base sm:text-lg font-capitana-medium leading-snug text-gray-900 line-clamp-2">
                       {title}
                     </h3>
                     <div className="mt-2">

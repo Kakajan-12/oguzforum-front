@@ -40,15 +40,15 @@ export default function NewsGridCard({ n }: { n: News }) {
           </h3>
         </Link>
 
-        <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
+        <div className="mt-2 flex items-center gap-2 text-sm text-[#424A4E]">
           <span>{formatDateRange(n.date)}</span>
-          <span className="text-gray-400">•</span>
+          <span>•</span>
           <span>{readingTime(n.text_en)}</span>
         </div>
 
         <Link
           href={href}
-          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#1268B3] transition-colors hover:text-[#0f5694]"
+          className="mt-4 flex items-center justify-end gap-2 text-sm font-capitana-medium text-[#1268B3] transition-colors hover:text-[#0f5694]"
         >
           MORE DETAILS
           <Image

@@ -1,15 +1,15 @@
-.ev-section {
+/* .ev-section {
   background: linear-gradient(180deg, #103c85 0%, #164094 45%, #0565af 100%);
-}
+} */
 
 .ev-all {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   color: #fff;
-  font-size: 0.95rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-  padding-bottom: 3px;
+  font-size: 14px;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  padding-bottom: 3px; */
   transition: opacity 0.2s ease;
 }
 .ev-all:hover {
@@ -48,6 +48,7 @@
 
 .ev-title {
   font-size: 1.2rem;
+  font-family: "Capitana Medium", sans-serif;
   font-weight: 500;
   line-height: 1.25;
   display: -webkit-box;
@@ -62,7 +63,7 @@
   flex-direction: column;
   gap: 7px;
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.88);
+  color: white;
 }
 .ev-meta-row {
   display: flex;

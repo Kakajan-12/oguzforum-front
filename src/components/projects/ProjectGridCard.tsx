@@ -5,6 +5,7 @@ import { FiCalendar, FiUser } from "react-icons/fi";
 import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import type { Projects } from "@/types";
+import mapPinGray from "../../../public/map-pinGray.svg";
 
 export default function ProjectGridCard({ project }: { project: Projects }) {
   const title = stripHtml(project.en) || "Project";
@@ -28,21 +29,26 @@ export default function ProjectGridCard({ project }: { project: Projects }) {
 
       <div className="pt-4">
         <Link href={href} className="block">
-          <h3 className="text-lg font-semibold leading-snug text-gray-900 line-clamp-2 transition-colors group-hover:text-[#1268B3]">
+          <h3 className="min-h-[2lh] text-lg leading-snug text-gray-900 line-clamp-2 transition-colors group-hover:text-[#1268B3]">
             {title}
           </h3>
         </Link>
-
-        <div className="mt-3 space-y-2 text-sm text-gray-500">
+        <div className="mt-3 space-y-2 text-sm text-[#424A4E]">
           {dateLabel && (
             <span className="flex items-center gap-2">
-              <FiCalendar size={15} className="shrink-0" />
+              <FiCalendar size={16} className="shrink-0" />
               {dateLabel}
             </span>
           )}
           {project.location_en && (
             <span className="flex items-center gap-2">
-              <FiUser size={15} className="shrink-0" />
+              <Image
+                src={mapPinGray}
+                width={15}
+                height={15}
+                alt=""
+                className="shrink-0"
+              />
               {stripHtml(project.location_en)}
             </span>
           )}
@@ -50,7 +56,7 @@ export default function ProjectGridCard({ project }: { project: Projects }) {
 
         <Link
           href={href}
-          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#1268B3] transition-colors hover:text-[#0f5694]"
+          className="mt-4 flex w-full items-center justify-end gap-2 text-sm font-capitana-medium text-[#1268B3] transition-colors hover:text-[#0f5694]"
         >
           MORE DETAILS
           <Image

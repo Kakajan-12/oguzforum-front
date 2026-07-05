@@ -32,7 +32,7 @@ const Main = () => {
   const mediaUrl = slide ? resolveMediaUrl(slide.image) : "";
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative container mx-auto h-screen overflow-hidden">
       {/* Background video */}
       {mediaUrl &&
         (isVideo(slide?.image) ? (
@@ -46,24 +46,17 @@ const Main = () => {
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <Image
-            src={mediaUrl}
-            alt=""
-            fill
-            priority
-            className="object-cover"
-          />
+          <Image src={mediaUrl} alt="" fill priority className="object-cover" />
         ))}
 
-      {/* Navy gradient overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#002A5F]/95 via-[#002A5F]/70 to-transparent" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#002A5F]/80 via-transparent to-[#002A5F]/30" />
+      {/* Gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-hero-gradient" />
 
       {/* Foreground content */}
       <div className="pointer-events-none absolute inset-0 flex items-center">
-        <div className="container mx-auto px-4">
+        <div className="pl-4 xl:pl-20">
           <div className="max-w-2xl">
-            <h1 className="text-white font-semibold leading-[1.05] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="text-white font-capitana-semibold font-semibold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
               {title}
             </h1>
 
@@ -72,15 +65,15 @@ const Main = () => {
                 {stats.map((s, i) => (
                   <li key={i} className="flex items-center gap-3 text-white">
                     <Image
-                      src="/logo.svg"
-                      width={32}
-                      height={32}
+                      src="/logo1.svg"
+                      width={40}
+                      height={40}
                       alt=""
                       aria-hidden
-                      className="h-7 w-7 shrink-0"
+                      className="h-10 w-10 shrink-0"
                     />
                     <div>
-                      <div className="text-xl sm:text-2xl font-semibold leading-none tracking-tight">
+                      <div className="text-xl sm:text-2xl font-capitana-medium font-semibold leading-none tracking-tight">
                         {s.value}
                       </div>
                       <div className="mt-0.5 text-xs sm:text-sm text-white/80">

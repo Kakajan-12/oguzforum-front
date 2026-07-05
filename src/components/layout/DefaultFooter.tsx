@@ -8,20 +8,8 @@ import {
   useGetContactsNumberQuery,
   useGetLinksQuery,
 } from "@/lib/api";
-
-const INFORMATION = [
-  { name: "Events", href: "/events" },
-  { name: "Projects", href: "/projects" },
-  { name: "Newsroom", href: "/news" },
-  { name: "Company profile", href: "/about" },
-  { name: "FAQ", href: "/faq" },
-];
-
-const BOTTOM_LINKS = [
-  { name: "Terms of Use", href: "/termsofuse" },
-  { name: "Privacy Policy", href: "/privacypolicy" },
-  { name: "Cookie Terms", href: "/cookieterms" },
-];
+import LanguageSwitcher from "@/components/layout/LangSwither";
+import { useTranslations } from "next-intl";
 
 const SOCIAL_LABELS: Record<string, string> = {
   instagram: "Instagram",
@@ -35,13 +23,28 @@ const SOCIAL_LABELS: Record<string, string> = {
 function Heading({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="text-lg font-semibold text-white">{children}</h3>
-      <span className="mt-2 hidden h-0.5 w-full bg-white/40 md:block" />
+      <h3 className="text-lg font-capitana-medium text-white md:border-b border-white/40 pb-2">
+        {children}
+      </h3>
     </div>
   );
 }
 
 const DefaultFooter = () => {
+  const t = useTranslations("Footer");
+  const INFORMATION = [
+    { name: t("events"), href: "/events" },
+    { name: t("projects"), href: "/projects" },
+    { name: t("newsroom"), href: "/news" },
+    { name: t("company profile"), href: "/about" },
+    { name: t("faq"), href: "/faq" },
+  ];
+
+  const BOTTOM_LINKS = [
+    { name: t("terms"), href: "/termsofuse" },
+    { name: t("privacy"), href: "/privacypolicy" },
+    { name: t("cookie"), href: "/cookieterms" },
+  ];
   const { data: mailData } = useGetContactsMailQuery();
   const { data: numberData } = useGetContactsNumberQuery();
   const { data: links } = useGetLinksQuery();
@@ -74,9 +77,7 @@ const DefaultFooter = () => {
   }) => {
     const open = openSection === id;
     return (
-      <div
-        className={`border-b border-white/10 py-4 md:border-0 md:py-0 ${className}`}
-      >
+      <div className={`py-4 ${className}`}>
         <button
           type="button"
           onClick={() => toggle(id)}
@@ -116,29 +117,34 @@ const DefaultFooter = () => {
         priority={false}
         className="pointer-events-none absolute right-0 top-1/2 hidden h-[150%] w-auto -translate-y-1/4 translate-x-[37%] select-none opacity-[0.07] md:block"
       />
-      <div className="container relative z-10 mx-auto px-4 pt-12 pb-8">
-        <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-[1.5fr_1fr_1fr_1.1fr] py-6">
+      <div className="container relative z-10 mx-auto px-4 pt-12 pb-3">
+        <div className="grid grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-4 md:grid-cols-[1.5fr_1fr_1fr_1.1fr] py-6">
           {/* Brand */}
-          <div className="mb-6 md:mb-0">
-            <div className="shrink-0">
-              <Image
-                src="/oguz white.png"
-                width={182}
-                height={68}
-                alt="Oguz Forum & Expo"
-                className="h-auto w-auto"
-              />
+          <div className="mb-6 md:mb-0 flex md:flex-col items-start justify-between">
+            <div className="flex flex-col gap-5 md:gap-9">
+              <div className="shrink-0">
+                <Image
+                  src="/oguzWhite.svg"
+                  width={182}
+                  height={68}
+                  alt="Oguz Forum & Expo"
+                  className=""
+                />
+              </div>
+              <p className="text-lg md:text-xl text-white font-capitana-medium">
+                {t("title")}
+              </p>
             </div>
-            <p className="mt-5 text-xl text-white">Through connections</p>
+            <LanguageSwitcher />
           </div>
 
           {/* Information */}
-          <Section id="information" title="Information">
+          <Section id="information" title={t("info")}>
             {INFORMATION.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[0.95rem] text-white transition-colors hover:text-white/80"
+                className="text-base text-white transition-colors hover:text-white/80"
               >
                 {item.name}
               </Link>
@@ -148,7 +154,7 @@ const DefaultFooter = () => {
           {/* Social Media — on mobile it goes after Contact (per mobile design) */}
           <Section
             id="social"
-            title="Social Media"
+            title={t("social")}
             className="order-last md:order-none"
           >
             {socials.map((s) => (
@@ -157,7 +163,7 @@ const DefaultFooter = () => {
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit text-[0.95rem] text-white underline underline-offset-4 transition-colors hover:text-white/80"
+                className="w-fit text-base text-white underline underline-offset-4 transition-colors hover:text-white/80"
               >
                 {s.label}
               </a>
@@ -165,14 +171,14 @@ const DefaultFooter = () => {
           </Section>
 
           {/* Contact */}
-          <Section id="contact" title="Contact">
+          <Section id="contact" title={t("contact")}>
             {numberData &&
               numberData.length > 0 &&
               numberData.map((item) => (
                 <a
                   key={item.id ?? item.number}
                   href={`tel:${item.number.replace(/\s+/g, "")}`}
-                  className="flex items-center gap-3 text-[0.95rem] text-white transition-colors hover:text-white/85"
+                  className="flex items-center gap-3 text-base text-white transition-colors hover:text-white/85"
                 >
                   <FiPhone className="shrink-0" size={17} />
                   {item.number}
@@ -184,7 +190,7 @@ const DefaultFooter = () => {
                 <a
                   key={item.id ?? item.mail}
                   href={`mailto:${item.mail}`}
-                  className="flex items-center gap-3 text-[0.95rem] text-white transition-colors hover:text-white/85"
+                  className="flex items-center gap-3 text-base text-white transition-colors hover:text-white/85"
                 >
                   <FiMail className="shrink-0" size={17} />
                   {item.mail}
@@ -194,7 +200,7 @@ const DefaultFooter = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/85 pt-6 md:flex-row md:items-center md:justify-between">
+        <div className="mt-3 flex flex-col gap-4 border-t border-white/85 pt-3 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white">
             {BOTTOM_LINKS.map((item) => (
               <Link
@@ -208,7 +214,9 @@ const DefaultFooter = () => {
           </div>
 
           <div className="flex items-center gap-3 text-sm text-white/75">
-            <span>© {new Date().getFullYear()}, All rights Reserved</span>
+            <span>
+              © {new Date().getFullYear()}, {t("copyright")}
+            </span>
             <a
               href="https://hebent.tech"
               target="_blank"
@@ -216,7 +224,7 @@ const DefaultFooter = () => {
               className="flex items-center gap-1.5 font-medium text-white/90 transition-opacity hover:opacity-80"
             >
               <Image
-                src="/hebent-logo.png"
+                src="/hebent.svg"
                 alt=""
                 width={200}
                 height={200}

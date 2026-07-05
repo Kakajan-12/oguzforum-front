@@ -37,8 +37,8 @@ export default function OurPartnersMain() {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-14 lg:py-20">
-        <h2 className="mb-10 font-semibold text-3xl sm:text-4xl lg:text-5xl text-gray-900">
+      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+        <h2 className="mb-10 font-capitana-medium text-3xl sm:text-4xl xl:text-5xl text-gray-900">
           Our partners
         </h2>
 
@@ -55,17 +55,28 @@ export default function OurPartnersMain() {
                 aria-hidden={copyIndex > 0 || undefined}
               >
                 {data.map((partner) => (
+                  //   <div
+                  //   key={i}
+                  //   className="relative mx-8 flex h-36 w-44 shrink-0 items-center justify-center  transition duration-300 hover:grayscale-0"
+                  // >
+                  //   <Image
+                  //     src={partner.logo}
+                  //     alt={partner.name}
+                  //     fill
+                  //     sizes="176px"
+                  //     className="object-contain"
+                  //   />
+                  // </div>
                   <div
                     key={`${copyIndex}-${partner.id}`}
-                    className="flex h-16 shrink-0 items-center justify-center px-10"
+                    className="relative mx-5 flex h-28 md:h-36 w-20 md:w-44 shrink-0 items-center justify-center  transition duration-300"
                   >
                     <Image
                       src={resolveMediaUrl(partner.logo)}
                       alt={copyIndex === 0 ? `Partner ${partner.id}` : ""}
-                      width={1800}
-                      height={1800}
-                      sizes="(max-width: 768px) 120px, 170px"
-                      className="h-full w-auto max-h-16 object-contain"
+                      fill
+                      sizes="100px md:176px"
+                      className="object-contain"
                     />
                   </div>
                 ))}

@@ -6,7 +6,10 @@ import { FiCalendar, FiUser } from "react-icons/fi";
 import { useGetProjectsQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
+import locationIcon from "../../../../public/map-pin.svg";
 import "./Events.css";
+import { useTranslations } from "next-intl";
+import SectionHeader from "@/components/layout/SectionHeader";
 
 // Bento placement for up to 4 tiles: tall left, two on top-right, wide bottom.
 const POSITIONS = [
@@ -18,7 +21,7 @@ const POSITIONS = [
 
 const MainEvents = () => {
   const { data } = useGetProjectsQuery();
-
+  const t = useTranslations("Event");
   const now = Date.now();
   const all = data ?? [];
   const upcoming = all
@@ -33,18 +36,14 @@ const MainEvents = () => {
 
   return (
     <section className="ev-section">
-      <div className="container mx-auto px-4 py-14 lg:py-20">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-white font-semibold text-3xl sm:text-4xl lg:text-5xl">
-            Events
-          </h2>
-          <Link href="/projects" className="ev-all">
-            All events
-            <Image src="/assets/link.svg" width={12} height={12} alt="" />
-          </Link>
-        </div>
+      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+        <SectionHeader
+          title={t("title")}
+          link={{ href: "/events", label: t("all") }}
+          theme="dark"
+        />
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
+        <div className="grid w-full flex-1 grid-cols-1 grid-rows-4 gap-4 md:grid-cols-[1.4fr_1fr_1fr] md:grid-rows-2">
           {events.map((e, i) => {
             const title = stripHtml(e.en);
             return (
@@ -66,13 +65,19 @@ const MainEvents = () => {
                   <div className="ev-meta">
                     {formatDateRange(e.date, e.end_date) && (
                       <span className="ev-meta-row">
-                        <FiCalendar size={15} />
+                        <FiCalendar size={16} className="text-white" />
                         {formatDateRange(e.date, e.end_date)}
                       </span>
                     )}
                     {e.location_en && (
                       <span className="ev-meta-row">
-                        <FiUser size={15} />
+                        <Image
+                          src={locationIcon}
+                          alt="Location"
+                          width={16}
+                          height={16}
+                        />
+                        {/* <FiUser size={15} /> */}
                         {e.location_en}
                       </span>
                     )}

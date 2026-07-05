@@ -7,8 +7,6 @@ import "react-international-phone/style.css";
 import { IconType } from "react-icons";
 import {
   FaInstagram,
-  FaTelegramPlane,
-  FaLinkedinIn,
   FaWhatsapp,
   FaYoutube,
   FaFacebookF,
@@ -20,12 +18,13 @@ import {
   useGetLinksQuery,
 } from "@/lib/api";
 import { BASE_API_URL } from "@/constant";
-
+import { PiTelegramLogo } from "react-icons/pi";
+import { SlSocialLinkedin } from "react-icons/sl";
 // Map the backend `icon` string (e.g. "instagram") to a react-icon component.
 const SOCIAL_ICONS: Record<string, IconType> = {
   instagram: FaInstagram,
-  telegram: FaTelegramPlane,
-  linkedin: FaLinkedinIn,
+  telegram: PiTelegramLogo,
+  linkedin: SlSocialLinkedin,
   whatsapp: FaWhatsapp,
   youtube: FaYoutube,
   facebook: FaFacebookF,
@@ -90,7 +89,7 @@ const ContactsForm = () => {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -132,36 +131,36 @@ const ContactsForm = () => {
   };
 
   const inputClass =
-    "w-full rounded-md bg-gray-100 px-4 py-2.5 text-sm text-gray-900 outline-none ring-1 ring-transparent transition focus:ring-[#1268B3]";
+    "w-full rounded bg-gray-100 px-4 py-2.5 text-sm outline-none ring-1 ring-transparent transition focus:ring-[#1268B3]";
 
   // Map points at the exact office location (OFFICE_COORDS).
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-14 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-28 xl:gap-48">
           {/* ── Left: info ─────────────────────────────── */}
           <div>
-            <h2 className="font-medium text-3xl text-gray-900 sm:text-4xl lg:text-5xl">
+            <h2 className="font-medium text-3xl sm:text-4xl lg:text-5xl">
               We are always ready to help you
             </h2>
-            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-gray-600">
+            <p className="mt-5 max-w-md text-base leading-relaxed ">
               Our team is ready to answer your questions and help you find the
               best solution for your needs.
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-9 sm:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 gap-x-24 gap-y-9 sm:grid-cols-[160px_1fr]">
               {phones.length > 0 && (
                 <div>
-                  <div className="flex items-center gap-2 text-gray-900">
-                    <h3 className="text-lg font-semibold">Call Center</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg">Call Center</h3>
                   </div>
                   <div className="mt-2 space-y-1">
                     {phones.map((p, i) => (
                       <a
                         key={`phone-${i}`}
                         href={`tel:${p.replace(/\s/g, "")}`}
-                        className="block text-[0.95rem] text-gray-600 transition-colors hover:text-[#1268B3]"
+                        className="block text-base  transition-colors hover:text-[#1268B3]"
                       >
                         {p}
                       </a>
@@ -172,14 +171,14 @@ const ContactsForm = () => {
 
               {addressList.length > 0 && (
                 <div>
-                  <div className="flex items-center gap-2 text-gray-900">
-                    <h3 className="text-lg font-semibold">Our Location</h3>
+                  <div className="flex items-center gap-2 ">
+                    <h3 className="text-lg">Our Location</h3>
                   </div>
                   <div className="mt-2 space-y-2">
                     {addressList.map((a, i) => (
                       <p
                         key={`addr-${i}`}
-                        className="text-[0.95rem] leading-relaxed text-gray-600"
+                        className="text-base leading-relaxed"
                       >
                         {a}
                       </p>
@@ -190,15 +189,15 @@ const ContactsForm = () => {
 
               {emails.length > 0 && (
                 <div>
-                  <div className="flex items-center gap-2 text-gray-900">
-                    <h3 className="text-lg font-semibold">Email</h3>
+                  <div className="flex items-center gap-2 ">
+                    <h3 className="text-lg">Email</h3>
                   </div>
                   <div className="mt-2 space-y-1">
                     {emails.map((m, i) => (
                       <a
                         key={`mail-${i}`}
                         href={`mailto:${m}`}
-                        className="block break-all text-[0.95rem] text-gray-600 transition-colors hover:text-[#1268B3]"
+                        className="block break-all text-base  transition-colors hover:text-[#1268B3]"
                       >
                         {m}
                       </a>
@@ -209,9 +208,7 @@ const ContactsForm = () => {
 
               {socials.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Social Network
-                  </h3>
+                  <h3 className="text-lg">Social Network</h3>
                   <div className="mt-3 flex items-center gap-3">
                     {socials.map(({ id, url, Icon }) => (
                       <a
@@ -219,9 +216,9 @@ const ContactsForm = () => {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-[#1268B3] hover:text-white"
+                        className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EAEAEA] text-[#797979] transition-colors hover:bg-blue-line hover:text-white"
                       >
-                        <Icon size={16} />
+                        <Icon size={23} />
                       </a>
                     ))}
                   </div>
@@ -232,13 +229,13 @@ const ContactsForm = () => {
 
           {/* ── Right: form ────────────────────────────── */}
           <div>
-            <h2 className="font-medium text-3xl text-gray-900 sm:text-4xl lg:text-5xl">
+            <h2 className="font-medium text-3xl  sm:text-4xl lg:text-5xl">
               Get in touch
             </h2>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-5">
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-900">
+                <label className="mb-1.5 block text-base font-capitana-medium ">
                   Name
                 </label>
                 <input
@@ -253,7 +250,7 @@ const ContactsForm = () => {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-900">
+                <label className="mb-1.5 block text-base font-capitana-medium ">
                   Email
                 </label>
                 <input
@@ -268,7 +265,7 @@ const ContactsForm = () => {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-900">
+                <label className="mb-1.5 block text-base font-capitana-medium ">
                   Phone Number
                 </label>
                 <PhoneInput
@@ -280,7 +277,7 @@ const ContactsForm = () => {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-900">
+                <label className="mb-1.5 block text-base font-capitana-medium">
                   Subject
                 </label>
                 <input
@@ -294,7 +291,7 @@ const ContactsForm = () => {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-900">
+                <label className="mb-1.5 block text-base font-capitana-medium ">
                   Message
                 </label>
                 <textarea
@@ -310,12 +307,9 @@ const ContactsForm = () => {
 
               {/* CAPTCHA (server-side SVG) */}
               <div>
-                <label className="mb-1.5 block text-sm font-semibold text-gray-900">
-                  Enter the code
-                </label>
                 <div className="flex items-center gap-3">
                   <div
-                    className="overflow-hidden rounded-md bg-gray-100"
+                    className="overflow-hidden rounded bg-gray-100"
                     dangerouslySetInnerHTML={{ __html: captchaImage }}
                   />
                   <button
@@ -340,7 +334,7 @@ const ContactsForm = () => {
               <button
                 type="submit"
                 disabled={sending}
-                className="rounded-md bg-[#1268B3] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694] disabled:opacity-60"
+                className="rounded bg-[#1268B3] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694] disabled:opacity-60"
               >
                 {sending ? "Sending..." : "Send Message"}
               </button>

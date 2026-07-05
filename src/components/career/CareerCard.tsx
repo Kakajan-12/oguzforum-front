@@ -16,7 +16,7 @@ export default function CareerCard({ vacancy, onApply }: Props) {
       </h3>
 
       {vacancy.description && (
-        <p className="mt-4 text-[0.95rem] leading-relaxed text-gray-600">
+        <p className="mt-4 text-base leading-relaxed text-gray-600">
           {vacancy.description}
         </p>
       )}
@@ -26,7 +26,7 @@ export default function CareerCard({ vacancy, onApply }: Props) {
           <h4 className="font-semibold text-gray-900">Requirements:</h4>
           <RichText
             htmlContent={vacancy.requirements}
-            className="mt-2 text-[0.95rem] leading-relaxed text-gray-600"
+            className="mt-2 text-base leading-relaxed text-gray-600"
           />
         </div>
       )}
@@ -49,7 +49,7 @@ export default function CareerCard({ vacancy, onApply }: Props) {
         <button
           type="button"
           onClick={() => onApply(vacancy)}
-          className="rounded-md bg-[#1268B3] px-8 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694]"
+          className="rounded bg-[#1268B3] px-8 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0f5694]"
         >
           Apply
         </button>

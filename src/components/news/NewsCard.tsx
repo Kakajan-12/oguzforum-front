@@ -1,4 +1,3 @@
-
 import RichText from "@/components/ui/RichText";
 import { News, Press } from "@/types";
 import Image from "next/image";
@@ -67,14 +66,14 @@ const NewsCardProps: React.FC<Props> = ({
           return (
             <div
               key={items.id}
-              className="shadow-sm w-full border flex flex-col p-4 rounded-md shadow-slate-400"
+              className="shadow-sm w-full border flex flex-col p-4 rounded shadow-slate-400"
             >
               <div className="w-full h-56 relative">
                 <Image
                   width={0}
                   height={0}
                   sizes="100vw"
-                  className="w-full h-56 rounded-md object-contain"
+                  className="w-full h-56 rounded object-contain"
                   alt={`${items.image}`}
                   src={resolveMediaUrl(items.image)}
                 />
@@ -82,7 +81,7 @@ const NewsCardProps: React.FC<Props> = ({
                   //   width={300}
                   //   height={300}
                   fill
-                  className="rounded-md object-cover"
+                  className="rounded object-cover"
                   alt={`${items.image}`}
                   src={resolveMediaUrl(items.image)}
                 /> */}
@@ -112,7 +111,7 @@ const NewsCardProps: React.FC<Props> = ({
                 <div className="pt-5 mt-auto flex justify-end">
                   <Link
                     href={`/${type}/${items.id}`}
-                    className="bg-mainBlue py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded-md"
+                    className="bg-mainBlue py-2 px-4 lg:py-3 lg:px-6 text-white text-xs lg:text-sm font-semibold rounded"
                   >
                     {"Read more"}
                   </Link>

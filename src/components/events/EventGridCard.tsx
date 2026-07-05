@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FiCalendar, FiUser } from "react-icons/fi";
 import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
+import mapIcon from "../../../public/map-pinGray.svg";
 import type { Projects } from "@/types";
 
 export default function EventGridCard({ event }: { event: Projects }) {
@@ -33,7 +34,7 @@ export default function EventGridCard({ event }: { event: Projects }) {
           </h3>
         </Link>
 
-        <div className="mt-3 space-y-2 text-sm text-gray-500">
+        <div className="mt-3 space-y-2 text-sm text-[#424A4E]">
           {dateLabel && (
             <span className="flex items-center gap-2">
               <FiCalendar size={15} className="shrink-0" />
@@ -42,7 +43,7 @@ export default function EventGridCard({ event }: { event: Projects }) {
           )}
           {event.location_en && (
             <span className="flex items-center gap-2">
-              <FiUser size={15} className="shrink-0" />
+              <Image src={mapIcon} width={15} height={15} alt="Location" />
               {stripHtml(event.location_en)}
             </span>
           )}
@@ -50,7 +51,7 @@ export default function EventGridCard({ event }: { event: Projects }) {
 
         <Link
           href={href}
-          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#1268B3] transition-colors hover:text-[#0f5694]"
+          className="mt-4 flex items-center justify-end gap-2 text-sm font-capitana-medium text-[#1268B3] transition-colors hover:text-[#0f5694]"
         >
           MORE DETAILS
           <Image

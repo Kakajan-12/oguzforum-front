@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css";
 
 // Branded pin asset (OGUZ marker). 33×43, tip at the bottom centre.
 const pinIcon = L.icon({
-  iconUrl: "/map-point.png",
+  iconUrl: "/map-point.svg",
   iconSize: [33, 43],
   iconAnchor: [16, 43],
   popupAnchor: [0, -43],
@@ -23,12 +23,10 @@ export default function ContactsMap({ lat, lng }: Props) {
       center={[lat, lng]}
       zoom={17}
       scrollWheelZoom={false}
+      attributionControl={false}
       className="h-full w-full"
     >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      />
+      <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
       <Marker position={[lat, lng]} icon={pinIcon} />
     </MapContainer>
   );
