@@ -12,11 +12,11 @@ export default function ProjectGallery({ images }: { images: GalleryImage[] }) {
 
   const prev = useCallback(
     () => setIndex((i) => (i - 1 + images.length) % images.length),
-    [images.length]
+    [images.length],
   );
   const next = useCallback(
     () => setIndex((i) => (i + 1) % images.length),
-    [images.length]
+    [images.length],
   );
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function ProjectGallery({ images }: { images: GalleryImage[] }) {
               key={img.id}
               type="button"
               onClick={() => openAt(i)}
-              className={`group relative w-full overflow-hidden rounded-lg ${
+              className={`group relative w-full overflow-hidden rounded ${
                 isLarge
                   ? "col-span-2 row-span-2 aspect-square sm:aspect-auto"
                   : "aspect-[4/3]"
@@ -66,7 +66,11 @@ export default function ProjectGallery({ images }: { images: GalleryImage[] }) {
                 src={resolveMediaUrl(img.image)}
                 alt=""
                 fill
-                sizes={isLarge ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"}
+                sizes={
+                  isLarge
+                    ? "(max-width: 640px) 100vw, 50vw"
+                    : "(max-width: 640px) 50vw, 25vw"
+                }
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               {showMore && (

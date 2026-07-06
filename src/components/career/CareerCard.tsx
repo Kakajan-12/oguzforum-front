@@ -10,7 +10,7 @@ interface Props {
 
 export default function CareerCard({ vacancy, onApply }: Props) {
   return (
-    <div className="rounded-xl border border-gray-200 p-6 lg:p-8">
+    <div className="rounded border border-gray-200 p-6 lg:p-8">
       <h3 className="text-lg font-semibold text-gray-900 sm:text-xl">
         {vacancy.en}
       </h3>

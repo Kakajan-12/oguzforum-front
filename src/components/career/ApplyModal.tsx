@@ -88,7 +88,7 @@ export default function ApplyModal({ vacancy, onClose }: Props) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl rounded-xl bg-white p-4 shadow-xl sm:p-8"
+        className="relative w-full max-w-2xl rounded bg-white p-4 shadow-xl sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button

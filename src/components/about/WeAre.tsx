@@ -29,7 +29,7 @@ export default function WeAre() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-5 lg:p-7 text-white">
               <h3 className="text-xl">{t("team.title")}</h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-white">
+              <p className="mt-3 text-sm leading-relaxed text-white">
                 {t("team.description")}
               </p>
             </div>

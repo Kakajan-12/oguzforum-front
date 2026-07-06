@@ -41,11 +41,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 20px 22px;
+  padding: 12px;
   color: #fff;
   z-index: 2;
 }
 
+@media (min-width: 1024px) {
+  .ev-content {
+    padding: 20px;
+  }
+}
 .ev-title {
   font-size: 1.2rem;
   font-family: "Capitana Medium", sans-serif;

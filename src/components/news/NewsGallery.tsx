@@ -12,11 +12,11 @@ export default function NewsGallery({ images }: { images: GalleryImage[] }) {
 
   const prev = useCallback(
     () => setIndex((i) => (i - 1 + images.length) % images.length),
-    [images.length]
+    [images.length],
   );
   const next = useCallback(
     () => setIndex((i) => (i + 1) % images.length),
-    [images.length]
+    [images.length],
   );
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function NewsGallery({ images }: { images: GalleryImage[] }) {
               key={img.id}
               type="button"
               onClick={() => openAt(i)}
-              className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg"
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded"
             >
               <Image
                 src={resolveMediaUrl(img.image)}

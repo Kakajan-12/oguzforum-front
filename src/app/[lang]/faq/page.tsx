@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiX } from "react-icons/fi";
 
 import { useGetFaqQuery } from "@/lib/api";
 import { stripHtml } from "@/lib/utils/cardHelpers";
@@ -34,17 +34,28 @@ export default function FaqPage() {
         <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
           <div className="mx-auto max-w-3xl">
             {/* Search */}
-            <div className="relative mb-8">
+            <div className="relative mb-8 w-full md:max-w-sm">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search questions"
-                className="w-full rounded border border-gray-200 py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
+                className="w-full rounded border border-[#797979] py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
               />
-              <FiSearch
-                className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
-                size={20}
-              />
+              {search ? (
+                <button
+                  type="button"
+                  onClick={() => setSearch("")}
+                  aria-label="Clear search"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#797979] transition hover:text-gray-600"
+                >
+                  <FiX size={20} />
+                </button>
+              ) : (
+                <FiSearch
+                  className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#797979]"
+                  size={20}
+                />
+              )}
             </div>
 
             {isLoading ? (
@@ -60,7 +71,7 @@ export default function FaqPage() {
                   return (
                     <div
                       key={item.id}
-                      className="overflow-hidden rounded-lg border border-gray-200 transition-colors"
+                      className="overflow-hidden rounded shadow-faq transition-colors"
                     >
                       <button
                         type="button"
@@ -68,7 +79,7 @@ export default function FaqPage() {
                         aria-expanded={open}
                         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                       >
-                        <span className="text-base font-semibold text-gray-900 sm:text-lg">
+                        <span className="text-base font-capitana-medium text-gray-900 sm:text-lg">
                           {stripHtml(item.en)}
                         </span>
                         <Image
@@ -86,7 +97,7 @@ export default function FaqPage() {
                         <div className="px-6 pb-6">
                           <RichText
                             htmlContent={item.text_en}
-                            className="text-base leading-relaxed text-gray-500"
+                            className="text-base leading-relaxed text-[#363049]"
                           />
                         </div>
                       )}

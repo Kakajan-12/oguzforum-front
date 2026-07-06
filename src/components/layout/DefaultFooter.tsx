@@ -23,7 +23,7 @@ const SOCIAL_LABELS: Record<string, string> = {
 function Heading({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="text-lg font-capitana-medium text-white md:border-b border-white/40 pb-2">
+      <h3 className="text-base font-capitana-semibold text-white md:border-b border-white/40 pb-2">
         {children}
       </h3>
     </div>
@@ -77,7 +77,7 @@ const DefaultFooter = () => {
   }) => {
     const open = openSection === id;
     return (
-      <div className={`py-4 ${className}`}>
+      <div className={`py-1 ${className}`}>
         <button
           type="button"
           onClick={() => toggle(id)}

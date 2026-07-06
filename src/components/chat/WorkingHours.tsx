@@ -23,7 +23,7 @@ export default function WorkingHours({ onLeaveMessage }: WorkingHoursProps) {
 
   return (
     <div className="p-4">
-      <div className="mb-4 rounded-xl bg-[#1268B3]/5 p-3 text-center">
+      <div className="mb-4 rounded bg-[#1268B3]/5 p-3 text-center">
         <h3 className="text-sm font-semibold text-gray-800">
           {"It's not working hours now"}
         </h3>

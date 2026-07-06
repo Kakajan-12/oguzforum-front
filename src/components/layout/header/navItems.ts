@@ -14,6 +14,7 @@ export const MEGA_GROUPS: MegaGroup[] = [
       { label: "mission", href: `/mission` },
       { label: "careers", href: `/career` },
       { label: "contacts", href: `/contacts` },
+      { label: "faq", href: `/faq` },
     ],
   },
   {

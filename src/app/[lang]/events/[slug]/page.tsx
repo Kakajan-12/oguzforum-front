@@ -122,7 +122,7 @@ export default function EventDetailPage() {
 
         {/* Media + info */}
         <div className="mt-8 grid grid-cols-1 gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-12">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
             <Image
               src={resolveMediaUrl(data.image)}
               alt={title}
@@ -228,7 +228,7 @@ export default function EventDetailPage() {
       {/* Results */}
       {stats.length > 0 && (
         <div className="px-4 lg:px-10 pb-14">
-          <div className="rounded-2xl bg-[#EAF3FB] px-6 py-10 sm:px-10 lg:px-14">
+          <div className="rounded bg-[#EAF3FB] px-6 py-10 sm:px-10 lg:px-14">
             <h2 className="mb-8 text-2xl font-semibold text-gray-900 sm:text-3xl">
               Results
             </h2>

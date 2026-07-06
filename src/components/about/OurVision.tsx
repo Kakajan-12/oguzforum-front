@@ -25,13 +25,12 @@ export default function OurVision() {
   return (
     <section className="bg-white min-h-screen">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
-        <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl text-gray-900">
-          {t("vision.title")}
-        </h2>
-
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {/* left: text + stats */}
           <div className="flex flex-col">
+            <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl capitalize text-gray-900">
+              {t("vision.title")}
+            </h2>
             <div className="space-y-5 text-base leading-relaxed">
               <p>{t("vision.description1")}</p>
               <p>{t("vision.description2")}</p>

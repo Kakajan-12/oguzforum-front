@@ -36,7 +36,7 @@ const NewsFiltr: React.FC<Props> = ({ onFilterChange, type }) => {
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border outline-none focus:border-mainBlue border-slate-400 rounded-lg w-full py-2 px-4 md:w-2/3 lg:w-1/3"
+            className="border outline-none focus:border-mainBlue border-slate-400 rounded w-full py-2 px-4 md:w-2/3 lg:w-1/3"
             type="text"
             placeholder="Search"
           />
@@ -44,7 +44,7 @@ const NewsFiltr: React.FC<Props> = ({ onFilterChange, type }) => {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="border border-slate-400 rounded-lg py-2 px-4 w-full md:w-1/3 lg:w-1/4 focus:border-mainBlue outline-none"
+            className="border border-slate-400 rounded py-2 px-4 w-full md:w-1/3 lg:w-1/4 focus:border-mainBlue outline-none"
           >
             <option value="default">{"Default"}</option>
             <option value="date_desc">{"By date (new → old)"}</option>

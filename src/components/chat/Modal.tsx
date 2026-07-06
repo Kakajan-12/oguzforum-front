@@ -45,7 +45,7 @@ export default function Modal({
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4">
-      <div className="mx-4 w-80 max-w-sm rounded-2xl bg-white shadow-2xl">
+      <div className="mx-4 w-80 max-w-sm rounded bg-white shadow-2xl">
         <div className="p-6 text-center">
           {getIcon()}
           <h3 className="mb-2 text-lg font-semibold text-gray-900">{title}</h3>

@@ -30,8 +30,7 @@ export default function ParticipantCompanies({
     const el = scrollerRef.current;
     if (!el) return;
     recompute();
-    const onScroll = () =>
-      setPage(Math.round(el.scrollLeft / el.clientWidth));
+    const onScroll = () => setPage(Math.round(el.scrollLeft / el.clientWidth));
     el.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", recompute);
     return () => {
@@ -65,7 +64,7 @@ export default function ParticipantCompanies({
             key={p.id ?? i}
             className="w-[45%] shrink-0 snap-start sm:w-[30%] md:w-[22%] lg:w-[13.6%]"
           >
-            <div className="flex h-28 items-center justify-center rounded-lg bg-gray-100 p-4">
+            <div className="flex h-28 items-center justify-center rounded bg-gray-100 p-4">
               <div className="relative h-full w-full">
                 <Image
                   src={resolveMediaUrl(p.participant_logo ?? "")}

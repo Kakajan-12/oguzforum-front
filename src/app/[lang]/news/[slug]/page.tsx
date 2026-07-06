@@ -55,7 +55,7 @@ export default function NewsDetailPage() {
 
         {/* Image + article */}
         <div className="mt-8 grid grid-cols-1 gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-12">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
             <Image
               src={resolveMediaUrl(data.image)}
               alt={title}

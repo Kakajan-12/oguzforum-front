@@ -21,7 +21,7 @@ export default function OurMission() {
   return (
     <section className="bg-white">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
-        <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl text-gray-900">
+        <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl capitalize text-gray-900">
           {t("mission.title")}
         </h2>
 
