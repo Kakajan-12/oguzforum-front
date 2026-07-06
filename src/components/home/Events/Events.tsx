@@ -36,8 +36,8 @@ const MainEvents = () => {
     <section className="ev-section">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
-          title="Events"
-          link={{ href: "/events", label: "All events" }}
+          title="Upcoming Events"
+          link={{ href: "/events", label: "All upcoming events" }}
           theme="dark"
         />
 

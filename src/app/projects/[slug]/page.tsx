@@ -162,12 +162,12 @@ export default function ProjectDetailPage() {
                     className="flex w-44 flex-col items-center text-center"
                   >
                     {logo && (
-                      <div className="relative h-32 w-full">
+                      <div className="relative h-52 w-full">
                         <Image
                           src={logo}
                           alt={org.organizer_en || ""}
                           fill
-                          sizes="256px"
+                          sizes="400px"
                           className="object-contain"
                         />
                       </div>

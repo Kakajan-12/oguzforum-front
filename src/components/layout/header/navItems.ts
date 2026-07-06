@@ -20,8 +20,8 @@ export const MEGA_GROUPS: MegaGroup[] = [
   {
     title: "Our work",
     links: [
+      { label: "Upcoming Events", href: `/events` },
       { label: "Projects", href: `/projects` },
-      { label: "Events", href: `/events` },
     ],
   },
   {
