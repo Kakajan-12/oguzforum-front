@@ -44,7 +44,6 @@ const DefaultFooter = () => {
   const { data: mailData } = useGetContactsMailQuery();
   const { data: numberData } = useGetContactsNumberQuery();
   const { data: links } = useGetLinksQuery();
-
   const socials =
     links && links.length > 0
       ? links
@@ -209,9 +208,7 @@ const DefaultFooter = () => {
           </div>
 
           <div className="flex items-center gap-3 text-sm text-white/75">
-            <span>
-              © {new Date().getFullYear()}, All rights reserved
-            </span>
+            <span>© {new Date().getFullYear()}, All rights reserved</span>
             <a
               href="https://hebent.tech"
               target="_blank"
