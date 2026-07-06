@@ -53,9 +53,9 @@ const NewsMain = () => {
           theme="light"
         />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-4">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-4">
           {/* Featured */}
-          <Link href={`/news/${featured.id}`} className="group block">
+          <Link href={`/news/${featured.id}`} className="group flex flex-col">
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded">
               <Image
                 src={resolveMediaUrl(featured.image)}
@@ -82,16 +82,21 @@ const NewsMain = () => {
           </Link>
 
           {/* List */}
-          <div className="flex flex-col justify-between gap-4">
+          <div
+            className="flex flex-col gap-4 md:grid md:h-full md:gap-4"
+            style={{
+              gridTemplateRows: `repeat(${list.length}, minmax(0, 1fr))`,
+            }}
+          >
             {list.map((n) => {
               const title = stripHtml(n.en) || "News";
               return (
                 <Link
                   key={n.id}
                   href={`/news/${n.id}`}
-                  className="group flex flex-col gap-4 md:flex-row"
+                  className="group flex flex-col gap-4 md:flex-row md:min-h-0"
                 >
-                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded md:aspect-[4/3] md:w-[12rem]">
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded md:aspect-auto md:h-full md:w-[15rem]">
                     <Image
                       src={resolveMediaUrl(n.image)}
                       alt={title}
@@ -100,7 +105,7 @@ const NewsMain = () => {
                       className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col md:justify-center">
                     <Category cat={n.cat_en} />
                     <h3 className="mt-1 text-base sm:text-lg font-capitana-medium leading-snug text-gray-900 line-clamp-2">
                       {title}
