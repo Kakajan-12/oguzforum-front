@@ -4,7 +4,7 @@ import Pagination from "@mui/material/Pagination";
 const NewsPagination = () => {
   return (
     <div className=" w-full py-5  shadow-2xl shadow-slate-700  ">
-      <div className=" container  mx-auto  flex justify-center items-center ">
+      <div className=" px-4 lg:px-10  flex justify-center items-center ">
         <Pagination
           sx={{
             "& .MuiPaginationItem-ellipsis": {

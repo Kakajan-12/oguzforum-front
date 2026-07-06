@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 
 import { useGetProjectsByIdQuery, useGetProjectsQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
+import { useLocale } from "next-intl";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
 import EventGridCard from "@/components/events/EventGridCard";
@@ -59,6 +60,7 @@ function toHref(url?: string): string | null {
 }
 
 export default function EventDetailPage() {
+  const locale = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const { data, error, isLoading } = useGetProjectsByIdQuery({
     endpoint: "projects",
@@ -71,7 +73,7 @@ export default function EventDetailPage() {
   if (!data) return <DataMessage />;
 
   const title = stripHtml(data.en) || "Event";
-  const dateLabel = formatDateRange(data.date, data.end_date);
+  const dateLabel = formatDateRange(data.date, data.end_date, locale);
   const location = stripHtml(data.location_en);
   const website = toHref(data.link);
 
@@ -102,7 +104,7 @@ export default function EventDetailPage() {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 pt-28 pb-12 lg:pt-32">
+      <div className="px-4 lg:px-10 pt-28 pb-12 lg:pt-32">
         {/* Back link */}
         <Link
           href="/events"
@@ -192,7 +194,7 @@ export default function EventDetailPage() {
 
       {/* Organizers & Official Supporters */}
       {organizers.length > 0 && (
-        <div className="container mx-auto px-4 pb-12">
+        <div className="px-4 lg:px-10 pb-12">
           <h2 className="mb-8 text-2xl font-semibold text-gray-900 sm:text-3xl">
             Organizers &amp; Official Supporters
           </h2>
@@ -225,7 +227,7 @@ export default function EventDetailPage() {
 
       {/* Results */}
       {stats.length > 0 && (
-        <div className="container mx-auto px-4 pb-14">
+        <div className="px-4 lg:px-10 pb-14">
           <div className="rounded-2xl bg-[#EAF3FB] px-6 py-10 sm:px-10 lg:px-14">
             <h2 className="mb-8 text-2xl font-semibold text-gray-900 sm:text-3xl">
               Results
@@ -259,14 +261,14 @@ export default function EventDetailPage() {
 
       {/* Gallery */}
       {images.length > 0 && (
-        <div className="container mx-auto px-4 pb-14 lg:pb-16">
+        <div className="px-4 lg:px-10 pb-14 lg:pb-16">
           <NewsGallery images={images} />
         </div>
       )}
 
       {/* Other events */}
       {others.length > 0 && (
-        <div className="container mx-auto px-4 pb-16 lg:pb-24">
+        <div className="px-4 lg:px-10 pb-16 lg:pb-24">
           <h2 className="mb-8 text-3xl font-semibold text-gray-900 sm:text-4xl">
             Other events
           </h2>

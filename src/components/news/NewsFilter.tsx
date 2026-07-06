@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 interface Props {
   onFilterChange: (filters: {
     title: string;
@@ -27,10 +26,10 @@ const NewsFiltr: React.FC<Props> = ({ onFilterChange, type }) => {
   }, [title, date, sort]);
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="px-4 lg:px-10">
       <div className="py-8">
         <h2 className="md:text-4xl text-xl font-bold text-mainBlue flex items-center">
-           {type === "news" ? "News" : "Press"}
+          {type === "news" ? "News" : "Press"}
         </h2>
 
         <div className="flex flex-col md:flex-row justify-end gap-y-5 gap-x-5 mt-5 md:mt-10 w-full">

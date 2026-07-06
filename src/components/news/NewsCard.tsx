@@ -54,7 +54,7 @@ const NewsCardProps: React.FC<Props> = ({
   //   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="px-4 lg:px-10">
       <div
         ref={cardsTopRef}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
@@ -96,7 +96,7 @@ const NewsCardProps: React.FC<Props> = ({
                       : ""}
                   </div>
                   <div className="text-xs md:text-sm font-semibold text-mainBlue opacity-40">
-                    {new Date(items.date).toLocaleDateString("tm-TM")}
+                    {new Date(items.date).toLocaleDateString("tk-TK")}
                   </div>
                 </div>
 

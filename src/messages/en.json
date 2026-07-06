@@ -4,8 +4,10 @@
     "description": "Oguz Forum | Expo"
   },
   "Nav": {
+    "title": "Oguz Forum | Expo",
     "profile": "Company profile",
     "company": "Company",
+    "social": "Social media",
     "about": "About us",
     "mission": "Mission",
     "careers": "Careers",
@@ -13,13 +15,24 @@
     "work": "Our work",
     "projects": "Projects",
     "events": "Events",
-    "newsroomTitle": "Newsroom",
-    "newsroom": "News",
+    "newsroom": "Newsroom",
+    "news": "News",
     "media": "Media center",
     "press": "Press releases",
     "description": "We understand that every project is unique, which is why we provide a tailored approach to each client.",
     "contactsTitle": "Contacts",
     "socialTitle": "Social media"
+  },
+  "Hero": {
+    "title": "Through connections",
+    "description": "We understand that every project is unique, which is why we provide a tailored approach to each client.",
+    "stats": {
+      "years": "Successful Years",
+      "events": "International Events",
+      "represented": "Countries Represented",
+      "engaged": "Global Companies Engaged",
+      "delegates": "Participants & Delegates"
+    }
   },
   "Event": {
     "title": "Events",
@@ -66,6 +79,48 @@
       "success": "Your message has been sent. We will get back to you soon."
     }
   },
+  "About": {
+    "title": "About us",
+    "description": "Dedicated to fostering dialogue, collaboration, and meaningful connections.",
+    "stats": {
+      "1": "successfully delivered event projects",
+      "2": "trusted partners across industries",
+      "3": "exhibitors across multiple industries",
+      "4": "delegates attending our events"
+    },
+    "team": {
+      "title": "Our team",
+      "description": "Our team is dedicated to fostering dialogue, collaboration, and meaningful connections. We are a team of professionals who are passionate about creating events that inspire collaboration and produce tangible outcomes."
+    },
+    "philosophy": {
+      "title": "Our philosophy",
+      "description": "We believe meaningful progress starts with meaningful connection. Every forum and exhibition we organize is designed to spark dialogue, encourage collaboration, and create lasting value for participants. Guided by professionalism, innovation, and excellence, we create environments where ideas are shared openly, partnerships are built, and opportunities for long-term cooperation and sustainable growth emerge."
+    },
+    "services": {
+      "title": "Our services",
+      "description": "We provide comprehensive end-to-end event management solutions, delivering international forums, conferences, exhibitions, business expos, B2B and B2G meetings, official delegations, networking events, and tailor-made programs of any scale. From strategic planning and logistics to participant management, branding, and on-site execution, we ensure every event is professionally organized, seamlessly delivered, and designed to achieve measurable results for our clients and partners."
+    },
+    "mission": {
+      "title": "Our mission",
+      "description": "Our mission is to foster meaningful dialogue, strengthen international collaboration, and create lasting partnerships that drive sustainable growth and innovation. We create platforms where governments, businesses, international organizations, industry leaders, and experts come together to exchange knowledge, explore new opportunities, and build valuable connections. Through the organization of international forums, conferences, exhibitions, and business events, we deliver experiences that inspire collaboration and produce tangible outcomes. We are committed to creating events that not only facilitate productive discussions but also encourage long-term partnerships, support strategic initiatives, and contribute to the development of industries, economies, and global cooperation.",
+      "connect": "Connect",
+      "connectDesc": "Building bridges between people, institutions, and nations.",
+      "inspire": "Inspire",
+      "inspireDesc": "Encouraging innovative thinking and meaningful dialogue.",
+      "impact": "Impact",
+      "impactDesc": "Turning discussions into measurable outcomes."
+    },
+    "vision": {
+      "title": "Our vision",
+      "description1": "We envision a future where international cooperation, innovation, and strategic partnerships drive sustainable economic growth and global development. Our goal is to create world-class platforms that connect governments, businesses, international organizations, and industry leaders, enabling them to address shared challenges, exchange knowledge, and unlock new opportunities for collaboration.",
+      "description2": "We aspire to set the benchmark for international forums, conferences, and exhibitions by delivering exceptional events that inspire meaningful dialogue and generate lasting impact. Through continuous growth, innovation, and an expanding global network, we aim to strengthen international connections and transform ideas into partnerships that create measurable value for industries, communities, and economies worldwide."
+    },
+    "weAre": {
+      "title": "We are",
+      "description1": "OGUZ Forum & Expo brings together leaders, innovators, and decision-makers from across industries and borders. We create the spaces where ideas are exchanged, partnerships are formed, and shared goals turn into action. Our events are designed to foster meaningful dialogue, encourage strategic networking, and build relationships that continue to create value long after the event has concluded.",
+      "description2": "From international forums to large-scale exhibitions, our work is built on trust, professionalism, and a deep understanding of what it takes to connect people and organizations across the region and beyond. Every event is carefully planned to support knowledge exchange, inspire collaboration, and deliver measurable results for our partners, participants, and stakeholders across diverse industries and international markets."
+    }
+  },
   "Footer": {
     "title": "Through connections",
     "ru": "RU",
@@ -74,7 +129,7 @@
     "events": "Events",
     "projects": "Projects",
     "newsroom": "News",
-    "company profile": "Company profile",
+    "profile": "Company profile",
     "faq": "FAQ",
     "info": "Information",
     "social": "Social media",

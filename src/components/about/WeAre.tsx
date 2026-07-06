@@ -1,32 +1,24 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function WeAre() {
+  const t = useTranslations("About");
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20 min-h-screen flex flex-col">
-        <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl text-gray-900">
-          We Are
+      <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20 min-h-screen flex flex-col">
+        <h2 className="mb-4 lg:mb-6 text-3xl sm:text-4xl lg:text-5xl text-gray-900 capitalize">
+          {t("weAre.title")}
         </h2>
 
-        <div className="grid grid-cols-1 gap-6 text-base leading-relaxed text-gray-600 md:grid-cols-2 md:gap-10">
-          <p>
-            OGUZ Forum &amp; Expo brings together leaders, innovators, and
-            decision-makers from across industries and borders. We create the
-            spaces where ideas are exchanged, partnerships are formed, and
-            shared goals turn into action.
-          </p>
-          <p>
-            From international forums to large-scale exhibitions, our work is
-            built on trust, professionalism, and a deep understanding of what it
-            takes to connect people and organizations across the region and
-            beyond.
-          </p>
+        <div className="grid grid-cols-1 gap-6 text-base md:grid-cols-2 md:gap-10">
+          <p>{t("weAre.description1")}</p>
+          <p>{t("weAre.description2")}</p>
         </div>
 
         {/* bento: team image (left) + philosophy/services cards (right) */}
-        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 flex-1">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 md:grid-rows-1 flex-1">
           {/* Our Team — text over image */}
-          <div className="relative overflow-hidden rounded h-full">
+          <div className="relative min-h-[60vh] overflow-hidden rounded md:h-full md:max-h-[85vh] ">
             <Image
               src="/about/about-3.webp"
               alt="Our team"
@@ -35,32 +27,26 @@ export default function WeAre() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-              <h3 className="text-xl font-semibold">Our Team</h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-white/85">
-                A dedicated team of organizers, strategists, and specialists who
-                plan and deliver every event end to end — combining experience
-                in event management with modern digital solutions.
+            <div className="absolute inset-x-0 bottom-0 p-5 lg:p-7 text-white">
+              <h3 className="text-xl">{t("team.title")}</h3>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-white">
+                {t("team.description")}
               </p>
             </div>
           </div>
 
           {/* right column: two cards */}
           <div className="flex flex-col gap-5 h-full">
-            <div className="rounded bg-[#338CC4] p-6 text-white md:flex-1">
-              <h3 className="text-xl font-semibold">Our Philosophy</h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/90">
-                We believe meaningful progress starts with meaningful
-                connection. Every forum and exhibition we host is designed to
-                spark dialogue and create lasting value for participants.
+            <div className="rounded bg-[#338CC4] p-4 text-white md:flex-1 flex flex-col justify-end items-start">
+              <h3 className="text-xl">{t("philosophy.title")}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white">
+                {t("philosophy.description")}
               </p>
             </div>
-            <div className="rounded bg-[#174195] p-6 text-white md:flex-1">
-              <h3 className="text-xl font-semibold">Our Services</h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/90">
-                End-to-end event management: international forums, business
-                expos, B2B and B2G meetings, delegations, and tailored programs
-                at any scale.
+            <div className="rounded bg-[#174195] p-4 text-white md:flex-1 flex flex-col justify-end items-start">
+              <h3 className="text-xl">{t("services.title")}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white">
+                {t("services.description")}
               </p>
             </div>
           </div>

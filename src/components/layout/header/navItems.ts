@@ -7,28 +7,28 @@ export type MegaLink = { label: string; href: string };
 export type MegaGroup = { title: string; links: MegaLink[] };
 
 export const MEGA_GROUPS: MegaGroup[] = [
-    {
-        title: "Company",
-        links: [
-            { label: "About us", href: `/about` },
-            { label: "Mission", href: `/mission` },
-            { label: "Careers", href: `/career` },
-            { label: "Contacts", href: `/contacts` },
-        ],
-    },
-    {
-        title: "Our work",
-        links: [
-            { label: "Projects", href: `/projects` },
-            { label: "Events", href: `/events` },
-        ],
-    },
-    {
-        title: "Newsroom",
-        links: [
-            { label: "News", href: `/news` },
-            { label: "Media Center", href: `/media` },
-            { label: "Press Release", href: `/press` },
-        ],
-    },
+  {
+    title: "company",
+    links: [
+      { label: "about", href: `/about` },
+      { label: "mission", href: `/mission` },
+      { label: "careers", href: `/career` },
+      { label: "contacts", href: `/contacts` },
+    ],
+  },
+  {
+    title: "work",
+    links: [
+      { label: "projects", href: `/projects` },
+      { label: "events", href: `/events` },
+    ],
+  },
+  {
+    title: "newsroom",
+    links: [
+      { label: "news", href: `/news` },
+      { label: "media", href: `/media` },
+      { label: "press", href: `/press` },
+    ],
+  },
 ];

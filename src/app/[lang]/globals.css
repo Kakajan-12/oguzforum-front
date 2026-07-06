@@ -128,10 +128,10 @@ h6 {
   padding-left: 12px;
 }
 
-.my-container {
+/* .my-container {
   max-width: 1920px;
   margin: 0 auto;
-}
+} */
 
 .rich-text * {
   font-family: inherit !important;

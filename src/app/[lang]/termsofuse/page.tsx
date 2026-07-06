@@ -18,7 +18,7 @@ export default function TermsOfUsePage() {
       />
 
       <section className="bg-white">
-        <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+        <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
           <div className="mx-auto max-w-4xl">
             {isLoading ? (
               <Spinner />

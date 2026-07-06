@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 
 import { useGetNewsByIdQuery, useGetNewsQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
+import { useLocale } from "next-intl";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
 import NewsGridCard from "@/components/news/NewsGridCard";
@@ -14,6 +15,7 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 import DataMessage from "@/components/ui/DataMessage";
 
 export default function NewsDetailPage() {
+  const locale = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const { data, error, isLoading } = useGetNewsByIdQuery({
     endpoint: "news",
@@ -35,7 +37,7 @@ export default function NewsDetailPage() {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 pt-28 pb-12 lg:pt-32">
+      <div className="px-4 lg:px-10 pt-28 pb-12 lg:pt-32">
         {/* Back link */}
         <Link
           href="/news"
@@ -74,7 +76,7 @@ export default function NewsDetailPage() {
                 <span className="font-medium text-[#1E55C8]">#{cat}</span>
               )}
               <span className="text-gray-500">
-                {formatDateRange(data.date)}
+                {formatDateRange(data.date, undefined, locale)}
               </span>
             </div>
 
@@ -88,14 +90,14 @@ export default function NewsDetailPage() {
 
       {/* Gallery */}
       {data.images && data.images.length > 0 && (
-        <div className="container mx-auto px-4 pb-14 lg:pb-16">
+        <div className="px-4 lg:px-10 pb-14 lg:pb-16">
           <NewsGallery images={data.images} />
         </div>
       )}
 
       {/* Other news */}
       {others.length > 0 && (
-        <div className="container mx-auto px-4 pb-16 lg:pb-24">
+        <div className="px-4 lg:px-10 pb-16 lg:pb-24">
           <h2 className="mb-8 text-3xl font-semibold text-gray-900 sm:text-4xl">
             Other news
           </h2>

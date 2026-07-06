@@ -11,7 +11,7 @@ import {
 } from "@/lib/utils/cardHelpers";
 import type { News } from "@/types";
 import SectionHeader from "@/components/layout/SectionHeader";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 function Category({ cat }: { cat?: string }) {
   const c = stripHtml(cat);
@@ -20,9 +20,10 @@ function Category({ cat }: { cat?: string }) {
 }
 
 function MetaLine({ n }: { n: News }) {
+  const locale = useLocale();
   return (
     <div className="flex items-center gap-2 text-sm text-gray-500">
-      <span>{formatDateRange(n.date)}</span>
+      <span>{formatDateRange(n.date, undefined, locale)}</span>
       <span className="text-gray-400">•</span>
       <span>{readingTime(n.text_en)}</span>
     </div>
@@ -48,7 +49,7 @@ const NewsMain = () => {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+      <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
           title={t("title")}
           link={{ href: "/news", label: t("all") }}

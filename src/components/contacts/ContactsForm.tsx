@@ -137,7 +137,7 @@ const ContactsForm = () => {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+      <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-28 xl:gap-48">
           {/* ── Left: info ─────────────────────────────── */}
           <div>
@@ -347,7 +347,7 @@ const ContactsForm = () => {
       </div>
 
       {/* ── Map ──────────────────────────────────────── */}
-      <div className="h-[320px] w-full sm:h-[420px]">
+      <div className="h-[320px] w-full sm:h-[420px] px-4 lg:px-10 relative z-0 mb-10 lg:mb-20">
         <ContactsMap lat={OFFICE_COORDS.lat} lng={OFFICE_COORDS.lng} />
       </div>
     </section>

@@ -36,7 +36,7 @@ const DefaultFooter = () => {
     { name: t("events"), href: "/events" },
     { name: t("projects"), href: "/projects" },
     { name: t("newsroom"), href: "/news" },
-    { name: t("company profile"), href: "/about" },
+    { name: t("profile"), href: "/about" },
     { name: t("faq"), href: "/faq" },
   ];
 
@@ -117,7 +117,7 @@ const DefaultFooter = () => {
         priority={false}
         className="pointer-events-none absolute right-0 top-1/2 hidden h-[150%] w-auto -translate-y-1/4 translate-x-[37%] select-none opacity-[0.07] md:block"
       />
-      <div className="container relative z-10 mx-auto px-4 pt-12 pb-3">
+      <div className="px-4 lg:px-10 relative z-10 mx-auto pt-12 pb-3">
         <div className="grid grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-4 md:grid-cols-[1.5fr_1fr_1fr_1.1fr] py-6">
           {/* Brand */}
           <div className="mb-6 md:mb-0 flex md:flex-col items-start justify-between">

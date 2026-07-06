@@ -9,8 +9,10 @@ import { useGetProjectsQuery } from "@/lib/api";
 import { stripHtml } from "@/lib/utils/cardHelpers";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
+  const t = useTranslations("Nav");
   const pathname = usePathname() ?? "/";
 
   // Editions = upcoming events only (end_date in the future), soonest first.
@@ -62,7 +64,7 @@ export default function Header() {
       className="fixed inset-x-0 top-0 bg-[#06306A]"
       style={{ zIndex: 500 }}
     >
-      <div className="container mx-auto px-4">
+      <div className="px-4 lg:px-10">
         <div className="relative flex items-center justify-between h-20">
           {/* Logo */}
           <Link href={`/`} aria-label="Home" className="flex items-center">
@@ -103,7 +105,7 @@ export default function Header() {
               onClick={() => setCompanyOpen((v) => !v)}
               aria-expanded={companyOpen}
             >
-              Company profile
+              {t("profile")}
               <Image
                 src="/assets/link.svg"
                 width={12}

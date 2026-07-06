@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const PILLARS = [
   {
@@ -16,14 +17,15 @@ const PILLARS = [
 ];
 
 export default function OurMission() {
+  const t = useTranslations("About");
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+      <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl text-gray-900">
-          Our Mission
+          {t("mission.title")}
         </h2>
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 items-center">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 items-start">
           {/* left: image */}
           <div className="relative aspect-[4/3] overflow-hidden rounded">
             <Image
@@ -38,11 +40,7 @@ export default function OurMission() {
           {/* right: text + pillars */}
           <div>
             <p className="text-base leading-relaxed">
-              Our mission is to foster dialogue, collaboration, and meaningful
-              connections that drive real progress. We design and deliver events
-              that bring people and institutions together around shared
-              opportunities — and make sure those connections lead to lasting
-              results.
+              {t("mission.description")}
             </p>
 
             <div className="mt-8 space-y-6">

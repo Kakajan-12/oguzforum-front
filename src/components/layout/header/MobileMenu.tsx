@@ -118,7 +118,7 @@ export default function MobileMenu({
         {activeGroup ? (
           /* ---- Level 2: drilled-in group ---- */
           <div>
-            <p className="text-lg font-capitana-medium text-white">
+            <p className="text-lg font-capitana-medium capitalize text-white">
               {activeGroup.title}
             </p>
             <ul className="mt-6 flex flex-col gap-5 ">
@@ -128,7 +128,7 @@ export default function MobileMenu({
                     href={link.href}
                     onClick={onClose}
                     prefetch={false}
-                    className="block text-base text-white hover:text-white/80"
+                    className="block text-base capitalize text-white hover:text-white/80"
                   >
                     {link.label}
                   </Link>
@@ -147,7 +147,7 @@ export default function MobileMenu({
                     href={e.href}
                     onClick={onClose}
                     prefetch={false}
-                    className={`block py-3 text-base ${
+                    className={`block py-3 text-base capitalize ${
                       isActive(e.href)
                         ? "text-white font-medium"
                         : "text-white/90"
@@ -165,7 +165,7 @@ export default function MobileMenu({
                 <li key={group.title}>
                   <button
                     onClick={() => setActiveGroup(group)}
-                    className="flex w-full items-center justify-between py-3.5 text-left font-capitana-medium  text-base text-white"
+                    className="flex w-full items-center justify-between py-3.5 text-left font-capitana-medium  text-base capitalize text-white"
                   >
                     {group.title}
                     <Image
@@ -184,7 +184,7 @@ export default function MobileMenu({
             {/* Contacts */}
             {(phones.length > 0 || emails.length > 0) && (
               <div className="mt-4 border-t-[0.5px] border-white/60 pt-6">
-                <p className="text-base font-capitana-medium text-white">
+                <p className="text-base font-capitana-medium capitalize text-white">
                   Contacts
                 </p>
                 {phones.map((p, i) => (

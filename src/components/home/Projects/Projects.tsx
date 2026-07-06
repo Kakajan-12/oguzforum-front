@@ -10,25 +10,22 @@ import type { Projects } from "@/types";
 import locationIcon from "../../../../public/map-pinBlue.svg";
 import locationIconWhite from "../../../../public/map-pin.svg";
 
-const getLocationIcon = (color: "white" | "blue") => {
-  return color === "blue" ? locationIcon : locationIconWhite;
-};
-
 const getCalendarIcon = (color: "white" | "blue") => {
   return color === "blue" ? (
-    <FiCalendar size={15} className="text-[#164194]" />
+    <FiCalendar size={15} className="text-white md:text-[#164194] " />
   ) : (
     <FiCalendar size={15} />
   );
 };
 import "./Projects.css";
 import SectionHeader from "@/components/layout/SectionHeader";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 function Meta({ p, color }: { p: Projects; color: "white" | "blue" }) {
-  const date = formatDateRange(p.date, p.end_date);
+  const locale = useLocale();
+  const date = formatDateRange(p.date, p.end_date, locale);
   return (
-    <div className="pr-meta">
+    <div className="pr-meta mt-3 md:mt-3.5">
       {date && (
         <span className="pr-meta-row">
           {getCalendarIcon(color)}
@@ -37,12 +34,31 @@ function Meta({ p, color }: { p: Projects; color: "white" | "blue" }) {
       )}
       {p.location_en && (
         <span className="pr-meta-row">
-          <Image
-            src={getLocationIcon(color)}
-            alt="Location"
-            width={13}
-            height={13}
-          />
+          {color === "blue" ? (
+            <>
+              <Image
+                src={locationIconWhite}
+                alt="Location"
+                width={13}
+                height={13}
+                className="md:hidden"
+              />
+              <Image
+                src={locationIcon}
+                alt="Location"
+                width={13}
+                height={13}
+                className="hidden md:block"
+              />
+            </>
+          ) : (
+            <Image
+              src={locationIconWhite}
+              alt="Location"
+              width={13}
+              height={13}
+            />
+          )}
           {p.location_en}
         </span>
       )}
@@ -85,7 +101,7 @@ export default function OurProjects() {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 py-6 md:py-14 lg:py-20">
+      <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
           title={t("title")}
           link={{ href: "/projects", label: t("all") }}
@@ -102,7 +118,7 @@ export default function OurProjects() {
                 <Link
                   key={p.id}
                   href={`/projects/${p.id}`}
-                  className="pr-card pr-media group relative min-h-[260px] md:h-full md:col-span-2"
+                  className="pr-card pr-media group relative min-h-[290px] md:h-full md:col-span-2"
                 >
                   <Image
                     src={resolveMediaUrl(p.image)}
@@ -113,10 +129,14 @@ export default function OurProjects() {
                   />
                   <div className="pr-overlay" />
                   <div className="pr-overlay-content">
-                    <h3 className="pr-title text-lg font-capitana-medium">
+                    <h3 className="pr-title text-lg line-clamp-1 md:line-clamp-2 font-capitana-medium">
                       {title}
                     </h3>
-                    {desc && <p className="pr-desc">{desc}</p>}
+                    {desc && (
+                      <p className="pr-desc line-clamp-2 lg:line-clamp-3">
+                        {desc}
+                      </p>
+                    )}
                     <Meta p={p} color="white" />
                   </div>
                 </Link>
@@ -140,17 +160,27 @@ export default function OurProjects() {
                   {/* overlay only on mobile */}
                   <div className="pr-overlay md:hidden" />
                   <div className="pr-overlay-content md:hidden">
-                    <h3 className="pr-title text-lg font-capitana-medium">
+                    <h3 className="pr-title text-lg line-clamp-1 md:line-clamp-2 font-capitana-medium">
                       {title}
                     </h3>
-                    {desc && <p className="pr-desc">{desc}</p>}
+                    {desc && (
+                      <p className="pr-desc line-clamp-2 lg:line-clamp-3">
+                        {desc}
+                      </p>
+                    )}
                     <Meta p={p} color="blue" />
                   </div>
                 </div>
                 {/* text below image on desktop */}
                 <div className="pr-below hidden md:block">
-                  <h3 className="pr-title font-capitana-medium">{title}</h3>
-                  {desc && <p className="pr-desc">{desc}</p>}
+                  <h3 className="pr-title line-clamp-1 md:line-clamp-2 font-capitana-medium">
+                    {title}
+                  </h3>
+                  {desc && (
+                    <p className="pr-desc line-clamp-2 lg:line-clamp-3">
+                      {desc}
+                    </p>
+                  )}
                   <Meta p={p} color="blue" />
                 </div>
               </Link>

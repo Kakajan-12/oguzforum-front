@@ -4,9 +4,11 @@
     "description": "Oguz Forum | Ekspo"
   },
   "Nav": {
+    "title": "Oguz Forum | Expo",
     "main": "Baş sahypa",
     "profile": "Kompaniýa profili",
     "company": "Kompaniýa",
+    "social": "Sosial ulgamlar",
     "about": "Biz barada",
     "mission": "Maksat",
     "careers": "Iş orunlary",
@@ -14,13 +16,24 @@
     "work": "Işlerimiz",
     "projects": "Taslamalar",
     "events": "Çäreler",
-    "newsroomTitle": "Metbugat merkezi",
-    "newsroom": "Täzelikler",
+    "newsroom": "Metbugat merkezi",
+    "news": "Täzelikler",
     "media": "Media merkezi",
     "press": "Metbugat beýannamalary",
     "description": "Her bir taslamanyň özboluşlydygyna düşünýäris, şonuň üçin her müşderä aýratyn çemeleşýäris.",
     "contactsTitle": "Habarlaşmak",
     "socialTitle": "Sosial ulgamlar"
+  },
+  "Hero": {
+    "title": "Baglanyşyklar arkaly",
+    "description": "Her bir taslamanyň özboluşlydygyna düşünýäris, şonuň üçin her müşderä aýratyn çemeleşýäris.",
+    "stats": {
+      "years": "Üstünlikli ýyl",
+      "events": "Halkara çäre",
+      "represented": "Wekilçilik edilen ýurt",
+      "engaged": "Gatnaşan dünýä kompaniýalary",
+      "delegates": "Gatnaşyjylar we wekiller"
+    }
   },
   "Event": {
     "title": "Çäreler",
@@ -67,6 +80,47 @@
       "success": "Habaryňyz iberildi. Biz size tiz wagtda jogap bereris."
     }
   },
+  "About": {
+    "title": "Biz barada",
+    "description": "Prezident dialogyny, hyzmatdaşlygy we ähmiýetli gatnaşyklary ösdürmäge çalyşýarys.",
+    "stats": {
+      "1": "üstünlikli guralan çäre taslamalary",
+      "2": "dürli pudaklardaky ynamdar hyzmatdaşlar",
+      "3": "dürli pudaklardan bolan sergä gatnaşyjylar",
+      "4": "çärelerimize gatnaşan wekiller"
+    },
+    "team": {
+      "title": "Biziň toparymyz",
+      "description": "Biziň toparymyz dialogy, hyzmatdaşlygy we ähmiýetli gatnaşyklary ösdürmäge ygrarlydyr. Biz hyzmatdaşlyga ylham berýän we anyk netijeleri gazanýan çäreleri döretmäge uly höwes bilen çemeleşýän hünärmenleriň toparydyrys."
+    },
+    "philosophy": {
+      "title": "Biziň pelsepämiz",
+      "description": "Biz ähmiýetli ösüşiň ähmiýetli gatnaşyklardan başlanýandygyna ynanýarys. Biziň gurnaýan her bir forumymyz we sergimiz dialogy höweslendirmek, hyzmatdaşlygy goldamak we gatnaşyjylar üçin dowamly gymmatlyk döretmek maksady bilen taslanylandyr. Hünärmenlik, innowasiýa we kämillik ýörelgelerine esaslanyp, biz ideýalaryň açyk paýlaşylýan, hyzmatdaşlygyň gurulýan hem-de uzak möhletleýin hyzmatdaşlyk we durnukly ösüş üçin mümkinçilikleriň ýüze çykýan gurşawyny döredýäris."
+    },
+    "services": {
+      "title": "Biziň hyzmatlarymyz",
+      "description": "Biz halkara forumlary, maslahatlary, sergileri, biznes-ekspolary, B2B we B2G duşuşyklaryny, resmi wekiliýetleri, networing çärelerini we islendik möçberdäki ýörite taýýarlanan programmalary amala aşyryp, çäreleri doly guramak boýunça toplumlaýyn çözgütleri hödürleýäris. Strategik meýilleşdirişden we logistikadan başlap, gatnaşyjylary dolandyrmaga, brendingi we çäre geçirilýän ýerdäki işleri ýokary derejede ýerine ýetirmäge çenli — biz her bir çäräniň hünärmenlerçe guralmagyny, bökdençsiz geçirilmegini hem-de müşderilerimiz we hyzmatdaşlarymyz üçin ölçäp boljak netijeleri gazanmaga niýetlenmegini üpjün edýäris."
+    },
+    "mission": {
+      "title": "Biziň wezipämiz",
+      "description": "Biziň wezipämiz — ähmiýetli dialogy ösdürmek, halkara hyzmatdaşlygy berkitmek we durnukly ösüşi hem-de innowasiýalary üpjün edýän dowamly hyzmatdaşlygy döretmekdir. Biz hökümetleriň, biznesiň, halkara guramalaryň, pudaklaýyn liderleriň we hünärmenleriň tejribe alyşmak, täze mümkinçilikleri öwrenmek we gymmatly gatnaşyklary gurmak üçin jemlenýän platformalaryny döredýäris. Halkara forumlary, maslahatlary, sergileri we biznes çärelerini guramak arkaly, biz hyzmatdaşlyga ylham berýän we anyk netijeleri wezipelendirýän tejribeleri hödürleýäris. Biz diňe bir netijeli çekişmelere ýol açman, eýsem uzak möhletleýin hyzmatdaşlygy goldaýan, strategik başlangyçlara ýardam edýän we pudaklaryň, ykdysadyýetleriň hem-de global hyzmatdaşlygyň ösmegine goşant goşýan çäreleri guramaga ygrarlydyrys.",
+      "connect": "Birleşdirmek",
+      "connectDesc": "Adamlaryň, edaralaryň we milletleriň arasynda köprüleri gurýarys.",
+      "inspire": "Ylham bermek",
+      "inspireDesc": "Innowasion pikirlenmäni we ähmiýetli dialogy höweslendirýäris.",
+      "impact": "Täsir etmek",
+      "impactDesc": "Çekişmeleri ölçäp boljak netijelere öwürýäris."
+    },
+    "vision": {
+      "title": "Biziň geljegi uly maksadymyz",
+      "description": "Biz halkara hyzmatdaşlygyň, innowasiýalaryň we strategik hyzmatdaşlygyň durnukly ykdysady ösüşiň we global ösüşiň hereketlendiriji güýji boljak geljegini göz öňüne getirýäris. Biziň maksadymyz — hökümetleri, biznesleri, halkara guramalary we pudaklaýyn liderleri birleşdirip, olara umumy kynçylyklary çözmäge, tejribe alyşmaga we hyzmatdaşlyk üçin täze mümkinçilikleri açmaga kömek edýän dünýä derejeli platformalary döretmekdir. Biz ähmiýetli dialoga ylham berýän we dowamly täsir döredýän aýratyn çäreleri geçirmek bilen halkara forumlar, maslahatlar we sergiler üçin ýokary ölçegi kesgitlemäge çalyşýarys. Üznüksiz ösüş, innowasiýalar we giňelýän global ulgamymyz arkaly biz halkara gatnaşyklary berkitmegi we ideýalary bütin dünýädäki pudaklar, jemgyýetler we ykdysadyýetler üçin ölçäp boljak gymmatlyk döredýän hyzmatdaşlyga öwürmegi maksat edinýäris."
+    },
+    "weAre": {
+      "title": "Biz kim",
+      "description1": "OGUZ Forum & Expo dürli pudaklardan we serhetlerden bolan liderleri, innowatorlary we çözgüt kabul edijileri bir ýere jemleýär. Biz ideýalaryň alyşylýan, hyzmatdaşlygyň emele gelýän we umumy maksatlaryň işe öwrülýän giňişliklerini döredýäris. Biziň çärelerimiz netijeli dialogy ösdürmek, strategik aragatnaşygy höweslendirmek we çäre tamamlanandan soň hem uzak wagtlap gymmatlyk döretmegini dowam etdirýän gatnaşyklary gurmak üçin niýetlenendir.",
+      "description2": "Halkara forumlardan başlap, uly göwrümli sergilere çenli biziň işimiz ynama, hünärmenlige we sebitde hem-de onuň çäklerinden daşarda adamlary we guramalary birleşdirmek üçin näme gerekdigine bolan çuňňur düşünişe esaslanýar. Her bir çäre tejribe alşylmagyny goldamak, hyzmatdaşlyga ylham bermek we dürli pudaklardaky hem-de halkara bazarlardaky hyzmatdaşlarymyz, gatnaşyjylarymyz we bähbitli taraplarymyz üçin ölçäp boljak netijeleri gazanmak üçin ünsli meýilleşdirilýär."
+    }
+  },
   "Footer": {
     "title": "Teswirler arasynda",
     "ru": "RU",
@@ -75,7 +129,7 @@
     "events": "Çäreler",
     "projects": "Taslamalar",
     "newsroom": "Täzelikler",
-    "company profile": "Kompaniýa profili",
+    "profile": "Kompaniýanyň profili",
     "faq": "FAQ",
     "info": "Mazmuny",
     "social": "Sosial täzeýjeler",

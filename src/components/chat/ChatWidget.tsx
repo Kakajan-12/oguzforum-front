@@ -97,7 +97,7 @@ export default function ChatWidget() {
   if (isMinimized) {
     return (
       <>
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-6 right-6 z-[999]">
           <button
             onClick={() => setIsMinimized(false)}
             aria-label="Open chat"
@@ -129,7 +129,7 @@ export default function ChatWidget() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50 flex w-[22rem] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5">
+      <div className="fixed bottom-6 right-6 z-[999] flex w-[22rem] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5">
         {/* Header */}
         <div className="flex items-center justify-between bg-gradient-to-r from-[#002A5F] to-[#1268B3] px-4 py-3.5 text-white">
           <div className="flex items-center gap-3">

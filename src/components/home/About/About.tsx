@@ -1,6 +1,6 @@
 const AboutMain = () => {
   return (
-    <div className="container mx-auto px-2">
+    <div className="px-4 lg:px-10">
       <div className="pt-12 pb-6">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-1/2">

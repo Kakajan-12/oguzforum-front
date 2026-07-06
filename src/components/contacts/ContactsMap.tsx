@@ -24,7 +24,7 @@ export default function ContactsMap({ lat, lng }: Props) {
       zoom={17}
       scrollWheelZoom={false}
       attributionControl={false}
-      className="h-full w-full"
+      className="h-full w-full "
     >
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
       <Marker position={[lat, lng]} icon={pinIcon} />

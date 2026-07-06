@@ -6,6 +6,7 @@ import { FiCalendar, FiMapPin } from "react-icons/fi";
 
 import { useGetProjectsByIdQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
+import { useLocale } from "next-intl";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
 import ProjectGallery from "@/components/projects/ProjectGallery";
@@ -27,6 +28,7 @@ const STAT_LABELS: {
 ];
 
 export default function ProjectDetailPage() {
+  const locale = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const { data, error, isLoading } = useGetProjectsByIdQuery({
     endpoint: "projects",
@@ -38,7 +40,7 @@ export default function ProjectDetailPage() {
   if (!data) return <DataMessage />;
 
   const title = stripHtml(data.en) || "Project";
-  const dateLabel = formatDateRange(data.date, data.end_date);
+  const dateLabel = formatDateRange(data.date, data.end_date, locale);
   const location = stripHtml(data.location_en);
 
   const stats = STAT_LABELS.map((s) => ({
@@ -56,7 +58,7 @@ export default function ProjectDetailPage() {
 
   return (
     <section className="bg-white">
-      <div className="container mx-auto px-4 pt-28 pb-14 lg:pt-32 lg:pb-20">
+      <div className="px-4 lg:px-10 pt-28 pb-14 lg:pt-32 lg:pb-20">
         {/* Back link */}
         <Link
           href="/projects"
