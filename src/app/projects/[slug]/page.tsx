@@ -150,7 +150,7 @@ export default function ProjectDetailPage() {
             <h2 className="text-xl font-semibold text-gray-900 sm:text-2xl">
               Organizers &amp; Official Supporters
             </h2>
-            <div className="mt-8 flex flex-wrap items-start gap-x-14 gap-y-10">
+            <div className="mt-8 flex flex-wrap items-start gap-x-8 lg:gap-x-14 gap-y-10">
               {organizers.map((org, i) => {
                 const logo =
                   typeof org.organizer_logo === "string" && org.organizer_logo
@@ -159,7 +159,7 @@ export default function ProjectDetailPage() {
                 return (
                   <div
                     key={org.id ?? i}
-                    className="flex w-40 flex-col items-center text-center"
+                    className="flex w-44 flex-col items-center text-center"
                   >
                     {logo && (
                       <div className="relative h-32 w-full">

@@ -94,7 +94,7 @@ const NewsMain = () => {
                 <Link
                   key={n.id}
                   href={`/news/${n.id}`}
-                  className="group flex flex-col gap-4 md:flex-row md:min-h-0"
+                  className="group flex flex-col items-start gap-4 md:flex-row md:min-h-0"
                 >
                   <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded md:aspect-auto md:h-full md:w-[15rem]">
                     <Image
