@@ -17,9 +17,9 @@ export default function PrivacyPolicyPage() {
         image="/header-bg.jpg"
       />
 
-      <section className="bg-white">
+      <section className="bg-white ">
         <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto">
             {isLoading ? (
               <Spinner />
             ) : error ? (
@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
             ) : policy ? (
               <RichText
                 htmlContent={policy.en}
-                className="text-base leading-relaxed text-gray-600 sm:text-base"
+                className="rich-text-capitana text-base leading-relaxed sm:text-base"
               />
             ) : (
               <p className="text-gray-500">No data available.</p>

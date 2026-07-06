@@ -1,13 +1,14 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
-import { FiSearch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiSearch, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-import { useGetNewsQuery } from "@/lib/api";
+import { useGetProjectsQuery } from "@/lib/api";
 import { stripHtml } from "@/lib/utils/cardHelpers";
 import PageHero from "@/components/ui/PageHero";
-import NewsGridCard from "@/components/news/NewsGridCard";
+import ProjectGridCard from "@/components/projects/ProjectGridCard";
 import Spinner from "@/components/ui/Spinner";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import SortDropdown from "@/components/ui/SortDropdown";
 
 const PER_PAGE = 9;
 
@@ -18,8 +19,7 @@ const SORTS = [
   { value: "title_desc", label: "By name (Z - A)" },
 ];
 
-// Windowed page list with ellipsis: first, last, and current ±1.
-// e.g. 1 … 4 5 6 … 8
+// Windowed page list with ellipsis: 1 … current±1 … last
 function getPageList(current: number, total: number): (number | "dots")[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
   const left = Math.max(2, current - 1);
@@ -32,26 +32,29 @@ function getPageList(current: number, total: number): (number | "dots")[] {
   return pages;
 }
 
-export default function NewsPage() {
-  const { data, error, isLoading } = useGetNewsQuery();
+export default function ProjectsPage() {
+  const { data, error, isLoading } = useGetProjectsQuery();
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("date_desc");
   const [page, setPage] = useState(1);
   const topRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
-    let list = [...(data ?? [])];
+    const now = Date.now();
+    // Projects = past editions (event already finished).
+    let list = (data ?? []).filter(
+      (p) => new Date(p.end_date).getTime() <= now,
+    );
 
     if (search.trim()) {
       const q = search.toLowerCase();
-      list = list.filter((n) => stripHtml(n.en).toLowerCase().includes(q));
+      list = list.filter((p) => stripHtml(p.en).toLowerCase().includes(q));
     }
 
+    const byDate = (v: string) => new Date(v).getTime() || 0;
     switch (sort) {
       case "date_asc":
-        list.sort(
-          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-        );
+        list.sort((a, b) => byDate(a.date) - byDate(b.date));
         break;
       case "title_asc":
         list.sort((a, b) => stripHtml(a.en).localeCompare(stripHtml(b.en)));
@@ -60,9 +63,7 @@ export default function NewsPage() {
         list.sort((a, b) => stripHtml(b.en).localeCompare(stripHtml(a.en)));
         break;
       default:
-        list.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-        );
+        list.sort((a, b) => byDate(b.date) - byDate(a.date));
     }
 
     return list;
@@ -85,8 +86,8 @@ export default function NewsPage() {
   return (
     <>
       <PageHero
-        title="News"
-        subtitle="Latest updates, insights, and highlights from our activities."
+        title="Projects"
+        subtitle="Delivering initiatives that create lasting impact and meaningful connections."
         image="/header-bg.jpg"
       />
 
@@ -95,37 +96,45 @@ export default function NewsPage() {
           <div ref={topRef} className="scroll-mt-24" />
 
           {/* Toolbar: search + sort */}
-          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center justify-start">
             <div className="relative w-full sm:max-w-sm">
-              <FiSearch
-                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                size={18}
-              />
               <input
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                   resetPage();
                 }}
-                placeholder="Search news"
-                className="w-full rounded border border-gray-200 bg-white py-2.5 pl-11 pr-4 text-sm outline-none transition focus:border-[#1268B3]"
+                placeholder="Search projects"
+                className="w-full rounded border border-[#797979] bg-white py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
               />
+              {search ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    resetPage();
+                  }}
+                  aria-label="Clear search"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#797979] transition hover:text-gray-600"
+                >
+                  <FiX size={20} />
+                </button>
+              ) : (
+                <FiSearch
+                  className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#797979]"
+                  size={20}
+                />
+              )}
             </div>
 
-            <select
+            <SortDropdown
               value={sort}
-              onChange={(e) => {
-                setSort(e.target.value);
+              onChange={(next) => {
+                setSort(next);
                 resetPage();
               }}
-              className="w-full rounded border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-700 outline-none transition focus:border-[#1268B3] sm:w-60"
-            >
-              {SORTS.map((s) => (
-                <option key={s.value} value={s.value}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
+              options={SORTS}
+            />
           </div>
 
           {isLoading ? (
@@ -133,12 +142,12 @@ export default function NewsPage() {
           ) : error ? (
             <ErrorMessage />
           ) : pageItems.length === 0 ? (
-            <p className="text-gray-500">No news found.</p>
+            <p className="text-gray-500">No projects found.</p>
           ) : (
             <>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {pageItems.map((n) => (
-                  <NewsGridCard key={n.id} n={n} />
+                {pageItems.map((p) => (
+                  <ProjectGridCard key={p.id} project={p} />
                 ))}
               </div>
 

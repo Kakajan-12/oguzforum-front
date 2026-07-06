@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 
 import { useGetProjectsByIdQuery, useGetProjectsQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
-import { useLocale } from "next-intl";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
 import EventGridCard from "@/components/events/EventGridCard";
@@ -60,7 +59,6 @@ function toHref(url?: string): string | null {
 }
 
 export default function EventDetailPage() {
-  const locale = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const { data, error, isLoading } = useGetProjectsByIdQuery({
     endpoint: "projects",
@@ -73,7 +71,7 @@ export default function EventDetailPage() {
   if (!data) return <DataMessage />;
 
   const title = stripHtml(data.en) || "Event";
-  const dateLabel = formatDateRange(data.date, data.end_date, locale);
+  const dateLabel = formatDateRange(data.date, data.end_date);
   const location = stripHtml(data.location_en);
   const website = toHref(data.link);
 

@@ -9,10 +9,8 @@ import { useGetProjectsQuery } from "@/lib/api";
 import { stripHtml } from "@/lib/utils/cardHelpers";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
-import { useTranslations } from "next-intl";
 
 export default function Header() {
-  const t = useTranslations("Nav");
   const pathname = usePathname() ?? "/";
 
   // Editions = upcoming events only (end_date in the future), soonest first.
@@ -105,7 +103,7 @@ export default function Header() {
               onClick={() => setCompanyOpen((v) => !v)}
               aria-expanded={companyOpen}
             >
-              {t("profile")}
+              Company profile
               <Image
                 src="/assets/link.svg"
                 width={12}

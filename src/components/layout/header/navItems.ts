@@ -8,28 +8,28 @@ export type MegaGroup = { title: string; links: MegaLink[] };
 
 export const MEGA_GROUPS: MegaGroup[] = [
   {
-    title: "company",
+    title: "Company",
     links: [
-      { label: "about", href: `/about` },
-      { label: "mission", href: `/mission` },
-      { label: "careers", href: `/career` },
-      { label: "contacts", href: `/contacts` },
-      { label: "faq", href: `/faq` },
+      { label: "About us", href: `/about` },
+      { label: "Mission", href: `/mission` },
+      { label: "Careers", href: `/career` },
+      { label: "Contacts", href: `/contacts` },
+      { label: "FAQ", href: `/faq` },
     ],
   },
   {
-    title: "work",
+    title: "Our work",
     links: [
-      { label: "projects", href: `/projects` },
-      { label: "events", href: `/events` },
+      { label: "Projects", href: `/projects` },
+      { label: "Events", href: `/events` },
     ],
   },
   {
-    title: "newsroom",
+    title: "Newsroom",
     links: [
-      { label: "news", href: `/news` },
-      { label: "media", href: `/media` },
-      { label: "press", href: `/press` },
+      { label: "News", href: `/news` },
+      { label: "Media center", href: `/media` },
+      { label: "Press releases", href: `/press` },
     ],
   },
 ];

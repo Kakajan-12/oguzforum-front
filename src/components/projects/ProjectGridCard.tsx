@@ -4,15 +4,13 @@ import Link from "next/link";
 import { FiCalendar, FiUser } from "react-icons/fi";
 import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
-import { useLocale } from "next-intl";
 import type { Projects } from "@/types";
 import mapPinGray from "../../../public/map-pinGray.svg";
 
 export default function ProjectGridCard({ project }: { project: Projects }) {
-  const locale = useLocale();
   const title = stripHtml(project.en) || "Project";
   const href = `/projects/${project.id}`;
-  const dateLabel = formatDateRange(project.date, project.end_date, locale);
+  const dateLabel = formatDateRange(project.date, project.end_date);
 
   return (
     <div className="group flex flex-col">

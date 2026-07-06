@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 
 const PILLARS = [
   {
@@ -17,15 +16,14 @@ const PILLARS = [
 ];
 
 export default function OurMission() {
-  const t = useTranslations("About");
   return (
     <section className="bg-white">
-      <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
-        <h2 className="mb-8 text-3xl sm:text-4xl lg:text-5xl capitalize text-gray-900">
-          {t("mission.title")}
+      <div className="px-4 lg:px-10 py-12 lg:py-20">
+        <h2 className="mb-4 lg:mb-8 text-3xl sm:text-4xl lg:text-5xl capitalize text-gray-900">
+          Our mission
         </h2>
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 items-start">
+        <div className="grid grid-cols-1 gap-4 md:gap-10 xl:gap-20 md:grid-cols-2 items-start">
           {/* left: image */}
           <div className="relative aspect-[4/3] overflow-hidden rounded">
             <Image
@@ -40,7 +38,19 @@ export default function OurMission() {
           {/* right: text + pillars */}
           <div>
             <p className="text-base leading-relaxed">
-              {t("mission.description")}
+              Our mission is to foster meaningful dialogue, strengthen
+              international collaboration, and create lasting partnerships that
+              drive sustainable growth and innovation. We create platforms where
+              governments, businesses, international organizations, industry
+              leaders, and experts come together to exchange knowledge, explore
+              new opportunities, and build valuable connections. Through the
+              organization of international forums, conferences, exhibitions,
+              and business events, we deliver experiences that inspire
+              collaboration and produce tangible outcomes. We are committed to
+              creating events that not only facilitate productive discussions
+              but also encourage long-term partnerships, support strategic
+              initiatives, and contribute to the development of industries,
+              economies, and global cooperation.
             </p>
 
             <div className="mt-8 space-y-6">

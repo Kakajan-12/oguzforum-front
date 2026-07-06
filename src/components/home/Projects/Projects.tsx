@@ -19,11 +19,9 @@ const getCalendarIcon = (color: "white" | "blue") => {
 };
 import "./Projects.css";
 import SectionHeader from "@/components/layout/SectionHeader";
-import { useLocale, useTranslations } from "next-intl";
 
 function Meta({ p, color }: { p: Projects; color: "white" | "blue" }) {
-  const locale = useLocale();
-  const date = formatDateRange(p.date, p.end_date, locale);
+  const date = formatDateRange(p.date, p.end_date);
   return (
     <div className="pr-meta mt-3 md:mt-3.5">
       {date && (
@@ -67,7 +65,6 @@ function Meta({ p, color }: { p: Projects; color: "white" | "blue" }) {
 }
 
 export default function OurProjects() {
-  const t = useTranslations("Project");
   const { data } = useGetProjectsQuery();
 
   const now = Date.now();
@@ -103,8 +100,8 @@ export default function OurProjects() {
     <section className="bg-white">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
-          title={t("title")}
-          link={{ href: "/projects", label: t("all") }}
+          title="Projects"
+          link={{ href: "/projects", label: "All projects" }}
           theme="light"
         />
 

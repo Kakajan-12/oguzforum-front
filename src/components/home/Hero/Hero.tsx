@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { useGetSlidersQuery } from "@/lib/api";
 
 import { resolveMediaUrl } from "@/constant";
@@ -14,15 +13,14 @@ const isVideo = (path?: string) => !!path && /\.(mp4|webm)$/i.test(path);
 
 const Main = () => {
   const { data, error, isLoading } = useGetSlidersQuery();
-  const t = useTranslations("Hero");
 
-  const title = t("title");
+  const title = "Through connections";
   const stats: HeroStat[] = [
-    { value: "5+", label: t("stats.years") },
-    { value: "15+", label: t("stats.events") },
-    { value: "30+", label: t("stats.represented") },
-    { value: "500+", label: t("stats.engaged") },
-    { value: "25.000+", label: t("stats.delegates") },
+    { value: "5+", label: "Successful Years" },
+    { value: "15+", label: "International Events" },
+    { value: "30+", label: "Countries Represented" },
+    { value: "500+", label: "Global Companies Engaged" },
+    { value: "25.000+", label: "Participants & Delegates" },
   ];
 
   if (isLoading) return <Spinner />;

@@ -142,14 +142,14 @@ const ContactsForm = () => {
           {/* ── Left: info ─────────────────────────────── */}
           <div>
             <h2 className="font-medium text-3xl sm:text-4xl lg:text-5xl">
-              We are always ready to help you
+              We are always ready to <br></br>help you
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed ">
               Our team is ready to answer your questions and help you find the
               best solution for your needs.
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-24 gap-y-9 sm:grid-cols-[160px_1fr]">
+            <div className="mt-10 grid grid-cols-1 gap-x-24 gap-y-9 sm:grid-cols-[200px_1fr]">
               {phones.length > 0 && (
                 <div>
                   <div className="flex items-center gap-2">

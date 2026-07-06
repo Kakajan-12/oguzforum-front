@@ -32,7 +32,7 @@ export default function FaqPage() {
 
       <section className="bg-white">
         <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto">
             {/* Search */}
             <div className="relative mb-8 w-full md:max-w-sm">
               <input

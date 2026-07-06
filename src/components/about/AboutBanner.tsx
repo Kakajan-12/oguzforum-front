@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutBanner() {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full px-4 lg:px-10">
       <div className="relative h-[340px] w-full overflow-hidden sm:h-[400px] lg:h-[460px]">
         <Image
           src="/header-bg.jpg"

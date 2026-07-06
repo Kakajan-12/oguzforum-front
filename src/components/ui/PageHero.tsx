@@ -12,7 +12,7 @@ export default function PageHero({
   image = "/header-bg.jpg",
 }: Props) {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full px-4 lg:px-10">
       <div className="relative h-[340px] w-full overflow-hidden sm:h-[400px] lg:h-[460px]">
         <Image src={image} alt={title} fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/45" />

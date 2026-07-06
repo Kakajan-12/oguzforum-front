@@ -1,13 +1,14 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
-import { FiSearch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiSearch, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-import { useGetProjectsQuery } from "@/lib/api";
+import { useGetNewsQuery } from "@/lib/api";
 import { stripHtml } from "@/lib/utils/cardHelpers";
 import PageHero from "@/components/ui/PageHero";
-import ProjectGridCard from "@/components/projects/ProjectGridCard";
+import NewsGridCard from "@/components/news/NewsGridCard";
 import Spinner from "@/components/ui/Spinner";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import SortDropdown from "@/components/ui/SortDropdown";
 
 const PER_PAGE = 9;
 
@@ -18,7 +19,8 @@ const SORTS = [
   { value: "title_desc", label: "By name (Z - A)" },
 ];
 
-// Windowed page list with ellipsis: 1 … current±1 … last
+// Windowed page list with ellipsis: first, last, and current ±1.
+// e.g. 1 … 4 5 6 … 8
 function getPageList(current: number, total: number): (number | "dots")[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
   const left = Math.max(2, current - 1);
@@ -31,29 +33,26 @@ function getPageList(current: number, total: number): (number | "dots")[] {
   return pages;
 }
 
-export default function ProjectsPage() {
-  const { data, error, isLoading } = useGetProjectsQuery();
+export default function NewsPage() {
+  const { data, error, isLoading } = useGetNewsQuery();
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("date_desc");
   const [page, setPage] = useState(1);
   const topRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
-    const now = Date.now();
-    // Projects = past editions (event already finished).
-    let list = (data ?? []).filter(
-      (p) => new Date(p.end_date).getTime() <= now,
-    );
+    let list = [...(data ?? [])];
 
     if (search.trim()) {
       const q = search.toLowerCase();
-      list = list.filter((p) => stripHtml(p.en).toLowerCase().includes(q));
+      list = list.filter((n) => stripHtml(n.en).toLowerCase().includes(q));
     }
 
-    const byDate = (v: string) => new Date(v).getTime() || 0;
     switch (sort) {
       case "date_asc":
-        list.sort((a, b) => byDate(a.date) - byDate(b.date));
+        list.sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+        );
         break;
       case "title_asc":
         list.sort((a, b) => stripHtml(a.en).localeCompare(stripHtml(b.en)));
@@ -62,7 +61,9 @@ export default function ProjectsPage() {
         list.sort((a, b) => stripHtml(b.en).localeCompare(stripHtml(a.en)));
         break;
       default:
-        list.sort((a, b) => byDate(b.date) - byDate(a.date));
+        list.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        );
     }
 
     return list;
@@ -85,8 +86,8 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHero
-        title="Projects"
-        subtitle="Delivering initiatives that create lasting impact and meaningful connections."
+        title="News"
+        subtitle="Latest updates, insights, and highlights from our activities."
         image="/header-bg.jpg"
       />
 
@@ -95,7 +96,7 @@ export default function ProjectsPage() {
           <div ref={topRef} className="scroll-mt-24" />
 
           {/* Toolbar: search + sort */}
-          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center justify-start">
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <div className="relative w-full sm:max-w-sm">
               <input
                 value={search}
@@ -103,29 +104,37 @@ export default function ProjectsPage() {
                   setSearch(e.target.value);
                   resetPage();
                 }}
-                placeholder="Search projects"
-                className="w-full h-11 rounded border border-[#797979] bg-white py-3 pl-5 pr-14 text-sm text-gray-700 placeholder:text-gray-400 outline-none transition focus:border-[#1268B3]"
+                placeholder="Search news"
+                className="w-full rounded border border-[#797979] bg-white py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
               />
-              <FiSearch
-                className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-gray-400"
-                size={22}
-              />
+              {search ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    resetPage();
+                  }}
+                  aria-label="Clear search"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#797979] transition hover:text-gray-600"
+                >
+                  <FiX size={20} />
+                </button>
+              ) : (
+                <FiSearch
+                  className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#797979]"
+                  size={20}
+                />
+              )}
             </div>
 
-            <select
+            <SortDropdown
               value={sort}
-              onChange={(e) => {
-                setSort(e.target.value);
+              onChange={(next) => {
+                setSort(next);
                 resetPage();
               }}
-              className="w-full h-11 rounded border border-[#797979] bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-[#1268B3] sm:w-64"
-            >
-              {SORTS.map((s) => (
-                <option key={s.value} value={s.value}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
+              options={SORTS}
+            />
           </div>
 
           {isLoading ? (
@@ -133,12 +142,12 @@ export default function ProjectsPage() {
           ) : error ? (
             <ErrorMessage />
           ) : pageItems.length === 0 ? (
-            <p className="text-gray-500">No projects found.</p>
+            <p className="text-gray-500">No news found.</p>
           ) : (
             <>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {pageItems.map((p) => (
-                  <ProjectGridCard key={p.id} project={p} />
+                {pageItems.map((n) => (
+                  <NewsGridCard key={n.id} n={n} />
                 ))}
               </div>
 

@@ -35,55 +35,21 @@ export const stripHtml = (s?: string) =>
         .trim()
     : "";
 
-// Localized month names, indexed 0-11. Russian uses genitive forms (as in
-// "5 января"); Turkmen uses the standard month names.
-const MONTHS_BY_LOCALE: Record<string, string[]> = {
-  en: [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ],
-  ru: [
-    "января",
-    "февраля",
-    "марта",
-    "апреля",
-    "мая",
-    "июня",
-    "июля",
-    "августа",
-    "сентября",
-    "октября",
-    "ноября",
-    "декабря",
-  ],
-  tk: [
-    "ýanwar",
-    "fewral",
-    "mart",
-    "aprel",
-    "maý",
-    "iýun",
-    "iýul",
-    "awgust",
-    "sentýabr",
-    "oktýabr",
-    "noýabr",
-    "dekabr",
-  ],
-};
-
-const monthsFor = (locale?: string) =>
-  MONTHS_BY_LOCALE[locale ?? "en"] ?? MONTHS_BY_LOCALE.en;
+// Month names, indexed 0-11.
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -93,12 +59,12 @@ export function readingTime(html?: string) {
   return `${Math.max(1, Math.round(words / 200))} min read`;
 }
 
-export function formatDateRange(start?: string, end?: string, locale?: string) {
+export function formatDateRange(start?: string, end?: string) {
   if (!start) return "";
   const s = new Date(start);
   const e = end ? new Date(end) : s;
   if (isNaN(s.getTime())) return "";
-  const months = monthsFor(locale);
+  const months = MONTHS;
   const sameMonth =
     s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
   if (sameMonth) {

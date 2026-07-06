@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 
 import { useGetNewsByIdQuery, useGetNewsQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
-import { useLocale } from "next-intl";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
 import NewsGridCard from "@/components/news/NewsGridCard";
@@ -15,7 +14,6 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 import DataMessage from "@/components/ui/DataMessage";
 
 export default function NewsDetailPage() {
-  const locale = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const { data, error, isLoading } = useGetNewsByIdQuery({
     endpoint: "news",
@@ -76,7 +74,7 @@ export default function NewsDetailPage() {
                 <span className="font-medium text-[#1E55C8]">#{cat}</span>
               )}
               <span className="text-gray-500">
-                {formatDateRange(data.date, undefined, locale)}
+                {formatDateRange(data.date, undefined)}
               </span>
             </div>
 

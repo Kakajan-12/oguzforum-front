@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
-import { FiSearch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiSearch, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import { useGetProjectsQuery } from "@/lib/api";
 import { stripHtml } from "@/lib/utils/cardHelpers";
@@ -8,6 +8,7 @@ import PageHero from "@/components/ui/PageHero";
 import EventGridCard from "@/components/events/EventGridCard";
 import Spinner from "@/components/ui/Spinner";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import SortDropdown from "@/components/ui/SortDropdown";
 
 const PER_PAGE = 9;
 
@@ -95,10 +96,6 @@ export default function EventsPage() {
           {/* Toolbar: search + sort */}
           <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center justify-start">
             <div className="relative w-full sm:max-w-sm">
-              <FiSearch
-                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                size={18}
-              />
               <input
                 value={search}
                 onChange={(e) => {
@@ -106,24 +103,36 @@ export default function EventsPage() {
                   resetPage();
                 }}
                 placeholder="Search events"
-                className="w-full rounded border border-[#797979] bg-white py-2.5 pl-11 pr-4 text-sm outline-none transition focus:border-[#1268B3]"
+                className="w-full rounded border border-[#797979] bg-white py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
               />
+              {search ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    resetPage();
+                  }}
+                  aria-label="Clear search"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#797979] transition hover:text-gray-600"
+                >
+                  <FiX size={20} />
+                </button>
+              ) : (
+                <FiSearch
+                  className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#797979]"
+                  size={20}
+                />
+              )}
             </div>
 
-            <select
+            <SortDropdown
               value={sort}
-              onChange={(e) => {
-                setSort(e.target.value);
+              onChange={(next) => {
+                setSort(next);
                 resetPage();
               }}
-              className="w-full rounded border border-[#797979] bg-white px-4 py-2.5 text-sm text-gray-700 outline-none transition focus:border-[#1268B3] sm:w-64"
-            >
-              {SORTS.map((s) => (
-                <option key={s.value} value={s.value}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
+              options={SORTS}
+            />
           </div>
 
           {isLoading ? (

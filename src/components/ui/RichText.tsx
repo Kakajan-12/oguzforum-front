@@ -17,7 +17,7 @@ export default function RichText({ htmlContent, className }: Props) {
 
   return (
     <div
-      className={`rich-text${className ? ` ${className}` : ""}`}
+      className={`rich-text ${className ? ` ${className}` : ""}`}
       dangerouslySetInnerHTML={{
         __html: sanitizedHtml,
       }}

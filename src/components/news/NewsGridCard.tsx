@@ -7,11 +7,9 @@ import {
   formatDateRange,
   readingTime,
 } from "@/lib/utils/cardHelpers";
-import { useLocale } from "next-intl";
 import type { News } from "@/types";
 
 export default function NewsGridCard({ n }: { n: News }) {
-  const locale = useLocale();
   const title = stripHtml(n.en) || "News";
   const cat = stripHtml(n.cat_en);
   const href = `/news/${n.id}`;
@@ -43,7 +41,7 @@ export default function NewsGridCard({ n }: { n: News }) {
         </Link>
 
         <div className="mt-2 flex items-center gap-2 text-sm text-[#424A4E]">
-          <span>{formatDateRange(n.date, undefined, locale)}</span>
+          <span>{formatDateRange(n.date, undefined)}</span>
           <span>•</span>
           <span>{readingTime(n.text_en)}</span>
         </div>

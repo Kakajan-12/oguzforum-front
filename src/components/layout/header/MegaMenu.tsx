@@ -17,7 +17,6 @@ import {
   useGetLinksQuery,
 } from "@/lib/api";
 import { MEGA_GROUPS } from "./navItems";
-import { useTranslations } from "next-intl";
 
 type Props = {
   isOpen: boolean;
@@ -47,7 +46,6 @@ export default function MegaMenu({
   const { data: mailData } = useGetContactsMailQuery();
   const { data: numberData } = useGetContactsNumberQuery();
   const { data: links } = useGetLinksQuery();
-  const t = useTranslations("Nav");
 
   const phones = numberData?.map((n) => n.number) ?? [];
   const emails = mailData?.map((m) => m.mail) ?? [];
@@ -75,14 +73,15 @@ export default function MegaMenu({
           {/* Brand + contact block */}
           <div>
             <div className="text-white">
-              <p className="text-xl font-capitana-medium">{t("title")}</p>
+              <p className="text-xl font-capitana-medium">Oguz Forum | Expo</p>
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-white">
-                {t("description")}
+                We understand that every project is unique, which is why we
+                provide a tailored approach to each client.
               </p>
-              <div className="flex items-start gap-8 mt-8">
+              <div className="flex items-start gap-12 mt-8">
                 {(phones.length > 0 || emails.length > 0) && (
                   <div>
-                    <p className="font-capitana-medium">{t("contacts")}</p>
+                    <p className="font-capitana-medium">Contacts</p>
                     {phones.map((p, i) => (
                       <a
                         key={`phone-${i}`}
@@ -105,7 +104,7 @@ export default function MegaMenu({
                 )}
                 {socials.length > 0 && (
                   <div>
-                    <p className="font-capitana-medium">{t("social")}</p>
+                    <p className="font-capitana-medium">Social media</p>
                     <div className="mt-3 flex items-center gap-3">
                       {socials.map(({ id, url, Icon }) => (
                         <a
@@ -129,7 +128,7 @@ export default function MegaMenu({
             {/* Link groups */}
             {groups.map((group) => (
               <div key={group.title} className="text-white">
-                <p className="font-capitana-medium text-lg">{t(group.title)}</p>
+                <p className="font-capitana-medium text-lg">{group.title}</p>
                 <ul className="mt-5 space-y-3">
                   {group.links.map((link) => (
                     <li key={link.label + link.href}>
@@ -147,7 +146,7 @@ export default function MegaMenu({
                           aria-hidden
                           className="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5"
                         />
-                        {t(link.label)}
+                        {link.label}
                       </Link>
                     </li>
                   ))}

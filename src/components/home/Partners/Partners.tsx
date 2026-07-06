@@ -3,12 +3,10 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useGetPartnersQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
-import { useTranslations } from "next-intl";
 
 import "./Partners.css";
 
 export default function OurPartnersMain() {
-  const t = useTranslations("Partners");
   const { data } = useGetPartnersQuery();
   const containerRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLDivElement>(null);
@@ -41,7 +39,7 @@ export default function OurPartnersMain() {
     <section className="bg-white">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <h2 className="mb-10 font-capitana-medium text-3xl sm:text-4xl xl:text-5xl text-gray-900">
-          {t("title")}
+          Our partners
         </h2>
 
         <div ref={containerRef} className="w-full overflow-hidden">

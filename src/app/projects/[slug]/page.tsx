@@ -6,7 +6,6 @@ import { FiCalendar, FiMapPin } from "react-icons/fi";
 
 import { useGetProjectsByIdQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
-import { useLocale } from "next-intl";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
 import ProjectGallery from "@/components/projects/ProjectGallery";
@@ -14,7 +13,7 @@ import ParticipantCompanies from "@/components/projects/ParticipantCompanies";
 import Spinner from "@/components/ui/Spinner";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import DataMessage from "@/components/ui/DataMessage";
-import mapIconBlue from "../../../../../public/map-pinBlue.svg";
+import mapIconBlue from "../../../../public/map-pinBlue.svg";
 
 const STAT_LABELS: {
   key: "speakers" | "delegates" | "countries" | "companies" | "media";
@@ -28,7 +27,6 @@ const STAT_LABELS: {
 ];
 
 export default function ProjectDetailPage() {
-  const locale = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const { data, error, isLoading } = useGetProjectsByIdQuery({
     endpoint: "projects",
@@ -40,7 +38,7 @@ export default function ProjectDetailPage() {
   if (!data) return <DataMessage />;
 
   const title = stripHtml(data.en) || "Project";
-  const dateLabel = formatDateRange(data.date, data.end_date, locale);
+  const dateLabel = formatDateRange(data.date, data.end_date);
   const location = stripHtml(data.location_en);
 
   const stats = STAT_LABELS.map((s) => ({

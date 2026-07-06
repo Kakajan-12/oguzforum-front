@@ -8,7 +8,6 @@ import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import locationIcon from "../../../../public/map-pin.svg";
 import "./Events.css";
-import { useLocale, useTranslations } from "next-intl";
 import SectionHeader from "@/components/layout/SectionHeader";
 
 // Bento placement for up to 4 tiles: tall left, two on top-right, wide bottom.
@@ -21,8 +20,6 @@ const POSITIONS = [
 
 const MainEvents = () => {
   const { data } = useGetProjectsQuery();
-  const t = useTranslations("Event");
-  const locale = useLocale();
   const now = Date.now();
   const all = data ?? [];
   const upcoming = all
@@ -39,8 +36,8 @@ const MainEvents = () => {
     <section className="ev-section">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
-          title={t("title")}
-          link={{ href: "/events", label: t("all") }}
+          title="Events"
+          link={{ href: "/events", label: "All events" }}
           theme="dark"
         />
 
@@ -64,10 +61,10 @@ const MainEvents = () => {
                 <div className="ev-content">
                   <h3 className="ev-title">{title}</h3>
                   <div className="ev-meta">
-                    {formatDateRange(e.date, e.end_date, locale) && (
+                    {formatDateRange(e.date, e.end_date) && (
                       <span className="ev-meta-row">
                         <FiCalendar size={16} className="text-white" />
-                        {formatDateRange(e.date, e.end_date, locale)}
+                        {formatDateRange(e.date, e.end_date)}
                       </span>
                     )}
                     {e.location_en && (

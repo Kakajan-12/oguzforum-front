@@ -8,9 +8,6 @@ import {
   useGetContactsNumberQuery,
   useGetLinksQuery,
 } from "@/lib/api";
-import LanguageSwitcher from "@/components/layout/LangSwither";
-import { useTranslations } from "next-intl";
-
 const SOCIAL_LABELS: Record<string, string> = {
   instagram: "Instagram",
   telegram: "Telegram",
@@ -31,19 +28,18 @@ function Heading({ children }: { children: React.ReactNode }) {
 }
 
 const DefaultFooter = () => {
-  const t = useTranslations("Footer");
   const INFORMATION = [
-    { name: t("events"), href: "/events" },
-    { name: t("projects"), href: "/projects" },
-    { name: t("newsroom"), href: "/news" },
-    { name: t("profile"), href: "/about" },
-    { name: t("faq"), href: "/faq" },
+    { name: "Events", href: "/events" },
+    { name: "Projects", href: "/projects" },
+    { name: "News", href: "/news" },
+    { name: "Company profile", href: "/about" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   const BOTTOM_LINKS = [
-    { name: t("terms"), href: "/termsofuse" },
-    { name: t("privacy"), href: "/privacypolicy" },
-    { name: t("cookie"), href: "/cookieterms" },
+    { name: "Terms of use", href: "/termsofuse" },
+    { name: "Privacy policy", href: "/privacypolicy" },
+    { name: "Cookie terms", href: "/cookieterms" },
   ];
   const { data: mailData } = useGetContactsMailQuery();
   const { data: numberData } = useGetContactsNumberQuery();
@@ -132,14 +128,13 @@ const DefaultFooter = () => {
                 />
               </div>
               <p className="text-lg md:text-xl text-white font-capitana-medium">
-                {t("title")}
+                Through connections
               </p>
             </div>
-            <LanguageSwitcher />
           </div>
 
           {/* Information */}
-          <Section id="information" title={t("info")}>
+          <Section id="information" title="Information">
             {INFORMATION.map((item) => (
               <Link
                 key={item.href}
@@ -154,7 +149,7 @@ const DefaultFooter = () => {
           {/* Social Media — on mobile it goes after Contact (per mobile design) */}
           <Section
             id="social"
-            title={t("social")}
+            title="Social media"
             className="order-last md:order-none"
           >
             {socials.map((s) => (
@@ -171,7 +166,7 @@ const DefaultFooter = () => {
           </Section>
 
           {/* Contact */}
-          <Section id="contact" title={t("contact")}>
+          <Section id="contact" title="Contacts">
             {numberData &&
               numberData.length > 0 &&
               numberData.map((item) => (
@@ -215,7 +210,7 @@ const DefaultFooter = () => {
 
           <div className="flex items-center gap-3 text-sm text-white/75">
             <span>
-              © {new Date().getFullYear()}, {t("copyright")}
+              © {new Date().getFullYear()}, All rights reserved
             </span>
             <a
               href="https://hebent.tech"
