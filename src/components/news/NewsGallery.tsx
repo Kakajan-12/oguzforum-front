@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback, useEffect } from "react";
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import { FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { resolveMediaUrl } from "@/constant";
 
@@ -56,7 +56,7 @@ export default function NewsGallery({ images }: { images: GalleryImage[] }) {
               onClick={() => openAt(i)}
               className="group relative aspect-[4/3] w-full overflow-hidden rounded"
             >
-              <Image
+              <SkeletonImage
                 src={resolveMediaUrl(img.image)}
                 alt=""
                 fill
@@ -105,7 +105,7 @@ export default function NewsGallery({ images }: { images: GalleryImage[] }) {
             className="relative h-[80vh] w-full max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
+            <SkeletonImage
               src={resolveMediaUrl(images[index].image)}
               alt=""
               fill

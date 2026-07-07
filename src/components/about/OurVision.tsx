@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 
 const STATS = [
   { value: "23", label: "successfully delivered event projects" },
@@ -70,7 +70,7 @@ export default function OurVision() {
                   key={i}
                   className={`relative ${img.ratio} ${img.grow} lg:aspect-auto lg:min-h-0 overflow-hidden rounded`}
                 >
-                  <Image
+                  <SkeletonImage
                     src={img.src}
                     alt=""
                     fill
@@ -86,7 +86,7 @@ export default function OurVision() {
                   key={i}
                   className={`relative ${img.ratio} ${img.grow} lg:aspect-auto lg:min-h-0 overflow-hidden rounded`}
                 >
-                  <Image
+                  <SkeletonImage
                     src={img.src}
                     alt=""
                     fill

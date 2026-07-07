@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 
 interface Props {
   title: string;
@@ -14,7 +14,7 @@ export default function PageHero({
   return (
     <section className="relative w-full px-4 lg:px-10">
       <div className="relative h-[340px] w-full overflow-hidden sm:h-[400px] lg:h-[460px]">
-        <Image src={image} alt={title} fill priority className="object-cover" />
+        <SkeletonImage src={image} alt={title} fill priority className="object-cover" />
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute inset-0 flex items-center pt-16">
           <div className="px-4 lg:px-10">

@@ -1,10 +1,10 @@
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 
 export default function AboutBanner() {
   return (
     <section className="relative w-full px-4 lg:px-10">
       <div className="relative h-[340px] w-full overflow-hidden sm:h-[400px] lg:h-[460px]">
-        <Image
+        <SkeletonImage
           src="/header-bg.jpg"
           alt="About OGUZ Forum & Expo"
           fill

@@ -8,6 +8,7 @@ import { useGetProjectsByIdQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import ProjectGallery from "@/components/projects/ProjectGallery";
 import ParticipantCompanies from "@/components/projects/ParticipantCompanies";
 import Spinner from "@/components/ui/Spinner";
@@ -75,7 +76,7 @@ export default function ProjectDetailPage() {
         {/* Media + intro */}
         <div className="mt-8 grid grid-cols-1 lg:mt-10 lg:grid-cols-[380px_1fr] xl:grid-cols-[520px_1fr] gap-5">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
-            <Image
+            <SkeletonImage
               src={resolveMediaUrl(data.image)}
               alt={title}
               fill

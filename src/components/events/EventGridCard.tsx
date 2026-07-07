@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import Link from "next/link";
 import { FiCalendar, FiUser } from "react-icons/fi";
 import { resolveMediaUrl } from "@/constant";
@@ -18,7 +19,7 @@ export default function EventGridCard({ event }: { event: Projects }) {
         href={href}
         className="relative block aspect-[16/10] w-full overflow-hidden rounded"
       >
-        <Image
+        <SkeletonImage
           src={resolveMediaUrl(event.image)}
           alt={title}
           fill

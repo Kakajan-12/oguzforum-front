@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import Link from "next/link";
 import { FiCalendar, FiUser } from "react-icons/fi";
 
@@ -117,7 +118,7 @@ export default function OurProjects() {
                   href={`/projects/${p.id}`}
                   className="pr-card pr-media group relative min-h-[290px] md:h-full md:col-span-2"
                 >
-                  <Image
+                  <SkeletonImage
                     src={resolveMediaUrl(p.image)}
                     alt={title}
                     fill
@@ -147,7 +148,7 @@ export default function OurProjects() {
                 className="pr-card group block"
               >
                 <div className="pr-media relative min-h-[260px] md:min-h-0 md:aspect-[16/10]">
-                  <Image
+                  <SkeletonImage
                     src={resolveMediaUrl(p.image)}
                     alt={title}
                     fill

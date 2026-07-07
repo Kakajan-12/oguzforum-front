@@ -7,6 +7,7 @@ import { useGetNewsByIdQuery, useGetNewsQuery } from "@/lib/api";
 import { resolveMediaUrl } from "@/constant";
 import { stripHtml, formatDateRange } from "@/lib/utils/cardHelpers";
 import RichText from "@/components/ui/RichText";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import NewsGridCard from "@/components/news/NewsGridCard";
 import NewsGallery from "@/components/news/NewsGallery";
 import Spinner from "@/components/ui/Spinner";
@@ -54,7 +55,7 @@ export default function NewsDetailPage() {
         {/* Image + article */}
         <div className="mt-8 grid grid-cols-1 gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-12">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded">
-            <Image
+            <SkeletonImage
               src={resolveMediaUrl(data.image)}
               alt={title}
               fill

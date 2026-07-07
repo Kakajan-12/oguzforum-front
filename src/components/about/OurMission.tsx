@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 
 const PILLARS = [
   {
@@ -26,7 +27,7 @@ export default function OurMission() {
         <div className="grid grid-cols-1 gap-4 md:gap-10 xl:gap-20 md:grid-cols-2 items-start">
           {/* left: image */}
           <div className="relative aspect-[4/3] overflow-hidden rounded">
-            <Image
+            <SkeletonImage
               src="/about/about-3.webp"
               alt="Our mission"
               fill

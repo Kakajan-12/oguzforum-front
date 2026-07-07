@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import Link from "next/link";
 import { FiCalendar, FiUser } from "react-icons/fi";
 
@@ -50,7 +51,7 @@ const MainEvents = () => {
                 href={`/events/${e.id}`}
                 className={`ev-tile group ${POSITIONS[i]}`}
               >
-                <Image
+                <SkeletonImage
                   src={resolveMediaUrl(e.image)}
                   alt={title}
                   fill
