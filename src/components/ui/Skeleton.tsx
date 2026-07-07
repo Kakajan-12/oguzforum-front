@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { type ImageProps } from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
@@ -43,10 +43,19 @@ function SkeletonImage({
   ...props
 }: SkeletonImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // onLoad не срабатывает для уже закэшированных картинок — ловим это через ref.
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setIsLoaded(true);
+    }
+  }, []);
 
   const image = (
     <Image
       {...props}
+      ref={imgRef}
       fill={fill}
       className={cn(
         "transition-opacity duration-300",

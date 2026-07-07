@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import { useGetSlidersQuery } from "@/lib/api";
 
 import { resolveMediaUrl } from "@/constant";
@@ -47,7 +48,7 @@ const Main = () => {
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
-            <Image
+            <SkeletonImage
               src={mediaUrl}
               alt=""
               fill

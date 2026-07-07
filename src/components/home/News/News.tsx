@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import Link from "next/link";
 
 import { useGetNewsQuery } from "@/lib/api";
@@ -57,7 +57,7 @@ const NewsMain = () => {
           {/* Featured */}
           <Link href={`/news/${featured.id}`} className="group flex flex-col">
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded">
-              <Image
+              <SkeletonImage
                 src={resolveMediaUrl(featured.image)}
                 alt={featTitle}
                 fill
@@ -97,7 +97,7 @@ const NewsMain = () => {
                   className="group flex flex-col items-start gap-4 md:flex-row md:min-h-0"
                 >
                   <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded md:aspect-auto md:h-full md:w-[15rem]">
-                    <Image
+                    <SkeletonImage
                       src={resolveMediaUrl(n.image)}
                       alt={title}
                       fill

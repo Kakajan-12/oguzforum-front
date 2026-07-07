@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import Link from "next/link";
 import { resolveMediaUrl } from "@/constant";
 import {
@@ -20,7 +21,7 @@ export default function NewsGridCard({ n }: { n: News }) {
         href={href}
         className="relative block aspect-[16/10] w-full overflow-hidden rounded"
       >
-        <Image
+        <SkeletonImage
           src={resolveMediaUrl(n.image)}
           alt={title}
           fill

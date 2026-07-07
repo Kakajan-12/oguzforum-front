@@ -2,7 +2,7 @@
 import RichText from "@/components/ui/RichText";
 import { Projects, Services } from "@/types";
 import { InsideNews } from "@/types/singlePage";
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import React from "react";
 import { resolveMediaUrl } from "@/constant";
 
@@ -21,13 +21,12 @@ const BackgroundUi: React.FC<Props> = ({ event }) => {
   const imageUrl = event?.data?.image ? event.data.image : "/default-image.jpg";
   return (
     <div className="px-4 lg:px-10 relative h-screen">
-      <Image
+      <SkeletonImage
         src={resolveMediaUrl(imageUrl)}
         alt={event?.data?.image || "background"}
-        width={1920}
-        height={1080}
+        fill
         priority
-        className="w-full h-full object-cover"
+        className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-blue-950/100 to-transparent"></div>
       <div className="px-4 lg:px-10">

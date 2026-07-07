@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 
 export default function WeAre() {
   return (
@@ -33,7 +33,7 @@ export default function WeAre() {
         <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 md:grid-rows-1 flex-1">
           {/* Our Team — text over image */}
           <div className="relative min-h-[60vh] overflow-hidden rounded md:h-full md:max-h-[85vh] ">
-            <Image
+            <SkeletonImage
               src="/about/about-3.webp"
               alt="Our team"
               fill

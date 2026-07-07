@@ -1,6 +1,6 @@
 import RichText from "@/components/ui/RichText";
 import { News, Press } from "@/types";
-import Image from "next/image";
+import { SkeletonImage } from "@/components/ui/Skeleton";
 import React, { useEffect, useRef, useState } from "react";
 import { resolveMediaUrl } from "@/constant";
 import Pagination from "@mui/material/Pagination";
@@ -69,11 +69,9 @@ const NewsCardProps: React.FC<Props> = ({
               className="shadow-sm w-full border flex flex-col p-4 rounded shadow-slate-400"
             >
               <div className="w-full h-56 relative">
-                <Image
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  className="w-full h-56 rounded object-contain"
+                <SkeletonImage
+                  fill
+                  className="rounded object-contain"
                   alt={`${items.image}`}
                   src={resolveMediaUrl(items.image)}
                 />
