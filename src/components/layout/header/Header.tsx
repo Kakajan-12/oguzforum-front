@@ -22,7 +22,7 @@ export default function Header() {
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       .slice(0, 3)
       .map((e) => ({
-        label: stripHtml(e.en) || "Event",
+        label: stripHtml(e.short_en) || "Event",
         href: `/events/${e.id}`,
       }));
   })();

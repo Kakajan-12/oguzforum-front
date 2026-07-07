@@ -43,6 +43,7 @@ export type Projects = {
   tk: string;
   en: string;
   ru: string;
+  short_en?: string;
   text_tk: string;
   text_en: string;
   text_ru: string;
