@@ -55,18 +55,6 @@ export default function OurPartnersMain() {
                 aria-hidden={copyIndex > 0 || undefined}
               >
                 {data.map((partner) => (
-                  //   <div
-                  //   key={i}
-                  //   className="relative mx-8 flex h-36 w-44 shrink-0 items-center justify-center  transition duration-300 hover:grayscale-0"
-                  // >
-                  //   <Image
-                  //     src={partner.logo}
-                  //     alt={partner.name}
-                  //     fill
-                  //     sizes="176px"
-                  //     className="object-contain"
-                  //   />
-                  // </div>
                   <div
                     key={`${copyIndex}-${partner.id}`}
                     className="relative mx-5 flex h-28 md:h-36 w-20 md:w-44 shrink-0 items-center justify-center  transition duration-300"

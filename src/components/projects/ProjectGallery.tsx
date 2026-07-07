@@ -9,6 +9,7 @@ type GalleryImage = { id: number; image: string };
 export default function ProjectGallery({ images }: { images: GalleryImage[] }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [previewCount, setPreviewCount] = useState(6);
 
   const prev = useCallback(
     () => setIndex((i) => (i - 1 + images.length) % images.length),
@@ -34,55 +35,87 @@ export default function ProjectGallery({ images }: { images: GalleryImage[] }) {
     };
   }, [open, prev, next]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setPreviewCount(mq.matches ? 5 : 6);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   if (!images || images.length === 0) return null;
 
   const openAt = (i: number) => {
     setIndex(i);
     setOpen(true);
   };
+  const preview = images.slice(0, previewCount);
+  const extra = images.length - previewCount;
+  const isMobile = previewCount === 5;
 
-  // Mosaic: 1 large tile (left) + up to 4 thumbs; last thumb shows "+N image".
-  const preview = images.slice(0, 5);
-  const extra = images.length - preview.length;
+  const Tile = ({
+    img,
+    i,
+    className,
+    showMore = false,
+    objectTop = false,
+  }: {
+    img?: GalleryImage;
+    i: number;
+    className?: string;
+    showMore?: boolean;
+    objectTop?: boolean;
+  }) => {
+    if (!img) return <div className={`bg-gray-300 ${className ?? ""}`} />;
+    return (
+      <button
+        type="button"
+        onClick={() => openAt(i)}
+        className={`group relative min-w-0 overflow-hidden ${className ?? ""}`}
+      >
+        <Image
+          src={resolveMediaUrl(img.image)}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 50vw, 33vw"
+          className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+            objectTop ? "object-top" : ""
+          }`}
+        />
+        {showMore && extra > 0 && (
+          <span className="absolute inset-0 flex items-center justify-center bg-black/55 text-lg font-medium text-white">
+            +{extra}
+          </span>
+        )}
+      </button>
+    );
+  };
 
   return (
     <>
-      <div className="grid auto-rows-[minmax(0,1fr)] grid-cols-2 gap-3 sm:grid-cols-4 sm:grid-rows-2 sm:gap-4">
-        {preview.map((img, i) => {
-          const isLarge = i === 0;
-          const showMore = i === preview.length - 1 && extra > 0;
-          return (
-            <button
-              key={img.id}
-              type="button"
-              onClick={() => openAt(i)}
-              className={`group relative w-full overflow-hidden rounded ${
-                isLarge
-                  ? "col-span-2 row-span-2 aspect-square sm:aspect-auto"
-                  : "aspect-[4/3]"
-              }`}
-            >
-              <Image
-                src={resolveMediaUrl(img.image)}
-                alt=""
-                fill
-                sizes={
-                  isLarge
-                    ? "(max-width: 640px) 100vw, 50vw"
-                    : "(max-width: 640px) 50vw, 25vw"
-                }
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              {showMore && (
-                <span className="absolute inset-0 flex items-center justify-center bg-black/55 text-lg font-medium text-white">
-                  +{extra} image
-                </span>
-              )}
-            </button>
-          );
-        })}
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-[1fr_2fr] md:grid-rows-2 lg:gap-4 md:h-[90vh]">
+        <Tile
+          img={preview[0]}
+          i={0}
+          className="larger col-span-1 row-span-2 aspect-[4/3] md:aspect-auto md:h-full"
+        />
+        <div className="rightColumn col-span-1 row-span-1 grid grid-cols-2 gap-2 lg:gap-4">
+          <Tile img={preview[1]} i={1} className="col-span-1 aspect-square md:aspect-auto" />
+          <Tile img={preview[2]} i={2} className="col-span-1 aspect-square md:aspect-auto" />
+        </div>
+        <div className="rightColumn2 col-span-1 row-span-1 grid grid-cols-2 gap-2 lg:gap-4 md:grid-cols-[0.85fr_1.7fr_0.9fr]">
+          <Tile img={preview[3]} i={3} className="col-span-1 aspect-square md:aspect-auto" />
+          <Tile
+            img={preview[4]}
+            i={4}
+            className="col-span-1 aspect-square md:aspect-auto"
+            showMore={isMobile}
+          />
+          {!isMobile && (
+            <Tile img={preview[5]} i={5} className="col-span-1 aspect-square md:aspect-auto" showMore />
+          )}
+        </div>
       </div>
-
       {open && (
         <div
           className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-4"

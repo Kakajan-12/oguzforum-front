@@ -65,9 +65,9 @@ export default function NewsDetailPage() {
           </div>
 
           <div>
-            <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-[2.6rem]">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl/[3rem] xl:text-5xl/[3.5rem]">
               {title}
-            </h1>
+            </h2>
 
             <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
               {cat && (

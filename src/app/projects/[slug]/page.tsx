@@ -98,9 +98,9 @@ export default function ProjectDetailPage() {
                   />
                 </div>
               )}
-              <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-[2.6rem]">
+              <h2 className="text-3xl font-bold leading-relaxed text-gray-900 sm:text-4xl lg:text-[2.6rem]">
                 {title}
-              </h1>
+              </h2>
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
@@ -132,11 +132,13 @@ export default function ProjectDetailPage() {
             {stats.length > 0 && (
               <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-5">
                 {stats.map((s) => (
-                  <div key={s.label}>
-                    <p className="text-3xl font-capitana-medium text-gray-900 sm:text-4xl">
+                  <div key={s.label} className="lg:text-center xl:text-left">
+                    <p className="text-3xl font-capitana-medium text-gray-900 sm:text-4xl lg:text-[40px] xl:text-5xl">
                       {s.value}
                     </p>
-                    <p className="mt-1 text-sm text-[#424A4E]">{s.label}</p>
+                    <p className="mt-1 text-sm lg:text-xl text-[#424A4E]">
+                      {s.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -162,7 +164,7 @@ export default function ProjectDetailPage() {
                     className="flex w-44 flex-col items-center text-center"
                   >
                     {logo && (
-                      <div className="relative h-52 w-full">
+                      <div className="relative h-36 w-36">
                         <Image
                           src={logo}
                           alt={org.organizer_en || ""}

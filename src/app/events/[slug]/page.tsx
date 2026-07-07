@@ -132,9 +132,9 @@ export default function EventDetailPage() {
           </div>
 
           <div>
-            <div className="flex items-start gap-4">
+            <div className="flex items-center gap-4">
               {data.logo && (
-                <div className="relative hidden h-16 w-16 shrink-0 overflow-hidden rounded border border-gray-100 sm:block">
+                <div className="relative hidden h-28 w-28 shrink-0 overflow-hidden sm:block">
                   <Image
                     src={resolveMediaUrl(data.logo)}
                     alt=""
@@ -144,9 +144,9 @@ export default function EventDetailPage() {
                   />
                 </div>
               )}
-              <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-[2.6rem]">
+              <h2 className="text-3xl font-bold leading-relaxed text-gray-900 sm:text-4xl lg:text-[2.6rem]">
                 {title}
-              </h1>
+              </h2>
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
@@ -193,7 +193,7 @@ export default function EventDetailPage() {
       {/* Organizers & Official Supporters */}
       {organizers.length > 0 && (
         <div className="px-4 lg:px-10 pb-12">
-          <h2 className="mb-8 text-2xl font-semibold text-gray-900 sm:text-3xl">
+          <h2 className="mb-8 break-words text-2xl font-semibold text-gray-900 sm:text-3xl">
             Organizers &amp; Official Supporters
           </h2>
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
@@ -202,9 +202,9 @@ export default function EventDetailPage() {
               return (
                 <div
                   key={org.id}
-                  className="flex flex-col items-center gap-3 text-center"
+                  className="flex flex-col items-center gap-3 text-center w-40"
                 >
-                  <div className="relative h-20 w-20">
+                  <div className="relative h-36 w-36">
                     <Image
                       src={resolveMediaUrl(org.organizer_logo)}
                       alt={name || "Organizer"}
