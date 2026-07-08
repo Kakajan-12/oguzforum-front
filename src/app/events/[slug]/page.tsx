@@ -133,7 +133,7 @@ export default function EventDetailPage() {
           </div>
 
           <div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4">
               {data.logo && (
                 <div className="relative hidden h-28 w-28 shrink-0 overflow-hidden sm:block">
                   <Image
@@ -145,7 +145,7 @@ export default function EventDetailPage() {
                   />
                 </div>
               )}
-              <h2 className="text-3xl font-bold leading-relaxed text-gray-900 sm:text-4xl lg:text-[2.6rem]">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl/[3rem] lg:text-[2.6rem]/[3rem]">
                 {title}
               </h2>
             </div>

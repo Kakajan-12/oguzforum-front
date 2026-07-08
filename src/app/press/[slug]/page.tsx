@@ -18,8 +18,6 @@ const page = () => {
   if (error) return <ErrorMessage />;
   if (!data) return <DataMessage />;
 
-  // console.log(data);
-
   return (
     <div className="">
       <BackgroundUi event={{ data: data, type: "news" }} />

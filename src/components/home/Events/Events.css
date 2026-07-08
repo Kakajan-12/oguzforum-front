@@ -33,7 +33,7 @@
     rgba(0, 0, 0, 0) 45%
   );
   transition: background 0.35s ease;
-  z-index: 1;
+  z-index: 16;
 }
 
 .ev-content {
@@ -43,7 +43,7 @@
   bottom: 0;
   padding: 12px;
   color: #fff;
-  z-index: 2;
+  z-index: 18;
 }
 
 @media (min-width: 1024px) {
