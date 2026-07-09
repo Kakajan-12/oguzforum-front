@@ -14,9 +14,15 @@ export default function PageHero({
   return (
     <section className="relative w-full px-4 lg:px-10">
       <div className="relative h-[340px] w-full overflow-hidden sm:h-[400px] lg:h-[460px]">
-        <SkeletonImage src={image} alt={title} fill priority className="object-cover" />
+        <SkeletonImage
+          src={image}
+          alt={title}
+          fill
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 flex items-center pt-16">
+        <div className="absolute inset-0 flex items-center pt-16 z-20">
           <div className="px-4 lg:px-10">
             <div className="border-l-[3px] border-[#34C3F0] pl-5">
               <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl">
