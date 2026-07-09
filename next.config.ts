@@ -1,6 +1,20 @@
 import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/:locale(ru|en|tk)",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/:locale(ru|en|tk)/:path*",
+        destination: "/:path*",
+        permanent: true,
+      },
+    ];
+  },
   // Потом можно удалить этот блок, если не нужно будет проксировать запросы на api.oguzforum.com
   async rewrites() {
     return [
