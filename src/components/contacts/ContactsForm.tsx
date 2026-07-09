@@ -138,7 +138,7 @@ const ContactsForm = () => {
   return (
     <section className="bg-white">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-28 xl:gap-48">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-28 xl:gap-44">
           {/* ── Left: info ─────────────────────────────── */}
           <div>
             <h2 className="font-medium text-3xl sm:text-4xl lg:text-5xl">
@@ -216,7 +216,7 @@ const ContactsForm = () => {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EAEAEA] text-[#797979] transition-colors hover:bg-blue-line hover:text-white"
+                        className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EAEAEA] text-[#797979] transition-colors hover:bg-blue-line hover:text-mainBlue"
                       >
                         <Icon size={23} />
                       </a>

@@ -64,7 +64,7 @@ export default function MegaMenu({
     <div
       onMouseEnter={onOpen}
       onMouseLeave={onClose}
-      className={`absolute left-0 right-0 top-full main-background-color border-t border-white/10 shadow-[0_16px_32px_rgba(0,0,0,0.35)]
+      className={`absolute left-0 right-0 top-full bg-[#06306a]
         origin-top transition-all duration-200
         ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
     >

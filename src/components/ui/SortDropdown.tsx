@@ -82,7 +82,11 @@ export default function SortDropdown({
               option.value === value || option.value === hovered;
 
             return (
-              <li key={option.value} role="option" aria-selected={option.value === value}>
+              <li
+                key={option.value}
+                role="option"
+                aria-selected={option.value === value}
+              >
                 <button
                   type="button"
                   id={option.value}
