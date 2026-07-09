@@ -11,11 +11,6 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Oguz Forum | Expo",
   description: "Oguz Forum | Expo",
-  icons: {
-    icon: [{ url: "/logo.svg", type: "image/svg+xml" }],
-    shortcut: "/logo.svg",
-    apple: "/logo.svg",
-  },
 };
 
 export default function RootLayout({
@@ -25,9 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`h-full antialiased`}>
-      <head>
-        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-      </head>
       <body>
         <ReduxProvider>
           <Header />
