@@ -229,7 +229,7 @@ export default function EventDetailPage() {
         <div className="px-4 lg:px-10 pb-14">
           <div className="rounded bg-[#EAF3FB] px-6 py-10 sm:px-10 lg:px-14">
             <h2 className="mb-8 text-2xl font-semibold text-gray-900 sm:text-3xl">
-              Results
+              Past year's results
             </h2>
             <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
               {stats.map((s, i) => (
