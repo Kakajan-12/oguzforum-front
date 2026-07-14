@@ -58,7 +58,7 @@ const Main = () => {
           ))}
 
         {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-hero-gradient" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/50 via-black/40 to-transparent" />
 
         {/* Foreground content */}
         <div className="pointer-events-none absolute inset-0 flex items-center pl-4 lg:pl-20">
