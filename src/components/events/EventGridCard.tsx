@@ -30,7 +30,7 @@ export default function EventGridCard({ event }: { event: Projects }) {
 
       <div className="pt-4">
         <Link href={href} className="block">
-          <h3 className="text-lg font-semibold leading-snug text-gray-900 line-clamp-2 transition-colors group-hover:text-[#1268B3]">
+          <h3 className="min-h-[2lh] text-lg font-semibold leading-snug text-gray-900 line-clamp-2 transition-colors group-hover:text-[#1268B3]">
             {title}
           </h3>
         </Link>
