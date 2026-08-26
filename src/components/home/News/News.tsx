@@ -48,7 +48,7 @@ const NewsMain = () => {
     <section className="bg-white">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
-          title="News"
+          title="Newsroom"
           link={{ href: "/news", label: "All news" }}
           theme="light"
         />

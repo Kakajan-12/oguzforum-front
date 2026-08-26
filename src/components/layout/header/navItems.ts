@@ -27,7 +27,7 @@ export const MEGA_GROUPS: MegaGroup[] = [
   {
     title: "Newsroom",
     links: [
-      { label: "News", href: `/news` },
+      { label: "Newsroom", href: `/news` },
       { label: "Media center", href: `/media` },
       { label: "Press releases", href: `/press` },
     ],

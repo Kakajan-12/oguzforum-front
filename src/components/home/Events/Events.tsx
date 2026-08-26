@@ -13,10 +13,10 @@ import SectionHeader from "@/components/layout/SectionHeader";
 
 // Bento placement for up to 4 tiles: tall left, two on top-right, wide bottom.
 const POSITIONS = [
-  "md:col-start-1 md:row-start-1 md:row-span-2 min-h-[260px] md:min-h-[520px]",
+  "md:col-start-1 md:row-start-1 min-h-[250px]",
   "md:col-start-2 md:row-start-1 min-h-[250px]",
-  "md:col-start-3 md:row-start-1 min-h-[250px]",
-  "md:col-start-2 md:col-span-2 md:row-start-2 min-h-[350px]",
+  "md:col-start-1 md:col-span-2 md:row-start-2 min-h-[350px]",
+  "md:col-start-3 md:row-start-1 md:row-span-2 min-h-[260px] md:min-h-[520px]",
 ];
 
 const MainEvents = () => {
@@ -42,8 +42,8 @@ const MainEvents = () => {
           theme="dark"
         />
 
-        <div className="grid w-full flex-1 grid-cols-1 grid-rows-4 gap-4 md:grid-cols-[1.4fr_1fr_1fr] md:grid-rows-2">
-          {events.map((e, i) => {
+        <div className="grid w-full flex-1 grid-cols-1 grid-rows-4 gap-4 md:grid-cols-[1fr_1fr_1.4fr] md:grid-rows-2">
+          {events.reverse().map((e, i) => {
             const title = stripHtml(e.en);
             return (
               <Link

@@ -86,7 +86,7 @@ export default function NewsPage() {
   return (
     <>
       <PageHero
-        title="News"
+        title="Newsroom"
         subtitle="Latest updates, insights, and highlights from our activities."
         image="/header-bg.jpg"
       />

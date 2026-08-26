@@ -1,5 +1,3 @@
-
-
 import { SkeletonImage } from "@/components/ui/Skeleton";
 import React from "react";
 
@@ -8,7 +6,7 @@ const BACK_LABELS: Record<string, string> = {
   weare: "Who We Are",
   upcoming: "Upcoming events",
   projects: "Projects",
-  news: "News",
+  news: "Newsroom",
   contacts: "Contacts",
   cookie: "Cookie Terms",
   privacy: "Privacy Policy",

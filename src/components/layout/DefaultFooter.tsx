@@ -31,7 +31,7 @@ const DefaultFooter = () => {
   const INFORMATION = [
     { name: "Events", href: "/events" },
     { name: "Projects", href: "/projects" },
-    { name: "News", href: "/news" },
+    { name: "Newsroom", href: "/news" },
     { name: "Company profile", href: "/about" },
     { name: "FAQ", href: "/faq" },
   ];

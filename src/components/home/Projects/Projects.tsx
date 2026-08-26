@@ -82,9 +82,6 @@ export default function OurProjects() {
 
   if (projects.length === 0) return null;
 
-  // Grid positions 0 and 3 (left column) render as large "featured" cards.
-  // Those two should show the two MOST RECENT projects; the 4 compact cards
-  // show the older ones — so we re-order the array into grid slots accordingly.
   const featuredPool = projects.slice(0, 2);
   const compactPool = projects.slice(2);
   const FEATURED_POS = new Set([0, 3]);
@@ -101,7 +98,7 @@ export default function OurProjects() {
     <section className="bg-white">
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
-          title="Projects"
+          title="Our projects"
           link={{ href: "/projects", label: "All projects" }}
           theme="light"
         />
