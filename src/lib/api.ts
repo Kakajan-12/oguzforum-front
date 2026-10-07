@@ -51,6 +51,7 @@ export const oguzform = createApi({
 
             getNewsById: getElementByIds<InsideNews>(),
             getProjectsById: getElementByIds<Projects>(),
+            getPressById: getElementByIds<Press>(),
 
             applyJob: builder.mutation<any, any>({
                 query: (formData) => ({
@@ -82,6 +83,7 @@ export const {
 
     useGetNewsByIdQuery,
     useGetProjectsByIdQuery,
+    useGetPressByIdQuery,
 
     useApplyJobMutation,
 } = oguzform;

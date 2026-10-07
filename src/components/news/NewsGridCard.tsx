@@ -10,10 +10,16 @@ import {
 } from "@/lib/utils/cardHelpers";
 import type { News } from "@/types";
 
-export default function NewsGridCard({ n }: { n: News }) {
+export default function NewsGridCard({
+  n,
+  basePath = "/news",
+}: {
+  n: News;
+  basePath?: string;
+}) {
   const title = stripHtml(n.en) || "News";
   const cat = stripHtml(n.cat_en);
-  const href = `/news/${n.id}`;
+  const href = `${basePath}/${n.id}`;
 
   return (
     <div className="group flex flex-col">

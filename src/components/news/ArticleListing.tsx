@@ -1,0 +1,227 @@
+"use client";
+import { useMemo, useRef, useState } from "react";
+import { FiSearch, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
+import { stripHtml } from "@/lib/utils/cardHelpers";
+import type { News } from "@/types";
+import PageHero from "@/components/ui/PageHero";
+import NewsGridCard from "@/components/news/NewsGridCard";
+import Spinner from "@/components/ui/Spinner";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import SortDropdown from "@/components/ui/SortDropdown";
+
+const PER_PAGE = 9;
+
+const SORTS = [
+  { value: "date_desc", label: "By date (new - old)" },
+  { value: "date_asc", label: "By date (old - new)" },
+  { value: "title_asc", label: "By name (A - Z)" },
+  { value: "title_desc", label: "By name (Z - A)" },
+];
+
+// Windowed page list with ellipsis: first, last, and current ±1.
+// e.g. 1 … 4 5 6 … 8
+function getPageList(current: number, total: number): (number | "dots")[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const left = Math.max(2, current - 1);
+  const right = Math.min(total - 1, current + 1);
+  const pages: (number | "dots")[] = [1];
+  if (left > 2) pages.push("dots");
+  for (let i = left; i <= right; i++) pages.push(i);
+  if (right < total - 1) pages.push("dots");
+  pages.push(total);
+  return pages;
+}
+
+type Props = {
+  data?: News[];
+  isLoading: boolean;
+  error: unknown;
+  title: string;
+  subtitle: string;
+  image: string;
+  // Card links go to `${basePath}/${id}`
+  basePath: string;
+  searchPlaceholder: string;
+  emptyText: string;
+};
+
+// Shared list page for News and Press releases: hero + search/sort toolbar +
+// card grid + windowed pagination.
+export default function ArticleListing({
+  data,
+  isLoading,
+  error,
+  title,
+  subtitle,
+  image,
+  basePath,
+  searchPlaceholder,
+  emptyText,
+}: Props) {
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("date_desc");
+  const [page, setPage] = useState(1);
+  const topRef = useRef<HTMLDivElement>(null);
+
+  const filtered = useMemo(() => {
+    let list = [...(data ?? [])];
+
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      list = list.filter((n) => stripHtml(n.en).toLowerCase().includes(q));
+    }
+
+    switch (sort) {
+      case "date_asc":
+        list.sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+        );
+        break;
+      case "title_asc":
+        list.sort((a, b) => stripHtml(a.en).localeCompare(stripHtml(b.en)));
+        break;
+      case "title_desc":
+        list.sort((a, b) => stripHtml(b.en).localeCompare(stripHtml(a.en)));
+        break;
+      default:
+        list.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        );
+    }
+
+    return list;
+  }, [data, search, sort]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const current = Math.min(page, totalPages);
+  const pageItems = filtered.slice(
+    (current - 1) * PER_PAGE,
+    current * PER_PAGE,
+  );
+
+  const goTo = (p: number) => {
+    setPage(Math.min(Math.max(1, p), totalPages));
+    topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const resetPage = () => setPage(1);
+
+  return (
+    <>
+      <PageHero title={title} subtitle={subtitle} image={image} />
+
+      <section className="bg-white">
+        <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
+          <div ref={topRef} className="scroll-mt-24" />
+
+          {/* Toolbar: search + sort */}
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="relative w-full sm:max-w-sm">
+              <input
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  resetPage();
+                }}
+                placeholder={searchPlaceholder}
+                className="w-full rounded border border-[#797979] bg-white py-3 pl-4 pr-12 text-sm text-gray-900 outline-none transition focus:border-[#1268B3]"
+              />
+              {search ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch("");
+                    resetPage();
+                  }}
+                  aria-label="Clear search"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#797979] transition hover:text-gray-600"
+                >
+                  <FiX size={20} />
+                </button>
+              ) : (
+                <FiSearch
+                  className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#797979]"
+                  size={20}
+                />
+              )}
+            </div>
+
+            <SortDropdown
+              value={sort}
+              onChange={(next) => {
+                setSort(next);
+                resetPage();
+              }}
+              options={SORTS}
+            />
+          </div>
+
+          {isLoading ? (
+            <Spinner />
+          ) : error ? (
+            <ErrorMessage />
+          ) : pageItems.length === 0 ? (
+            <p className="text-gray-500">{emptyText}</p>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {pageItems.map((n) => (
+                  <NewsGridCard key={n.id} n={n} basePath={basePath} />
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <div className="mt-14 flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => goTo(current - 1)}
+                    disabled={current === 1}
+                    aria-label="Previous page"
+                    className="flex h-10 w-10 items-center justify-center rounded border border-gray-200 text-gray-600 transition hover:border-[#1268B3] hover:text-[#1268B3] disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    <FiChevronLeft size={18} />
+                  </button>
+
+                  {getPageList(current, totalPages).map((p, i) =>
+                    p === "dots" ? (
+                      <span
+                        key={`dots-${i}`}
+                        className="flex h-10 w-10 items-center justify-center text-gray-400"
+                      >
+                        …
+                      </span>
+                    ) : (
+                      <button
+                        key={p}
+                        type="button"
+                        onClick={() => goTo(p)}
+                        className={`h-10 w-10 rounded border text-sm font-medium transition ${
+                          p === current
+                            ? "border-[#1268B3] bg-[#1268B3] text-white"
+                            : "border-gray-200 text-gray-700 hover:border-[#1268B3] hover:text-[#1268B3]"
+                        }`}
+                      >
+                        {p}
+                      </button>
+                    ),
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => goTo(current + 1)}
+                    disabled={current === totalPages}
+                    aria-label="Next page"
+                    className="flex h-10 w-10 items-center justify-center rounded border border-gray-200 text-gray-600 transition hover:border-[#1268B3] hover:text-[#1268B3] disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    <FiChevronRight size={18} />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+    </>
+  );
+}
