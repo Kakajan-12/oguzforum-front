@@ -73,7 +73,7 @@ const Main = () => {
                   {stats.map((s, i) => (
                     <li key={i} className="flex items-center gap-3 text-white">
                       <Image
-                        src="/logo1.svg"
+                        src="/iconOguzWhite.svg"
                         width={40}
                         height={40}
                         alt=""

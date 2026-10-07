@@ -58,7 +58,7 @@ export default function OurMission() {
               {PILLARS.map((p) => (
                 <div key={p.title} className="flex items-start gap-4">
                   <Image
-                    src="/logoOguzBlue.svg"
+                    src="/iconOguzBlue.svg"
                     width={36}
                     height={36}
                     alt=""
