@@ -30,24 +30,27 @@ const services = [
 export default function MiceServices() {
   return (
     <section className="bg-white pb-12 lg:pb-24">
-      <h2 className="mb-10 font-capitana-medium text-3xl sm:text-4xl xl:text-5xl text-gray-900">
+      <h2 className="mb-8 lg:mb-12 font-capitana-medium text-3xl sm:text-4xl xl:text-5xl text-gray-900">
         Our Services
       </h2>
-      <div className="grid grid-cols-1 gap-x-24 gap-y-10 lg:grid-cols-2 lg:px-10">
+      <div className="grid grid-cols-1 gap-x-32 gap-y-6 lg:gap-y-12 lg:grid-cols-2 lg:px-14">
         {services.map((service) => (
-          <div key={service.title} className="flex items-start gap-4">
+          <div
+            key={service.title}
+            className="flex items-center lg:items-start gap-4"
+          >
             <Image
               src="/iconOguzBlue.svg"
-              width={48}
-              height={48}
+              width={72}
+              height={72}
               alt=""
-              className="shrink-0"
+              className="shrink-0 size-[52px] lg:size-[72px]"
             />
             <div>
-              <h3 className="font-capitana-medium text-lg text-gray-900">
+              <h3 className="font-capitana-semibold text-base lg:text-xl">
                 {service.title}
               </h3>
-              <p className="mt-2 font-proxima text-sm leading-relaxed text-gray-600 text-justify">
+              <p className="mt-2 lg:mt-3 font-proxima text-sm lg:text-base leading-normal text-justify">
                 {service.text}
               </p>
             </div>

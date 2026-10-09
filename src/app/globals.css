@@ -11,6 +11,14 @@
 }
 
 @font-face {
+  font-family: "Capitana Light";
+  src: url("/fonts/fonnts.com-Capitana_Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Capitana Medium";
   src: url("/fonts/Fontspring-DEMO-capitana-medium.otf") format("opentype");
   font-weight: 500;
@@ -25,7 +33,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Capitana Bold";
   src: url("/fonts/Fontspring-DEMO-capitana-bold.otf") format("opentype");
@@ -270,4 +277,45 @@ h6 {
 
 .mice-gradient {
   background: linear-gradient(81.04deg, #006fb5 -5.28%, #06306a 48.58%);
+}
+
+/* MiceHowWeWork band: rises vertically, then runs diagonally to the top-right.
+   --rise / --run are unitless px values set on a parent. */
+.mice-band {
+  --r: 4px;
+  --rise-px: calc(var(--rise) * 1px);
+  --run-px: calc(var(--run) * 1px);
+  --dx: calc(var(--run) / hypot(var(--run), var(--rise)));
+  --dy: calc(var(--rise) / hypot(var(--run), var(--rise)));
+  clip-path: polygon(
+    0 var(--rise-px),
+    var(--run-px) 0,
+    100% 0,
+    calc(100% - var(--run-px)) var(--rise-px),
+    calc(100% - var(--run-px)) 100%,
+    0 100%
+  );
+}
+
+@supports (clip-path: shape(from 0 0, line to 1px 1px)) {
+  .mice-band {
+    clip-path: shape(
+      from 0 100%,
+      line to 0 calc(var(--rise-px) + var(--r)),
+      curve to calc(var(--r) * var(--dx))
+        calc(var(--rise-px) - var(--r) * var(--dy)) with 0 var(--rise-px),
+      line to calc(var(--run-px) - var(--r) * var(--dx))
+        calc(var(--r) * var(--dy)),
+      curve to calc(var(--run-px) + var(--r)) 0 with var(--run-px) 0,
+      line to calc(100% - var(--r)) 0,
+      curve to calc(100% - var(--r) * var(--dx)) calc(var(--r) * var(--dy)) with
+        100% 0,
+      line to calc(100% - var(--run-px) + var(--r) * var(--dx))
+        calc(var(--rise-px) - var(--r) * var(--dy)),
+      curve to calc(100% - var(--run-px)) calc(var(--rise-px) + var(--r)) with
+        calc(100% - var(--run-px)) var(--rise-px),
+      line to calc(100% - var(--run-px)) 100%,
+      close
+    );
+  }
 }

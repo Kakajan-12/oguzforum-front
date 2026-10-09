@@ -11,7 +11,8 @@ module.exports = {
     extend: {
       fontFamily: {
         proxima: ['"Proxima Nova"', "sans-serif"],
-        "capitana-medium": ['"Capitana Medium"', "sans-serif"],
+        "capitana-light": ['"Capitana Light"', "sans-serif"],
+        "capitana-medium":['"Capitana Medium"', "sans-serif"],
         "capitana-semibold": ['"Capitana Semibold"', "sans-serif"],
         "capitana-bold": ['"Capitana Bold"', "sans-serif"],
       },

@@ -15,8 +15,8 @@ const MiceEvents = () => {
       <div className="px-4 lg:px-10 py-6 md:py-14 lg:py-20">
         <SectionHeader
           title="Upcoming Events"
-          link={{ href: "/events", label: "All upcoming events" }}
-          theme="dark"
+          // link={{ href: "/events", label: "All upcoming events" }}
+          theme="light"
         />
 
         <Link
@@ -56,7 +56,7 @@ const MiceEvents = () => {
           </div>
 
           <span className="ev-arrow !z-20 md:!bottom-10 md:!right-10">
-            <Image src="/assets/link.svg" width={28} height={28} alt="" />
+            <Image src="/assets/link.svg" width={20} height={20} alt="" />
           </span>
         </Link>
       </div>

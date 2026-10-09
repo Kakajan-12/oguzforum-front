@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import MiceFirstPage from "@/components/mice/MiceFirstPage";
 import MiceEventAbout from "@/components/mice/MiceEventAbout";
+import MiceEventFigures from "@/components/mice/MiceEventFigures";
+import MiceEventPavilion from "@/components/mice/MiceEventPavilion";
+import MiceEventSectors from "@/components/mice/MiceEventSectors";
 import { MICE_EVENTS, getMiceEvent } from "@/components/mice/miceEventsData";
 
 export function generateStaticParams() {
@@ -25,7 +28,7 @@ export default async function MiceEventPage({
         description={event.description}
         date={event.date}
         location={event.fullLocation}
-        primaryButton={{ text: "Contact the department", href: "/contacts" }}
+        primaryButton={{ text: "Contact the department", href: "#footer" }}
         secondaryButton={{ text: "Back to all events", href: "/mice" }}
       />
       <MiceEventAbout
@@ -34,6 +37,31 @@ export default async function MiceEventPage({
         imageAlt={event.title}
         facts={event.about.facts}
       />
+      {event.figures && (
+        <MiceEventFigures
+          title={event.figures.title}
+          subtitle={event.figures.subtitle}
+          figures={event.figures.items}
+        />
+      )}
+      {event.pavilion && (
+        <>
+          <MiceEventPavilion
+            title={event.pavilion.title}
+            description={event.pavilion.description}
+            details={event.pavilion.details}
+          />
+          <MiceEventSectors
+            title={event.pavilion.sectorsTitle}
+            sectors={event.pavilion.sectors}
+            cta={{
+              title: "Interested in exhibiting with the Pavilion?",
+              text: "Contact the department",
+              href: "#footer",
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }

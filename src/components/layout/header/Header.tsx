@@ -25,8 +25,8 @@ export default function Header() {
       .map((e) => ({
         label: stripHtml(e.short_en) || "Event",
         href: `/events/${e.id}`,
-      }));
-    // .concat({ label: "MICE", href: "/mice" });
+      }))
+      .concat({ label: "MICE", href: "/mice" });
   })();
   const micePageLinks: Edition[] = [
     { label: "Mice", href: "#mice" },

@@ -8,6 +8,7 @@ import {
   useGetContactsNumberQuery,
   useGetLinksQuery,
 } from "@/lib/api";
+import { usePathname } from "next/navigation";
 const SOCIAL_LABELS: Record<string, string> = {
   instagram: "Instagram",
   telegram: "Telegram",
@@ -16,6 +17,9 @@ const SOCIAL_LABELS: Record<string, string> = {
   youtube: "YouTube",
   facebook: "Facebook",
 };
+
+const MICE_NUMBERS = [{ id: 0, number: "+99371 308 050" }];
+const MICE_MAILS = [{ id: 0, mail: "bahram@oguzforum.com" }];
 
 function Heading({ children }: { children: React.ReactNode }) {
   return (
@@ -28,6 +32,9 @@ function Heading({ children }: { children: React.ReactNode }) {
 }
 
 const DefaultFooter = () => {
+  const pathname = usePathname() ?? "/";
+  const isMicePage = /\/mice(\/|$)/.test(pathname);
+
   const INFORMATION = [
     { name: "Events", href: "/events" },
     { name: "Projects", href: "/projects" },
@@ -41,8 +48,10 @@ const DefaultFooter = () => {
     { name: "Privacy policy", href: "/privacypolicy" },
     { name: "Cookie terms", href: "/cookieterms" },
   ];
-  const { data: mailData } = useGetContactsMailQuery();
-  const { data: numberData } = useGetContactsNumberQuery();
+  const { data: apiMailData } = useGetContactsMailQuery();
+  const { data: apiNumberData } = useGetContactsNumberQuery();
+  const numberData = isMicePage ? MICE_NUMBERS : apiNumberData;
+  const mailData = isMicePage ? MICE_MAILS : apiMailData;
   const { data: links } = useGetLinksQuery();
   const socials =
     links && links.length > 0
@@ -101,7 +110,7 @@ const DefaultFooter = () => {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-r from-[#0164A8] to-[#06306A] text-white">
+    <footer id="footer" className="relative overflow-hidden bg-gradient-to-r from-[#0164A8] to-[#06306A] text-white">
       {/* watermark: faint OGUZ sun, bleeds off the right edge (desktop) */}
       <Image
         src="/logo.svg"
