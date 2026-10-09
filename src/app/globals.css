@@ -267,3 +267,7 @@ h6 {
 .rich-text.line-clamp-3 * {
   display: inline;
 }
+
+.mice-gradient {
+  background: linear-gradient(81.04deg, #006fb5 -5.28%, #06306a 48.58%);
+}

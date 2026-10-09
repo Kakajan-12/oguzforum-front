@@ -12,6 +12,7 @@ import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   const pathname = usePathname() ?? "/";
+  const isMicePage = pathname.endsWith("/mice");
 
   // Editions = upcoming events only (end_date in the future), soonest first.
   const { data: projects } = useGetProjectsQuery();
@@ -25,8 +26,13 @@ export default function Header() {
         label: stripHtml(e.short_en) || "Event",
         href: `/events/${e.id}`,
       }));
+    // .concat({ label: "MICE", href: "/mice" });
   })();
-
+  const micePageLinks: Edition[] = [
+    { label: "Mice", href: "#mice" },
+    { label: "Oguz studio", href: "#oguz-studio" },
+  ];
+  const navLinks = isMicePage ? micePageLinks : editions;
   const [isMobileOpen, setMobileOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   const companyTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -65,25 +71,38 @@ export default function Header() {
       <div className="px-4 lg:px-10">
         <div className="relative flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href={`/`} aria-label="Home" className="flex items-center">
-            <Image
-              src="/oguzWhite.svg"
-              width={267}
-              height={100}
-              alt="Oguz Forum & Expo"
-              className="h-11 w-auto"
-              priority
-            />
-          </Link>
+          {isMicePage ? (
+            <Link href={`/`} aria-label="Home" className="flex items-center">
+              <Image
+                src="/logoMice.svg"
+                width={267}
+                height={100}
+                alt="Oguz Forum & Expo"
+                className="h-11 w-auto"
+                priority
+              />
+            </Link>
+          ) : (
+            <Link href={`/`} aria-label="Home" className="flex items-center">
+              <Image
+                src="/oguzWhite.svg"
+                width={267}
+                height={100}
+                alt="Oguz Forum & Expo"
+                className="h-11 w-auto"
+                priority
+              />
+            </Link>
+          )}
 
           {/* Centre editions (desktop) */}
           <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-            {editions.map((e) => (
+            {navLinks.map((e) => (
               <Link
                 key={e.href}
                 href={e.href}
                 prefetch={false}
-                className={`text-white text-base whitespace-nowrap pb-1 transition-colors hover:text-white ${
+                className={`text-white text-base uppercase whitespace-nowrap pb-1 transition-colors hover:text-white ${
                   isActive(e.href) ? "border-b-2 border-white" : "text-white/90"
                 }`}
               >
