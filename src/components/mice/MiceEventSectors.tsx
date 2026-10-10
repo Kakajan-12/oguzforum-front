@@ -32,7 +32,7 @@ export default function MiceEventSectors({
             <span className="font-capitana-light text-3xl lg:text-4xl text-[#003A84]">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="font-capitana-medium text-sm lg:text-lg leading-snug text-gray-900">
+            <span className="font-capitana-medium text-sm lg:text-base leading-snug text-gray-900">
               {sector}
             </span>
           </div>
